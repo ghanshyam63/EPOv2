@@ -1,0 +1,46 @@
+﻿@model EPOv2.ViewModels.VoucherAttachmentPanelViewModel
+@* Voucher List right panel *@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            Vouchers list
+            <span >
+                <button type="button" class="btn btn-primary btn-sm" onclick="refreshAttachmentList()">
+                    <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span>
+                </button>
+            </span>
+            <span class="pull-right radio">
+                <label class="col-sm-6">
+                    @if (Model.loadEPO)
+                    {
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="Invoice" onchange="switchToInvoice()">
+                    }
+                    else
+                    {
+                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="Invoice" checked="checked" onchange="switchToInvoice()">
+                    }
+                    Invoice
+                </label>
+                <label class="col-sm-6">
+                    @if (Model.loadEPO)
+                    {
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="EPO" checked="checked" onchange="switchToEPO()">
+                    }
+                    else
+                    {
+                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="EPO" onchange="switchToEPO()">
+                    }
+                    EPO
+                </label>
+            </span>
+        </h3>
+    </div>
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-12 form-group">
+                @Html.ListBoxFor(m => m.SelectedFile, new SelectList(Model.InvoiceList, "Id", "Name"), new { @class = "form-control input-sm", size = 20, @onchange = "selectInvoiceFile(this)" })
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,19 @@
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.MatchType: type is a value type.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.ContextType: type is a value type.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.ContextOptions: type is a value type.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.PrincipalCollection: type has no family visible contructors.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.PrincipalValueCollection`1: type has no family visible contructors.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.PrincipalSearchResult`1: type has no family visible contructors.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.PrincipalException: type has no family visible contructors.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.IdentityType: type is a value type.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.GroupScope: type is a value type.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.DirectoryPropertyAttribute: type is sealed.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.DirectoryRdnPrefixAttribute: type is sealed.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for System.DirectoryServices.AccountManagement.DirectoryObjectClassAttribute: type is sealed.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate stub for <PrivateImplementationDetails>{01B557BC-F851-493A-AB50-F3305485EE9C}: type is not supported because of internal limitations.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate shim for System.DirectoryServices.AccountManagement.MatchType: type is an enum.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate shim for System.DirectoryServices.AccountManagement.ContextType: type is an enum.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate shim for System.DirectoryServices.AccountManagement.ContextOptions: type is an enum.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate shim for System.DirectoryServices.AccountManagement.IdentityType: type is an enum.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate shim for System.DirectoryServices.AccountManagement.GroupScope: type is an enum.
+E:\WebApps\EPOv2\EPOv2\Fakes\System.DirectoryServices.AccountManagement.fakes : warning : Cannot generate shim for <PrivateImplementationDetails>{01B557BC-F851-493A-AB50-F3305485EE9C}: type is not supported because of internal limitations.

@@ -1,0 +1,136 @@
+﻿@model DomainModel.Entities.Order
+@{
+    ViewBag.Title = "ModifyDueDate";
+    //Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .Customwidth  {
+        max-width: 50px!important;
+        width: 65px!important;
+        -ms-box-sizing: content-box;
+        -moz-box-sizing: content-box;
+        box-sizing: content-box;
+        font-weight:700;
+        -webkit-box-sizing: content-box;
+    }
+    .table-borderless > tbody > tr > td,
+    .table-borderless > tbody > tr > th,
+    .table-borderless > tfoot > tr > td,
+    .table-borderless > tfoot > tr > th,
+    .table-borderless > thead > tr > td,
+    .table-borderless > thead > tr > th { border: none!important;
+        font-weight:700;
+   
+    }
+    input:-moz-read-only { /* For Firefox */
+        background-color: yellow;
+        text-wrap: normal;
+        border: none;
+        background-color:transparent;
+    }
+
+    input:read-only {
+        background-color: yellow;
+        text-wrap: normal;
+        border: none;
+        background-color:transparent;
+    }
+</style>
+
+<script>
+
+    $(function($) {
+      
+    });
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode !== 46 && charCode!==45 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+    function SearchEPO() {
+        $("#EPOloading1").removeClass('hidden');
+        $('#searchEPOResult').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("_ModifyDueDate", "PurchaseOrder")',
+            data: { "OrderNo": $("#OrderNo").val()},
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#EPOloading1").addClass('hidden');
+                $("#epoResultPanel").addClass('hidden');
+                $('#searchEPOResult').empty();
+            },
+            success: function (result) {
+                $("#EPOloading1").addClass('hidden');
+                $("#epoResultPanel").removeClass('hidden');
+                $('#searchEPOResult').html(result);
+            }
+        });
+    }
+    function ModifyDueDate() {
+        $("#EPOloading1").removeClass('hidden');
+        console.log($("#OrderNo").val());
+        console.log($("#OrderItemId").html());
+        console.log($("#DueDate").val());
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SaveDueDate", "PurchaseOrder")',
+            data: $('#DueDateForm').serialize(),
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#EPOloading1").addClass('hidden');
+                $("#epoResultPanel").addClass('hidden');
+                $('#searchEPOResult').empty();
+            },
+            success: function (result) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#EPOloading1").addClass('hidden');
+                $("#epoResultPanel").removeClass('hidden');
+                $("#Success").html('DueDate Updated Successfully.');
+
+            }
+        });
+    }
+</script>
+<div class="panel panel-primary">
+<div class="panel-heading"><b>Modify DueDate</b></div>
+<div class="panel-body">
+
+   
+        <div class="col-md-12">
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Order #</label>
+                <div class="col-md-2"><input type="text" id="OrderNo" onkeypress = "return isNumberKey(event)" class="form-control input-sm"/></div>
+                <div class="col-md-2">
+                    <button type="button" name="button" value="Search" class="btn btn-success pull-right btn-sm" onclick="SearchEPO()">Search</button>
+                </div>
+            </div>
+        </div>
+        
+  
+</div>
+</div>
+
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="EPOloading1">
+        <div class="spinner spinner-info"></div>
+    </div>
+</div>
+<div class="alert alert-success" id="Success"></div>
+<div class="panel panel-primary hidden" id="epoResultPanel">
+    <div class="panel-heading " id="result-panel-head"> Result</div>
+    <div class="panel-body" id="searchEPOResult">
+
+    </div>
+    <div class="col-md-12">
+        <div class="row form-group">
+              
+           
+        </div>
+    </div>
+</div>

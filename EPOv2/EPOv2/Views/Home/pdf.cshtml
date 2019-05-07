@@ -1,0 +1,88 @@
+﻿@model IEnumerable<EPOv2.ViewModels.OrderDashboardViewModel>
+@{
+   
+    Layout = "~/Views/Shared/_testPdf.cshtml";
+}
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TempOrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.TempOrderNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewItem(this)" title="View order" class="btn btn-info control-btn-crud">
+                    <span class="glyphicon glyphicon-eye-open"></span>
+                </button>
+                @if (ViewBag.Action == "Edit")
+                {
+                    if (item.isEditLocked)
+                    {
+                        <button type="button" title="Edit order" class="btn btn-success control-btn-crud" disabled="disabled">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="button" title="Delete item" class="btn btn-danger control-btn-crud" disabled="disabled">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" value="@item.Id" id="EditItem-@item.Id" onclick=" EditItem(this) " title="Edit order" class="btn btn-success control-btn-crud">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                        <button type="button" value="@item.Id" id="DeleteItem-@item.Id" onclick="DeleteItem(this)" title="Delete item" class="btn btn-danger control-btn-crud">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    }
+                }
+                else
+                {
+                    <button type="button" value="@item.Id" id="ApproveItem-@item.Id" onclick="ApproveItem(this)" title="Approve order" class="btn btn-success control-btn-crud">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

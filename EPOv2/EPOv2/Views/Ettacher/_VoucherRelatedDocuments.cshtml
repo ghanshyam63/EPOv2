@@ -1,0 +1,45 @@
+﻿
+@model EPOv2.ViewModels.VoucherRelatedDocumentsPanel
+
+<div class="panel panel-danger">
+    <div class="panel-heading panel-heading-small">
+        <h3 class="panel-title">Related documents</h3>
+    </div>
+    <div class="panel-body panel-body-small">
+        @using (@Html.BeginForm("ViewDocument", "Ettacher", FormMethod.Post, new { id = "DocumentViewForm" }))
+        {
+            @Html.HiddenFor(x => x.VoucherDocumentId, new { id = "VoucherDocViewId" })
+        }
+        <table class="table table-responsive table-narrow">
+            <thead>
+                <tr>
+                    <th>@Html.DisplayNameFor(x => x.RelatedDocuments[0].Type)</th>
+                    <th>@Html.DisplayNameFor(x => x.RelatedDocuments[0].Authoriser)</th>
+                    <th></th>
+                </tr>
+            </thead>
+            @foreach (var item in Model.RelatedDocuments)
+            {
+                <tr>
+                    <td>@Html.DisplayFor(x => item.Type)</td>
+                    <td>@Html.DisplayFor(x => item.Authoriser)</td>
+                    @*<td>@Html.DisplayFor(x => item.Date)</td>*@
+                    <td>
+                        @Html.HiddenFor(x => item.DocumentId)
+                        <button type="button" value="@item.DocumentId" id="ViewItem-@item.DocumentId" data-type="@item.Type" onclick="ViewDocument(this)" title="View document" class="btn btn-info control-btn-crud">
+                            <span class="glyphicon glyphicon-eye-open"></span>
+                        </button>
+                        <button type="button" value="@item.DocumentId" id="DeleteItem-@item.DocumentId" data-type="@item.Type" onclick="DeleteDocument(this)" title="Delete document" class="btn btn-danger control-btn-crud">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+
+                    </td>
+                </tr>
+            }
+        </table>
+
+    </div>
+</div>
+
+
+

@@ -1,0 +1,52 @@
+﻿@*@model DomainModel.Entities.tblStagingCostCentresDEV
+@{
+    ViewBag.Title = "Change Cost Centre Owner (OLD)";
+}
+
+<h2>Change Cost Centre Owner</h2>
+@Html.AntiForgeryToken()
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @{
+    if (ViewBag.Result != null)
+    {
+        <div class="alert alert-success">@ViewBag.Result</div>
+    }
+        }
+        <div class="form-group">
+            <div class="form-group">
+                @Html.Label("Cost Centre: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.CostCentreCode, (SelectList)ViewBag.costCentreLst, "Select Cost Centre", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.CostCentreCode)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Owner: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.Owner, (SelectList)ViewBag.ownerLst, "Select Owner", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Owner)
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="btn_updateCCOwner" class="btn btn-primary" value="Update" />
+                </div>
+            </div>
+        </div>
+        @*<div class="alert alert-info">
+            @ViewBag.runtime1
+
+            @ViewBag.runtime2
+
+            @ViewBag.Name
+        </div>
+
+    </div>
+
+
+}*@

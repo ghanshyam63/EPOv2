@@ -1,0 +1,85 @@
+﻿@model EPOv2.ViewModels.InvoiceExceedReportVM
+
+<div class="table">
+    <table class="table table-striped">
+        <tr>
+            <th>
+                CC
+            </th>
+            <th>
+                PO #
+            </th>
+            <th>
+                Supplier
+            </th>
+            <th>
+                Authoriser
+            </th>
+            <th>
+                PO Total
+            </th>
+            <th>Inv Total</th>
+            <th>
+                Variance
+            </th>
+        </tr>
+       
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(x => item.CostCentreCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.OrderNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.SupplierCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.AuthoriserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.OrderTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.InvoicesTotal)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Variance)
+                </td>
+            </tr>
+        }
+        @if (Model.ItemsWithoutOrder.Count > 0)
+        {
+            <tr>
+                <td colspan="7"><strong>Invoices without order(Cnt: @Model.ItemsWithoutOrder.Count)</strong></td>
+            </tr>
+            <tr>
+                <th></th>
+                <th>Voucher</th>
+                <th>Supplier</th>
+                <th>Authoriser</th>
+                <th></th>
+                <th>Total</th>
+                <th>Variance</th>
+            </tr>
+            foreach (var item in Model.ItemsWithoutOrder)
+            {
+                <tr>
+                    <td> n/a </td>
+                    <td> @Html.DisplayFor(x => item.OrderNumber) </td>
+                    <td> n/a </td>
+                    <td>
+                        @Html.DisplayFor(x => item.AuthoriserName)
+                    </td>
+                    <td> n/a </td>
+                    <td>
+                        @Html.DisplayFor(x => item.InvoicesTotal)
+                    </td>
+                    <td> n/a </td>
+                </tr>
+            }
+        }
+    </table>
+</div>

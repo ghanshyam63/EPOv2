@@ -1,0 +1,103 @@
+﻿@*@model IEnumerable<DomainModel.Entities.tblStagingEmployeesDEV>
+@{
+    ViewBag.Title = "Manage Users";
+}
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#divProcessing").hide();
+
+        $('#my-dialog').dialog({
+            title: 'Edit Customer',
+            autoOpen: false,
+            resizable: false,
+            height: 350,
+            width: 450,
+            show: {
+                effect: 'fadeIn'
+            },
+            modal: true,
+            draggable: true,
+            open: function (event, ui) {
+                $(this).load(url);
+
+            },
+            close: function (event, ui) {
+                $(this).dialog('close');
+            }
+
+        });
+
+        $('.modalDialog').click(function () {
+            $('#my-dialog').load(this.href, function () {
+                $(this).dialog('open');
+            });
+            return false;
+        });
+    });
+</script>
+
+
+<h2>ManageUsers</h2>
+
+@{
+    if (ViewBag.code != null)
+    {
+        <div class="alert @ViewBag.AlertClass">@ViewBag.Msg</div>
+    }
+}
+
+<div id="my-dialog"></div>
+<div class="col-md-7">
+    <table class="table table-striped table-condensed ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manager)
+            </th>
+            <th></th>
+        </tr>
+
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manager)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "ManageUsersEdit", new { id = item.StagingEmpID }, new { @class = "modalDialog" })
+
+                    @Html.ActionLink("Delete", "DeleteManageUser", new { id = item.StagingEmpID }, new {onclick="return confirm('Are you sure you want to delete "+@Html.DisplayFor(modelItem=>item.Employee) +"?')"})
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>*@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

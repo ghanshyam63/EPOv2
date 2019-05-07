@@ -1,0 +1,130 @@
+﻿
+<style>
+        #dialog-message {
+            display: none;
+        }
+     .ui-dialog-titlebar {
+         border: 0 !important;
+         float: right !important;
+     }
+
+    .myCloseIcon {
+        float: right !important;
+    }
+
+    .ui-widget-content {
+        border: 0 !important;
+        padding: 0 !important;
+      
+    }
+
+    .popimg {
+        float: left;
+    }
+
+    .closeb {
+        display: block;
+        position: absolute;
+        top: 7px;
+        right: 7px;
+       
+        font: bold 131% sans-serif;
+        background-color: yellow;
+        border-radius: 7px 7px 7px 7px;
+        padding: 0 6px 2px;
+    }
+    .closeb:hover {
+        display: block;
+        position: absolute;
+        top: 7px;
+        right: 7px;
+        font: bold 131% sans-serif;
+        color: #fff;
+        background-color: blue;
+        border-radius: 7px 7px 7px 7px;
+        padding: 0 6px 2px;
+    }
+</style>
+<script>
+    (function ($) {
+        $.cookie = function (key, value, options) {
+
+            // key and at least value given, set cookie...
+            if (arguments.length > 1 && (!/Object/.test(Object.prototype.toString.call(value)) || value === null || value === undefined)) {
+                options = $.extend({}, options);
+
+                if (value === null || value === undefined) {
+                    options.expires = 1;//6 hours
+                }
+
+                if (typeof options.expires === 'number') {
+                    var min = options.expires,
+                        t = options.expires = new Date();
+                    t.setTime(t.getTime() + (min*60*1000));
+                }
+
+                value = String(value);
+
+                return (document.cookie = [
+                encodeURIComponent(key), '=', options.raw ? value : encodeURIComponent(value),
+                options.expires ? '; expires=' + options.expires.toUTCString() : '', // use expires attribute, max-age is not supported by IE
+                options.path ? '; path=' + options.path : '',
+                options.domain ? '; domain=' + options.domain : '',
+                options.secure ? '; secure' : ''].join(''));
+            }
+
+            // key and possibly options given, get cookie...
+            options = value || {};
+            var decode = options.raw ? function (s) {
+                return s;
+            } : decodeURIComponent;
+
+            var pairs = document.cookie.split('; ');
+            for (var i = 0, pair; pair = pairs[i] && pairs[i].split('=') ; i++) {
+                if (decode(pair[0]) === key) return decode(pair[1] || ''); // IE saves cookies with empty string as "c; ", e.g. without "=" as opposed to EOMB, thus pair[1] may be undefined
+            }
+            return null;
+        };
+    })(jQuery);
+    $(function () {
+      
+        if ($.cookie("delDialogCookie") === null) {
+        jQuery("#dialog:ui-dialog").dialog("destroy");
+
+        jQuery("#dialog-message").dialog({
+            modal: true,
+            position: 'center',
+            resizable: false,
+            draggable: false,
+            width: 536,
+            height: 'auto'
+        });
+        $(".ui-dialog")
+           .find(".ui-dialog-titlebar").remove();
+        $("span.myCloseIcon").click(function () {
+            $("#dialog-message").dialog("close");
+            delDialog();
+        });
+       }
+    });
+
+    function delDialog() {
+        $.cookie("delDialogCookie", null);
+    }
+</script>
+
+
+@{
+    ViewBag.Title = "Popup";
+}
+
+<h2>Popup</h2>
+<input type="button" id="button" value="Click to open the dialog">
+<div id="dialog-message" title="Welcome">
+
+    <span class="popimg">
+        <span class="closeb"><a href="#" role="button"><span class="myCloseIcon">x</span></a></span>
+        <img src="../../Content/img/baner.jpg" alt="" />
+       </span>
+
+</div>

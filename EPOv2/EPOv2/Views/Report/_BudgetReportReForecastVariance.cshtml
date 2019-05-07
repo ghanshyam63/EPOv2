@@ -1,0 +1,4 @@
+﻿@model EPOv2.ViewModels.BudgetReportResult
+
+@Html.Partial("_BudgetReportResultPart", Model.Reforecast, new ViewDataDictionary { { "Name", "Reforecast" } })
+@Html.Partial("_BudgetReportResultPart", Model.Variance, new ViewDataDictionary { { "Name", "Variance" } })

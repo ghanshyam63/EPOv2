@@ -1,0 +1,23 @@
+﻿@using EPOv2.Business.Interfaces
+
+@{
+    ViewBag.Title = "FileNotFoundView";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="bs-callout bs-callout-danger">
+
+    @if (ViewBag.DocType != DocumentTypeEnum.Purchase_Order)
+    {
+        <h2 class="text-danger">File Not Found</h2>
+
+        <h3>File:@ViewBag.FilePath@ViewBag.FileName</h3>
+    }
+    else
+    {
+        <h2>Incorect Order number or Document type</h2>
+        <h4>Order #: @ViewBag.FileName, Document type: @ViewBag.DocType.ToString().Replace("_"," ")</h4>
+    }
+
+    <span class="glyphicon glyphicon-alert text-danger" aria-hidden="true"></span> Please ask @ViewBag.Author to fix it.
+</div>

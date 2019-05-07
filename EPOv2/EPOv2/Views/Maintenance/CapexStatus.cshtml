@@ -1,0 +1,99 @@
+﻿@model EPOv2.ViewModels.CapexViewModel
+@{
+    ViewBag.Title = "Capex Status";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    function searchCapex() {
+        var tNumber = $("#Number").val();
+        if (tNumber !== "") {
+            $('#EPOloading1').removeClass('hidden');
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCapexForStatusChange")',
+            cache: false,
+            data: {
+                CapexNumber: tNumber
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                $('#div-capexForm').empty();
+                $('#EPOloading1').addClass('hidden');
+            },
+            success: function (result) {
+                $('#EPOloading1').addClass('hidden');
+                $('#div-capexForm').empty();
+                $('#div-capexForm').html(result);
+
+            }
+        });}
+    }
+
+        function submitForm() {
+            bootbox.confirm("Are you sure?", function (result) {
+                if (result === true) {
+                    var $form = $('form[id="CapexStatusChange"]');
+                  $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("CapexStatusChange")',
+                        data: $form.serialize(),
+                        cache: false,
+                        error: function (xhr, status, error) {
+                            $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                        },
+                        success: function (result) {
+                            $('#SaveAlert').show(500).fadeIn().delay(1000).hide(500).fadeOut();
+                        }
+                    });
+                }
+            });
+        }
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode !== 46 && charCode !== 45 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+</script>
+<br />
+<div class="row">
+    <div class="col-md-12">
+        <div id="div-capexForm">
+            <div class="col-md-6">
+                <div class="panel panel-info ">
+                    <div class="panel-heading">
+                        <span class="panel-title">Change Capex Status</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-3">Capex #</div>
+                            <div class="col-md-3">
+                                @Html.TextBoxFor(m => Model.Number, null, new { @class = "form-control input-sm", @onkeypress = "return isNumberKey(event)" })
+                            </div>
+                            <div class="col-md-1">
+                                <button type="button" class="btn btn-default btn-sm" onclick="searchCapex()">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-12">
+        <div id="SaveAlert" class="alert alert-success" style="display: none;">Saved Successfully</div>
+    </div>
+    <div class="col-md-12">
+        <div id="ErrorAlert" class="alert alert-danger" style="display: none;">Error! </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center hidden" id="EPOloading1">
+            <div class="spinner spinner-info"></div>
+        </div>
+    </div>
+</div>

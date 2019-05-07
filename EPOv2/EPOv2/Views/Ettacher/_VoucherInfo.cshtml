@@ -1,0 +1,45 @@
+﻿@model EPOv2.ViewModels.VoucherInfoViewModel
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Voucher info</div>
+                    <div class="panel-body panel-body-small">
+                        @Html.HiddenFor(x=>x.Account)
+                        @Html.HiddenFor(x => x.Amount)
+                        @Html.HiddenFor(x => x.CostCentre)
+                        @Html.HiddenFor(x => x.Supplier)
+                        @Html.HiddenFor(x => x.InvoiceNumber)
+                        @Html.HiddenFor(x => x.VoucherNumber)
+                        @Html.HiddenFor(x => x.DueDate)
+                        @Html.HiddenFor(x => x.Terms)
+                        <table class="table table-responsive table-narrow">
+                            <thead>
+                            <tr>
+                                <th>Voucher #</th>
+                                <th>Invoice #</th>
+                                <th>CC</th>
+                                @*<th>Account</th>*@
+                                <th>Supplier</th>
+                                <th>Terms</th>
+                                <th>Due date</th>
+                                <th class="text-right">Amount $</th>
+                                <th>Status</th>
+                            </tr>
+                            <tr>
+                                <td>
+                                    @Html.HiddenFor(x=>x.AutoApprove)
+                                    @Model.VoucherNumber
+                                </td>
+                                <td>@Model.InvoiceNumber</td>
+                                <td>@Model.CostCentre</td>
+                                @*<td>@Model.Account</td>*@
+                                <td>@Model.Supplier</td>
+                                <td>@Model.Terms</td>
+                                <td>@Model.DueDate</td>
+                                <td class="text-right">@Html.DisplayFor(m => m.Amount)</td>
+                                <td>@Model.Status</td>
+                            </tr>
+                            </thead>
+                        </table>
+                    </div>
+                </div>
+

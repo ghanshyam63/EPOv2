@@ -1,0 +1,47 @@
+﻿@model DomainModel.Entities.OrderItem
+<script>
+
+    $(function($) {
+        $('.Duedatepicker').datetimeEntry({datetimeFormat: 'D-O-Y'});
+
+
+    });
+</script>
+<style>
+    .is-datetimeEntry {
+        width:100px;
+    }
+    .IncreaseMargin {
+        margin-top: 20px !important;
+    }
+</style>
+<div class="row IncreaseMargin">
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        @Html.TextBoxFor(x => x.Id, new { @readonly = "readonly", @class = "Customwidth" })
+    </div>
+    <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+        @Html.TextBoxFor(x => x.Description, new { @readonly = "readonly" })
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        @Html.TextBoxFor(x => x.Qty, new { @readonly = "readonly", @class = "Customwidth" })
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        @Html.TextBoxFor(x => x.UnitPrice, new { @readonly = "readonly", @class = "Customwidth" })
+    </div>
+
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        @Html.TextBoxFor(x => x.Total, new { @readonly = "readonly", @class = "Customwidth" })
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+        @Html.TextBoxFor(x => x.DateCreated, "{0:dd-MM-yyyy}", new { @readonly = "readonly", @class = "" })
+    </div>
+    <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+        @Html.TextBoxFor(x => x.CreatedBy, new { @readonly = "readonly", @class = "Customwidth" })
+    </div>
+    <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+
+        @Html.TextBoxFor(x => x.DueDate, "{0:dd-MM-yyyy}", new { @class = "Duedatepicker", id = "datetimepicker" + Model.Id })
+    </div>
+
+
+</div>

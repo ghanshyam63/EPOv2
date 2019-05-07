@@ -1,0 +1,92 @@
+﻿@using EPOv2.Business
+@model EPOv2.ViewModels.SupplierBoxViewModel
+<div class="row">
+    <div class="form-group col-md-11">
+        <h4 class="col-md-3">Supplier</h4>
+        <span id="pin-supplier-notification" class="col-md-2 pull-right label label-success small-pin-notification" style="display: none">Saved</span>
+
+        <div class="col-md-1 pull-right">
+            <button type="button" title="Set Default supplier" class="btn btn-default control-btn-crud btn-pin" value="" id="SupplierPin" onclick="PinSupplierInfo(this) ">
+                <span class="glyphicon glyphicon-pushpin"></span>
+            </button>
+        </div>
+        <div class="col-md-12">
+            @*@(Model.IsBlocked ? Html.DropDownListFor(m => m.SelectedSupplier, new SelectList(Model.Suppliers, "SupplierId", "SupplierName"), "Select Supplier", new { @class = "form-control input-sm", @onchange = "selectSupplier(this)", @disabled = "disabled" })
+                : Html.DropDownListFor(m => m.SelectedSupplier, new SelectList(Model.Suppliers, "SupplierId", "SupplierName"), "Select Supplier", new { @class = "form-control input-sm", @onchange = "selectSupplier(this)" }))
+            @Html.ValidationMessageFor(model => model.SelectedSupplier, "Please select Supplier", new { @class = "text-danger" })*@
+            
+            @(Model.IsBlocked ? Html.DropDownListFor(m => m.SelectedSupplier, new SelectList(Model.SupplierViewModels, "Id", "FullName"), "Select Supplier", new { @class = "form-control input-sm", @onchange = "selectSupplier(this)", @disabled = "disabled" })
+                : Html.DropDownListFor(m => m.SelectedSupplier, new SelectList(Model.SupplierViewModels, "Id", "FullName"), "Select Supplier", new { @class = "form-control input-sm", @onchange = "selectSupplier(this)" }))
+            @Html.ValidationMessageFor(model => model.SelectedSupplier, "Please select Supplier", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<hr class="hr-sm" />
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">Transmission method</label>
+        <div class="col-md-9">
+            @Html.DropDownListFor(m => m.SelectedTransmission, new SelectList(Enum.GetValues(typeof(Data.TransmissionMethod))), "Select Method", new { @class = "form-control input-sm", @onchange = "selectMethod(this)" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">Contact</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Contact, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">Address</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Address, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">City</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.City, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">State</label>
+        <div class="col-md-3">
+            @Html.TextBoxFor(m => m.State, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+        <label class="col-sm-2 control-label POForm">PostCode</label>
+        <div class="col-md-4">
+            @Html.TextBoxFor(m => m.PostCode, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">Phone</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Phone, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">Fax</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.Fax, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-sm-3 control-label POForm">Email for PO</label>
+        <div class="col-md-9">
+            @Html.TextBoxFor(m => m.EmailForSupplier, null, new { @class = "form-control input-sm", type = "email", @onchange = "changeSupplierEmail(this)" })
+        </div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿@model EPOv2.ViewModels.EntityDDLViewModel
+@{
+    ViewBag.Title = "Add CC to Entity Mapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function selectEntity(object) {
+        var entityID = object.value;
+        if (entityID != null && entityID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCostCentreListForMap")',
+                cache: false,
+                data: {
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#ccList').html(result);
+                }
+            });
+        }
+    }
+
+ 
+</script>
+
+<h3>Add new Cost Centre to Entity mapping</h3>
+@using (Html.BeginForm())
+{
+    <div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", onchange = "selectEntity(this)" })
+        </div>
+        <div id="ccList" class="col-md-5"></div>
+        <div class="col-md-3">
+            <input type="submit" value="Save" class="btn btn-success btn-sm" />
+            <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapEntityToCC", "Maintenance")'">Back</button>
+        </div>
+    </div>
+}
+

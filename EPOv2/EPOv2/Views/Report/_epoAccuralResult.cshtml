@@ -1,0 +1,66 @@
+﻿@model IEnumerable<EPOv2.ViewModels.EPOAccuralReportViewModel>
+
+
+<div class="panel panel-primary">
+    <div class="panel-heading">Result</div>
+    <div class="panel-body">
+            <table class="table table-responsive table-bordered table-hover table-condensed">
+                <thead>
+                <tr>
+                    <th>Order</th>
+                    <th>Name</th>
+                    <th>Cost Centre</th>
+                    <th>Account</th>
+                    <th>Supplier</th>
+                    <th>Order Qty</th>
+                    <th>Receipt Qty</th>
+                    <th>Currency</th>
+                    <th>Total Ex GST</th>
+                    <th>Awaiting Qty</th>
+                    <th>Awaiting Total</th>
+                </tr>
+                </thead>
+               
+                @foreach (var item in @Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(x => item.OrderId)
+                            @Html.DisplayFor(x => item.OrderNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.EntityName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.CostCentreCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.AccountCode)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.SupplierName)
+                        </td>
+                        <td class="text-right">
+                            @Html.DisplayFor(x => item.OrderQty)
+                        </td>
+                        <td class="text-right">
+                            @Html.DisplayFor(x => item.ReceiptQty)
+                        </td>
+                        <td class="">
+                            @Html.DisplayFor(x => item.CurrencySym)
+                        </td>
+                       
+                        <td class="text-right">
+                            @Html.DisplayFor(x => item.TotalExGST)
+                        </td>
+                        <td class="text-right">
+                            @Html.DisplayFor(x => item.AwaitingQty)
+                        </td>
+                        <td class="text-right">
+                            @Html.DisplayFor(x => item.AwaitingTotalExGST)
+                        </td>
+                    </tr>
+                }
+            </table>
+    </div>
+</div>

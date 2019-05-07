@@ -1,0 +1,144 @@
+﻿@model IEnumerable<EPOv2.ViewModels.OrderDashboardViewModel>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+@if (ViewBag.Action != "Matching")
+{
+    <th>
+        @Html.DisplayNameFor(model => model.TempOrderNumber)
+    </th>
+}
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Supplier)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.OrderNumber)
+            </td>
+@if (ViewBag.Action != "Matching")
+{
+    <td>
+        @Html.DisplayFor(modelItem => item.TempOrderNumber)
+    </td>
+}
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Supplier)
+            </td>
+            <td class="text-right">
+                @Html.DisplayFor(modelItem => item.Total)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (ViewBag.Action == "Edit")
+                {
+                    <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewItem(this)" title="View order" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                    if (item.isEditLocked)
+                    {
+                        <button type="button" title="Send Email" class="btn btn-warning control-btn-crud" value="@item.Id" id="EMailItem-@item.Id" onclick="SendEmail(this) ">
+                            <span class="glyphicon glyphicon-send"></span>
+                        </button>
+                        <button type="button" title="Open PDF" class="btn btn-primary control-btn-crud" value="@item.Id" id="OpenPdfItem-@item.Id" onclick="OpenPDFPO(this)">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </button>
+                        <button type="button" value="@item.Id" id="EditItem-@item.Id" onclick=" EditItem(this) " title="Edit order" class="btn btn-success control-btn-crud" disabled="disabled">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        if (item.isDeleteLocked)
+                        {
+                            <button type="button" title="Send Email" class="btn btn-warning control-btn-crud" value="@item.Id" id="EMailItem-@item.Id" onclick="SendEmail(this)">
+                                <span class=" glyphicon glyphicon-send">
+                                </span>
+                            </button>
+                            <button type="button" title="Open PDF" class="btn btn-primary control-btn-crud" value="@item.Id" id="OpenPdfItem-@item.Id" onclick="OpenPDFPO(this)">
+                                <span class="glyphicon glyphicon-file"></span>
+                            </button>
+                        }
+                        else
+                        {
+                            <button type="button" title="Send Email" class="btn btn-warning control-btn-crud" disabled="disabled">
+                                <span class="glyphicon glyphicon-send"></span>
+                            </button>
+                            <button type="button" title="Open PDF" class="btn btn-primary control-btn-crud" disabled="disabled">
+                                <span class="glyphicon glyphicon-file"></span>
+                            </button>
+                        }
+                        <button type="button" value="@item.Id" id="EditItem-@item.Id" onclick=" EditItem(this) " title="Edit order" class="btn btn-success control-btn-crud">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                    }
+                    if (item.isDeleteLocked)
+                    {
+                        <button type="button" title="Cancel item" class="btn btn-danger control-btn-crud" value="@item.Id" id="DeleteItem-@item.Id" onclick="CancelItem(this)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" value="@item.Id" id="DeleteItem-@item.Id" onclick="DeleteItem(this)" title="Delete item" class="btn btn-danger control-btn-crud">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    }
+                    if (item.isReadyForClose)
+                    {
+                        <button type="button" value="@item.Id" id="CloseItem-@item.Id" onclick="CloseItem(this)" title="Close order" class="btn btn-warning control-btn-crud">
+                            <span class="glyphicon glyphicon-ban-circle"></span>
+                        </button>
+                    }
+                    <button type="button" title="Transaction list" class="btn btn-default control-btn-crud" value="@item.Id" id="Transaction-@item.Id" data-rel="popup-@item.Id" data-position-to="origin" onclick="ShowTransactions(this)">
+                        <span class="glyphicon glyphicon-list"></span>
+                    </button>
+                    if (item.isReadyForMatch)
+                    {
+                        <button type="button" title="Match order" class="btn btn-success control-btn-crud" value="@item.Id" id="MatchOrder-@item.Id" onclick="MatchOrder(this)">
+                            <span class="glyphicon glyphicon-duplicate"></span>
+                        </button>
+                        <a href='@Url.Action("ModifyDueDateFromIntranet", "PurchaseOrder",new {OrderNo=item.OrderNumber})' title="Modify DueDate" class= "btn btn-success control-btn-crud"><span class="glyphicon glyphicon-adjust" title="Modify DueDate"></span></a>
+                      
+                    }
+                }
+                else if (ViewBag.Action == "Matching")
+                {
+                    <button type="button" title="Matching order" class="btn btn-success control-btn-crud" value="@item.Id" id="MatchOrder-@item.Id" onclick="MatchOrder(this)">
+                        <span class="glyphicon glyphicon-duplicate"></span>
+                    </button>
+                    <a href='@Url.Action("ModifyDueDateFromIntranet", "PurchaseOrder",new {OrderNo=item.OrderNumber})' class="btn btn-success control-btn-crud"><span class="glyphicon glyphicon-adjust"></span></a>
+                }
+                else
+                {
+                    <button type="button" value="@item.Id" id="ApproveItem-@item.Id" onclick="ApproveItem(this)" title="Approve order" class="btn btn-success control-btn-crud">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

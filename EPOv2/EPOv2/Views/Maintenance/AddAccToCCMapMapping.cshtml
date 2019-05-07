@@ -1,0 +1,54 @@
+﻿@model EPOv2.ViewModels.CostCentreDDLViewModel
+@{
+    ViewBag.Title = "Add Account To CC Mapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function selectCostCentre(object) {
+        var ccID = object.value;
+        var type = Number($("#IsSubAccount").prop("checked"));
+        if (ccID != null && ccID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchAccountListForMap")',
+                cache: false,
+                data: {
+                    ccId: ccID,
+                    type: type
+        },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#accountList').html(result);
+                }
+            });
+        }
+    }
+
+ 
+</script>
+
+<h3>Add new Account To Cost Centre mapping</h3>
+@using (Html.BeginForm())
+{
+    <div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.SelectedCostCentre, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm input", onchange = "selectCostCentre(this)" })
+            @Html.ValidationMessageFor(model => model.SelectedCostCentre, "Please select Account", new { @class = "text-danger" })
+            Sub Acc
+            @Html.CheckBoxFor(x => x.IsSubAccount)
+        </div>
+       
+        <div id="accountList" class="col-md-5"></div>
+        <div class="col-md-3">
+            <input type="submit" value="Save" class="btn btn-success btn-sm" />
+            <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapAccountToCC", "Maintenance")'">Back</button>
+        </div>
+        
+    </div>
+}
+

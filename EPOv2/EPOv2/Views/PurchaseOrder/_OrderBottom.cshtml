@@ -1,0 +1,28 @@
+﻿<div class="col-md-5" id="div-bottom-comment">
+    <label>Comments: (Appears on purchase order)</label>
+    @Html.TextArea("comm",null, new {@class="form-control "})
+</div>
+<div class="col-md-5" id="div-bottom-intcommnet">
+    <label>Internal Comments (does not appear on Purchase Order)</label>
+    @Html.TextArea("intcomm", null, new { @class = "form-control " })
+</div>
+<div class="col-md-2" id="div-bottom-EpoTotal">
+    <div class="row">
+        <div class="col-md-12">
+            Total Ex GST
+            @Html.TextBox("exGST", null, new { @class = "form-control input-sm" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Total GST
+            @Html.TextBox("exGST", null, new { @class = "form-control input-sm" })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            Total (AUD$)
+            @Html.TextBox("exGST", null, new { @class = "form-control input-sm" })
+        </div>
+    </div>
+</div>

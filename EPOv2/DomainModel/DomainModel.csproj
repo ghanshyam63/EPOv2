@@ -1,0 +1,1072 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9B46BDB4-DFE9-41B0-BC4C-88D026945CCD}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>DomainModel</RootNamespace>
+    <AssemblyName>DomainModel</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EPO-Release|AnyCPU'">
+    <OutputPath>bin\EPO-Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Intranet-Release|AnyCPU'">
+    <OutputPath>bin\Intranet-Release\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>bin\x86\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EPO-Release|x86'">
+    <OutputPath>bin\x86\EPO-Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Intranet-Release|x86'">
+    <OutputPath>bin\x86\Intranet-Release\</OutputPath>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'EPO-Release|x64'">
+    <OutputPath>bin\x64\EPO-Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Intranet-Release|x64'">
+    <OutputPath>bin\x64\Intranet-Release\</OutputPath>
+    <PlatformTarget>x64</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AgileDesign.AdomdExtensions, Version=1.3.0.0, Culture=neutral, PublicKeyToken=0c609c2d7c233e82, processorArchitecture=MSIL">
+      <HintPath>..\packages\SsasEntityFrameworkProvider.2.7.0.0\lib\net40-Full\AgileDesign.AdomdExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="AgileDesign.Utilities, Version=1.3.0.0, Culture=neutral, PublicKeyToken=0c609c2d7c233e82, processorArchitecture=MSIL">
+      <HintPath>..\packages\SsasEntityFrameworkProvider.2.7.0.0\lib\net40-Full\AgileDesign.Utilities.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.BulkInsert, Version=6.0.2.8, Culture=neutral, PublicKeyToken=630a17433349cb76, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.BulkInsert-ef6.6.0.2.8\lib\Net45\EntityFramework.BulkInsert.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.MappingAPI, Version=6.1.0.9, Culture=neutral, PublicKeyToken=7ee2e825d201459e, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.MappingAPI.6.1.0.9\lib\net45\EntityFramework.MappingAPI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="MdxClient, Version=1.1408.20416.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MdxClient.1.1408.20416.1\lib\net40\MdxClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AnalysisServices.AdomdClient, Version=12.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AnalysisServices.AdomdClient.12.0.2000.8\lib\net40\Microsoft.AnalysisServices.AdomdClient.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.1.0\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.1.0\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin, Version=3.0.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Owin.3.0.1\lib\net45\Microsoft.Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SsasEntityFrameworkProvider, Version=2.5.3.0, Culture=neutral, PublicKeyToken=0c609c2d7c233e82, processorArchitecture=MSIL">
+      <HintPath>..\packages\SsasEntityFrameworkProvider.2.7.0.0\lib\net40-Full\SsasEntityFrameworkProvider.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SsasEntityFrameworkProvider.Attributes, Version=2.5.2.0, Culture=neutral, PublicKeyToken=0c609c2d7c233e82, processorArchitecture=MSIL">
+      <HintPath>..\packages\SsasEntityFrameworkProvider.2.7.0.0\lib\net40-Full\SsasEntityFrameworkProvider.Attributes.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseClasses\PersistableIntCollection.cs" />
+    <Compile Include="BaseClasses\PersistableScalarCollection.cs" />
+    <Compile Include="DataContext\acd_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ActiveDirectoryTerminatedExclude.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ac_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ad_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ad_mstr_extra.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ad_mstr_manual.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ApprovalList.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ap_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ard_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ar_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ar_mstr_audit.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\asc_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\AutoPoSupplierGrouping.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ba_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\bgd_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\cm_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\con_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Cube2015_Fact_Yield.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Detailed.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\DetailedOld.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\DetailedTemp.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\dtproperties.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeException.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeExclude.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeInformation.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeLocation.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeLocationNew.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeLocationNew1.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeLocationtest.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeManager.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeManager_Backup.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\EmployeeTotalTime.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Fact_SalesECSL24.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Fact_SalesECSL48.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Fact_SalesRC.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Fact_SalesRC_Comments.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Fact_SalesRC_CommentsInfo.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\FinancialCalendar.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\FormtrapPrinter_.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\GLCodeMapping.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\glc_cal.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\gltr_hist_audit.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\IDataContext.cs" />
+    <Compile Include="DataContext\idh_hist.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\idh_hist_audit.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ih_hist.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ih_hist_audit.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\in_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\km01.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\LabourHireCompany.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\LabourHireCompanyRate.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ld_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ln_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Location.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\MacroOutputBDL.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\MacroOutputBDL_EBABackDate.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\MacroOutputBNE.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\MacroOutputPTH.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\MacroOutputSYD.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\mrp_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OldPurchaseOrderContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldPurchaseOrderContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OldPurchaseOrderContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OldPurchaseOrderContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldPurchaseOrderContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OldTNAContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldTNAContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OldTNAContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\OldTNAContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>OldTNAContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pl_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pod_det1.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\po_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Printer.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ps_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ptp_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pt_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pt_mstr1.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pt_mstr_extra.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pt_mstr_manual.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\PurchaseOrderContext.cs" />
+    <Compile Include="DataContext\pvod_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\pvo_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\QadLiveContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QadLiveContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\QadLiveContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\QadLiveContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>QadLiveContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\QADReal.cs">
+      <DependentUpon>QADReal.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\QADReal.Designer.cs">
+      <DependentUpon>QADReal.xsd</DependentUpon>
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <Compile Include="DataContext\Reason.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ReceivalsLocationPo.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\RosterOnPaycodeMapping.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ro_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\rpt_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\rsn_ref.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\rsn_ref_manual.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\SafetyManagementSystem.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafetyManagementSystem.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\SafetyManagementSystem.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\SafetyManagementSystem.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SafetyManagementSystem.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Site.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\si_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\si_mstr_extra.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\SMSEmployee.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sod_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\STPControl.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\SupplierTimeTolerance.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sysdiagrams.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_acl.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_countries.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_distributionCentres.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_marketing.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_partnercodes.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_partnersubcodes.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_regions.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_states.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_subvaluestreams.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_valuestreams.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\sys_zones.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblAccount.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblActiveDays.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblAmendment.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblAPSubstitutionLog.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblBudgetDetail.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblBudgetHeader.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapex.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexApprover.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexAuthoriser.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexAuthoriserList.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexLimit.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexRole.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexRoleLimit.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCapexRouting.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblChepProduct.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblControl.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCostCentre.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCreditCardPurchas.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblCurrencyRate.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblDIFFOTOutbound.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblEntity.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblEntityCCAcc.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblGroup.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblGroupMember.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblLabelMessage.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblPerformanceLog.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblPODelivery.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblPODetail.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblPODetailReceipt.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblPOHeader.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblPOPhasing.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblRoutingAccountLimit.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblRoutingList.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblRoutingSubstitute.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblRoutingTable.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSite.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSmartBuy.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingAccCC.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingAccount.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingAccountsTMP.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingCostCentre.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingCostCentresDEV.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingEmployee.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingEmployeesDEV.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblStagingLevel.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblState.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSubAccount.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSubscription.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSupplier.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSupplierNew.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblSupplierTemp1.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblTransaction.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblUserDefault.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tblWetSalad.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\ticket25457.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tic_ctrl.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tic_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_allowances.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_ctrl.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_det_archive.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_det_EBABackDate.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_det_roster_on.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tid_tl_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_alarm.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_alarm_archive.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_alarm_from_tid_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_alarm_from_tid_det_detailed.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_alarm_test.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_departments.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_dev.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_users.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_users_new.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tit_users_static_old.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Tmp_tit_alarm.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tna_ctrl.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tra_det.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\trgl_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\tr_hist.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\UploadQueue.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\UserAlias.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\usrgd_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\usrg_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\usr_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vd_mstr1.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vFormStatu.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vFormStatusWithSafetyAction.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vHazardReport.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vIncidentAccident.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vIncidentsByDay.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vIncidentsByMonth.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vIncidentsByWeek.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vInspectionAudit.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vJseaRiskAssessments_.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vod_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vo_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vph_hist.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vRiskAssessment.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyAction.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyActionsByMonthBySite.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyActionsByMonthByUser.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyActionsThisMonthByUser.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyWalkTalk.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyWalkTalksByDay.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyWalkTalksByMonth.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vSafetyWalkTalksByWeek.cs">
+      <DependentUpon>SafetyManagementSystem.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vwAp_det_oldpo.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vwAp_grni_rf_oldpo.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vwAp_mstr_oldpo.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\vwEntityCCAcc.cs">
+      <DependentUpon>OldPurchaseOrderContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\wc_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\wc_mstr_manual.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\WeekendWorkers.cs">
+      <DependentUpon>OldTNAContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\wod_det.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\wo_mstr.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DataContext\Yield.cs">
+      <DependentUpon>QadLiveContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Entities\Account.cs" />
+    <Compile Include="Entities\AccountCategory.cs" />
+    <Compile Include="Entities\AccountToCategory.cs" />
+    <Compile Include="Entities\AccountToCostCentre.cs" />
+    <Compile Include="Entities\AccountViewModels.cs" />
+    <Compile Include="Entities\Approver.cs" />
+    <Compile Include="Entities\ap_mstr_oldpo.cs" />
+    <Compile Include="Entities\BaseEntity.cs" />
+    <Compile Include="Entities\Capex.cs" />
+    <Compile Include="Entities\CapexApprover.cs" />
+    <Compile Include="Entities\CapexRoute.cs" />
+    <Compile Include="Entities\CostCentre.cs" />
+    <Compile Include="Entities\CostCentreToEntity.cs" />
+    <Compile Include="Entities\Currency.cs" />
+    <Compile Include="Entities\dCalendarEvent.cs" />
+    <Compile Include="Entities\dCalendarEventType.cs" />
+    <Compile Include="Entities\DeliveryAddress.cs" />
+    <Compile Include="Entities\Division.cs" />
+    <Compile Include="Entities\dNews.cs" />
+    <Compile Include="Entities\dTile.cs" />
+    <Compile Include="Entities\dUserGroup.cs" />
+    <Compile Include="Entities\Entity.cs" />
+    <Compile Include="Entities\Group.cs" />
+    <Compile Include="Entities\GroupMember.cs" />
+    <Compile Include="Entities\Level.cs" />
+    <Compile Include="Entities\MatchOrder.cs" />
+    <Compile Include="Entities\Order.cs" />
+    <Compile Include="Entities\OrderItem.cs" />
+    <Compile Include="Entities\OrderItemKit.cs" />
+    <Compile Include="Entities\OrderItemLog.cs" />
+    <Compile Include="Entities\OrderLog.cs" />
+    <Compile Include="Entities\Route.cs" />
+    <Compile Include="Entities\State.cs" />
+    <Compile Include="Entities\Status.cs" />
+    <Compile Include="Entities\SubstituteApprover.cs" />
+    <Compile Include="Entities\User.cs" />
+    <Compile Include="Entities\UserDashboardSettings.cs" />
+    <Compile Include="Entities\UserInfo.cs" />
+    <Compile Include="Entities\UserOrderSettings.cs" />
+    <Compile Include="Entities\vGLTrialBalanceWithBudget.cs" />
+    <Compile Include="Entities\vBasedataFinancialCalendar.cs" />
+    <Compile Include="Entities\Voucher.cs" />
+    <Compile Include="Entities\VoucherRoute.cs" />
+    <Compile Include="Entities\vRockyEmployees.cs" />
+    <Compile Include="Enums\Department.cs" />
+    <Compile Include="Enums\Site.cs" />
+    <Compile Include="Enums\TileStyle.cs" />
+    <Compile Include="Enums\TileSubType.cs" />
+    <Compile Include="Enums\TileType.cs" />
+    <Compile Include="Mapping\vGLTrialBalanceWithBudgetMap.cs" />
+    <Compile Include="Mapping\vBasedataFinancialCalendarMap.cs" />
+    <Compile Include="Mapping\ap_mstr_oldpoMap.cs" />
+    <Compile Include="Mapping\vRockieEmployeesMap.cs" />
+    <Compile Include="Migrations\201901250548596_AddColumnIsGSTFree.cs" />
+    <Compile Include="Migrations\201901250548596_AddColumnIsGSTFree.Designer.cs">
+      <DependentUpon>201901250548596_AddColumnIsGSTFree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="DataContext\OldTNAContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldTNAContext.edmx</DependentUpon>
+      <LastGenOutput>OldTNAContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\OldTNAContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldTNAContext.edmx</DependentUpon>
+      <LastGenOutput>OldTNAContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\SafetyManagementSystem.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SafetyManagementSystem.edmx</DependentUpon>
+      <LastGenOutput>SafetyManagementSystem.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\SafetyManagementSystem.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>SafetyManagementSystem.edmx</DependentUpon>
+      <LastGenOutput>SafetyManagementSystem.cs</LastGenOutput>
+    </Content>
+    <Content Include="readme.txt" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataContext\OldPurchaseOrderContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldPurchaseOrderContext.edmx</DependentUpon>
+      <LastGenOutput>OldPurchaseOrderContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\OldPurchaseOrderContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>OldPurchaseOrderContext.edmx</DependentUpon>
+      <LastGenOutput>OldPurchaseOrderContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\QadLiveContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QadLiveContext.edmx</DependentUpon>
+      <LastGenOutput>QadLiveContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\QadLiveContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>QadLiveContext.edmx</DependentUpon>
+      <LastGenOutput>QadLiveContext.cs</LastGenOutput>
+    </Content>
+    <Content Include="DataContext\QADReal.xsc">
+      <DependentUpon>QADReal.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="DataContext\OldPurchaseOrderContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OldPurchaseOrderContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataContext\OldPurchaseOrderContext.edmx.diagram">
+      <DependentUpon>OldPurchaseOrderContext.edmx</DependentUpon>
+    </None>
+    <EntityDeploy Include="DataContext\QadLiveContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>QadLiveContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <EntityDeploy Include="DataContext\OldTNAContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>OldTNAContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataContext\OldTNAContext.edmx.diagram">
+      <DependentUpon>OldTNAContext.edmx</DependentUpon>
+    </None>
+    <None Include="DataContext\QadLiveContext.edmx.diagram">
+      <DependentUpon>QadLiveContext.edmx</DependentUpon>
+    </None>
+    <None Include="DataContext\QADReal.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>QADReal.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <Content Include="DataContext\QADReal.xss">
+      <DependentUpon>QADReal.xsd</DependentUpon>
+    </Content>
+    <EntityDeploy Include="DataContext\SafetyManagementSystem.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SafetyManagementSystem.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="DataContext\SafetyManagementSystem.edmx.diagram">
+      <DependentUpon>SafetyManagementSystem.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201901250548596_AddColumnIsGSTFree.resx">
+      <DependentUpon>201901250548596_AddColumnIsGSTFree.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\OctoPack.3.6.1\build\OctoPack.targets" Condition="Exists('..\packages\OctoPack.3.6.1\build\OctoPack.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\OctoPack.3.6.1\build\OctoPack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\OctoPack.3.6.1\build\OctoPack.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

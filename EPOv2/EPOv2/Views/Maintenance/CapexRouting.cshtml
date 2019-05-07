@@ -1,0 +1,65 @@
+﻿@model IEnumerable<DomainModel.Entities.CapexApprover>
+@{
+    ViewBag.Title = "Capex Routing";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Capex Routing</h2>
+<p>
+    @Html.ActionLink("Create New", "CapexApproverCreate")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Level)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Limit)
+        </th>
+        <th>
+                @Html.DisplayNameFor(model => model.User)
+            </th>
+        <th>
+                @Html.DisplayNameFor(model => model.Role)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Division)
+            </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Limit)
+            </td>
+            <td>
+                @item.User.UserInfo.FirstName @item.User.UserInfo.LastName
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Role)
+            </td>
+            <td>
+                @item.Division.Name
+            </td>
+            <td>
+
+                <a href="@Url.Action("CapexApproverEdit", "Maintenance", new {id=item.Id})" class="btn btn-success control-btn-crud">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>
+                @*<a href="@Url.Action("DeleteUser", "Maintenance", new { id = item.Id })" class="btn btn-danger control-btn-crud">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a href="@Url.Action("ActivateUser", "Maintenance", new { id = item.Id })" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                    </a>*@
+
+            </td>
+        </tr>
+    }
+
+</table>

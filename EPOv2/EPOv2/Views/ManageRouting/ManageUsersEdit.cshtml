@@ -1,0 +1,68 @@
+﻿@*@model DomainModel.Entities.tblStagingEmployeesDEV
+<script>
+    $(function () {
+        $("#loading").hide();
+
+        $(".ui-dialog")
+                .find(".ui-dialog-titlebar").remove();
+
+        $("#saveManageUser").click(function () {
+            //  $("#my-dialog").dialog("close");
+            $("#manageUserEdit").hide();
+
+            $(".ui-dialog")
+                .css("border", "0 none")
+                .css("background", "transparent")
+                .find(".ui-dialog-titlebar").remove();
+            $("#loading").show();
+            // Hide the "busy" Gif at load:
+        });
+    });
+</script>
+
+<div id="loading"><img src="~/Content/img/ajax-loader.gif" alt="" /></div>
+@using (Html.BeginForm("ManageUsersEdit", "ManageRouting", FormMethod.Post, new { enctype = "multipart/form-data", id = "manageUserEdit", name = "Edit User" }))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h3>Change Employee</h3>
+        <hr />
+        @Html.ValidationSummary(true)
+        @Html.HiddenFor(model => model.StagingEmpID)
+        @Html.HiddenFor(model => model.Employee)
+
+        <div class="form-group">
+            @Html.Label("Employee: ", new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                     <i>@Html.DisplayFor(model => model.Employee, new { @class = "form-control" })</i>
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Manager: ", new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.mngLst, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Manager)
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.Label("Level: ", new { @class = "control-label col-md-3" })
+            <div class="col-md-9">
+                @Html.DropDownListFor(model => model.Level, (SelectList)ViewBag.lvlLst, new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.Level)
+            </div>
+        </div>
+        <br />
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-primary" id="saveManageUser" />
+                <button type="button" class="btn btn-default" onclick="$('#my-dialog').dialog('close');">Close</button>
+            </div>
+        </div>
+    </div>
+}*@
+
+
+
+
+

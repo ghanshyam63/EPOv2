@@ -1,0 +1,78 @@
+﻿@model EPOv2.ViewModels.CostCentreDDLViewModel
+
+@{
+    ViewBag.Title = "MapAccountToCC";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    
+    function selectCostCentre(object) {
+        var ccID = object.value;
+        if (ccID != null && ccID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchAccountCCMap")',
+                cache: false,
+                data: {
+                    ccId: ccID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#accountMapping').html(result);
+                }
+            });
+        }
+    }
+
+    function DeleteAccToCCMapping(ID) {
+        var ccID = $('#SelectedCostCentre').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("DeleteAccountCCMap")',
+            cache: false,
+            data: {
+                ccId: ccID,
+                id:ID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#accountMapping').html(result);
+            }
+        });
+    }
+
+    function ActivateAccToCCMapping(ID) {
+        var ccID = $('#SelectedCostCentre').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("ActivateAccountCCMap")',
+            cache: false,
+            data: {
+                ccId: ccID,
+                id: ID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#accountMapping').html(result);
+            }
+        });
+    }
+</script>
+
+<h2>Mapping Account To Cost Centre</h2>
+
+<p>
+    @Html.ActionLink("Add New", "AddAccToCCMapMapping")
+</p>
+
+@Html.DropDownListFor(m => m.SelectedCostCentre, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm input", onchange = "selectCostCentre(this)" })
+@Html.ValidationMessageFor(model => model.SelectedCostCentre, "Please select Account", new { @class = "text-danger" })
+
+<div id="accountMapping"></div>
+

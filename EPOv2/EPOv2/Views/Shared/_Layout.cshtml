@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="epo system" />
+        <title>@ViewBag.Title - EPOv2</title>
+        @Styles.Render("~/Content/css")
+        @*<link rel="stylesheet" href="http://localhost/EPOv2/Content/Site.css" />
+        <link rel="stylesheet" href="http://localhost/EPOv2/Content/bootstrap.css" />*@
+        @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/jqueryui")
+        @Scripts.Render("~/bundles/jqueryval")
+        @Scripts.Render("~/bundles/bootstrap")
+        <link rel="icon" href="~/content/logos/epologo144.png" type="image/png">
+        <link rel="icon" href="~/content/logos/epologov2.png" type="image/png">
+      
+        <link href="~/Content/jquery.datetimeentry.css" rel="stylesheet" />
+        <script src="~/Scripts/jquery.plugin.js"></script>
+        <script src="~/Scripts/jquery.mousewheel.js"></script>
+        <script src="~/Scripts/jquery.datetimeentry.js"></script>
+</head>
+    <body>
+      
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("EPOv2", "Index", "Home", null, new {@class = "navbar-brand"})
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                      <li class="dropdown">
+                            @Html.ActionLink("Orders", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Raise new PO", "RaiseNew", "PurchaseOrder")</li>
+                                <li>@Html.ActionLink("Budget report", "Budget", "Report")</li>
+                            </ul>
+                        </li>
+                        <li>
+                            @Html.ActionLink("Ettacher", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Ettacher", "Index", "Ettacher")</li>
+                            </ul>
+                        </li>
+
+                        @*<li>
+                            <a href="@Url.Action("Dashboard", "Capex")">Capex<span class="badge badge-navigation-notification pink">9+</span></a>
+                            
+                        </li>*@
+                        <li>
+                            @Html.ActionLink("Tools", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Substitution", "ManageSubstitute", "Maintenance")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Re-Submit voucher", "ResubmitVoucher", "Ettacher")</li>
+                                <li>@Html.ActionLink("Delete voucher", "DeleteVoucher", "Ettacher")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Report: EPO Accrual", "PurchaseOrderAccurals", "Report")</li>
+                                <li class="divider"></li>
+                                <li>@Html.ActionLink("Modify DueDate", "ModifyDueDate", "PurchaseOrder")</li>
+
+                            </ul>
+                        </li>
+                        <li>
+                            <a href="@Url.Action("Dashboard", "Capex")">Capex <span class="label label-danger hidden"></span></a>
+                        </li>
+                        <li>
+                            @Html.ActionLink(" ","Search", "Home", null, new { @class = "glyphicon glyphicon-search" })
+                        </li>
+                       
+                      
+                    </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                    @{
+                        Html.RenderAction("LoginPartial","Home");
+                    }
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    <div class="container body-content">
+        @*<p class="marquee">
+                <span>New Feature To EPO System.To Modify DueDate For PO,Click on Tools->Modify DueDate.</span>
+       
+            
+        </p>*@
+        @*<div class="bs-callout bs-callout-danger bs-callout-notification">
+            <span class="glyphicon glyphicon-info-sign"></span>
+            \\dnas\ap\ is currently offline! Please don't use Ettacher. We will let you know when it will be available. Thank you for your patience.
+            <span class="glyphicon glyphicon-heart"></span>
+        </div>*@
+        @RenderBody()
+
+        <footer class="col-md-10">
+            <hr/>
+            <p>&copy; @DateTime.Now.Year - Inguz Harvest Pty Ltd - IT Wacol. Version: @typeof(MvcApplication).Assembly.GetName().Version</p>
+        </footer>
+    </div>
+
+        @RenderSection("scripts", required: false)
+    </body>
+</html>

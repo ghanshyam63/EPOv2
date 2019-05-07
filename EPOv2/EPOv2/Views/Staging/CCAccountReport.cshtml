@@ -1,0 +1,69 @@
+﻿@*@model IEnumerable<DomainModel.Entities.tblStagingAccCC>
+
+@{
+    ViewBag.Title = "Cost Centre Account Report";
+}
+
+<h2>Cost Centre Account Report</h2>
+@using (@Html.BeginForm())
+{
+    <div class="form-group">
+        <div class="form-group">
+            @Html.Label("Cost Centre: ", new {@class = "control-label col-md-2"})
+            <div class="col-md-6">
+                @Html.DropDownList("CostCenteCode", (SelectList) ViewBag.CCLst, "Select Cost Centre", new {@class = "form-control", @onchange = "this.form.submit();"})
+
+            </div>
+        </div>
+    </div>
+
+
+    if (Model != null)
+    {
+        <br/>
+     <br/>
+    <div class="col-md-6">
+    <table class="table  table-striped table-condensed ">
+        <tr>
+
+            <th>
+                @Html.DisplayNameFor(model => model.AccountCode)
+            </th>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.Active)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Created)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Updated)
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.AccountCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Active)
+                </td>
+               
+                <td>
+                    @Html.DisplayFor(modelItem => item.Created)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Updated)
+                </td>
+                
+            </tr>
+        }
+
+    </table>
+            </div>
+    }
+}*@

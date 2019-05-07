@@ -1,0 +1,56 @@
+﻿@model EPOv2.ViewModels.CompanyBoxViewModel
+ @{
+     var isHidden = "";
+     if (!Model.isCapex)
+     {
+         isHidden = "hidden";
+     }
+ }
+<div class="row">
+    <div class="form-group col-md-12">
+        <h4 class="col-md-4">Company</h4>
+        <span id="pin-company-notification" class="label col-md-2 pull-right label-success small-pin-notification" style="display: none">Saved</span>
+        <div class="col-md-1 pull-right" id="div-pinbtn-company">
+            <button type="button" title="Set Default company info" class="btn btn-default control-btn-crud btn-pin"  value="" id="CompanyPin" onclick="PinCompanyInfo(this) ">
+                <span class="glyphicon glyphicon-pushpin"></span>
+            </button>
+        </div>
+       
+
+        <div class="col-md-11">
+            @(Model.IsBlocked ? Html.DropDownListFor(model => model.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", @onchange = "selectEntity(this)", @disabled = "disabled" }) : Html.DropDownListFor(model => model.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", @onchange = "selectEntity(this)" })
+                  )
+            @Html.ValidationMessageFor(model => model.SelectedEntity, "Please select Entity", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<hr class="hr-sm" />
+<div class="row">
+    <div class="form-group col-md-11">
+        <h4>Cost Centre</h4>
+        <div class="col-md-12">
+            @Html.DropDownListFor(m=>m.SelectedCostCenter, new SelectList(Model.CostCentres, "Id","FullName" ), "Select Cost Center", new { @class = "form-control input-sm input", @disabled="disabled",@onchange="selectCostCenter(this)" })
+            @Html.ValidationMessageFor(model => model.SelectedCostCenter, "Please select Cost Centre", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row @isHidden form-group" id="capexId">
+    <div class="form-group col-md-11">
+        <h4>Capex</h4>
+        <div class="col-md-12">
+           @(Model.IsBlocked ? Html.DropDownListFor(m => m.SelectedCapexId, new SelectList(Model.Capexes, "Id", "FullName"), "Select Capex ", new { @class = "form-control input-sm input",@onchange="selectCapex(this)", @disabled="disabled" })
+           : Html.DropDownListFor(m => m.SelectedCapexId, new SelectList(Model.Capexes, "Id", "FullName"), "Select Capex ", new { @class = "form-control input-sm input",@onchange="selectCapex(this)" }))
+        </div>
+    </div>
+</div>
+<hr class="hr-sm"/>
+<div class="row">
+    <div class="form-group col-md-11">
+        <h4>Receipt Group</h4>
+        <div class="col-md-12">
+            @Html.DropDownListFor(m => m.SelectedReceiptGroup, new SelectList(Model.ReceiptGroups, "Id", "Name"), "Select Receipt Group", new { @class = "form-control input-sm input", @onchange = "selectReceiptGroup(this)" })
+            @Html.ValidationMessageFor(model => model.SelectedReceiptGroup, "Please select Receipt group", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+

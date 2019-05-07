@@ -1,0 +1,64 @@
+﻿@model IEnumerable<EPOv2.ViewModels.SearchVoucherResult>
+
+
+<div class="table small">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>
+                Voucher #
+            </td>
+            <td>
+                Invoice #
+            </td>
+            <td>
+                Supplier
+            </td>
+            <td>Total</td>
+            <td>
+                Authoriser
+            </td>
+            <td>Auth. date</td>
+            <td>Status</td>
+            <td>Scanned</td>
+            <td class="col-md-2"></td>
+        </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x => item.Id)
+                    @Html.DisplayFor(x => item.VoucherNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.InvoiceNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Supplier)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(x => item.Total)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Authoriser)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.AuthorisationDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Status)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Date)
+                </td>
+                <td>
+                    <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewVoucher(this)" title="View voucher" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+   
+</div>

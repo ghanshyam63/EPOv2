@@ -1,0 +1,71 @@
+﻿@model EPOv2.ViewModels.DeliveryBoxViewModel
+    <div class="row">
+        <div class="form-group col-md-11">
+            <h4 class="col-md-6">Delivery Address</h4>
+            <span id="pin-delivery-notification" class="col-md-2 pull-right label label-success small-pin-notification" style="display: none">Saved</span>
+            <div class="col-md-1 pull-right">
+                <button type="button" title="Set Default delivery info" class="btn btn-default control-btn-crud btn-pin" value="" id="DeliveryPin" onclick="PinDeliveryInfo(this) ">
+                    <span class="glyphicon glyphicon-pushpin"></span>
+                </button>
+            </div>
+            <div class="col-md-12">
+                @Html.DropDownListFor(m => m.SelectedDeliveryAddress, new SelectList(Model.DeliveryAddresses, "Id", "Name"), "Select Delivery Address", new { @class = "form-control input-sm", @onchange="selectDeliveryAddress(this)" })
+                @Html.ValidationMessageFor(model => model.SelectedDeliveryAddress, "Please select Delivery Address", new { @class = "text-danger" })
+            </div>
+        </div>
+    </div>
+    <hr class="hr-sm" />
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-3 control-label POForm">Attention</label>
+            <div class="col-md-9">
+               @* @Html.DropDownListFor(m => m.SelectedUser, new SelectList(Model.Users, "Id", "UserName", Model.CurrentUserId), new { @class = "form-control input-sm", @onchange = "selectAttention(this)", @disabled="disabled" })*@
+                @Html.DropDownListFor(m => m.SelectedUser, new SelectList(Model.UserViewModels, "Id", "FullName", Model.CurrentUserId), new { @class = "form-control input-sm", @onchange = "selectAttention(this)"})
+
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-3 control-label POForm">Phone</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m=>m.Phone, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-3 control-label POForm">Email</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m=>m.Email, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-3 control-label POForm">Address</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m=>m.Address, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-3 control-label POForm">City</label>
+            <div class="col-md-9">
+                @Html.TextBoxFor(m=>m.City, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-3 control-label POForm">State</label>
+            <div class="col-md-3">
+                @Html.TextBoxFor(m=>m.State, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <label class="col-sm-2 control-label POForm">PostCode</label>
+            <div class="col-md-4">
+                @Html.TextBoxFor(m=>m.PostCode, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>

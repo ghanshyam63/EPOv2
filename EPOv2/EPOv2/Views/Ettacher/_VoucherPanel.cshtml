@@ -1,0 +1,84 @@
+﻿@model EPOv2.ViewModels.VoucherPanelViewModel
+
+<div  id="accordion" role="tablist" aria-multiselectable="true">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <span class="panel-title">
+                Search
+                <span class="col-md-3 pull-right radio">
+                    <label class="col-sm-6 ">
+                        <input type="radio" name="optionsRadios2" id="optionsgrni2" value="GRNI" onchange="switchToGrni()">  GRNI
+                    </label>
+                    <label class="col-sm-6 ">
+                        <input type="radio" name="optionsRadios2" id="optionsgrni1" value="EPO" checked="checked" onchange="switchToPO()">  EPO
+                    </label>
+                </span>
+            </span>
+
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-2">Voucher #</div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => Model.VoucherSearch.VoucherNumber, null, new { @class = "form-control input-sm input", @onkeypress = "return isNumberKey(event)" })
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-default btn-sm" onclick="searchVoucher()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            @*<div class="row">
+                <div class="col col-md-2">
+                    Supplier
+                </div>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.VoucherSearch.SelectedSupplierId, new SelectList(Model.VoucherSearch.Suppliers, "Id", "FullName"), "Select Supplier", new { @class = "form-control input-sm", @onchange = "selectSupplier(this)", @disabled = "disabled" })
+                </div>
+                <div class="col-md-3">@Html.CheckBoxFor(m => m.VoucherSearch.IncludeConfirmed, new { @class = "check-box", @onchange = "somefunction(this)" }) Include confirmed vouchers</div>
+            </div>
+            <div class="row">
+                <div class="col col-md-2">
+                    Voucher
+                </div>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.VoucherSearch.SelectedVoucherId, new SelectList(Model.VoucherSearch.Vouchers, "Id", "Name"), "Select Voucher", new { @class = "form-control input-sm", @onchange = "selectVoucher(this)", @disabled = "disabled" })
+                </div>
+            </div>*@
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12 text-center hidden" id="loading1">
+            <div class="spinner spinner-info"></div>
+        </div>
+    </div>
+    <div id="div-voucherInfo" class="hidden">
+
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 text-center hidden" id="loading3">
+            <div class="spinner spinner-warning"></div>
+        </div>
+    </div>
+    <div id="div-GrniVoucherPO" class="hidden">
+
+    </div>
+
+    <div class="hidden" id="div-variancePanel">
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <h4>Warning!</h4>
+            <p> Invoice (Voucher Amount) does not match RA Amt - please confirm - Variance: <strong id="varianceTotal"></strong></p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-sm-12 text-center hidden" id="loading2">
+            <div class="spinner spinner-success"></div>
+        </div>
+    </div>
+    <div id="div-voucherAttachingForm" class="hidden">
+
+    </div>
+</div>

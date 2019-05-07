@@ -1,0 +1,67 @@
+﻿@model EPOv2.ViewModels.DeleteVoucherForm
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <span class="panel-title">Delete Voucher</span>
+    </div>
+    <div class="panel-body">
+        @using (@Html.BeginForm("DeleteVoucher", "Ettacher", FormMethod.Post, new { id = "DeleteVoucher" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.VoucherId)
+            <div class="row form-group">
+                <div class="col-md-3">Voucher #</div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => Model.VoucherNumber, null, new { @class = "form-control input-sm", @onkeypress = "return isNumberKey(event)" })
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-default btn-sm" onclick="searchVoucher()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            if(Model.VoucherNumber != 0)
+             {
+                 <div class="row" id="div-deletingVoucherDetails">
+                     <div class="table">
+                         <table class="table table-responsive">
+                             <tr>
+                                 <th>Voucher #</th>
+                                 <th>Invoice #</th>
+                                 <th>Supplier</th>
+                                 <th>Amount</th>
+                                 <th>Comment</th>
+                             </tr>
+                             <tr>
+                                 <td>@Model.VoucherNumber</td>
+                                 <td>@Model.InvoiceNumber</td>
+                                 <td>@Model.Supplier</td>
+                                 <td>@Model.Amount</td>
+                                 <td>@Model.Comment</td>
+                             </tr>
+                         </table>
+                     </div>
+                 </div>
+                <div class="row form-group" id="btn-deletingVoucher">
+                    <div class="col-md-3 pull-left">
+                        <button type="button" name="button" value="Submit" class="btn btn-danger btn-block" onclick="submitForm()">Delete</button>
+                    </div>
+                </div>
+            }
+            else
+            {
+                 <div class="alert alert-info">Voucher not found</div>
+             }
+            @*<div class="row form-group">
+                <div class="col col-md-2">
+                    Authoriser
+                </div>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.SelectedAuthoriser, new SelectList(Model.AuthoriserList, "Id", "FullName"), "Select Authoriser", new { @class = "form-control input-sm" })
+                </div>
+            </div>*@
+            
+        }
+    </div>
+</div>
+    

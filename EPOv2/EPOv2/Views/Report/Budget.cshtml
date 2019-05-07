@@ -1,0 +1,200 @@
+﻿@model EPOv2.ViewModels.BudgetReportEntryDataViewModel
+@{
+    ViewBag.Title = "Budget";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h1></h1>
+
+<div class="col-md-6 " >
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body" id="reportFilter">
+            @using (@Html.BeginForm("RunBudgetReport", "Report", FormMethod.Post, new { id = "Form" })) { 
+                @Html.Partial("_BudgetReportFilter", Model)
+            }
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="EPOloading1">
+        <div class="spinner spinner-info"></div>
+    </div>
+</div>
+<div class="col-md-12 hidden" id="resultPanel">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            <h3 class="panel-title">Budget Report</h3>
+        </div>
+        <div class="panel-body" id="reportResult">
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script type="text/javascript">
+
+    function selectEntity(object) {
+        var entityID = object.value;
+        if (entityID != null && entityID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchBudgetReportEntryData")',
+                cache: false,
+                data: {
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText).removeClass("hidden");
+                },
+                success: function (result) {
+                    $('#Form').html(result);
+                    $('select[id=SelectedCostCenter]').removeAttr("disabled");
+                    $('input[id=EntityId]').val(entityID);
+                }
+            });
+        }
+    }
+
+        function RunReportwithVouchers() {
+        var entityId = $('select[id=SelectedEntity]').val();
+        var ccId = $('select[id=SelectedCostCenter]').val();
+        $("#EPOloading1").removeClass('hidden');
+        $("#resultPanel").addClass('hidden');
+        $('#reportResult').empty();
+        // alert(daID);
+        if (entityId != null && entityId !== '' && ccId != null && ccId !== '') {
+            var $form = $('form[id="Form"]');
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("RunBudgetWithVouchersReport")',
+                cache: false,
+                data: $form.serialize(),
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText).removeClass("hidden");
+                    $("#EPOloading1").addClass('hidden');
+                },
+                success: function (result) {
+                    $('#reportResult').html(result);
+                    $("#EPOloading1").addClass('hidden');
+                    $("#resultPanel").removeClass('hidden');
+                }
+            });
+        }
+    }
+
+        function RunReport() {
+            var entityId = $('select[id=SelectedEntity]').val();
+            var ccId = $('select[id=SelectedCostCenter]').val();
+            $("#EPOloading1").removeClass('hidden');
+            $("#resultPanel").addClass('hidden');
+            $('#reportResult').empty();
+            // alert(daID);
+            if (entityId != null && entityId !== '' && ccId != null && ccId !== '') {
+                var $form = $('form[id="Form"]');
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("RunBudgetReport")',
+                    cache: false,
+                    data: $form.serialize(),
+                    error: function (xhr, status, error) {
+                        $(".alert").html(xhr.responseText).removeClass("hidden");
+                        $("#EPOloading1").addClass('hidden');
+                    },
+                    success: function (result) {
+                        $('#reportResult').html(result);
+                        $("#EPOloading1").addClass('hidden');
+                        $("#resultPanel").removeClass('hidden');
+                    }
+                });
+            }
+        }
+
+        function showDetails(object, glCode, period, estimate) {
+            console.log("about to get details." + estimate);
+            $.ajax({
+                type: 'GET',
+                dataType: "text",
+                url: '@Url.Action("GetDetailsForBudgetReport")',
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                data: {
+                    glCode: glCode,
+                    period: period,
+                    entity: $("#SelectedEntity").val(),
+                    cc: $("#SelectedCostCenter").val(),
+                    isEstimate: estimate
+                },
+                error: function (xhr, status, error) {
+                    console.log("issue on loading." + error + "|" + xhr.responseText);
+                },
+                success: function (result) {
+                    var div = $(object).find("div.epo-details");
+
+                    div.data("content", result);
+                    div.popover("toggle");
+                    //$("#test").html(result);
+                }
+            });
+        }
+        function showVoucherDetailsByCategory(object, categoryId, period) {
+            $.ajax({
+                type: 'GET',
+                dataType: "text",
+                url: '@Url.Action("GetVoucherDetailsForBudgetReportByCategory")',
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                data: {
+                    categoryId: categoryId,
+                    period: period,
+                    entity: $("#SelectedEntity").val(),
+                    cc: $("#SelectedCostCenter").val()
+                },
+                error: function (xhr, status, error) {
+                    console.log("issue on loading." + error + "|" + xhr.responseText);
+                },
+                success: function (result) {
+                    var div = $(object).find("div.voucher-details");
+
+                    div.data("content", result);
+                    div.popover("toggle");
+                    //$("#test").html(result);
+                }
+            });
+        }
+
+        function showDetailsByCategory(object, categoryId, period) {
+            $.ajax({
+                type: 'GET',
+                dataType: "text",
+                url: '@Url.Action("GetDetailsForBudgetReportByCategory")',
+                cache: false,
+                contentType: 'application/json; charset=utf-8',
+                data: {
+                    categoryId: categoryId,
+                    period: period,
+                    entity: $("#SelectedEntity").val(),
+                    cc: $("#SelectedCostCenter").val()
+                },
+                error: function (xhr, status, error) {
+                    console.log("issue on loading." + error + "|" + xhr.responseText);
+                },
+                success: function (result) {
+                    var div = $(object).find("div.epo-details");
+
+                    div.data("content", result);
+                    div.popover("toggle");
+                    //$("#test").html(result);
+                }
+            });
+        }
+
+
+
+</script>
+}
+
+
+

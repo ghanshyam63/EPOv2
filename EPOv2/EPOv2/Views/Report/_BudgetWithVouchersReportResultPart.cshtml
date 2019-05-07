@@ -1,0 +1,89 @@
+﻿@model IEnumerable<EPOv2.ViewModels.BudgetWithVoucherReportItem>
+@{
+    var dashstring = "-";
+    var isEPO = (string)@ViewData["isEPO"] == "True";
+    var isVoucher = (string)@ViewData["isVoucher"] == "True";
+
+}
+
+<tr><td colspan="16"><h4>@ViewData["Name"]</h4></td></tr>
+        <tr>
+            <th class="text-center">Category</th>
+            <th class="text-center">Per 1</th>
+            <th class="text-center">Per 2</th>
+            <th class="text-center">Per 3</th>
+            <th class="text-center">Per 4</th>
+            <th class="text-center">Per 5</th>
+            <th class="text-center">Per 6</th>
+            <th class="text-center">Per 7</th>
+            <th class="text-center">Per 8</th>
+            <th class="text-center">Per 9</th>
+            <th class="text-center">Per 10</th>
+            <th class="text-center">Per 11</th>
+            <th class="text-center">Per 12</th>
+            <th class="text-center">Total</th>
+        </tr>
+
+        @foreach (var item in Model.ToList())
+        {
+            var bold = "";
+            if (item.Category.Contains("Total"))
+            {
+                bold = "text-bold";
+            }
+            <tr class=@bold>
+                <td>
+                    @item.Category
+                </td>
+                @for (var p = 1; p <= 12; p++)
+                {
+                    if (item.Period[p] == 0)
+                    {
+                        <td class="text-center">
+                            @dashstring
+                        </td>
+                    }
+                    else
+                    {
+                        if (isEPO && string.IsNullOrEmpty(bold))
+                        {
+                            <td class="text-right epo-details" onclick="showDetailsByCategory(this,@(item.CategoryId),@p)">
+                                <div tabindex="0" class="epo-details" data-toggle="popover" data-placement="top" data-trigger="focus" data-html="true"  title="Period @p details">
+                                    @string.Format("{0:#,##0;(#,##0)}", item.Period[p])    
+                                </div>
+                            </td>
+
+                        }
+                        else if (isVoucher && string.IsNullOrEmpty(bold))
+                        {
+                            <td class="text-right voucher-details" onclick="showVoucherDetailsByCategory(this,@(item.CategoryId),@p)">
+                                <div tabindex="0" class="voucher-details" data-toggle="popover" data-placement="top" data-trigger="focus" data-html="true" title="Period @p details">
+                                    @string.Format("{0:#,##0;(#,##0)}", item.Period[p])
+                                </div>
+                            </td>
+
+                        }
+                        else
+                        {
+                            <td class="text-right">
+                                @string.Format("{0:#,##0;(#,##0)}", item.Period[p])
+                            </td>
+                        }
+
+                    }
+                }
+                @if (item.Total == 0)
+                {
+                    <td class="text-center">
+                        @dashstring
+                    </td>
+                }
+                else
+                {
+                    <td class="text-right">
+                        @Html.DisplayFor(x => item.Total)
+                    </td>
+                }
+
+            </tr>
+        }

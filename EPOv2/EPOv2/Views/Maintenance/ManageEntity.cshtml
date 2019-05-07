@@ -1,0 +1,110 @@
+﻿@using EPOv2.ViewModels
+@model IEnumerable<EPOv2.ViewModels.EntityViewModel>
+
+@{
+    ViewBag.Title = "ManageEntity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>ManageEntity</h2>
+
+<p>
+    @Html.ActionLink("Add New", "AddEntity")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CodeNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Prefix)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ACN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ABN)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Phone)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Fax)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.isDelete)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedBy)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (EntityViewModel item in Model)
+    {
+        <tr>
+            <td>
+                @Html.HiddenFor(modelItem => item.Id)
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CodeNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Prefix)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ACN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ABN)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Phone)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fax)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Email)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isDelete)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastModifiedBy)
+            </td>
+            <td>
+                    <a href="@Url.Action("EditEntity", "Maintenance", new { id = item.Id })" class="btn btn-success control-btn-crud">
+                        <span class="glyphicon glyphicon-edit"></span>
+                    </a>
+                    <a href="@Url.Action("DeleteEntity", "Maintenance", new { id = item.Id })" class="btn btn-danger control-btn-crud">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </a>
+                    <a href="@Url.Action("ActivateEntity", "Maintenance", new { id = item.Id })" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                    </a>
+              
+            </td>
+        </tr>
+    }
+
+</table>

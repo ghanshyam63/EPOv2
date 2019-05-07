@@ -1,0 +1,49 @@
+﻿@*@model IEnumerable<DomainModel.Entities.tblStagingEmployeesDEV>
+
+@{
+    ViewBag.Title = "EmployeeLevelReport";
+}
+
+<h2>EmployeeLevelReport</h2>
+<div class="col-md-7">
+    <table class="table table-striped table-condensed ">
+        <tr>
+           
+            <th>
+                @Html.DisplayNameFor(model => model.Employee)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.tblStagingLevel.level)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Manager)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.isDeleted)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                
+                <td>
+                    @Html.DisplayFor(modelItem => item.Employee)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblStagingLevel.level)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Manager)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.isDeleted)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    @Html.ActionLink("back to Staging reports", "Index")
+</div>*@

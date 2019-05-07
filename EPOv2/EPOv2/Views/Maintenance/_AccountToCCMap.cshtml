@@ -1,0 +1,59 @@
+﻿@model System.Collections.Generic.List<EPOv2.ViewModels.AccountToCostCentreViewModel>
+
+<table class="table">
+        <tr>
+            <th>
+                Account
+            </th>
+            <th>
+                Style
+            </th>
+            <th>
+                Modified
+            </th>
+            <th>
+                Deleted
+            </th>
+            <th></th>
+        </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.Account)
+            </td>
+            <td>
+                @Html.DisplayFor(x=>item.AccountType)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem=>item.LastModifiedDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.isDeleted)
+            </td>
+            <td>
+                @if (item.isDeleted)
+                {
+                    <button type="button" title="Delete mapping" class="btn btn-danger control-btn-crud" value="@item.Id" onclick="DeleteAccToCCMapping(@item.Id)" disabled="disabled">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" title="Activate mapping" class="btn btn-info control-btn-crud" value="@item.Id" onclick="ActivateAccToCCMapping(@item.Id)">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" title="Delete mapping" class="btn btn-danger control-btn-crud" value="@item.Id" onclick="DeleteAccToCCMapping(@item.Id) ">
+                        <span class="glyphicon glyphicon-trash"></span>
+                    </button>
+                    <button type="button" title="Activate mapping" class="btn btn-info control-btn-crud" value="@item.Id" onclick="ActivateAccToCCMapping(@item.Id)" disabled="disabled">
+                        <span class="glyphicon glyphicon-repeat"></span>
+                    </button>
+                }
+                
+                  
+            </td>
+        </tr>
+    }
+    </table>

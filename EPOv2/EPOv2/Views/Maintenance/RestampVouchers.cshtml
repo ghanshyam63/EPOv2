@@ -1,0 +1,156 @@
+﻿@model EPOv2.ViewModels.RestampVoucherFilter
+
+@{
+    ViewBag.Title = "Re-stamp vouchers";
+}
+
+<br/>
+<div class="row">
+        <div id="div-restampVoucherForm">
+            <div class="col-md-8">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <span class="panel-title">Re-stamp Vouchers</span>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="text-bold">Filter(authorising date)</p>
+                                <p class="text-warning">That search looking just for vouchers which been already authorised and have attached documents(GRNI or Invoice)</p>
+                                @using (Html.BeginForm("", "", FormMethod.Post, new { id = "restampfilterForm" }))
+                                {
+                                    <label class="col-md-2 control-label ">Date From</label>
+                                    <div class="col-md-2">@Html.TextBoxFor(m => m.DateFrom, null, new { @id = "dateVoucherFrom", @placeholder = "Select Date From", @class = "form-control input-sm" })</div>
+                                    <label class="col-md-2 control-label ">Date To</label>
+                                    <div class="col-md-2">@Html.TextBoxFor(m => m.DateTo, null, new { @id = "dateVoucherTo", @placeholder = "Select Date To", @class = "form-control input-sm" })</div>
+                                }
+
+                                <div class="col-md-3">
+                                    <button type="button" class="btn btn-default btn-sm" onclick="searchVouchers()">
+                                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                    </button>
+                                    <button type="button" class="btn btn-warning btn-sm" onclick="RestampVouchers()">
+                                        Re-Stamp
+                                    </button>
+                                    <span class="text-success fa fa-2x fa-check-circle-o hidden" id="done-icon"></span>
+                                    <span class="text-danger fa fa-2x fa-exclamation-triangle hidden" id="error-icon"></span>
+                                </div>
+                               
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="Voucherloading1">
+        <div class="spinner spinner-success"></div>
+    </div>
+</div>
+<div class="panel panel-info " id="voucherResultPanel">
+    <div class="panel-heading"> Result</div>
+    <div class="panel-body" id="searchVoucherResult"></div>
+</div>
+<div class="tab-pane fade" id="searchvoucher">
+    @using (@Html.BeginForm("ViewInvoiceExternal", "Ettacher", FormMethod.Post, new { id = "SearchVoucherBtnForm" }))
+    {
+        @Html.Hidden("SelectedInvoice")
+    }
+</div>
+
+
+
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        function ViewVoucher(object) {
+            var itemID = object.value;
+            $("#SearchVoucherBtnForm #SelectedInvoice").val(itemID);
+            console.log("itemID:" + itemID);
+            $('#SearchVoucherBtnForm').attr('target', '_blank').attr("Action", '@Url.Action("ViewInvoiceExternal", "Ettacher")').submit();
+        }
+        function searchVouchers() {
+            $("#Voucherloading1").removeClass("hidden");
+            var $form = $('form[id="restampfilterForm"]');
+            $("#done-icon").addClass("hidden");
+            $("#error-icon").addClass("hidden");
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("VouchersForStamping")',
+                data: $form.serialize(),
+                cache: false,
+                error: function (xhr, status, error) {
+                    $("#searchVoucherResult").html("<p>Empty</p>");
+                    $("#Voucherloading1").addClass("hidden");
+                },
+                success: function (result) {
+                    $("#voucherResultPanel").removeClass("hidden");
+                    $("#Voucherloading1").addClass("hidden");
+                    $("#searchVoucherResult").html(result);
+                }
+            });
+        }
+        function RestampVouchers() {
+            $("#Voucherloading1").removeClass("hidden");
+            $("#done-icon").addClass("hidden");
+            $("#error-icon").addClass("hidden");
+            var $form = $('form[id="restampfilterForm"]');
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("RestampVouchers")',
+                data: $form.serialize(),
+                cache: false,
+                error: function (xhr, status, error) {
+                    $("#error-icon").removeClass("hidden");
+                    console.log("Error");
+                    $("#Voucherloading1").addClass("hidden");
+                },
+                success: function (result) {
+                    $("#Voucherloading1").addClass("hidden");
+                    $("#done-icon").removeClass("hidden");
+                    console.log("Done");
+                }
+            });
+        }
+
+
+        
+    $(document).on("focusin", "#dateVoucherFrom", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateVoucherFrom", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(document).on("focusin", "#dateVoucherTo", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateVoucherTo", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(function () {
+        $("#dateVoucherFrom").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateVoucherTo").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+
+</script>
+}

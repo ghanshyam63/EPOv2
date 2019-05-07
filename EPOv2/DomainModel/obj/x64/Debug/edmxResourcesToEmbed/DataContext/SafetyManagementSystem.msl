@@ -1,0 +1,595 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SafetyManagementSystemModelStoreContainer" CdmEntityContainer="SafetyManagementSystemEntities">
+    <EntitySetMapping Name="vFormStatus">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vFormStatu">
+        <MappingFragment StoreEntitySet="vFormStatus">
+          <ScalarProperty Name="FormHeaderId" ColumnName="FormHeaderId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vFormStatusWithSafetyActions">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vFormStatusWithSafetyAction">
+        <MappingFragment StoreEntitySet="vFormStatusWithSafetyActions">
+          <ScalarProperty Name="FormHeaderId" ColumnName="FormHeaderId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="SafetyActionId" ColumnName="SafetyActionId" />
+          <ScalarProperty Name="SATitle" ColumnName="SATitle" />
+          <ScalarProperty Name="SACreated" ColumnName="SACreated" />
+          <ScalarProperty Name="SAModified" ColumnName="SAModified" />
+          <ScalarProperty Name="SASite" ColumnName="SASite" />
+          <ScalarProperty Name="SAModifiedByName" ColumnName="SAModifiedByName" />
+          <ScalarProperty Name="SAModifiedByEmpNo" ColumnName="SAModifiedByEmpNo" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="AssignedToName" ColumnName="AssignedToName" />
+          <ScalarProperty Name="AssignedToEmpNo" ColumnName="AssignedToEmpNo" />
+          <ScalarProperty Name="PercentageComplete" ColumnName="PercentageComplete" />
+          <ScalarProperty Name="MexNumber" ColumnName="MexNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vHazardReports">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vHazardReport">
+        <MappingFragment StoreEntitySet="vHazardReports">
+          <ScalarProperty Name="HazardReportId" ColumnName="HazardReportId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="PersonReporting" ColumnName="PersonReporting" />
+          <ScalarProperty Name="Department" ColumnName="Department" />
+          <ScalarProperty Name="WhatIsHazard" ColumnName="WhatIsHazard" />
+          <ScalarProperty Name="WhereIsHazard" ColumnName="WhereIsHazard" />
+          <ScalarProperty Name="SafetyHazAndEnviroImpacts" ColumnName="SafetyHazAndEnviroImpacts" />
+          <ScalarProperty Name="HazardSeriousLevel" ColumnName="HazardSeriousLevel" />
+          <ScalarProperty Name="HowFixed" ColumnName="HowFixed" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vIncidentAccidents">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vIncidentAccident">
+        <MappingFragment StoreEntitySet="vIncidentAccident">
+          <ScalarProperty Name="IncidentAccidentId" ColumnName="IncidentAccidentId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="IncidentAccidentFormType" ColumnName="IncidentAccidentFormType" />
+          <ScalarProperty Name="Employee" ColumnName="Employee" />
+          <ScalarProperty Name="Position" ColumnName="Position" />
+          <ScalarProperty Name="EmploymentRelationship" ColumnName="EmploymentRelationship" />
+          <ScalarProperty Name="BusinessName" ColumnName="BusinessName" />
+          <ScalarProperty Name="ContactTelephoneNumber" ColumnName="ContactTelephoneNumber" />
+          <ScalarProperty Name="DateOfIncidentAccident" ColumnName="DateOfIncidentAccident" />
+          <ScalarProperty Name="TimeOfIncidentAccident" ColumnName="TimeOfIncidentAccident" />
+          <ScalarProperty Name="ShiftStartTime" ColumnName="ShiftStartTime" />
+          <ScalarProperty Name="LocationOfIncidentAccident" ColumnName="LocationOfIncidentAccident" />
+          <ScalarProperty Name="DateReported" ColumnName="DateReported" />
+          <ScalarProperty Name="ToWhom" ColumnName="ToWhom" />
+          <ScalarProperty Name="NameOfWitnessWitnesses" ColumnName="NameOfWitnessWitnesses" />
+          <ScalarProperty Name="WhatHappened" ColumnName="WhatHappened" />
+          <ScalarProperty Name="Causes" ColumnName="Causes" />
+          <ScalarProperty Name="TreatmentDetails" ColumnName="TreatmentDetails" />
+          <ScalarProperty Name="OtherTreatmentDetails" ColumnName="OtherTreatmentDetails" />
+          <ScalarProperty Name="FirstAidAdministered" ColumnName="FirstAidAdministered" />
+          <ScalarProperty Name="FollowUp" ColumnName="FollowUp" />
+          <ScalarProperty Name="HeathSafetyRepName" ColumnName="HeathSafetyRepName" />
+          <ScalarProperty Name="InjurySeverity" ColumnName="InjurySeverity" />
+          <ScalarProperty Name="InjurySeverityOther" ColumnName="InjurySeverityOther" />
+          <ScalarProperty Name="FirstAider" ColumnName="FirstAider" />
+          <ScalarProperty Name="CauseOfIncident" ColumnName="CauseOfIncident" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vIncidentsByDays">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vIncidentsByDay">
+        <MappingFragment StoreEntitySet="vIncidentsByDay">
+          <ScalarProperty Name="IncidentsByDayId" ColumnName="IncidentsByDayId" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vInspectionAudits">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vInspectionAudit">
+        <MappingFragment StoreEntitySet="vInspectionAudits">
+          <ScalarProperty Name="InspectionAuditId" ColumnName="InspectionAuditId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="PersonCompetingForm" ColumnName="PersonCompetingForm" />
+          <ScalarProperty Name="Q1_1" ColumnName="Q1_1" />
+          <ScalarProperty Name="Q1_1_Description" ColumnName="Q1_1_Description" />
+          <ScalarProperty Name="Q1_2" ColumnName="Q1_2" />
+          <ScalarProperty Name="Q1_2_Description" ColumnName="Q1_2_Description" />
+          <ScalarProperty Name="Q1_3" ColumnName="Q1_3" />
+          <ScalarProperty Name="Q1_3_Description" ColumnName="Q1_3_Description" />
+          <ScalarProperty Name="Q1_4" ColumnName="Q1_4" />
+          <ScalarProperty Name="Q1_4_Description" ColumnName="Q1_4_Description" />
+          <ScalarProperty Name="Q2_1" ColumnName="Q2_1" />
+          <ScalarProperty Name="Q2_1_Description" ColumnName="Q2_1_Description" />
+          <ScalarProperty Name="Q2_2_ItemsRequired" ColumnName="Q2_2_ItemsRequired" />
+          <ScalarProperty Name="Q2_3" ColumnName="Q2_3" />
+          <ScalarProperty Name="Q2_3_Description" ColumnName="Q2_3_Description" />
+          <ScalarProperty Name="Q3_1" ColumnName="Q3_1" />
+          <ScalarProperty Name="Q3_1_Description" ColumnName="Q3_1_Description" />
+          <ScalarProperty Name="Q3_2" ColumnName="Q3_2" />
+          <ScalarProperty Name="Q3_2_Description" ColumnName="Q3_2_Description" />
+          <ScalarProperty Name="Q3_3" ColumnName="Q3_3" />
+          <ScalarProperty Name="Q3_3_Description" ColumnName="Q3_3_Description" />
+          <ScalarProperty Name="Q3_4" ColumnName="Q3_4" />
+          <ScalarProperty Name="Q3_4_Description" ColumnName="Q3_4_Description" />
+          <ScalarProperty Name="Q4_1" ColumnName="Q4_1" />
+          <ScalarProperty Name="Q4_1_Description" ColumnName="Q4_1_Description" />
+          <ScalarProperty Name="Q4_2" ColumnName="Q4_2" />
+          <ScalarProperty Name="Q4_2_Description" ColumnName="Q4_2_Description" />
+          <ScalarProperty Name="Q4_3" ColumnName="Q4_3" />
+          <ScalarProperty Name="Q4_3_Description" ColumnName="Q4_3_Description" />
+          <ScalarProperty Name="Q4_4" ColumnName="Q4_4" />
+          <ScalarProperty Name="Q4_4_Description" ColumnName="Q4_4_Description" />
+          <ScalarProperty Name="Q4_5" ColumnName="Q4_5" />
+          <ScalarProperty Name="Q4_5_Description" ColumnName="Q4_5_Description" />
+          <ScalarProperty Name="Q4_6" ColumnName="Q4_6" />
+          <ScalarProperty Name="Q4_6_Description" ColumnName="Q4_6_Description" />
+          <ScalarProperty Name="Q4_7" ColumnName="Q4_7" />
+          <ScalarProperty Name="Q4_7_Description" ColumnName="Q4_7_Description" />
+          <ScalarProperty Name="Q4_8" ColumnName="Q4_8" />
+          <ScalarProperty Name="Q4_8_Description" ColumnName="Q4_8_Description" />
+          <ScalarProperty Name="Q4_9" ColumnName="Q4_9" />
+          <ScalarProperty Name="Q4_9_Description" ColumnName="Q4_9_Description" />
+          <ScalarProperty Name="Q4_10" ColumnName="Q4_10" />
+          <ScalarProperty Name="Q4_10_Description" ColumnName="Q4_10_Description" />
+          <ScalarProperty Name="Q5_1" ColumnName="Q5_1" />
+          <ScalarProperty Name="Q5_1_Description" ColumnName="Q5_1_Description" />
+          <ScalarProperty Name="Q5_2" ColumnName="Q5_2" />
+          <ScalarProperty Name="Q5_2_Description" ColumnName="Q5_2_Description" />
+          <ScalarProperty Name="Q5_3" ColumnName="Q5_3" />
+          <ScalarProperty Name="Q5_3_Description" ColumnName="Q5_3_Description" />
+          <ScalarProperty Name="Q5_4" ColumnName="Q5_4" />
+          <ScalarProperty Name="Q5_4_Description" ColumnName="Q5_4_Description" />
+          <ScalarProperty Name="Q5_5" ColumnName="Q5_5" />
+          <ScalarProperty Name="Q5_5_Description" ColumnName="Q5_5_Description" />
+          <ScalarProperty Name="Q5_6" ColumnName="Q5_6" />
+          <ScalarProperty Name="Q5_6_Description" ColumnName="Q5_6_Description" />
+          <ScalarProperty Name="Q5_7" ColumnName="Q5_7" />
+          <ScalarProperty Name="Q5_7_Description" ColumnName="Q5_7_Description" />
+          <ScalarProperty Name="Q6_1" ColumnName="Q6_1" />
+          <ScalarProperty Name="Q6_1_Description" ColumnName="Q6_1_Description" />
+          <ScalarProperty Name="Q6_2" ColumnName="Q6_2" />
+          <ScalarProperty Name="Q6_2_Description" ColumnName="Q6_2_Description" />
+          <ScalarProperty Name="Q6_3" ColumnName="Q6_3" />
+          <ScalarProperty Name="Q6_3_Description" ColumnName="Q6_3_Description" />
+          <ScalarProperty Name="Q6_4" ColumnName="Q6_4" />
+          <ScalarProperty Name="Q6_4_Description" ColumnName="Q6_4_Description" />
+          <ScalarProperty Name="Q7_1" ColumnName="Q7_1" />
+          <ScalarProperty Name="Q7_1_Description" ColumnName="Q7_1_Description" />
+          <ScalarProperty Name="Q7_2" ColumnName="Q7_2" />
+          <ScalarProperty Name="Q7_2_Description" ColumnName="Q7_2_Description" />
+          <ScalarProperty Name="Q7_3" ColumnName="Q7_3" />
+          <ScalarProperty Name="Q7_3_Description" ColumnName="Q7_3_Description" />
+          <ScalarProperty Name="Q8_1" ColumnName="Q8_1" />
+          <ScalarProperty Name="Q8_1_Description" ColumnName="Q8_1_Description" />
+          <ScalarProperty Name="Q8_2" ColumnName="Q8_2" />
+          <ScalarProperty Name="Q8_2_Description" ColumnName="Q8_2_Description" />
+          <ScalarProperty Name="Q8_3" ColumnName="Q8_3" />
+          <ScalarProperty Name="Q8_3_Description" ColumnName="Q8_3_Description" />
+          <ScalarProperty Name="Q8_4" ColumnName="Q8_4" />
+          <ScalarProperty Name="Q8_4_Description" ColumnName="Q8_4_Description" />
+          <ScalarProperty Name="Q8_5" ColumnName="Q8_5" />
+          <ScalarProperty Name="Q8_5_Description" ColumnName="Q8_5_Description" />
+          <ScalarProperty Name="Q8_6" ColumnName="Q8_6" />
+          <ScalarProperty Name="Q8_6_Description" ColumnName="Q8_6_Description" />
+          <ScalarProperty Name="Q8_7" ColumnName="Q8_7" />
+          <ScalarProperty Name="Q8_7_Description" ColumnName="Q8_7_Description" />
+          <ScalarProperty Name="Q8_8" ColumnName="Q8_8" />
+          <ScalarProperty Name="Q8_8_Description" ColumnName="Q8_8_Description" />
+          <ScalarProperty Name="Q8_9" ColumnName="Q8_9" />
+          <ScalarProperty Name="Q8_9_Description" ColumnName="Q8_9_Description" />
+          <ScalarProperty Name="Q9_1" ColumnName="Q9_1" />
+          <ScalarProperty Name="Q9_1_Description" ColumnName="Q9_1_Description" />
+          <ScalarProperty Name="Q9_2" ColumnName="Q9_2" />
+          <ScalarProperty Name="Q9_2_Description" ColumnName="Q9_2_Description" />
+          <ScalarProperty Name="Q9_3" ColumnName="Q9_3" />
+          <ScalarProperty Name="Q9_3_Description" ColumnName="Q9_3_Description" />
+          <ScalarProperty Name="Q9_4" ColumnName="Q9_4" />
+          <ScalarProperty Name="Q9_4_Description" ColumnName="Q9_4_Description" />
+          <ScalarProperty Name="Q9_5" ColumnName="Q9_5" />
+          <ScalarProperty Name="Q9_5_Description" ColumnName="Q9_5_Description" />
+          <ScalarProperty Name="Q10_1" ColumnName="Q10_1" />
+          <ScalarProperty Name="Q10_1_Description" ColumnName="Q10_1_Description" />
+          <ScalarProperty Name="Q10_2" ColumnName="Q10_2" />
+          <ScalarProperty Name="Q10_2_Description" ColumnName="Q10_2_Description" />
+          <ScalarProperty Name="Q10_3" ColumnName="Q10_3" />
+          <ScalarProperty Name="Q10_3_Description" ColumnName="Q10_3_Description" />
+          <ScalarProperty Name="Q10_4" ColumnName="Q10_4" />
+          <ScalarProperty Name="Q10_4_Description" ColumnName="Q10_4_Description" />
+          <ScalarProperty Name="Q10_5" ColumnName="Q10_5" />
+          <ScalarProperty Name="Q10_5_Description" ColumnName="Q10_5_Description" />
+          <ScalarProperty Name="Q10_6" ColumnName="Q10_6" />
+          <ScalarProperty Name="Q10_6_Description" ColumnName="Q10_6_Description" />
+          <ScalarProperty Name="Q10_7" ColumnName="Q10_7" />
+          <ScalarProperty Name="Q10_7_Description" ColumnName="Q10_7_Description" />
+          <ScalarProperty Name="Q10_8" ColumnName="Q10_8" />
+          <ScalarProperty Name="Q10_8_Description" ColumnName="Q10_8_Description" />
+          <ScalarProperty Name="Q10_9" ColumnName="Q10_9" />
+          <ScalarProperty Name="Q10_9_Description" ColumnName="Q10_9_Description" />
+          <ScalarProperty Name="Q10_10" ColumnName="Q10_10" />
+          <ScalarProperty Name="Q10_10_Description" ColumnName="Q10_10_Description" />
+          <ScalarProperty Name="Q10_11" ColumnName="Q10_11" />
+          <ScalarProperty Name="Q10_11_Description" ColumnName="Q10_11_Description" />
+          <ScalarProperty Name="Q10_12" ColumnName="Q10_12" />
+          <ScalarProperty Name="Q10_12_Description" ColumnName="Q10_12_Description" />
+          <ScalarProperty Name="Q10_13" ColumnName="Q10_13" />
+          <ScalarProperty Name="Q10_13_Description" ColumnName="Q10_13_Description" />
+          <ScalarProperty Name="Q10_14" ColumnName="Q10_14" />
+          <ScalarProperty Name="Q10_14_Description" ColumnName="Q10_14_Description" />
+          <ScalarProperty Name="Q10_15" ColumnName="Q10_15" />
+          <ScalarProperty Name="Q10_15_Description" ColumnName="Q10_15_Description" />
+          <ScalarProperty Name="Q11_1" ColumnName="Q11_1" />
+          <ScalarProperty Name="Q11_1_Description" ColumnName="Q11_1_Description" />
+          <ScalarProperty Name="Q11_2" ColumnName="Q11_2" />
+          <ScalarProperty Name="Q11_2_Description" ColumnName="Q11_2_Description" />
+          <ScalarProperty Name="Q11_3" ColumnName="Q11_3" />
+          <ScalarProperty Name="Q11_3_Description" ColumnName="Q11_3_Description" />
+          <ScalarProperty Name="Q11_4" ColumnName="Q11_4" />
+          <ScalarProperty Name="Q11_4_Description" ColumnName="Q11_4_Description" />
+          <ScalarProperty Name="Q11_5" ColumnName="Q11_5" />
+          <ScalarProperty Name="Q11_5_Description" ColumnName="Q11_5_Description" />
+          <ScalarProperty Name="Q11_6" ColumnName="Q11_6" />
+          <ScalarProperty Name="Q11_6_Description" ColumnName="Q11_6_Description" />
+          <ScalarProperty Name="Q11_7" ColumnName="Q11_7" />
+          <ScalarProperty Name="Q11_7_Description" ColumnName="Q11_7_Description" />
+          <ScalarProperty Name="Q11_8" ColumnName="Q11_8" />
+          <ScalarProperty Name="Q11_8_Description" ColumnName="Q11_8_Description" />
+          <ScalarProperty Name="Q12_1" ColumnName="Q12_1" />
+          <ScalarProperty Name="Q12_1_Description" ColumnName="Q12_1_Description" />
+          <ScalarProperty Name="Q12_2" ColumnName="Q12_2" />
+          <ScalarProperty Name="Q12_2_Description" ColumnName="Q12_2_Description" />
+          <ScalarProperty Name="Q12_3" ColumnName="Q12_3" />
+          <ScalarProperty Name="Q12_3_Description" ColumnName="Q12_3_Description" />
+          <ScalarProperty Name="Q12_4" ColumnName="Q12_4" />
+          <ScalarProperty Name="Q12_4_Description" ColumnName="Q12_4_Description" />
+          <ScalarProperty Name="Q12_5" ColumnName="Q12_5" />
+          <ScalarProperty Name="Q12_5_Description" ColumnName="Q12_5_Description" />
+          <ScalarProperty Name="Q12_6" ColumnName="Q12_6" />
+          <ScalarProperty Name="Q12_6_Description" ColumnName="Q12_6_Description" />
+          <ScalarProperty Name="Q12_7" ColumnName="Q12_7" />
+          <ScalarProperty Name="Q12_7_Description" ColumnName="Q12_7_Description" />
+          <ScalarProperty Name="Q13_1" ColumnName="Q13_1" />
+          <ScalarProperty Name="Q13_1_Description" ColumnName="Q13_1_Description" />
+          <ScalarProperty Name="Q13_2" ColumnName="Q13_2" />
+          <ScalarProperty Name="Q13_2_Description" ColumnName="Q13_2_Description" />
+          <ScalarProperty Name="Q13_3" ColumnName="Q13_3" />
+          <ScalarProperty Name="Q13_3_Description" ColumnName="Q13_3_Description" />
+          <ScalarProperty Name="Q13_4" ColumnName="Q13_4" />
+          <ScalarProperty Name="Q13_4_Description" ColumnName="Q13_4_Description" />
+          <ScalarProperty Name="Q13_5" ColumnName="Q13_5" />
+          <ScalarProperty Name="Q13_5_Description" ColumnName="Q13_5_Description" />
+          <ScalarProperty Name="Q13_6" ColumnName="Q13_6" />
+          <ScalarProperty Name="Q13_6_Description" ColumnName="Q13_6_Description" />
+          <ScalarProperty Name="Q14_1" ColumnName="Q14_1" />
+          <ScalarProperty Name="Q14_1_Description" ColumnName="Q14_1_Description" />
+          <ScalarProperty Name="Q14_2" ColumnName="Q14_2" />
+          <ScalarProperty Name="Q14_2_Description" ColumnName="Q14_2_Description" />
+          <ScalarProperty Name="Q14_3" ColumnName="Q14_3" />
+          <ScalarProperty Name="Q14_3_Description" ColumnName="Q14_3_Description" />
+          <ScalarProperty Name="Q14_4" ColumnName="Q14_4" />
+          <ScalarProperty Name="Q14_4_Description" ColumnName="Q14_4_Description" />
+          <ScalarProperty Name="Q14_5" ColumnName="Q14_5" />
+          <ScalarProperty Name="Q14_5_Description" ColumnName="Q14_5_Description" />
+          <ScalarProperty Name="OtherHealthSafetyIssues" ColumnName="OtherHealthSafetyIssues" />
+          <ScalarProperty Name="ObservationNumber" ColumnName="ObservationNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vJseaRiskAssessments_">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vJseaRiskAssessments_">
+        <MappingFragment StoreEntitySet="vJseaRiskAssessments ">
+          <ScalarProperty Name="JseaRiskAssessmentId" ColumnName="JseaRiskAssessmentId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="TaskDate" ColumnName="TaskDate" />
+          <ScalarProperty Name="TaskLocation" ColumnName="TaskLocation" />
+          <ScalarProperty Name="TaskValidTill" ColumnName="TaskValidTill" />
+          <ScalarProperty Name="PersonResponsible" ColumnName="PersonResponsible" />
+          <ScalarProperty Name="PlantEquipmentUsed" ColumnName="PlantEquipmentUsed" />
+          <ScalarProperty Name="MaterialUsed" ColumnName="MaterialUsed" />
+          <ScalarProperty Name="Permit" ColumnName="Permit" />
+          <ScalarProperty Name="PermitNumber" ColumnName="PermitNumber" />
+          <ScalarProperty Name="DetailsOfEquipment" ColumnName="DetailsOfEquipment" />
+          <ScalarProperty Name="PrepByName" ColumnName="PrepByName" />
+          <ScalarProperty Name="PrepByPosition" ColumnName="PrepByPosition" />
+          <ScalarProperty Name="PrepByDate" ColumnName="PrepByDate" />
+          <ScalarProperty Name="EnviroRevPrepByName" ColumnName="EnviroRevPrepByName" />
+          <ScalarProperty Name="EnviroRevPosition" ColumnName="EnviroRevPosition" />
+          <ScalarProperty Name="EnviroRevDate" ColumnName="EnviroRevDate" />
+          <ScalarProperty Name="SafetyRevPrepByName" ColumnName="SafetyRevPrepByName" />
+          <ScalarProperty Name="SafetyRevPosition" ColumnName="SafetyRevPosition" />
+          <ScalarProperty Name="SafetyRevDate" ColumnName="SafetyRevDate" />
+          <ScalarProperty Name="ApprovedPrepByName" ColumnName="ApprovedPrepByName" />
+          <ScalarProperty Name="ApprovedByPosition" ColumnName="ApprovedByPosition" />
+          <ScalarProperty Name="ApprovedByDate" ColumnName="ApprovedByDate" />
+          <ScalarProperty Name="JobStep" ColumnName="JobStep" />
+          <ScalarProperty Name="PotentialRisksImpacts" ColumnName="PotentialRisksImpacts" />
+          <ScalarProperty Name="CurrentRiskRating" ColumnName="CurrentRiskRating" />
+          <ScalarProperty Name="ControlMeasures" ColumnName="ControlMeasures" />
+          <ScalarProperty Name="NewRiskRating" ColumnName="NewRiskRating" />
+          <ScalarProperty Name="PersonResponsibleEnsureImp" ColumnName="PersonResponsibleEnsureImp" />
+          <ScalarProperty Name="SignOffName" ColumnName="SignOffName" />
+          <ScalarProperty Name="SignOffDate" ColumnName="SignOffDate" />
+          <ScalarProperty Name="SignOffTime" ColumnName="SignOffTime" />
+          <ScalarProperty Name="SignOffEmployer" ColumnName="SignOffEmployer" />
+          <ScalarProperty Name="SignOffComments" ColumnName="SignOffComments" />
+          <ScalarProperty Name="Activity" ColumnName="Activity" />
+          <ScalarProperty Name="ReviewPersonResponsible" ColumnName="ReviewPersonResponsible" />
+          <ScalarProperty Name="ReviewDatePerformed" ColumnName="ReviewDatePerformed" />
+          <ScalarProperty Name="ReviewFindings" ColumnName="ReviewFindings" />
+          <ScalarProperty Name="ReviewActionIfRequired" ColumnName="ReviewActionIfRequired" />
+          <ScalarProperty Name="ReviewDateClosed" ColumnName="ReviewDateClosed" />
+          <ScalarProperty Name="ReviewClosedBy" ColumnName="ReviewClosedBy" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vRiskAssessments">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vRiskAssessment">
+        <MappingFragment StoreEntitySet="vRiskAssessments">
+          <ScalarProperty Name="RiskAssessmentId" ColumnName="RiskAssessmentId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="HowHazardProblemIdentified" ColumnName="HowHazardProblemIdentified" />
+          <ScalarProperty Name="HowHazardProblemIdentifiedOther" ColumnName="HowHazardProblemIdentifiedOther" />
+          <ScalarProperty Name="HazardManagementTeam" ColumnName="HazardManagementTeam" />
+          <ScalarProperty Name="IncidentReportNumber" ColumnName="IncidentReportNumber" />
+          <ScalarProperty Name="Location" ColumnName="Location" />
+          <ScalarProperty Name="HazardBeingAssessed" ColumnName="HazardBeingAssessed" />
+          <ScalarProperty Name="DateOfAssessment" ColumnName="DateOfAssessment" />
+          <ScalarProperty Name="TimeOfAssessment" ColumnName="TimeOfAssessment" />
+          <ScalarProperty Name="AreaSection" ColumnName="AreaSection" />
+          <ScalarProperty Name="PartHistory" ColumnName="PartHistory" />
+          <ScalarProperty Name="SafetyHazardsEnvironmentalImpacts" ColumnName="SafetyHazardsEnvironmentalImpacts" />
+          <ScalarProperty Name="PotentialRisksImpacts" ColumnName="PotentialRisksImpacts" />
+          <ScalarProperty Name="CurrentControls" ColumnName="CurrentControls" />
+          <ScalarProperty Name="CurrentRiskRating" ColumnName="CurrentRiskRating" />
+          <ScalarProperty Name="ControlsAdequate" ColumnName="ControlsAdequate" />
+          <ScalarProperty Name="ProposedNewControls" ColumnName="ProposedNewControls" />
+          <ScalarProperty Name="NewRiskRating" ColumnName="NewRiskRating" />
+          <ScalarProperty Name="ObservationNumber" ColumnName="ObservationNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyActions">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyAction">
+        <MappingFragment StoreEntitySet="vSafetyActions">
+          <ScalarProperty Name="SafetyActionId" ColumnName="SafetyActionId" />
+          <ScalarProperty Name="FormHeaderId" ColumnName="FormHeaderId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="SATitle" ColumnName="SATitle" />
+          <ScalarProperty Name="SACreated" ColumnName="SACreated" />
+          <ScalarProperty Name="SAModified" ColumnName="SAModified" />
+          <ScalarProperty Name="SASite" ColumnName="SASite" />
+          <ScalarProperty Name="SAModifiedByName" ColumnName="SAModifiedByName" />
+          <ScalarProperty Name="SAModifiedByEmpNo" ColumnName="SAModifiedByEmpNo" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="DueDate" ColumnName="DueDate" />
+          <ScalarProperty Name="AssignedToName" ColumnName="AssignedToName" />
+          <ScalarProperty Name="AssignedToEmpNo" ColumnName="AssignedToEmpNo" />
+          <ScalarProperty Name="PercentageComplete" ColumnName="PercentageComplete" />
+          <ScalarProperty Name="MexNumber" ColumnName="MexNumber" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Priority" ColumnName="Priority" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyActionsByMonthBySites">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyActionsByMonthBySite">
+        <MappingFragment StoreEntitySet="vSafetyActionsByMonthBySite">
+          <ScalarProperty Name="SafetyActionsByMonthBySiteId" ColumnName="SafetyActionsByMonthBySiteId" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyActionsByMonthByUsers">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyActionsByMonthByUser">
+        <MappingFragment StoreEntitySet="vSafetyActionsByMonthByUser">
+          <ScalarProperty Name="SafetyActionsByMonthByUserId" ColumnName="SafetyActionsByMonthByUserId" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyActionsThisMonthByUsers">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyActionsThisMonthByUser">
+        <MappingFragment StoreEntitySet="vSafetyActionsThisMonthByUser">
+          <ScalarProperty Name="SafetyActionsThisMonthByUserId" ColumnName="SafetyActionsThisMonthByUserId" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyWalkTalks">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyWalkTalk">
+        <MappingFragment StoreEntitySet="vSafetyWalkTalks">
+          <ScalarProperty Name="SafetyWalkTalkId" ColumnName="SafetyWalkTalkId" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Created" ColumnName="Created" />
+          <ScalarProperty Name="Modified" ColumnName="Modified" />
+          <ScalarProperty Name="CreatedByName" ColumnName="CreatedByName" />
+          <ScalarProperty Name="CreatedByEmpNo" ColumnName="CreatedByEmpNo" />
+          <ScalarProperty Name="ModifiedByName" ColumnName="ModifiedByName" />
+          <ScalarProperty Name="ModifiedByEmpNo" ColumnName="ModifiedByEmpNo" />
+          <ScalarProperty Name="CurrentOwnerName" ColumnName="CurrentOwnerName" />
+          <ScalarProperty Name="CurrentOwnerEmpNo" ColumnName="CurrentOwnerEmpNo" />
+          <ScalarProperty Name="FormType" ColumnName="FormType" />
+          <ScalarProperty Name="Title" ColumnName="Title" />
+          <ScalarProperty Name="FormStatus" ColumnName="FormStatus" />
+          <ScalarProperty Name="Task" ColumnName="Task" />
+          <ScalarProperty Name="Improvements" ColumnName="Improvements" />
+          <ScalarProperty Name="Observations" ColumnName="Observations" />
+          <ScalarProperty Name="SuggestedImprovements" ColumnName="SuggestedImprovements" />
+          <ScalarProperty Name="Notes" ColumnName="Notes" />
+          <ScalarProperty Name="MexNumber" ColumnName="MexNumber" />
+          <ScalarProperty Name="ObservationNumber" ColumnName="ObservationNumber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyWalkTalksByDays">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyWalkTalksByDay">
+        <MappingFragment StoreEntitySet="vSafetyWalkTalksByDay">
+          <ScalarProperty Name="SafetyWalkTalksByDayId" ColumnName="SafetyWalkTalksByDayId" />
+          <ScalarProperty Name="Day" ColumnName="Day" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Count" ColumnName="Count" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vIncidentsByMonths">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vIncidentsByMonth">
+        <MappingFragment StoreEntitySet="vIncidentsByMonth">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="IncidentsByMonthId" ColumnName="IncidentsByMonthId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vIncidentsByWeeks">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vIncidentsByWeek">
+        <MappingFragment StoreEntitySet="vIncidentsByWeek">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="IncidentsByWeekId" ColumnName="IncidentsByWeekId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyWalkTalksByMonths">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyWalkTalksByMonth">
+        <MappingFragment StoreEntitySet="vSafetyWalkTalksByMonth">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="SafetyWalkTalksByMonthId" ColumnName="SafetyWalkTalksByMonthId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="vSafetyWalkTalksByWeeks">
+      <EntityTypeMapping TypeName="SafetyManagementSystemModel.vSafetyWalkTalksByWeek">
+        <MappingFragment StoreEntitySet="vSafetyWalkTalksByWeek">
+          <ScalarProperty Name="Count" ColumnName="Count" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="Year" ColumnName="Year" />
+          <ScalarProperty Name="MonthName" ColumnName="MonthName" />
+          <ScalarProperty Name="Month" ColumnName="Month" />
+          <ScalarProperty Name="Week" ColumnName="Week" />
+          <ScalarProperty Name="SafetyWalkTalksByWeekId" ColumnName="SafetyWalkTalksByWeekId" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,100 @@
+﻿@model EPOv2.ViewModels.CostCentreOwnerViewModel
+@{
+    ViewBag.Title = "ChangeCostCentreOwner";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    
+    function selectCostCentre(object) {
+        var ccID = object.value;
+        //alert(entityID);
+        if (ccID != null && ccID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCostCentreOwner")',
+                cache: false,
+                data: {
+                    ccId: ccID
+                },
+                error: function (xhr, status, error) {
+                    $('#ErrorAlert').show(300).fadeIn().delay(1000).hide(200).fadeOut();
+                    $('#SelectedOwnerId').removeAttr("disabled");
+                },
+                success: function (result) {
+                   $('#SelectedOwnerId').val(result).removeAttr("disabled");
+                }
+            });
+        }
+    }
+
+    function ChangeCostCentreOwner(parameters) {
+        var $form = $('form[id="CCOwnerForm"]');
+        $('html *').css({ 'cursor': 'wait' });
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ChangeCostCentreOwner")',
+            cache: false,
+            data: $form.serialize(),
+            error: function (error) {
+                $('#ErrorAlert').show(300).fadeIn().delay(1000).hide(200).fadeOut();
+                $('html *').css({ 'cursor': 'default' });
+            },
+            success: function (response) {
+                $('#SaveAlert').show(200).fadeIn().delay(1000).hide(200).fadeOut();
+                $('html *').css({ 'cursor': 'default' });
+            }
+        });
+    }
+
+</script>
+
+
+<h2>Change Cost Centre Owner</h2>
+
+<div class="col-md-12">
+    <div id="SaveAlert" class="alert alert-success" style="display: none;">Saved Successfully</div>
+</div>
+<div class="col-md-12">
+    <div id="ErrorAlert" class="alert alert-danger" style="display: none;">Error</div>
+</div>
+
+@Html.AntiForgeryToken()
+@using (@Html.BeginForm(null, null, FormMethod.Post, new { id = "CCOwnerForm" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        <div class="form-group">
+            <div class="form-group">
+                @Html.Label("Cost Centre: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedCostCenterId, new SelectList(Model.CostCentres, "Id", "FullName"), "Select CostCentre", new { @class = "form-control input-sm", @onchange = "selectCostCentre(this)" })
+                    @Html.ValidationMessageFor(model => model.SelectedCostCenterId)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Owner: ", new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.DropDownListFor(model => model.SelectedOwnerId, new SelectList(Model.Owners, "Id", "FullName"), "Select Owner", new { @class = "form-control input-sm", @disabled = "disabled" })
+                    @Html.ValidationMessageFor(model => model.SelectedOwnerId)
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="button" id="btn_updateCCOwner" class="btn btn-primary" onclick="ChangeCostCentreOwner()" value="Update" />
+                </div>
+            </div>
+        </div>
+        @*<div class="alert alert-info">
+                @ViewBag.runtime1
+
+                @ViewBag.runtime2
+
+                @ViewBag.Name
+            </div>*@
+
+    </div>
+
+
+}

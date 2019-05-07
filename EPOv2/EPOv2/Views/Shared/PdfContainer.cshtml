@@ -1,0 +1,13 @@
+﻿@model EPOv2.ViewModels.pdfPOContainerViewModel
+@{
+    ViewBag.Title = "PdfContainer";
+    Layout = "~/Views/Shared/_PdfLayout.cshtml";
+}
+<div id="pdf-container">
+    @foreach (var page in Model.PdfPOPages)
+    {
+        
+            Html.RenderPartial("_pdfReport", page);
+        <p class="breakhere"></p>
+    }
+</div>

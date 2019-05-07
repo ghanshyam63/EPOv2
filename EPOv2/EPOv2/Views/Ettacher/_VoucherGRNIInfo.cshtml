@@ -1,0 +1,60 @@
+﻿@model EPOv2.ViewModels.VoucherGRNIInfoViewModel
+
+<div class="panel panel-warning">
+    <div class="panel-heading" role="tab" id="POHead"><a data-toggle="collapse" data-parent="#accordion" href="#PObody" aria-expanded="true" aria-controls="PObody">PO Info</a></div>
+    <div id="PObody" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="POHead">
+        <div class="panel-body">
+            @Html.HiddenFor(x=>x.TotalPO)
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>Voucher #</th>
+                    <th>PO</th>
+                    <th>RA</th>
+                    <th class="text-right">Amount $</th>
+                </tr>
+                </thead>
+                @foreach (var item in Model.VoucherPOs)
+                {
+                    <tr>
+                        <td>@item.Voucher</td>
+                        <td>@item.PO</td>
+                        <td>@item.RA</td>
+                        <td class="text-right">@Html.DisplayFor(m => item.Total)</td>
+                    </tr>
+                }
+            </table>
+
+            <table class="table table-responsive">
+                <thead>
+                <tr>
+                    <th>Site</th>
+                    <th>Line #</th>
+                    <th>PN</th>
+                    <th>Received</th>
+                    <th>Invoiced</th>
+                    <th>Unit cost</th>
+                    <th>Unit GST</th>
+                    <th class="text-right">Line Total $</th>
+                </tr>
+                </thead>
+                @foreach (var item in Model.VoucherPOItemDetails)
+                {
+                    <tr>
+                        <td>@item.Site</td>
+                        <td>@item.Line</td>
+                        <td>@item.Part</td>
+                        <td class="text-right">@Html.DisplayFor(m => item.RecievedQty)</td>
+                        <td class="text-right">@Html.DisplayFor(m => item.InvoicedQty)</td>
+                        <td class="text-right">@Html.DisplayFor(m => item.UnitCost)</td>
+                        <td class="text-right">@Html.DisplayFor(m => item.UnitGST)</td>
+                        <td class="text-right">@Html.DisplayFor(m => item.Total)</td>
+
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+    </div>
+

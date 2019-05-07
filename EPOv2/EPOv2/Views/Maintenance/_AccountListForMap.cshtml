@@ -1,0 +1,4 @@
+﻿@model EPOv2.ViewModels.AccountToCostCentreAdding
+
+
+@Html.ListBoxFor(x => Model.SelectedAccounts, new MultiSelectList(Model.Accounts, "Id", "FullName"), new { @class = "form-control input-sm", size=30 })

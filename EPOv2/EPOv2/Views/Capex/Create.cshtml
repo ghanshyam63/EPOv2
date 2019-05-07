@@ -1,0 +1,191 @@
+﻿@model EPOv2.ViewModels.CapexCRUDViewModel
+@{
+   
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Views/CapexView.js?@DateTime.Now.Ticks.ToString()" type="text/javascript" ></script>
+<script>
+// just for the demos, avoids form submit
+//jQuery.validator.setDefaults({
+//  debug: true,
+//  success: "valid"
+//});
+//$( "#CapexForm" ).validate({
+//  rules: {
+//      SelectedFilePath: {
+//      required: true,
+//      extension: "pdf"
+//    }
+//  },
+//    messages: {
+//        SelectedFilePath: {
+//            required: "Please  upload resume",
+//            extension: "Please  upload valied file formats"
+//    }
+//}
+//});
+
+</script>
+<div class="">
+    <div class="col-md-12">
+        <div class="well well-sm col-md-3">
+            <h3 class="page-title">@ViewBag.Title</h3>
+        </div>
+    </div>
+    <div class="alert"></div>
+    @using (@Html.BeginForm("SaveCapex", "Capex", FormMethod.Post, new { enctype = "multipart/form-data", id = "CapexForm" }))
+    {
+        @Html.HiddenFor(x=>x.Id)
+        @Html.HiddenFor(x=>x.CapexType)
+        @Html.HiddenFor(x => x.CostCentreId)
+        @Html.HiddenFor(x => x.EntityId)
+        @Html.HiddenFor(x => x.OwnerId)
+        @Html.HiddenFor(x => x.DateCreated);
+        @Html.HiddenFor(x => x.RevisionQty);
+        @Html.HiddenFor(x=>x.Comment);
+        @Html.AntiForgeryToken()
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+        <div id="capex-head">
+            <div class="row ">
+                <div class="col-md-2">
+                    Author
+                    @Html.TextBoxFor(m => m.Author, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Capex #
+                    @Html.TextBoxFor(m => m.CapexNumber, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Revision
+                    @Html.TextBoxFor(m => m.RevisionQty, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Date
+                    @Html.TextBoxFor(m => m.DateCreated, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Status
+                    @Html.TextBoxFor(m => m.Status, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    <br/>
+                </div>
+            </div>
+        </div>
+        <hr class="hr-sm"/>
+        <div id="order-body" class="color-green">
+            <div class="row CapexForm">
+                <div class="col-md-5 " id="div-capexcompanybox">
+                    @{
+                        Html.RenderPartial("_CompanyBox", Model.CapexCompanyBox);
+                    }
+                </div>
+                <div class="col-md-7 " id="div-capexdetailbox">
+                   <div class="row form">
+                        <div class="form-group col-md-12">
+                            <label class="col-sm-2 control-label CapexForm">Title</label>
+                            <div class="col-md-9">
+                              @(Model.IsLocked ? Html.TextBoxFor(m => m.Title, null, new { @class = "form-control input-sm", @disabled="disabled"})
+                                               : Html.TextBoxFor(m => m.Title, null, new { @class = "form-control input-sm"}))
+                            </div>
+                        </div>
+
+                        <div class="form-group col-md-12">
+                            <label class="col-sm-2 control-label CapexForm">Description</label>
+                            <div class="col-md-9">
+                               @(Model.IsLocked ? Html.TextAreaFor(m => m.Description, 4, 90, new { @class = "form-control input-sm", @disabled="disabled" })
+                                                : Html.TextAreaFor(m => m.Description, 4, 90, new { @class = "form-control input-sm"}))
+                               
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="col-sm-2 control-label CapexForm">File</label>
+                            <div class="col-sm-10">
+                                
+                                @if (Model.IsLocked)
+                                {
+                                    <div class="pull-left">
+                                        @Html.DisplayFor(x => x.Reference)
+                                    </div>
+                                    <div class="col-md-1">
+                                        <button type="button" value="@Model.Id" id="ViewItem-@Model.Id" data-type="@Model.Id" onclick="ViewDocument(this)" title="View document" class="btn btn-info control-btn-crud">
+                                            <span class="glyphicon glyphicon-eye-open"></span>
+                                        </button>
+                                    </div>
+                                }
+                                else if (Model.IsEdit)
+                                {
+                                    <div class="pull-left">
+                                        @Html.TextBoxFor(m => m.SelectedFilePath, null, new { type = "file", name = "flup", @class = "form-control input-sm btn" , accept = "application/pdf", @onchange ="changeCapexFile(this)" })
+                                        @Html.ValidationMessageFor(model => model.SelectedFilePath, "Please select PDF file", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="small capex-file-reference" >
+                                        <span id="span-capex-reference">@Html.DisplayFor(x => x.Reference)</span>
+                                        <div class="view-capex-btn">
+                                            <button type="button" value="@Model.Id" id="ViewItem-@Model.Id" data-type="@Model.Id" onclick="ViewDocument(this)" title="View document" class="btn btn-info control-btn-crud">
+                                                <span class="glyphicon glyphicon-eye-open"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+                                }
+                                else
+                                {
+                                    <div class="pull-left">
+                                        @Html.TextBoxFor(m => m.SelectedFilePath, null, new { type = "file", name="flup", accept = "application/pdf", @class = "form-control input-sm btn" })
+                                        @Html.ValidationMessageFor(model => model.SelectedFilePath, "Please select PDF file", new { @class = "text-danger" })
+                                    </div>
+                                }
+
+                            </div>
+                        </div>
+                        <div class="form-group col-md-12">
+                            <label class="col-sm-2 control-label CapexForm">Total Ex GST</label>
+                            <div class="col-sm-2">
+                                @(Model.IsLocked ? Html.TextBoxFor(m => m.TotalExGST, "{0:N2}",  new { @class = "form-control input-sm text-right", @onkeypress = "return isNumberKey(event)", @disabled="disabled" })
+                                                 : Html.TextBoxFor(m => m.TotalExGST,  new { @class = "form-control input-sm text-right", @onkeypress = "return isNumberKey(event)" }))
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="form-group">
+                    @if (ViewBag.Action == "Authorise")
+                    {
+
+                        <div class="col-md-2 pull-right">
+                            <button type="button" name="button" value="Authorise" onclick="AuthoriseCapex()" class="btn btn-success btn-block">Authorise</button>
+                        </div>
+                        <div class="col-md-2 pull-right">
+                            <button type="button" name="button" value="Decline" onclick="DeclineCapex()" class="btn btn-danger btn-block">Decline</button>
+                        </div>
+                    }
+                    else
+                    {
+                        if (!Model.IsLocked)
+                        {
+                            <div class="col-md-2 pull-right">
+                                <button type="submit" name="button" value="Save" onclick="SubmitCapex()" class="btn btn-success btn-block">Submit</button>
+                            </div>
+                        }
+                    }
+                    
+                    <div class="col-md-2 pull-right">
+                        <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+    @using (@Html.BeginForm("ViewDocument", "Capex", FormMethod.Post, new { id = "DocumentViewForm" }))
+    {
+        @Html.HiddenFor(x => x.Id, new { id = "CapexId" })
+    }
+ </div>

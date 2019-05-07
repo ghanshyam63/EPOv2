@@ -1,0 +1,16 @@
+﻿@model EPOv2.ViewModels.ApproverChoiceViewModel
+@{
+ Layout = null;
+}
+@Html.HiddenFor(x => x.ApproverChoiceOrderId)
+<div class="row">
+    <div class="form-group col-md-5" id="shortList">
+        @Html.DropDownListFor(model => model.SelectedApprover, new SelectList(Model.ApproversShortList, "UserId", "FullName"), "Select Authoriser", new { @class = "form-control input-sm" })
+    </div>
+    <div class="form-group col-md-5 hidden" id="fullList">
+        @Html.DropDownListFor(model => model.SelectedApprover, new SelectList(Model.ApproversFullList, "UserId", "FullName"), "Select Authoriser", new { @class = "form-control input-sm", @onchange = "selectApproverFull(this)", id="approverFullList" })
+    </div>
+    <div class="col-md-2">
+        <button type="button" id="btn-fullList" class="btn btn-info btn-sm" onclick="ShowFullApprovalList()">Full list</button>
+    </div>
+</div>

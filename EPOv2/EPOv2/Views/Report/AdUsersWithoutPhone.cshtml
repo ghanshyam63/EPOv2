@@ -1,0 +1,16 @@
+﻿@model IEnumerable<string>
+@{
+    ViewBag.Title = "AdUsersWithoutPhone";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Ad Users Without Phone</h2>
+@{
+    var i = 0;
+}
+
+@foreach (var item in Model)
+{
+    i++;
+    <p>@i @item</p>
+}

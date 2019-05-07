@@ -1,0 +1,1 @@
+Online documentation is available at http://www.agiledesignllc.com/products/SsasEFProvider/Resources

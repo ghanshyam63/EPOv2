@@ -1,0 +1,37 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="$(SolutionDir)DomainModel\bin\Debug\DomainModel.dll" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ import namespace="DomainModel.Entities" #>
+<#@ output extension=".cs" #>
+
+using DomainModel.Entities;
+using EPOv2.Repositories.Interfaces;
+using Interfaces;
+using DomainModel.DataContext;
+
+namespace Repositories
+{
+<#
+		var assembly =  typeof(Order).Assembly;
+        var entityTypes = assembly.GetTypes()
+                            .Where(t => typeof(BaseEntity).IsAssignableFrom(t) && t != typeof(BaseEntity) && !t.IsAbstract)
+                            .ToArray();
+
+		foreach(var entityType in entityTypes)
+		{
+#>
+	public partial class <#=entityType.Name#>Repository : BaseRepository<<#=entityType.Name#>>, I<#=entityType.Name#>Repository
+	{
+		public <#=entityType.Name#>Repository(IDataContext contextmanager)
+			: base(contextmanager)
+		{
+		}
+	}
+
+<#
+}
+#>
+} // end namespace

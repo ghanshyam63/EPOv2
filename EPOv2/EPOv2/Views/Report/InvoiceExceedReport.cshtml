@@ -1,0 +1,130 @@
+﻿@model EPOv2.ViewModels.InvoiceExceedReportFilterVM
+@{
+    ViewBag.Title = "Invoice Exceed Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    $(document).on("focusin", "#dateFrom", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateFrom", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(document).on("focusin", "#dateTo", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateTo", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(function () {
+        $("#dateFrom").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateTo").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    function RunReport(parameters) {
+        $("#EPOloading1").removeClass('hidden');
+        var $form = $('form[id="Form"]');
+        $('#reportResult').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("RunInvoiceExceedReport","Report")',
+            data: $form.serialize(),
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#EPOloading1").addClass('hidden');
+                $("#resultPanel").addClass('hidden');
+                $('#reportResult').empty();
+            },
+            success: function (result) {
+                $("#EPOloading1").addClass('hidden');
+                $("#resultPanel").removeClass('hidden');
+                $('#reportResult').html(result);
+                //$("body").scrollTo("#searchCapexResult", 900, { offset: function () { return { top: -200, left: 0 } } });
+            }
+        });
+    }
+
+</script>
+
+<h2>Exceeded Invoices Report</h2>
+<div class="col-md-12">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body" id="reportFilter">
+
+            @using (@Html.BeginForm("RunInvoiceExceedReport", "Report", FormMethod.Post, new { id = "Form" }))
+            {
+                <div class="row form-group">
+                    <label class="col-sm-1 control-label ">Date From</label>
+                    <div class="col-md-2">@Html.TextBoxFor(m => m.dateFrom, null, new { @id = "dateFrom", @placeholder = "Select Date From", @class = "form-control input-sm" })</div>
+                    <label class="col-sm-1 control-label ">Date To</label>
+                    <div class="col-md-2">@Html.TextBoxFor(m => m.dateTo, null, new { @id = "dateTo", @placeholder = "Select Date To", @class = "form-control input-sm" })</div>
+                </div>
+            }
+            @*<div class="row form-group">
+                    <label class="col-sm-2 control-label ">Entity</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Cost Centre</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedCostCenter, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Account</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedAccount, new SelectList(Model.Accounts, "Id", "FullName"), "Select Account", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Capex</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedCapexId, new SelectList(Model.Capexes, "Id", "FullName"), "Select Capex", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Supplier</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedSupplier, new SelectList(Model.Suppliers, "Id", "FullName"), "Select Supplier", new { @class = "form-control input-sm" })</div>
+                </div>*@
+            <div class="col-md-12">
+                <div class="row form-group">
+                    <div class="col-md-2">
+                        <button type="button" name="button" value="cancel" class="cancel btn btn-warning btn-block " onclick="Clear()">Clear</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" name="button" value="Search" class="btn btn-success btn-block" onclick="RunReport()">Run</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="EPOloading1">
+        <div class="spinner spinner-info"></div>
+    </div>
+</div>
+<div class="col-md-12 hidden" id="resultPanel">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+        </div>
+        <div class="panel-body" id="reportResult">
+        </div>
+    </div>
+</div>
+
+       
+       

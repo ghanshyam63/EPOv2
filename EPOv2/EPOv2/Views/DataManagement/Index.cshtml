@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Data Management";
+}
+
+<h2>Data Management</h2>
+
+<button type="button" value="Fetch Entity" class="btn btn-primary " disabled="disabled" onclick="window.location.href='@Url.Action("FetchEntity", "DataManagement")'">Fetch Entity</button>
+<button type="button" value="Fetch Cost Center" class="btn btn-primary " disabled="disabled" onclick="window.location.href='@Url.Action("FetchCC", "DataManagement")'">Fetch Cost Center</button>
+<button type="button" value="Fetch Account" class="btn btn-primary " disabled="disabled" onclick="window.location.href='@Url.Action("FetchAccounts", "DataManagement")'">Fetch Account</button>
+<button type="button" value="Fetch Delivery Address" class="btn btn-primary " disabled="disabled" onclick="window.location.href='@Url.Action("FetchDeliveryAddress", "DataManagement")'">Fetch Delivery Address</button>
+<button type="button" value="Fetch Receipt Group" class="btn btn-primary" onclick="window.location.href='@Url.Action("FetchGroup", "DataManagement")'">Fetch Receipt Group</button>
+<hr/>
+<button type="button" value="Fetch Receipt Group" class="btn btn-primary" onclick="window.location.href='@Url.Action("FetchCcToEntity", "DataManagement")'">Fetch CostCentre to Entity</button>
+<button type="button" value="Fetch Receipt Group" class="btn btn-primary" onclick="window.location.href='@Url.Action("FetchAccAndSubToCc", "DataManagement")'">Fetch Account & SubAccount to CostCentre</button>
+
+<button type="button" value="Fetch Receipt Group" class="btn btn-default " onclick="window.location.href='@Url.Action("FetchCCOwner", "DataManagement")'">Fetch CC Owner</button>
+<hr />
+<button type="button" value="Fetch Receipt Group" class="btn btn-warning " onclick="window.location.href='@Url.Action("FillAuthorId", "DataManagement")'">Fill AuthorId</button>
+
+<hr/>
+<button type="button" value="Fetch Receipt Group" class="btn btn-default " onclick="window.location.href='@Url.Action("States", "DataManagement")'">Manage States</button>
+<button type="button" value="Fetch Receipt Group" class="btn btn-default " onclick="window.location.href='@Url.Action("Currencies", "DataManagement")'">Manage Currency</button>
+<button type="button" value="Fetch Receipt Group" class="btn btn-default " onclick="window.location.href='@Url.Action("Statuses", "DataManagement")'">Manage Status</button>
+<button type="button" value="Fetch Receipt Group" class="btn btn-default " onclick="window.location.href='@Url.Action("Levels", "DataManagement")'">Manage Level</button>
+<button type="button" value="Fetch Receipt Group" class="btn btn-default " onclick="window.location.href='@Url.Action("CostCentres", "DataManagement")'">Manage CostCentre</button>
+
+
+
+

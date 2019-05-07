@@ -1,0 +1,47 @@
+﻿@model EPOv2.ViewModels.AccountCategoryDLLViewModel
+@{
+    ViewBag.Title = "Add Account to Category Mapping";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function selectCategory(object) {
+        var categoryID = object.value;
+        if (categoryID != null && categoryID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchAccountsListForCategoryMap")',
+                cache: false,
+                data: {
+                    categoryId: categoryID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#ccList').html(result);
+                }
+            });
+        }
+    }
+
+ 
+</script>
+
+<h3>Add new Account to Category mapping</h3>
+@using (Html.BeginForm())
+{
+    <div>
+        <div class="col-md-3">
+            @Html.DropDownListFor(m => m.SelectedCategory, new SelectList(Model.AccountCategories, "Id", "Name"), "Select Category", new { @class = "form-control input-sm input", onchange = "selectCategory(this)" })
+        </div>
+        <div id="ccList" class="col-md-5"></div>
+        <div class="col-md-3">
+            <input type="submit" value="Save" class="btn btn-success btn-sm" />
+            <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapAccountToCategory", "Maintenance")'">Back</button>
+        </div>
+    </div>
+}
+

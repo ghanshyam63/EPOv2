@@ -1,0 +1,82 @@
+﻿@model EPOv2.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Capex Dashboard";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="~/Scripts/Views/CapexDashboard.js" type="text/javascript"></script>
+
+<br />
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-info">
+            <div class="panel-heading">
+                <div class="panel-title">Capexes Awaiting Approval</div>
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("ApproveCapex", "Capex", FormMethod.Post, new { id = "DashboardApproval" }))
+                {
+                    @Html.HiddenFor(x => x.SelectedItem);
+                    Html.RenderAction("DashboardCapexForApprove");
+                }
+            </div>
+        </div>
+    </div>
+            <div class="col-md-6">
+                <div class="panel panel-success">
+                    <div class="panel-heading">
+                        <div class="panel-title">Purchase Orders under your Capexes</div>
+                    </div>
+                    <div class="panel-body">
+                        @using (@Html.BeginForm("ViewOrder", "PurchaseOrder", FormMethod.Post, new { id = "DashboardOrders" }))
+                        {
+                            @Html.HiddenFor(x => x.SelectedItem);
+                            Html.RenderAction("OrdersForMyCapex");
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<div class="row">
+                <div class="col-md-12">
+                    <div class="panel panel-warning" role="tab" id="POHead">
+                        <div class="panel-heading">
+                            <div class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#PObody" aria-expanded="true" aria-controls="PObody">Orders to be Matched (click to expand) </a></div>
+                        </div>
+                        <div id="PObody" class="panel-collapse collapse out" role="tabpanel" aria-labelledby="POHead">
+                            @using (@Html.BeginForm("MatchOrder", "PurchaseOrder", FormMethod.Post, new { id = "DasboardMatching" }))
+                            {
+                                @Html.HiddenFor(x => x.SelectedOrder);
+                                Html.RenderAction("DashboardOrdersForMatching");
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>*@
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <div class="panel-title">
+                            
+                            <div class="row">
+                                <div class="col-md-2">My Open Capexes</div>
+                                <div class="col-md-2 col-sm-offset-8 text-right panel-right-btn">
+                                    <button href="#" class="btn btn-danger btn-sm" role="button" onclick="window.location.href = '@Url.Action("Create", "Capex")'">Create new</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel-body">
+                        @using (@Html.BeginForm("EditCapex", "Capex", FormMethod.Post, new { id = "Dashboard" }))
+                        {
+                            @Html.HiddenFor(x => x.SelectedItem);
+                            Html.RenderAction("DashboardMyCapexes");
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="my-dialog" class="material" data-position-to="origin"></div>
+
+

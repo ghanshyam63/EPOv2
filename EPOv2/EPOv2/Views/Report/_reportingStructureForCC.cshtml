@@ -1,0 +1,41 @@
+﻿@model EPOv2.ViewModels.RoutingStructureForCCViewModel
+
+@foreach (var element in Model.AboveList.OrderByDescending(x => x.PseudoLevel))
+{
+    <div class="row">
+        <div class="col-md-12 well well-sm">@element.FullName <span class="badge">@Html.DisplayFor(x => element.Limit)</span></div>
+    </div>
+}
+
+<div class="row">
+    <div class="col-md-12  well well-sm">
+        @Model.CostCentreCode - @Model.CostCentreName - Owner (@Model.CostCentreOwner <span class="badge">@Html.DisplayFor(x => Model.CostCentreOwnerLimit)</span>)
+    </div>
+</div>
+@{
+    var pLevel = -1;
+}
+@foreach (var element in Model.BehindList.OrderByDescending(x => x.PseudoLevel))
+{
+    if (element.PseudoLevel == pLevel)
+    {
+        <div class="col-md-1 pull-left well well-sm">
+            @element.FullName <span class="label label-default">@element.EmpId</span>
+            <span class="label label-info">@element.ManagerEmpId</span>
+        <span class="badge">@Html.DisplayFor(x => element.Limit)</span>
+    </div>
+    }
+    else
+    {
+        <div class="row"></div>
+        <br />
+        <div class="col-md-1 pull-left well well-sm">
+            @element.FullName <span class="label label-default">@element.EmpId</span>
+            <span class="label label-info">@element.ManagerEmpId</span>
+            <span class="badge">@Html.DisplayFor(x => element.Limit)</span>
+        </div>
+        pLevel--;
+    }
+
+}
+

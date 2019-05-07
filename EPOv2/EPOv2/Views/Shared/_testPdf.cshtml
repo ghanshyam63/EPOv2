@@ -1,0 +1,125 @@
+﻿﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+
+    <link rel="stylesheet" href="@Server.MapPath(Url.Content("~/Content/Site.css"))"  />
+    <link rel="stylesheet" type="text/css" href="@Server.MapPath(Url.Content("~/Content/bootstrap.css"))" />
+    <link rel="stylesheet" href="~/Content/Site.css" />
+    <link rel="stylesheet" type="text/css" href="~/Content/bootstrap.css" />
+    <title>MvcRazorToPdf</title>
+    <style>
+        .pdf-supplierbox, .pdf-deliverybox {
+            border: 2px black solid;
+        }
+
+        .pdf-comment {
+            /*border: 1px black solid;*/
+            margin-top: 30px;
+        }
+
+        .pdf-totals {
+            border: 1px black solid;
+        }
+
+        .pdf-commentHeader.row {
+            margin-left: -14px;
+        }
+
+        .pdf-approved {
+            margin-top: 5px;
+        }
+
+        img.pdf-logo {
+            height: auto;
+            width: 300px;
+        }
+
+        body {
+            font-size: 2.2em;
+            padding-top: 0;
+            padding-bottom: 10px;
+            height: 768px;
+            width: 1280px;
+        }
+
+        .pdf-header {
+            font-size: 1.4em;
+        }
+
+        .pdf-smallHeader {
+            font-size: 1em;
+            font-style: italic;
+        }
+
+        .pdf-APE {
+            padding-top: 7px;
+        }
+
+        .pdf-SupDel-row {
+            padding-top: 10px;
+        }
+
+        .pdf-supplierbox {
+            margin-right: 5px;
+        }
+
+        .pdf-deliverybox {
+            margin-left: 5px;
+            width: 48%;
+        }
+
+        .pdf-itemsTable {
+            margin-top: 10px;
+            /*border: 1px black solid;*/
+        }
+
+            .pdf-itemsTable .col-xs-12 {
+                padding-left: 0;
+            }
+
+        .pdf-orderitems .table-bordered,
+        .pdf-orderitems .table-bordered td {
+            border: 1px solid #000 !important;
+        }
+
+            .pdf-orderitems .table-bordered table {
+                border-color: #000;
+            }
+
+        .pdf-tableHeaderRow, .pdf-commentHeader, .pdf-approvedHeader, .pdf-termsHeader {
+            background-color: #ebeef0;
+        }
+
+        .pdf-approvedHeader, .pdf-termsHeader, .pdf-commentHeader {
+            border: 1px solid #000;
+        }
+
+        .pdf-terms {
+            position: absolute;
+            top: 1650px;
+        }
+
+        .line {
+            position: absolute;
+            top: 1650px;
+            border-top: 1px solid #000;
+        }
+        .pdf-termsHeader {
+            padding-left: 300px;
+        }
+        .breakhere { 
+                     display: block;
+                clear: both; 
+                 page-break-after: always;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-md-11">
+        @RenderBody()
+    </div>
+</body>
+</html>

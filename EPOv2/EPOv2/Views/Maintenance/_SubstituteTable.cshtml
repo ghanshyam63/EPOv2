@@ -1,0 +1,36 @@
+﻿@model List<EPOv2.ViewModels.SubstituteApproverTableViewModel>
+           
+@if (Model.Count > 0)
+{
+    <div class="panel panel-default">
+        <!-- Default panel contents -->
+        <div class="panel-heading">Current Substitutions</div>
+        <div class="panel-body">
+            <table class="table table-condensed">
+                <tr>
+                    <th>Substitute By</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Updated by</th>
+                    <th>Updated</th>
+                    <th></th>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Substitution</td>
+                        <td>@item.Start</td>
+                        <td>@item.End</td>
+                        <td>@item.UpdatedBy</td>
+                        <td>@item.UpdatedDate</td>
+                        <td>
+                            <button type="button" title="Delete substitute" class="btn btn-danger control-btn-crud" value="@item.Id" onclick="DeleteSubstitute(@item.Id) ">
+                                <span class="glyphicon glyphicon-trash"></span>
+                            </button>
+                        </td>
+                    </tr>
+                }
+            </table>
+            </div>
+        </div>
+}

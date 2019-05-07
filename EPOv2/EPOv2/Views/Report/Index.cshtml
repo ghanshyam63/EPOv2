@@ -1,0 +1,106 @@
+﻿@{
+    ViewBag.Title = "Reporting";
+}
+
+
+<h2>Reports</h2>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Routing</h3>
+                <p></p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("RoutingReport", "Report")'">RockFast Routing</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("LevelReport", "Report")'">Levels</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("CostCentreOwnerReport", "Report")'">CC Owner Report</button>
+                </p>
+                <p>
+                    @*<button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapEntityToCC", "Maintenance")'">Map Entity-CC</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapAccountToCC", "Maintenance")'">Map CC-Account</button>*@
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Users</h3>
+                <p>users reports</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("AdUsersWithoutPhone", "Report")'">Ad User without phone</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Ettacher Email reports</h3>
+                <p>all these reports will be send by email to targeted groups</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("RunEttacherEmailReports", "Report")'">Authorised & Declined Vouchers</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("RunOutstandingInvoiceEmailReport", "Report")'">Outstanding Invoices</button>
+                </p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("AuthorisedVouchersEmailReportTest", "Report")'">Authorised Vouchers - Test</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Admins</h3>
+                <p></p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("AdminStats", "Report")'">Statistics</button>
+
+                </p>
+                <p>
+
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Reports based on EPOs</h3>
+                <p></p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("PurchaseOrderAccurals", "Report")'">EPO Accurals</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("Budget", "Report")'">Budget report</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("UnreceiptedPO", "Report")'">Unreceipted EPO</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Invoices</h3>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("InvoiceExceedReport", "Report")'">Exceeded Invoices</button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+

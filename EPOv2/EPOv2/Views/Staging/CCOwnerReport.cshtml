@@ -1,0 +1,47 @@
+﻿@*@model IEnumerable<DomainModel.Entities.tblStagingCostCentresDEV>
+
+@{
+    ViewBag.Title = "Cost Centre Owner Report";
+}
+
+<h2>Cost Centre Owner Report</h2>
+<div class="col-md-7">
+    <table class="table table-striped table-condensed ">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tblEntity.EntityID)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CostCentreCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Description)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Owner)
+            </th>
+
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tblEntity.EntityID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CostCentreCode)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Description)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Owner)
+                </td>
+
+            </tr>
+        }
+
+    </table>
+    @Html.ActionLink("back to Staging reports", "Index")
+    </div>*@

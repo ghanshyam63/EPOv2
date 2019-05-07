@@ -1,0 +1,1598 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OldTNAModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="ActiveDirectoryTerminatedExclude">
+    <Key>
+      <PropertyRef Name="sAMAccountName" />
+    </Key>
+    <Property Name="sAMAccountName" Type="varchar" MaxLength="200" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApprovalList">
+    <Key>
+      <PropertyRef Name="ApprovalListID" />
+    </Key>
+    <Property Name="ApprovalListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" MaxLength="10" />
+    <Property Name="ApproverUserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="con_det">
+    <Key>
+      <PropertyRef Name="rpt_id" />
+      <PropertyRef Name="con_id" />
+    </Key>
+    <Property Name="rpt_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="con_id" Type="int" Nullable="false" />
+    <Property Name="con_site" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="con_email" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="con_code" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="objectid" Type="int" />
+    <Property Name="property" Type="varchar" MaxLength="64" Nullable="false" />
+    <Property Name="value" Type="varchar" MaxLength="255" />
+    <Property Name="uvalue" Type="nvarchar" MaxLength="255" />
+    <Property Name="lvalue" Type="image" />
+    <Property Name="version" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeException">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+    </Key>
+    <Property Name="ExceptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExceptionDate" Type="datetime" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ReasonCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.EmployeeExclude' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmployeeExclude">
+    <Key>
+      <PropertyRef Name="EmpNo" />
+    </Key>
+    <Property Name="EmpNo" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeInformation">
+    <Key>
+      <PropertyRef Name="EmployeeNo" />
+    </Key>
+    <Property Name="Site" Type="nvarchar" MaxLength="10" />
+    <Property Name="EmployeeNo" Type="int" Nullable="false" />
+    <Property Name="Last_Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="Given_Names" Type="nvarchar" MaxLength="100" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="10" />
+    <Property Name="EmploymentStatus" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+  </EntityType>
+  <EntityType Name="EmployeeLocation">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlarmUpdatedTime" Type="datetime" Nullable="false" />
+    <Property Name="AlarmDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="SiteId" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DevNo" Type="int" Nullable="false" />
+    <Property Name="AreaDescription" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeLocationNew">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlarmUpdatedTime" Type="datetime" Nullable="false" />
+    <Property Name="AlarmDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="SiteId" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DevNo" Type="int" Nullable="false" />
+    <Property Name="AreaDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="200" />
+    <Property Name="CardId" Type="varchar" MaxLength="10" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="EmployeeLocationNew1">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlarmUpdatedTime" Type="datetime" Nullable="false" />
+    <Property Name="AlarmDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="SiteId" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DevNo" Type="int" Nullable="false" />
+    <Property Name="AreaDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="200" />
+    <Property Name="CardId" Type="varchar" MaxLength="10" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="EmployeeLocationtest">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AlarmUpdatedTime" Type="datetime" Nullable="false" />
+    <Property Name="AlarmDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="SiteId" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Username" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Action" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="DevNo" Type="int" Nullable="false" />
+    <Property Name="AreaDescription" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="200" />
+    <Property Name="CardId" Type="varchar" MaxLength="10" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="10" />
+  </EntityType>
+  <EntityType Name="EmployeeManager">
+    <Key>
+      <PropertyRef Name="EmployeeManagerID" />
+    </Key>
+    <Property Name="EmployeeManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeNo" Type="nvarchar" MaxLength="6" />
+    <Property Name="DirectManager" Type="nvarchar" MaxLength="50" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.EmployeeManager_Backup' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="EmployeeManager_Backup">
+    <Key>
+      <PropertyRef Name="EmployeeManagerID" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="EmployeeManagerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeNo" Type="nvarchar" MaxLength="6" />
+    <Property Name="DirectManager" Type="nvarchar" MaxLength="50" />
+    <Property Name="Source" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeTotalTime">
+    <Key>
+      <PropertyRef Name="EmployeeTotalTimeId" />
+    </Key>
+    <Property Name="EmployeeTotalTimeId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="WorkDate" Type="smalldatetime" Nullable="false" />
+    <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Department" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="StartTime" Type="smalldatetime" Nullable="false" />
+    <Property Name="EndTime" Type="smalldatetime" Nullable="false" />
+    <Property Name="TotalTime" Type="decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Salary" Type="bit" Nullable="false" />
+    <Property Name="State" Type="varchar" MaxLength="50" />
+    <Property Name="OrgUnitName" Type="varchar" MaxLength="100" />
+    <Property Name="Award" Type="varchar" MaxLength="50" />
+    <Property Name="PayCode" Type="varchar" MaxLength="50" />
+    <Property Name="GroupDescription" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="GLCodeMapping">
+    <Key>
+      <PropertyRef Name="MappingID" />
+    </Key>
+    <Property Name="MappingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" MaxLength="10" />
+    <Property Name="tic_paycode" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmployeeType" Type="nvarchar" MaxLength="10" />
+    <Property Name="CostCentre" Type="nvarchar" MaxLength="50" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="SubAccountCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.km01' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="km01">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="int" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="int" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DATA1" Type="int" />
+    <Property Name="DATA2" Type="int" />
+    <Property Name="DATA3" Type="int" />
+    <Property Name="DATA4" Type="int" />
+    <Property Name="DATA5" Type="int" />
+    <Property Name="DATA6" Type="int" />
+    <Property Name="DATA7" Type="int" />
+    <Property Name="DATA8" Type="int" />
+    <Property Name="CHALLNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="DEVTYPE" Type="int" />
+    <Property Name="COLOR" Type="int" />
+    <Property Name="ALARMDETAILS" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEVNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="INTERNAL" Type="int" />
+    <Property Name="UPDATED" Type="datetime" />
+    <Property Name="ROUNDTIME" Type="datetime" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROCESSED" Type="int" />
+  </EntityType>
+  <EntityType Name="LabourHireCompany">
+    <Key>
+      <PropertyRef Name="LabourHireCompanyID" />
+    </Key>
+    <Property Name="LabourHireCompanyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tid_team" Type="char" MaxLength="50" Nullable="false" />
+    <Property Name="EPOSupplierCode" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="EPODeliveryID" Type="int" />
+    <Property Name="EPOGroupID" Type="int" />
+  </EntityType>
+  <EntityType Name="LabourHireCompanyRate">
+    <Key>
+      <PropertyRef Name="LabourHireCompanyRateID" />
+    </Key>
+    <Property Name="LabourHireCompanyRateID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LabourHireCompanyID" Type="int" />
+    <Property Name="Grade" Type="nvarchar" MaxLength="3" />
+    <Property Name="Rate" Type="money" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationCode" />
+    </Key>
+    <Property Name="LocationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="LocationDesc" Type="nvarchar" MaxLength="50" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+  </EntityType>
+  <EntityType Name="MacroOutputBDL">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="datetime" />
+    <Property Name="EmpNo" Type="nvarchar" MaxLength="5" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="RecID" Type="int" Nullable="false" />
+    <Property Name="ShiftID" Type="int" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Start" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="EM20" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="NS30" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MEA3" Type="int" />
+    <Property Name="CALLX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CALLX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="ORDHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.MacroOutputBDL_EBABackDate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="MacroOutputBDL_EBABackDate">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="datetime" />
+    <Property Name="EmpNo" Type="nvarchar" MaxLength="5" />
+    <Property Name="LastName" Type="nvarchar" MaxLength="100" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+    <Property Name="RecID" Type="int" Nullable="false" />
+    <Property Name="ShiftID" Type="int" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Start" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="NS30" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MEA3" Type="int" />
+    <Property Name="ORDHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MacroOutputBNE">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="datetime" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="5" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="RecID" Type="int" Nullable="false" />
+    <Property Name="ShiftID" Type="int" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Start" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="NS20" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX175" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MEA4" Type="int" />
+    <Property Name="ORDHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MacroOutputPTH">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="datetime" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="5" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="RecID" Type="int" Nullable="false" />
+    <Property Name="ShiftID" Type="int" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Start" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="NS20" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX175" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MEA4" Type="int" />
+    <Property Name="ORDHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="MacroOutputSYD">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="datetime" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="5" />
+    <Property Name="LastName" Type="varchar" MaxLength="100" />
+    <Property Name="FirstName" Type="varchar" MaxLength="100" />
+    <Property Name="RecID" Type="int" Nullable="false" />
+    <Property Name="ShiftID" Type="int" />
+    <Property Name="PayCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Date" Type="datetime" />
+    <Property Name="Start" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="NS20" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUX175" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="SUOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX15" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="MEA4" Type="int" />
+    <Property Name="ORDHours" Type="decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Reason">
+    <Key>
+      <PropertyRef Name="ReasonCode" />
+    </Key>
+    <Property Name="ReasonCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReasonDesc" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ReasonType" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="RockyTypeMatch" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.RosterOnPaycodeMapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="RosterOnPaycodeMapping">
+    <Key>
+      <PropertyRef Name="Site" />
+      <PropertyRef Name="Paycode" />
+      <PropertyRef Name="DevNo" />
+      <PropertyRef Name="Devname" />
+    </Key>
+    <Property Name="Site" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Paycode" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="DevNo" Type="int" Nullable="false" />
+    <Property Name="Devname" Type="varchar" MaxLength="100" Nullable="false" />
+  </EntityType>
+  <EntityType Name="rpt_det">
+    <Key>
+      <PropertyRef Name="rpt_sys" />
+      <PropertyRef Name="rpt_id" />
+      <PropertyRef Name="rpt_not_id" />
+    </Key>
+    <Property Name="rpt_sys" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="rpt_id" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="rpt_not_id" Type="int" Nullable="false" />
+    <Property Name="rpt_not_username" Type="nvarchar" MaxLength="50" />
+    <Property Name="rpt_not_email" Type="nvarchar" MaxLength="100" />
+    <Property Name="rpt_not_sms" Type="nvarchar" MaxLength="10" />
+    <Property Name="active" Type="bit" />
+    <Property Name="userid" Type="nvarchar" MaxLength="100" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="Site">
+    <Key>
+      <PropertyRef Name="SiteID" />
+    </Key>
+    <Property Name="SiteID" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="SiteName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ManualEntryAutoApprove" Type="bit" />
+    <Property Name="TimeInterval" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="MealInterval" Type="decimal" Precision="6" Scale="2" />
+    <Property Name="UseApprovalList" Type="bit" />
+    <Property Name="PreloadDate" Type="int" />
+    <Property Name="EntityID" Type="nvarchar" MaxLength="3" />
+    <Property Name="NextEmployeeNumber" Type="int" />
+    <Property Name="ModifyEmployeeList" Type="bit" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.SMSEmployee' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="SMSEmployee">
+    <Key>
+      <PropertyRef Name="EmpNo" />
+    </Key>
+    <Property Name="EmpNo" Type="varchar" MaxLength="30" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="200" />
+    <Property Name="lastname" Type="varchar" MaxLength="200" />
+  </EntityType>
+  <EntityType Name="STPControl">
+    <Key>
+      <PropertyRef Name="ControlID" />
+    </Key>
+    <Property Name="ControlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ControlCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="ControlText" Type="nvarchar" MaxLength="100" />
+    <Property Name="ControlValue" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
+  <EntityType Name="tblActiveDays">
+    <Key>
+      <PropertyRef Name="DayID" />
+    </Key>
+    <Property Name="DayID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Site" Type="nvarchar" MaxLength="3" />
+    <Property Name="PeriodDate" Type="datetime" />
+    <Property Name="Status" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblTransaction">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefID" Type="int" />
+    <Property Name="RefType" Type="nvarchar" MaxLength="100" />
+    <Property Name="Code" Type="nvarchar" MaxLength="100" />
+    <Property Name="FromValue" Type="nvarchar" MaxLength="1000" />
+    <Property Name="ToValue" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tic_ctrl">
+    <Key>
+      <PropertyRef Name="tic_type" />
+      <PropertyRef Name="tic_devno" />
+      <PropertyRef Name="tic_siteid" />
+      <PropertyRef Name="tic_workcenter" />
+      <PropertyRef Name="tic_dept" />
+    </Key>
+    <Property Name="tic_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tic_devno" Type="int" Nullable="false" />
+    <Property Name="tic_siteid" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="tic_workcenter" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="tic_include" Type="bit" />
+    <Property Name="tic_dept" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="tic_paycode" Type="nvarchar" MaxLength="4" />
+  </EntityType>
+  <EntityType Name="tic_det">
+    <Key>
+      <PropertyRef Name="tic_site" />
+      <PropertyRef Name="tic_paycode" />
+    </Key>
+    <Property Name="tic_site" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="tic_paycode" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="tic_paycodedesc" Type="nvarchar" MaxLength="100" />
+    <Property Name="tic_type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="tic_active" Type="bit" />
+    <Property Name="userid" Type="nvarchar" MaxLength="100" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.ticket25457' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="ticket25457">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="ExceptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmployeeName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ManagerName" Type="nvarchar" MaxLength="50" />
+    <Property Name="ExceptionDate" Type="datetime" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ReasonCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="LocationCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="50" />
+    <Property Name="ApprovedBy" Type="nvarchar" MaxLength="50" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tid_allowances">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+      <PropertyRef Name="tid_alcode" />
+    </Key>
+    <Property Name="tid_recid" Type="int" Nullable="false" />
+    <Property Name="tid_alcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="tid_alunit" Type="decimal" Precision="18" Scale="0" />
+    <Property Name="tid_AllowanceType" Type="int" />
+    <Property Name="userid" Type="nvarchar" MaxLength="50" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tid_ctrl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tid_ctrl">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="UPDATED" />
+    </Key>
+    <Property Name="SITEID" Type="nvarchar" MaxLength="3" Nullable="false" />
+    <Property Name="UPDATED" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tid_det">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="int" Nullable="false" />
+    <Property Name="tid_site" Type="char" MaxLength="4" />
+    <Property Name="tid_team" Type="char" MaxLength="50" />
+    <Property Name="tid_location" Type="char" MaxLength="8" />
+    <Property Name="tid_card" Type="int" />
+    <Property Name="tid_date" Type="datetime" />
+    <Property Name="tid_type" Type="char" MaxLength="4" />
+    <Property Name="tid_empno" Type="varchar" MaxLength="20" />
+    <Property Name="tid_name" Type="char" MaxLength="50" />
+    <Property Name="tid_scan_in" Type="datetime" />
+    <Property Name="tid_scan_out" Type="datetime" />
+    <Property Name="tid_start" Type="datetime" />
+    <Property Name="tid_finish" Type="datetime" />
+    <Property Name="tid_meal" Type="float" />
+    <Property Name="tid_meal_corr" Type="float" />
+    <Property Name="tid_hours" Type="float" />
+    <Property Name="tid_status" Type="int" />
+    <Property Name="tid_approver" Type="nvarchar" MaxLength="100" />
+    <Property Name="tid_grade" Type="nvarchar" MaxLength="3" />
+    <Property Name="Rate" Type="money" />
+    <Property Name="POID" Type="int" />
+    <Property Name="userid" Type="nvarchar" MaxLength="50" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tid_det_archive">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="int" Nullable="false" />
+    <Property Name="tid_site" Type="char" MaxLength="4" />
+    <Property Name="tid_team" Type="char" MaxLength="50" />
+    <Property Name="tid_location" Type="char" MaxLength="8" />
+    <Property Name="tid_card" Type="int" />
+    <Property Name="tid_date" Type="datetime" />
+    <Property Name="tid_type" Type="char" MaxLength="4" />
+    <Property Name="tid_empno" Type="varchar" MaxLength="20" />
+    <Property Name="tid_name" Type="char" MaxLength="50" />
+    <Property Name="tid_scan_in" Type="datetime" />
+    <Property Name="tid_scan_out" Type="datetime" />
+    <Property Name="tid_start" Type="datetime" />
+    <Property Name="tid_finish" Type="datetime" />
+    <Property Name="tid_meal" Type="float" />
+    <Property Name="tid_meal_corr" Type="float" />
+    <Property Name="tid_hours" Type="float" />
+    <Property Name="tid_status" Type="int" />
+    <Property Name="tid_approver" Type="nvarchar" MaxLength="100" />
+    <Property Name="tid_grade" Type="nvarchar" MaxLength="3" />
+    <Property Name="Rate" Type="money" />
+    <Property Name="POID" Type="int" />
+    <Property Name="userid" Type="nvarchar" MaxLength="50" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tid_det_EBABackDate' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tid_det_EBABackDate">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="int" Nullable="false" />
+    <Property Name="tid_site" Type="char" MaxLength="4" />
+    <Property Name="tid_team" Type="char" MaxLength="50" />
+    <Property Name="tid_location" Type="char" MaxLength="8" />
+    <Property Name="tid_card" Type="int" />
+    <Property Name="tid_date" Type="datetime" />
+    <Property Name="tid_type" Type="char" MaxLength="4" />
+    <Property Name="tid_empno" Type="varchar" MaxLength="20" />
+    <Property Name="tid_name" Type="char" MaxLength="50" />
+    <Property Name="tid_scan_in" Type="datetime" />
+    <Property Name="tid_scan_out" Type="datetime" />
+    <Property Name="tid_start" Type="datetime" />
+    <Property Name="tid_finish" Type="datetime" />
+    <Property Name="tid_meal" Type="float" />
+    <Property Name="tid_meal_corr" Type="float" />
+    <Property Name="tid_hours" Type="float" />
+    <Property Name="tid_status" Type="int" />
+    <Property Name="tid_approver" Type="nvarchar" MaxLength="100" />
+    <Property Name="tid_grade" Type="nvarchar" MaxLength="3" />
+    <Property Name="Rate" Type="money" />
+    <Property Name="POID" Type="int" />
+    <Property Name="userid" Type="nvarchar" MaxLength="50" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tid_det_roster_on' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tid_det_roster_on">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="int" Nullable="false" />
+    <Property Name="tid_site" Type="char" MaxLength="4" />
+    <Property Name="tid_team" Type="char" MaxLength="50" />
+    <Property Name="tid_location" Type="char" MaxLength="8" />
+    <Property Name="tid_card" Type="int" />
+    <Property Name="tid_date" Type="datetime" />
+    <Property Name="tid_type" Type="char" MaxLength="4" />
+    <Property Name="tid_empno" Type="varchar" MaxLength="20" />
+    <Property Name="tid_name" Type="char" MaxLength="50" />
+    <Property Name="tid_scan_in" Type="datetime" />
+    <Property Name="tid_scan_out" Type="datetime" />
+    <Property Name="tid_start" Type="datetime" />
+    <Property Name="tid_finish" Type="datetime" />
+    <Property Name="tid_meal" Type="float" />
+    <Property Name="tid_meal_corr" Type="float" />
+    <Property Name="tid_hours" Type="float" />
+    <Property Name="tid_status" Type="int" />
+    <Property Name="tid_approver" Type="nvarchar" MaxLength="100" />
+    <Property Name="tid_grade" Type="nvarchar" MaxLength="3" />
+    <Property Name="Rate" Type="money" />
+    <Property Name="POID" Type="int" />
+    <Property Name="userid" Type="nvarchar" MaxLength="50" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tid_tl_det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tid_tl_det">
+    <Key>
+      <PropertyRef Name="tid_team" />
+    </Key>
+    <Property Name="tid_team" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="tid_teamleader" Type="nvarchar" MaxLength="50" />
+    <Property Name="tid_teamleaderemail" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TNA.dbo.tid_wk_det' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="tid_wk_det">
+          <Property Name="wk_ending" Type="smalldatetime" />
+          <Property Name="wk_beginning" Type="smalldatetime" />
+          <Property Name="wk_status" Type="nvarchar" MaxLength="1" />
+          <Property Name="wk_site" Type="varchar" MaxLength="3" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TNA.dbo.TimeTable' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="TimeTable">
+          <Property Name="SiteID" Type="nvarchar" MaxLength="10" />
+          <Property Name="DayOfWeek" Type="nvarchar" MaxLength="1000" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
+          <Property Name="Active" Type="bit" />
+          <Property Name="UserID" Type="nvarchar" MaxLength="1000" />
+          <Property Name="Created" Type="datetime" />
+          <Property Name="Updated" Type="datetime" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tit_alarm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tit_alarm">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="int" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="int" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DATA1" Type="int" />
+    <Property Name="DATA2" Type="int" />
+    <Property Name="DATA3" Type="int" />
+    <Property Name="DATA4" Type="int" />
+    <Property Name="DATA5" Type="int" />
+    <Property Name="DATA6" Type="int" />
+    <Property Name="DATA7" Type="int" />
+    <Property Name="DATA8" Type="int" />
+    <Property Name="CHALLNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="DEVTYPE" Type="int" />
+    <Property Name="COLOR" Type="int" />
+    <Property Name="ALARMDETAILS" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEVNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="INTERNAL" Type="int" />
+    <Property Name="UPDATED" Type="datetime" />
+    <Property Name="ROUNDTIME" Type="datetime" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="100" />
+    <Property Name="PROCESSED" Type="int" />
+  </EntityType>
+  <EntityType Name="tit_alarm_archive">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+      <PropertyRef Name="UPDATED" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="int" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="int" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DATA1" Type="int" />
+    <Property Name="DATA2" Type="int" />
+    <Property Name="DATA3" Type="int" />
+    <Property Name="DATA4" Type="int" />
+    <Property Name="DATA5" Type="int" />
+    <Property Name="DATA6" Type="int" />
+    <Property Name="DATA7" Type="int" />
+    <Property Name="DATA8" Type="int" />
+    <Property Name="CHALLNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="DEVTYPE" Type="int" />
+    <Property Name="COLOR" Type="int" />
+    <Property Name="ALARMDETAILS" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEVNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="INTERNAL" Type="int" />
+    <Property Name="UPDATED" Type="datetime" Nullable="false" />
+    <Property Name="ROUNDTIME" Type="datetime" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROCESSED" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tit_alarm_from_tid_det' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tit_alarm_from_tid_det">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="int" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="int" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DATA1" Type="int" />
+    <Property Name="DATA2" Type="int" />
+    <Property Name="DATA3" Type="int" />
+    <Property Name="DATA4" Type="int" />
+    <Property Name="DATA5" Type="int" />
+    <Property Name="DATA6" Type="int" />
+    <Property Name="DATA7" Type="int" />
+    <Property Name="DATA8" Type="int" />
+    <Property Name="CHALLNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="DEVTYPE" Type="int" />
+    <Property Name="COLOR" Type="int" />
+    <Property Name="ALARMDETAILS" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEVNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="INTERNAL" Type="int" />
+    <Property Name="UPDATED" Type="datetime" />
+    <Property Name="ROUNDTIME" Type="datetime" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROCESSED" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tit_alarm_from_tid_det_detailed' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tit_alarm_from_tid_det_detailed">
+    <Key>
+      <PropertyRef Name="SITEID" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="TID_EMPNO" Type="nvarchar" MaxLength="40" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="PROCESSED" Type="int" />
+    <Property Name="tid_date" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tit_alarm_test' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tit_alarm_test">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="int" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="int" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DATA1" Type="int" />
+    <Property Name="DATA2" Type="int" />
+    <Property Name="DATA3" Type="int" />
+    <Property Name="DATA4" Type="int" />
+    <Property Name="DATA5" Type="int" />
+    <Property Name="DATA6" Type="int" />
+    <Property Name="DATA7" Type="int" />
+    <Property Name="DATA8" Type="int" />
+    <Property Name="CHALLNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="DEVTYPE" Type="int" />
+    <Property Name="COLOR" Type="int" />
+    <Property Name="ALARMDETAILS" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEVNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="INTERNAL" Type="int" />
+    <Property Name="UPDATED" Type="datetime" />
+    <Property Name="ROUNDTIME" Type="datetime" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROCESSED" Type="int" />
+  </EntityType>
+  <EntityType Name="tit_departments">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="DEVICENO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="DEVICENO" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="COMMENTS" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CARDBACK" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="CARDFRONT" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EmployeeType" Type="nvarchar" MaxLength="10" />
+    <Property Name="UPDATED" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tit_dev' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tit_dev">
+    <Key>
+      <PropertyRef Name="SiteId" />
+      <PropertyRef Name="DevNo" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="SiteId" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="DevNo" Type="int" Nullable="false" />
+    <Property Name="Description" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tit_users">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="DEVICENO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="DEVICENO" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="16" />
+    <Property Name="CARDONLY" Type="varchar" MaxLength="1" />
+    <Property Name="LONGACCESS" Type="varchar" MaxLength="1" />
+    <Property Name="USERTRACE" Type="varchar" MaxLength="1" />
+    <Property Name="PRIVILEGED" Type="varchar" MaxLength="1" />
+    <Property Name="LST_DOOR" Type="int" />
+    <Property Name="LST_DOORSTR" Type="varchar" MaxLength="40" />
+    <Property Name="LSTDR_TIME" Type="datetime" />
+    <Property Name="LSTDR_REGION" Type="int" />
+    <Property Name="LST_REGIONSTR" Type="varchar" MaxLength="40" />
+    <Property Name="PINCARDNO" Type="varchar" MaxLength="10" />
+    <Property Name="USERTYPE" Type="int" />
+    <Property Name="PICTURE" Type="image" />
+    <Property Name="CARDLAYOUT" Type="varchar" MaxLength="30" />
+    <Property Name="GROUPS" Type="image" />
+    <Property Name="COMMENTS" Type="image" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="POSITION1" Type="varchar" MaxLength="20" />
+    <Property Name="DEPARTMENT" Type="varchar" MaxLength="30" />
+    <Property Name="PHONE" Type="varchar" MaxLength="20" />
+    <Property Name="EXTENSION" Type="varchar" MaxLength="10" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="START_TIME" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="END_TIME" Type="datetime" />
+    <Property Name="STATUS" Type="varchar" MaxLength="3" />
+    <Property Name="MEMBER" Type="varchar" MaxLength="20" />
+    <Property Name="LAYOUTCODE" Type="varchar" MaxLength="1" />
+    <Property Name="TAG" Type="varchar" MaxLength="1" />
+    <Property Name="LST_CHALL" Type="int" />
+    <Property Name="LST_CHALLSTR" Type="varchar" MaxLength="40" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UPDATED" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tit_users_new">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="DEVICENO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="DEVICENO" Type="int" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="varchar" MaxLength="16" />
+    <Property Name="CARDONLY" Type="varchar" MaxLength="1" />
+    <Property Name="LONGACCESS" Type="varchar" MaxLength="1" />
+    <Property Name="USERTRACE" Type="varchar" MaxLength="1" />
+    <Property Name="PRIVILEGED" Type="varchar" MaxLength="1" />
+    <Property Name="LST_DOOR" Type="int" />
+    <Property Name="LST_DOORSTR" Type="varchar" MaxLength="40" />
+    <Property Name="LSTDR_TIME" Type="datetime" />
+    <Property Name="LSTDR_REGION" Type="int" />
+    <Property Name="LST_REGIONSTR" Type="varchar" MaxLength="40" />
+    <Property Name="PINCARDNO" Type="varchar" MaxLength="10" />
+    <Property Name="USERTYPE" Type="int" />
+    <Property Name="PICTURE" Type="image" />
+    <Property Name="CARDLAYOUT" Type="varchar" MaxLength="30" />
+    <Property Name="GROUPS" Type="image" />
+    <Property Name="COMMENTS" Type="image" />
+    <Property Name="FIRST_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="LAST_NAME" Type="varchar" MaxLength="20" />
+    <Property Name="POSITION1" Type="varchar" MaxLength="20" />
+    <Property Name="DEPARTMENT" Type="varchar" MaxLength="30" />
+    <Property Name="PHONE" Type="varchar" MaxLength="20" />
+    <Property Name="EXTENSION" Type="varchar" MaxLength="10" />
+    <Property Name="START_DATE" Type="datetime" />
+    <Property Name="START_TIME" Type="datetime" />
+    <Property Name="END_DATE" Type="datetime" />
+    <Property Name="END_TIME" Type="datetime" />
+    <Property Name="STATUS" Type="varchar" MaxLength="3" />
+    <Property Name="MEMBER" Type="varchar" MaxLength="20" />
+    <Property Name="LAYOUTCODE" Type="varchar" MaxLength="1" />
+    <Property Name="TAG" Type="varchar" MaxLength="1" />
+    <Property Name="LST_CHALL" Type="int" />
+    <Property Name="LST_CHALLSTR" Type="varchar" MaxLength="40" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UPDATED" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tit_users_static_old">
+    <Key>
+      <PropertyRef Name="tusid" />
+    </Key>
+    <Property Name="tusid" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="siteid" Type="char" MaxLength="3" />
+    <Property Name="systemno" Type="int" />
+    <Property Name="deviceno" Type="int" />
+    <Property Name="member" Type="varchar" MaxLength="20" />
+    <Property Name="department" Type="varchar" MaxLength="30" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.Tmp_tit_alarm' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="Tmp_tit_alarm">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="char" MaxLength="3" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="int" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="int" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="int" Nullable="false" />
+    <Property Name="ALARMDATE" Type="smalldatetime" />
+    <Property Name="DATA1" Type="int" />
+    <Property Name="DATA2" Type="int" />
+    <Property Name="DATA3" Type="int" />
+    <Property Name="DATA4" Type="int" />
+    <Property Name="DATA5" Type="int" />
+    <Property Name="DATA6" Type="int" />
+    <Property Name="DATA7" Type="int" />
+    <Property Name="DATA8" Type="int" />
+    <Property Name="CHALLNAME" Type="nvarchar" MaxLength="100" />
+    <Property Name="DEVNO" Type="int" />
+    <Property Name="DEVTYPE" Type="int" />
+    <Property Name="COLOR" Type="int" />
+    <Property Name="ALARMDETAILS" Type="nvarchar" MaxLength="150" />
+    <Property Name="DEVNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="USERNAME" Type="nvarchar" MaxLength="40" />
+    <Property Name="INTERNAL" Type="int" />
+    <Property Name="UPDATED" Type="datetime" />
+    <Property Name="ROUNDTIME" Type="datetime" />
+    <Property Name="STATUS" Type="nvarchar" MaxLength="10" />
+    <Property Name="PROCESSED" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.tna_ctrl' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tna_ctrl">
+    <Key>
+      <PropertyRef Name="ctr_code" />
+      <PropertyRef Name="ctr_id" />
+    </Key>
+    <Property Name="ctr_code" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ctr_id" Type="int" Nullable="false" />
+    <Property Name="ctr_text" Type="nvarchar" MaxLength="100" />
+    <Property Name="ctr_value" Type="nvarchar" MaxLength="100" />
+    <Property Name="ctr_sortorder" Type="int" />
+    <Property Name="ctr_active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tra_det">
+    <Key>
+      <PropertyRef Name="tra_id" />
+      <PropertyRef Name="tra_recid" />
+    </Key>
+    <Property Name="tra_id" Type="int" Nullable="false" />
+    <Property Name="tra_recid" Type="int" Nullable="false" />
+    <Property Name="tra_details" Type="nvarchar" MaxLength="1000" />
+    <Property Name="userid" Type="nvarchar" MaxLength="100" />
+    <Property Name="created" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UploadQueue">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteID" Type="nvarchar" MaxLength="10" />
+    <Property Name="SystemNo" Type="int" />
+    <Property Name="DeviceNo" Type="int" />
+    <Property Name="Description" Type="nvarchar" MaxLength="16" />
+    <Property Name="First_Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Last_Name" Type="nvarchar" MaxLength="20" />
+    <Property Name="Department" Type="nvarchar" MaxLength="30" />
+    <Property Name="Member" Type="nvarchar" MaxLength="20" />
+    <Property Name="Status" Type="int" />
+    <Property Name="ReplyTo" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="UserAlias">
+    <Key>
+      <PropertyRef Name="AliasID" />
+    </Key>
+    <Property Name="AliasID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EmpCode" Type="nvarchar" MaxLength="50" />
+    <Property Name="EmpFullName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ADCommonName" Type="nvarchar" MaxLength="100" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6013: The table/view 'TNA.dbo.UsernameEmpNoLookup' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="UsernameEmpNoLookup">
+          <Property Name="Username" Type="varchar" MaxLength="50" />
+          <Property Name="EmpNo" Type="varchar" MaxLength="50" />
+        </EntityType>-->
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'TNA.dbo.WeekendWorkers' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="WeekendWorkers">
+    <Key>
+      <PropertyRef Name="Site" />
+      <PropertyRef Name="EmpNo" />
+      <PropertyRef Name="Firstname" />
+      <PropertyRef Name="Lastname" />
+      <PropertyRef Name="Active" />
+    </Key>
+    <Property Name="Site" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="EmpNo" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Firstname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Lastname" Type="varchar" MaxLength="100" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ApprovalList_Site">
+    <End Role="Site" Type="Self.Site" Multiplicity="0..1" />
+    <End Role="ApprovalList" Type="Self.ApprovalList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="SiteID" />
+      </Principal>
+      <Dependent Role="ApprovalList">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLCodeMapping_Site">
+    <End Role="Site" Type="Self.Site" Multiplicity="0..1" />
+    <End Role="GLCodeMapping" Type="Self.GLCodeMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="SiteID" />
+      </Principal>
+      <Dependent Role="GLCodeMapping">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OldTNAModelStoreContainer">
+    <EntitySet Name="ActiveDirectoryTerminatedExclude" EntityType="Self.ActiveDirectoryTerminatedExclude" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ApprovalList" EntityType="Self.ApprovalList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="con_det" EntityType="Self.con_det" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperties" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeException" EntityType="Self.EmployeeException" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeInformation" EntityType="Self.EmployeeInformation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeLocation" EntityType="Self.EmployeeLocation" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeLocationNew" EntityType="Self.EmployeeLocationNew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeLocationNew1" EntityType="Self.EmployeeLocationNew1" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeLocationtest" EntityType="Self.EmployeeLocationtest" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeManager" EntityType="Self.EmployeeManager" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeTotalTime" EntityType="Self.EmployeeTotalTime" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="GLCodeMapping" EntityType="Self.GLCodeMapping" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabourHireCompany" EntityType="Self.LabourHireCompany" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="LabourHireCompanyRate" EntityType="Self.LabourHireCompanyRate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MacroOutputBDL" EntityType="Self.MacroOutputBDL" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MacroOutputBNE" EntityType="Self.MacroOutputBNE" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MacroOutputPTH" EntityType="Self.MacroOutputPTH" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MacroOutputSYD" EntityType="Self.MacroOutputSYD" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Reason" EntityType="Self.Reason" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="rpt_det" EntityType="Self.rpt_det" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Site" EntityType="Self.Site" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="STPControl" EntityType="Self.STPControl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblActiveDays" EntityType="Self.tblActiveDays" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tic_ctrl" EntityType="Self.tic_ctrl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tic_det" EntityType="Self.tic_det" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tid_allowances" EntityType="Self.tid_allowances" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tid_det" EntityType="Self.tid_det" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tid_det_archive" EntityType="Self.tid_det_archive" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tit_alarm_archive" EntityType="Self.tit_alarm_archive" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tit_departments" EntityType="Self.tit_departments" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tit_users" EntityType="Self.tit_users" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tit_users_new" EntityType="Self.tit_users_new" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tit_users_static_old" EntityType="Self.tit_users_static_old" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tra_det" EntityType="Self.tra_det" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UploadQueue" EntityType="Self.UploadQueue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="UserAlias" EntityType="Self.UserAlias" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="EmployeeExclude" EntityType="Self.EmployeeExclude" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmployeeExclude].[EmpNo] AS [EmpNo]
+    FROM [dbo].[EmployeeExclude] AS [EmployeeExclude]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="EmployeeManager_Backup" EntityType="Self.EmployeeManager_Backup" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [EmployeeManager_Backup].[EmployeeManagerID] AS [EmployeeManagerID], 
+    [EmployeeManager_Backup].[EmployeeName] AS [EmployeeName], 
+    [EmployeeManager_Backup].[EmployeeNo] AS [EmployeeNo], 
+    [EmployeeManager_Backup].[DirectManager] AS [DirectManager], 
+    [EmployeeManager_Backup].[Source] AS [Source], 
+    [EmployeeManager_Backup].[Active] AS [Active], 
+    [EmployeeManager_Backup].[UserID] AS [UserID], 
+    [EmployeeManager_Backup].[Created] AS [Created], 
+    [EmployeeManager_Backup].[Updated] AS [Updated]
+    FROM [dbo].[EmployeeManager_Backup] AS [EmployeeManager_Backup]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="km01" EntityType="Self.km01" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [km01].[SITEID] AS [SITEID], 
+    [km01].[SYSTEMNO] AS [SYSTEMNO], 
+    [km01].[ALARMNUMBER] AS [ALARMNUMBER], 
+    [km01].[CHALLENGERNO] AS [CHALLENGERNO], 
+    [km01].[ALARMDATE] AS [ALARMDATE], 
+    [km01].[DATA1] AS [DATA1], 
+    [km01].[DATA2] AS [DATA2], 
+    [km01].[DATA3] AS [DATA3], 
+    [km01].[DATA4] AS [DATA4], 
+    [km01].[DATA5] AS [DATA5], 
+    [km01].[DATA6] AS [DATA6], 
+    [km01].[DATA7] AS [DATA7], 
+    [km01].[DATA8] AS [DATA8], 
+    [km01].[CHALLNAME] AS [CHALLNAME], 
+    [km01].[DEVNO] AS [DEVNO], 
+    [km01].[DEVTYPE] AS [DEVTYPE], 
+    [km01].[COLOR] AS [COLOR], 
+    [km01].[ALARMDETAILS] AS [ALARMDETAILS], 
+    [km01].[DEVNAME] AS [DEVNAME], 
+    [km01].[USERNAME] AS [USERNAME], 
+    [km01].[INTERNAL] AS [INTERNAL], 
+    [km01].[UPDATED] AS [UPDATED], 
+    [km01].[ROUNDTIME] AS [ROUNDTIME], 
+    [km01].[STATUS] AS [STATUS], 
+    [km01].[PROCESSED] AS [PROCESSED]
+    FROM [dbo].[km01] AS [km01]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="MacroOutputBDL_EBABackDate" EntityType="Self.MacroOutputBDL_EBABackDate" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [MacroOutputBDL_EBABackDate].[WeekEnding] AS [WeekEnding], 
+    [MacroOutputBDL_EBABackDate].[EmpNo] AS [EmpNo], 
+    [MacroOutputBDL_EBABackDate].[LastName] AS [LastName], 
+    [MacroOutputBDL_EBABackDate].[FirstName] AS [FirstName], 
+    [MacroOutputBDL_EBABackDate].[RecID] AS [RecID], 
+    [MacroOutputBDL_EBABackDate].[ShiftID] AS [ShiftID], 
+    [MacroOutputBDL_EBABackDate].[PayCode] AS [PayCode], 
+    [MacroOutputBDL_EBABackDate].[Date] AS [Date], 
+    [MacroOutputBDL_EBABackDate].[Start] AS [Start], 
+    [MacroOutputBDL_EBABackDate].[Finish] AS [Finish], 
+    [MacroOutputBDL_EBABackDate].[MealBreak] AS [MealBreak], 
+    [MacroOutputBDL_EBABackDate].[Hours] AS [Hours], 
+    [MacroOutputBDL_EBABackDate].[CodeHours] AS [CodeHours], 
+    [MacroOutputBDL_EBABackDate].[OTHours] AS [OTHours], 
+    [MacroOutputBDL_EBABackDate].[AF15] AS [AF15], 
+    [MacroOutputBDL_EBABackDate].[NS30] AS [NS30], 
+    [MacroOutputBDL_EBABackDate].[SAX15] AS [SAX15], 
+    [MacroOutputBDL_EBABackDate].[SAOTX2] AS [SAOTX2], 
+    [MacroOutputBDL_EBABackDate].[SUX15] AS [SUX15], 
+    [MacroOutputBDL_EBABackDate].[SUX2] AS [SUX2], 
+    [MacroOutputBDL_EBABackDate].[DOTX15] AS [DOTX15], 
+    [MacroOutputBDL_EBABackDate].[DOTX2] AS [DOTX2], 
+    [MacroOutputBDL_EBABackDate].[WOTX2] AS [WOTX2], 
+    [MacroOutputBDL_EBABackDate].[OT25] AS [OT25], 
+    [MacroOutputBDL_EBABackDate].[MEA3] AS [MEA3], 
+    [MacroOutputBDL_EBABackDate].[ORDHours] AS [ORDHours], 
+    [MacroOutputBDL_EBABackDate].[UserID] AS [UserID], 
+    [MacroOutputBDL_EBABackDate].[Updated] AS [Updated]
+    FROM [dbo].[MacroOutputBDL_EBABackDate] AS [MacroOutputBDL_EBABackDate]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="RosterOnPaycodeMapping" EntityType="Self.RosterOnPaycodeMapping" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [RosterOnPaycodeMapping].[Site] AS [Site], 
+    [RosterOnPaycodeMapping].[Paycode] AS [Paycode], 
+    [RosterOnPaycodeMapping].[DevNo] AS [DevNo], 
+    [RosterOnPaycodeMapping].[Devname] AS [Devname]
+    FROM [dbo].[RosterOnPaycodeMapping] AS [RosterOnPaycodeMapping]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="SMSEmployee" EntityType="Self.SMSEmployee" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [SMSEmployee].[EmpNo] AS [EmpNo], 
+    [SMSEmployee].[Firstname] AS [Firstname], 
+    [SMSEmployee].[lastname] AS [lastname]
+    FROM [dbo].[SMSEmployee] AS [SMSEmployee]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="ticket25457" EntityType="Self.ticket25457" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [ticket25457].[ExceptionID] AS [ExceptionID], 
+    [ticket25457].[EmployeeName] AS [EmployeeName], 
+    [ticket25457].[ManagerName] AS [ManagerName], 
+    [ticket25457].[ExceptionDate] AS [ExceptionDate], 
+    [ticket25457].[Status] AS [Status], 
+    [ticket25457].[ReasonCode] AS [ReasonCode], 
+    [ticket25457].[LocationCode] AS [LocationCode], 
+    [ticket25457].[Comments] AS [Comments], 
+    [ticket25457].[ApprovedBy] AS [ApprovedBy], 
+    [ticket25457].[UserID] AS [UserID], 
+    [ticket25457].[Created] AS [Created], 
+    [ticket25457].[Updated] AS [Updated]
+    FROM [dbo].[ticket25457] AS [ticket25457]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tid_ctrl" EntityType="Self.tid_ctrl" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tid_ctrl].[SITEID] AS [SITEID], 
+    [tid_ctrl].[UPDATED] AS [UPDATED]
+    FROM [dbo].[tid_ctrl] AS [tid_ctrl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tid_det_EBABackDate" EntityType="Self.tid_det_EBABackDate" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tid_det_EBABackDate].[tid_recid] AS [tid_recid], 
+    [tid_det_EBABackDate].[tid_site] AS [tid_site], 
+    [tid_det_EBABackDate].[tid_team] AS [tid_team], 
+    [tid_det_EBABackDate].[tid_location] AS [tid_location], 
+    [tid_det_EBABackDate].[tid_card] AS [tid_card], 
+    [tid_det_EBABackDate].[tid_date] AS [tid_date], 
+    [tid_det_EBABackDate].[tid_type] AS [tid_type], 
+    [tid_det_EBABackDate].[tid_empno] AS [tid_empno], 
+    [tid_det_EBABackDate].[tid_name] AS [tid_name], 
+    [tid_det_EBABackDate].[tid_scan_in] AS [tid_scan_in], 
+    [tid_det_EBABackDate].[tid_scan_out] AS [tid_scan_out], 
+    [tid_det_EBABackDate].[tid_start] AS [tid_start], 
+    [tid_det_EBABackDate].[tid_finish] AS [tid_finish], 
+    [tid_det_EBABackDate].[tid_meal] AS [tid_meal], 
+    [tid_det_EBABackDate].[tid_meal_corr] AS [tid_meal_corr], 
+    [tid_det_EBABackDate].[tid_hours] AS [tid_hours], 
+    [tid_det_EBABackDate].[tid_status] AS [tid_status], 
+    [tid_det_EBABackDate].[tid_approver] AS [tid_approver], 
+    [tid_det_EBABackDate].[tid_grade] AS [tid_grade], 
+    [tid_det_EBABackDate].[Rate] AS [Rate], 
+    [tid_det_EBABackDate].[POID] AS [POID], 
+    [tid_det_EBABackDate].[userid] AS [userid], 
+    [tid_det_EBABackDate].[created] AS [created], 
+    [tid_det_EBABackDate].[updated] AS [updated]
+    FROM [dbo].[tid_det_EBABackDate] AS [tid_det_EBABackDate]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tid_det_roster_on" EntityType="Self.tid_det_roster_on" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tid_det_roster_on].[tid_recid] AS [tid_recid], 
+    [tid_det_roster_on].[tid_site] AS [tid_site], 
+    [tid_det_roster_on].[tid_team] AS [tid_team], 
+    [tid_det_roster_on].[tid_location] AS [tid_location], 
+    [tid_det_roster_on].[tid_card] AS [tid_card], 
+    [tid_det_roster_on].[tid_date] AS [tid_date], 
+    [tid_det_roster_on].[tid_type] AS [tid_type], 
+    [tid_det_roster_on].[tid_empno] AS [tid_empno], 
+    [tid_det_roster_on].[tid_name] AS [tid_name], 
+    [tid_det_roster_on].[tid_scan_in] AS [tid_scan_in], 
+    [tid_det_roster_on].[tid_scan_out] AS [tid_scan_out], 
+    [tid_det_roster_on].[tid_start] AS [tid_start], 
+    [tid_det_roster_on].[tid_finish] AS [tid_finish], 
+    [tid_det_roster_on].[tid_meal] AS [tid_meal], 
+    [tid_det_roster_on].[tid_meal_corr] AS [tid_meal_corr], 
+    [tid_det_roster_on].[tid_hours] AS [tid_hours], 
+    [tid_det_roster_on].[tid_status] AS [tid_status], 
+    [tid_det_roster_on].[tid_approver] AS [tid_approver], 
+    [tid_det_roster_on].[tid_grade] AS [tid_grade], 
+    [tid_det_roster_on].[Rate] AS [Rate], 
+    [tid_det_roster_on].[POID] AS [POID], 
+    [tid_det_roster_on].[userid] AS [userid], 
+    [tid_det_roster_on].[created] AS [created], 
+    [tid_det_roster_on].[updated] AS [updated]
+    FROM [dbo].[tid_det_roster_on] AS [tid_det_roster_on]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tid_tl_det" EntityType="Self.tid_tl_det" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tid_tl_det].[tid_team] AS [tid_team], 
+    [tid_tl_det].[tid_teamleader] AS [tid_teamleader], 
+    [tid_tl_det].[tid_teamleaderemail] AS [tid_teamleaderemail]
+    FROM [dbo].[tid_tl_det] AS [tid_tl_det]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tit_alarm" EntityType="Self.tit_alarm" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tit_alarm].[SITEID] AS [SITEID], 
+    [tit_alarm].[SYSTEMNO] AS [SYSTEMNO], 
+    [tit_alarm].[ALARMNUMBER] AS [ALARMNUMBER], 
+    [tit_alarm].[CHALLENGERNO] AS [CHALLENGERNO], 
+    [tit_alarm].[ALARMDATE] AS [ALARMDATE], 
+    [tit_alarm].[DATA1] AS [DATA1], 
+    [tit_alarm].[DATA2] AS [DATA2], 
+    [tit_alarm].[DATA3] AS [DATA3], 
+    [tit_alarm].[DATA4] AS [DATA4], 
+    [tit_alarm].[DATA5] AS [DATA5], 
+    [tit_alarm].[DATA6] AS [DATA6], 
+    [tit_alarm].[DATA7] AS [DATA7], 
+    [tit_alarm].[DATA8] AS [DATA8], 
+    [tit_alarm].[CHALLNAME] AS [CHALLNAME], 
+    [tit_alarm].[DEVNO] AS [DEVNO], 
+    [tit_alarm].[DEVTYPE] AS [DEVTYPE], 
+    [tit_alarm].[COLOR] AS [COLOR], 
+    [tit_alarm].[ALARMDETAILS] AS [ALARMDETAILS], 
+    [tit_alarm].[DEVNAME] AS [DEVNAME], 
+    [tit_alarm].[USERNAME] AS [USERNAME], 
+    [tit_alarm].[INTERNAL] AS [INTERNAL], 
+    [tit_alarm].[UPDATED] AS [UPDATED], 
+    [tit_alarm].[ROUNDTIME] AS [ROUNDTIME], 
+    [tit_alarm].[STATUS] AS [STATUS], 
+    [tit_alarm].[PROCESSED] AS [PROCESSED]
+    FROM [dbo].[tit_alarm] AS [tit_alarm]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tit_alarm_from_tid_det" EntityType="Self.tit_alarm_from_tid_det" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tit_alarm_from_tid_det].[SITEID] AS [SITEID], 
+    [tit_alarm_from_tid_det].[SYSTEMNO] AS [SYSTEMNO], 
+    [tit_alarm_from_tid_det].[ALARMNUMBER] AS [ALARMNUMBER], 
+    [tit_alarm_from_tid_det].[CHALLENGERNO] AS [CHALLENGERNO], 
+    [tit_alarm_from_tid_det].[ALARMDATE] AS [ALARMDATE], 
+    [tit_alarm_from_tid_det].[DATA1] AS [DATA1], 
+    [tit_alarm_from_tid_det].[DATA2] AS [DATA2], 
+    [tit_alarm_from_tid_det].[DATA3] AS [DATA3], 
+    [tit_alarm_from_tid_det].[DATA4] AS [DATA4], 
+    [tit_alarm_from_tid_det].[DATA5] AS [DATA5], 
+    [tit_alarm_from_tid_det].[DATA6] AS [DATA6], 
+    [tit_alarm_from_tid_det].[DATA7] AS [DATA7], 
+    [tit_alarm_from_tid_det].[DATA8] AS [DATA8], 
+    [tit_alarm_from_tid_det].[CHALLNAME] AS [CHALLNAME], 
+    [tit_alarm_from_tid_det].[DEVNO] AS [DEVNO], 
+    [tit_alarm_from_tid_det].[DEVTYPE] AS [DEVTYPE], 
+    [tit_alarm_from_tid_det].[COLOR] AS [COLOR], 
+    [tit_alarm_from_tid_det].[ALARMDETAILS] AS [ALARMDETAILS], 
+    [tit_alarm_from_tid_det].[DEVNAME] AS [DEVNAME], 
+    [tit_alarm_from_tid_det].[USERNAME] AS [USERNAME], 
+    [tit_alarm_from_tid_det].[INTERNAL] AS [INTERNAL], 
+    [tit_alarm_from_tid_det].[UPDATED] AS [UPDATED], 
+    [tit_alarm_from_tid_det].[ROUNDTIME] AS [ROUNDTIME], 
+    [tit_alarm_from_tid_det].[STATUS] AS [STATUS], 
+    [tit_alarm_from_tid_det].[PROCESSED] AS [PROCESSED]
+    FROM [dbo].[tit_alarm_from_tid_det] AS [tit_alarm_from_tid_det]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tit_alarm_from_tid_det_detailed" EntityType="Self.tit_alarm_from_tid_det_detailed" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tit_alarm_from_tid_det_detailed].[SITEID] AS [SITEID], 
+    [tit_alarm_from_tid_det_detailed].[ALARMDATE] AS [ALARMDATE], 
+    [tit_alarm_from_tid_det_detailed].[DEVNO] AS [DEVNO], 
+    [tit_alarm_from_tid_det_detailed].[TID_EMPNO] AS [TID_EMPNO], 
+    [tit_alarm_from_tid_det_detailed].[USERNAME] AS [USERNAME], 
+    [tit_alarm_from_tid_det_detailed].[PROCESSED] AS [PROCESSED], 
+    [tit_alarm_from_tid_det_detailed].[tid_date] AS [tid_date]
+    FROM [dbo].[tit_alarm_from_tid_det_detailed] AS [tit_alarm_from_tid_det_detailed]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tit_alarm_test" EntityType="Self.tit_alarm_test" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tit_alarm_test].[SITEID] AS [SITEID], 
+    [tit_alarm_test].[SYSTEMNO] AS [SYSTEMNO], 
+    [tit_alarm_test].[ALARMNUMBER] AS [ALARMNUMBER], 
+    [tit_alarm_test].[CHALLENGERNO] AS [CHALLENGERNO], 
+    [tit_alarm_test].[ALARMDATE] AS [ALARMDATE], 
+    [tit_alarm_test].[DATA1] AS [DATA1], 
+    [tit_alarm_test].[DATA2] AS [DATA2], 
+    [tit_alarm_test].[DATA3] AS [DATA3], 
+    [tit_alarm_test].[DATA4] AS [DATA4], 
+    [tit_alarm_test].[DATA5] AS [DATA5], 
+    [tit_alarm_test].[DATA6] AS [DATA6], 
+    [tit_alarm_test].[DATA7] AS [DATA7], 
+    [tit_alarm_test].[DATA8] AS [DATA8], 
+    [tit_alarm_test].[CHALLNAME] AS [CHALLNAME], 
+    [tit_alarm_test].[DEVNO] AS [DEVNO], 
+    [tit_alarm_test].[DEVTYPE] AS [DEVTYPE], 
+    [tit_alarm_test].[COLOR] AS [COLOR], 
+    [tit_alarm_test].[ALARMDETAILS] AS [ALARMDETAILS], 
+    [tit_alarm_test].[DEVNAME] AS [DEVNAME], 
+    [tit_alarm_test].[USERNAME] AS [USERNAME], 
+    [tit_alarm_test].[INTERNAL] AS [INTERNAL], 
+    [tit_alarm_test].[UPDATED] AS [UPDATED], 
+    [tit_alarm_test].[ROUNDTIME] AS [ROUNDTIME], 
+    [tit_alarm_test].[STATUS] AS [STATUS], 
+    [tit_alarm_test].[PROCESSED] AS [PROCESSED]
+    FROM [dbo].[tit_alarm_test] AS [tit_alarm_test]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tit_dev" EntityType="Self.tit_dev" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tit_dev].[SiteId] AS [SiteId], 
+    [tit_dev].[DevNo] AS [DevNo], 
+    [tit_dev].[Description] AS [Description]
+    FROM [dbo].[tit_dev] AS [tit_dev]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="Tmp_tit_alarm" EntityType="Self.Tmp_tit_alarm" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [Tmp_tit_alarm].[SITEID] AS [SITEID], 
+    [Tmp_tit_alarm].[SYSTEMNO] AS [SYSTEMNO], 
+    [Tmp_tit_alarm].[ALARMNUMBER] AS [ALARMNUMBER], 
+    [Tmp_tit_alarm].[CHALLENGERNO] AS [CHALLENGERNO], 
+    [Tmp_tit_alarm].[ALARMDATE] AS [ALARMDATE], 
+    [Tmp_tit_alarm].[DATA1] AS [DATA1], 
+    [Tmp_tit_alarm].[DATA2] AS [DATA2], 
+    [Tmp_tit_alarm].[DATA3] AS [DATA3], 
+    [Tmp_tit_alarm].[DATA4] AS [DATA4], 
+    [Tmp_tit_alarm].[DATA5] AS [DATA5], 
+    [Tmp_tit_alarm].[DATA6] AS [DATA6], 
+    [Tmp_tit_alarm].[DATA7] AS [DATA7], 
+    [Tmp_tit_alarm].[DATA8] AS [DATA8], 
+    [Tmp_tit_alarm].[CHALLNAME] AS [CHALLNAME], 
+    [Tmp_tit_alarm].[DEVNO] AS [DEVNO], 
+    [Tmp_tit_alarm].[DEVTYPE] AS [DEVTYPE], 
+    [Tmp_tit_alarm].[COLOR] AS [COLOR], 
+    [Tmp_tit_alarm].[ALARMDETAILS] AS [ALARMDETAILS], 
+    [Tmp_tit_alarm].[DEVNAME] AS [DEVNAME], 
+    [Tmp_tit_alarm].[USERNAME] AS [USERNAME], 
+    [Tmp_tit_alarm].[INTERNAL] AS [INTERNAL], 
+    [Tmp_tit_alarm].[UPDATED] AS [UPDATED], 
+    [Tmp_tit_alarm].[ROUNDTIME] AS [ROUNDTIME], 
+    [Tmp_tit_alarm].[STATUS] AS [STATUS], 
+    [Tmp_tit_alarm].[PROCESSED] AS [PROCESSED]
+    FROM [dbo].[Tmp_tit_alarm] AS [Tmp_tit_alarm]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tna_ctrl" EntityType="Self.tna_ctrl" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tna_ctrl].[ctr_code] AS [ctr_code], 
+    [tna_ctrl].[ctr_id] AS [ctr_id], 
+    [tna_ctrl].[ctr_text] AS [ctr_text], 
+    [tna_ctrl].[ctr_value] AS [ctr_value], 
+    [tna_ctrl].[ctr_sortorder] AS [ctr_sortorder], 
+    [tna_ctrl].[ctr_active] AS [ctr_active]
+    FROM [dbo].[tna_ctrl] AS [tna_ctrl]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="WeekendWorkers" EntityType="Self.WeekendWorkers" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [WeekendWorkers].[Site] AS [Site], 
+    [WeekendWorkers].[EmpNo] AS [EmpNo], 
+    [WeekendWorkers].[Firstname] AS [Firstname], 
+    [WeekendWorkers].[Lastname] AS [Lastname], 
+    [WeekendWorkers].[Active] AS [Active]
+    FROM [dbo].[WeekendWorkers] AS [WeekendWorkers]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_ApprovalList_Site" Association="Self.FK_ApprovalList_Site">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="ApprovalList" EntitySet="ApprovalList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLCodeMapping_Site" Association="Self.FK_GLCodeMapping_Site">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="GLCodeMapping" EntitySet="GLCodeMapping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,262 @@
+﻿@model EPOv2.ViewModels.NewPOViewModel
+
+@{
+    ViewBag.Title = "Matching Order";
+}
+<script>
+    var incorectDataIdList = [];
+
+    $(document).on("focusin", "input[id*='datepicker']", function (event) {
+
+        $(this).prop('readonly', true);
+
+    });
+
+    $(document).on("focusout", "input[id*='datepicker']", function (event) {
+
+        $(this).prop('readonly', false);
+
+    });
+    $(function () {
+        $("input[id*='datepicker']").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            dateFormat: 'dd/mm/yy',
+            showAnim: 'blind'
+        });
+
+        //  jQuery.validator = false;
+    });
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode !== 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    function matchOrder(object) {
+        $('#btn-Save').attr("disabled", "disabled");
+        bootbox.confirm("Are you sure?", function (result) {
+            if (result === true) {
+                $('#POForm').submit();
+                //$('#btn-Save').removeAttr("disabled");
+            } else {
+                $('#btn-Save').removeAttr("disabled");
+            }
+        });
+    }
+
+    function checkQty(object) {
+        var qtyRec = parseFloat(object.value);
+        if (isNaN(qtyRec)) qtyRec = 0;
+
+        var id = object.id;
+        var itemQtyId = '#Qty-' + id;
+        var qtyARecId = '#QtyARec-' + id;
+
+        var itemQty = parseFloat($(itemQtyId).val());
+        if (isNaN(itemQty)) itemQty = 0;
+
+        var qtyARec = parseFloat($(qtyARecId).val());
+        if (isNaN(qtyARec)) qtyARec = 0;
+       
+        if ((qtyRec + qtyARec) > itemQty) {
+            incorectDataIdList.push(id);
+            $('#btn-Save').attr('disabled', 'disabled');
+            $('#' + id).parent().addClass("has-error");
+        } else {
+            incorectDataIdList = $.grep(incorectDataIdList, function(value) {
+                return value !== id;
+            });
+            if (!incorectDataIdList.length > 0) $('#btn-Save').removeAttr('disabled', 'disabled');
+            $('#' + id).parent().removeClass("has-error");
+        }
+
+    }
+</script>
+
+<div class="col-md-12">
+    <div class="well well-sm col-md-2">
+        <h3>Matching PO</h3>
+    </div>
+</div>
+
+@using (@Html.BeginForm("MatchingOrder", "PurchaseOrder", FormMethod.Post, new { id = "POForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.TempOrderNumber)
+    @Html.HiddenFor(m => m.EntityId)
+    @Html.HiddenFor(m => m.CostCenterId)
+    @Html.HiddenFor(m => m.CapexId)
+    @Html.HiddenFor(m => m.GroupId)
+    @Html.HiddenFor(m => m.DeliveryAddressId)
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.SupplierId)
+    @Html.HiddenFor(m => m.Transmission)
+    @Html.HiddenFor(m => m.StatusName)
+    @Html.HiddenFor(m => m.EditingItemId)
+    @Html.HiddenFor(m => m.DeletingItemId)
+    @Html.HiddenFor(m => m.TotalOrder)
+    @Html.HiddenFor(m => m.SupplierEmail)
+
+
+    <div id="order-head">
+        <div class="row">
+            <div class="col-md-2">
+                Author
+                @Html.TextBoxFor(m => m.Author, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Order #
+                @Html.TextBoxFor(m => m.OrderNumber, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Revision
+                @Html.TextBoxFor(m => m.RevisionQty, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Order Date
+                @Html.TextBoxFor(m => m.OrderDate, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Status
+                @Html.TextBoxFor(m => m.StatusName, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                <br />
+            </div>
+        </div>
+    </div>
+    <hr class="hr-sm" />
+    <div id="order-body" class="color-blue">
+        <div class="row">
+            <div class="col-md-3 " id="div-companybox">
+                @{
+                    Html.RenderPartial("_CompanyBoxAuthorise",  Model.CompanyBox);
+                 }
+            </div>
+            <div class="col-md-4 " id="div-deliverybox">
+                @{
+                    Html.RenderPartial("_DeliveryBoxAuthorise", Model.DeliveryBox);
+                 }
+            </div>
+            @*<div class="col-sm-1"></div>*@
+            <div class="col-md-4 " id="div-supplierbox">
+                @{
+                    Html.RenderPartial("_SupplierBoxAuthorise", Model.SupplierBox);
+                 }
+            </div>
+        </div>
+    </div>
+    <div id="order-items" class="">
+        <div class="row">
+
+            <div class="col-md-12" id="div-orderItems">
+                <table class="table table-condensed">
+                    <tr>
+                        <td>
+                            Line
+                        </td>
+                        <td>
+                            Rev
+                        </td>
+                        <td>
+                            Qty
+                        </td>
+                        <td>
+                            Details
+                        </td>
+                        <td>
+                            Account/Capex
+                        </td>
+                        <td>
+                            Sub
+                        </td>
+                        <td>
+                            Due Date
+                        </td>
+                        <td>
+                            ex GST Price
+                        </td>
+                        <td>
+                            GST Total
+                        </td>
+                        <td>
+                            Line Total
+                        </td>
+                        <td>
+                            Qty rec'd
+                        </td>
+                        <td class="col-md-1">
+                            Date rec'd
+                        </td>
+                        <td>
+                            Rec'd
+                        </td>
+                        <td>
+
+                        </td>
+                    </tr>
+                    @for (var j = 0; j < Model.MatchingItems.Count; j++)
+                    {
+                       
+                            @Html.EditorFor(x => x.MatchingItems[j])
+                       
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+    <div id="order-bottom" class="color-lightGreen">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-5" id="div-bottom-comment">
+                    <label>Comments: (Appears on purchase order)</label>
+                    @Html.TextAreaFor(m => m.Comment, 4, 60, new { @class = "form-control " })
+                </div>
+                <div class="col-md-5" id="div-bottom-intcommnet">
+                    <label>Internal Comments (does not appear on Purchase Order)</label>
+                    @Html.TextAreaFor(m => m.InternalComment, 4, 60, new { @class = "form-control " })
+                </div>
+                <div class="col-md-2" id="div-bottom-EpoTotal">
+                    <div class="row">
+                        <div class="col-md-12">
+                            Total Ex GST
+                            @Html.TextBoxFor(m => m.TotalExGST, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Total GST
+                            @Html.TextBoxFor(m => m.TotalGST, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Total (@Model.CurrencyName)
+                            @Html.TextBoxFor(m => m.TotalOrder, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row form-group ">
+        <div class="col-md-2 pull-right">
+            <button type="button" id="btn-Save" name="button" value="Save" class="btn btn-success btn-block" onclick="matchOrder(this)">Update Quantities</button>
+        </div>
+        <div class="col-md-2 pull-right">
+            <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block ">Cancel</button>
+        </div>
+
+    </div>
+
+}
+
+

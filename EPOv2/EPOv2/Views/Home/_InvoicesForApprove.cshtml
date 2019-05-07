@@ -1,0 +1,65 @@
+﻿@model IEnumerable<EPOv2.ViewModels.DashboardIncoiceViewModel>
+@{
+    var collapse = "out";
+    var count = Model.Count();
+    var isCollapsed = true;
+    var titleText = "(Click to expand : " + count + ")";
+    if ((count > 0 && count <= 6) || (count == 0))
+    {
+        collapse = "in";
+        titleText = "";
+        isCollapsed = false;
+
+    }
+}
+<div class="panel panel-info" role="tab" id="InvoiceHead">
+    <div class="panel-heading">
+        <div class="panel-title">
+            <a data-parent="#accordion" aria-controls="InvoiceBody">Invoices Awaiting Approval @titleText</a>
+        </div>
+    </div>
+    <div id="InvoiceBody" class="panel-body" role="tabpanel" aria-labelledby="InvoiceHead">
+        <table class="table">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.VoucherNumber)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.AttacheDateTime)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Supplier)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.InvoiceNumber)
+                </th>
+
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.VoucherNumber)
+                    </td>
+                    <td>
+                        @item.AttacheDateTime.ToShortDateString()
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Supplier)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.InvoiceNumber)
+                    </td>
+                    <td>
+                        <button type="button" value="@item.VoucherNumber" id="ApproveItem-@item.Id" onclick="ApproveInvoice(this)" title="Approve invoice" class="btn btn-success control-btn-crud">
+                            <span class="glyphicon glyphicon-thumbs-up"></span>
+                        </button>
+                    </td>
+                </tr>
+            }
+
+        </table>
+    </div>
+</div>

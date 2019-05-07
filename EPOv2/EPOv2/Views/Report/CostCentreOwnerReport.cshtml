@@ -1,0 +1,47 @@
+﻿@model IEnumerable<EPOv2.ViewModels.CostCentreViewModel>
+
+@{
+    ViewBag.Title = "Cost Centre Owner Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Cost Centre Owner Report</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            Cost Centre
+        </th>
+        <th>
+            Owner
+        </th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        @if (item.isOwnerFree)
+        {
+            <td class="text-danger">
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td class="text-danger">
+                @Html.DisplayFor(modelItem => item.Owner)
+            </td>
+        }
+        else
+        {
+            <td >
+                @Html.DisplayFor(modelItem => item.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Owner)
+            </td>
+        }
+
+        
+       
+    </tr>
+}
+
+</table>

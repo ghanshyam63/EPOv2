@@ -1,0 +1,63 @@
+﻿@model EPOv2.ViewModels.CompanyBoxViewModel
+@{
+    var isHidden = "";
+    if (!Model.isCapex)
+    {
+        isHidden = "hidden";
+    }
+}
+<div class="row">
+    <div class="form-group col-md-11">
+        <h4>Company</h4>
+        <div class="col-md-12">
+            @Html.DropDownListFor(model=>model.SelectedEntity,new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input",@disabled="disabled" })
+            @Html.ValidationMessageFor(model => model.SelectedEntity, "Please select Entity", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<hr class="hr-sm" />
+@*<div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-2 control-label POForm">ACN</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(model=>model.ACN, null, new { @class = "form-control input-sm input", @readonly = "readonly" })
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="form-group col-md-11">
+            <label class="col-sm-2 control-label POForm">ABN</label>
+            <div class="col-md-10">
+                @Html.TextBoxFor(m=>m.ABN, null, new { @class = "form-control input-sm input",@readonly = "readonly" })
+            </div>
+        </div>
+    </div>*@
+@*<hr class="hr-sm" />*@
+<div class="row">
+    <div class="form-group col-md-11">
+        <h4>Cost Centre</h4>
+        <div class="col-md-12">
+            @Html.DropDownListFor(m=>m.SelectedCostCenter, new SelectList(Model.CostCentres, "Id","FullName" ), "Select CostCenter", new { @class = "form-control input-sm input", @disabled="disabled" })
+            @Html.ValidationMessageFor(model => model.SelectedEntity, "Please select Cost Centre", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row @isHidden form-group" id="capexId">
+    <div class="form-group col-md-11">
+        <h4>Capex</h4>
+        <div class="col-md-12 ">
+            @Html.DropDownListFor(m => m.SelectedCapexId, new SelectList(Model.Capexes, "Id", "FullName"), "Select Capex ", new { @class = "form-control input-sm input", @disabled="disabled"})
+        </div>
+    </div>
+</div>
+<hr class="hr-sm" />
+<div class="row">
+    <div class="form-group col-md-11">
+        <h4>Receipt Group</h4>
+        <div class="col-md-12">
+            @Html.DropDownListFor(m => m.SelectedReceiptGroup, new SelectList(Model.ReceiptGroups, "Id", "Name"), "Select Receipt Group", new { @class = "form-control input-sm input", @disabled="disabled" })
+        </div>
+    </div>
+</div>
+

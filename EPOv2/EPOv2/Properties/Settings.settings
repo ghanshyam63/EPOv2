@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EPOv2.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EPOv2_oneHarvestADSI_Directory" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">http://viis1.oneharvest.com.au/adsi/directory.asmx</Value>
+    </Setting>
+    <Setting Name="EmptyCcOwnerRecipient" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Mitchell.Kilkeary@oneharvest.com.au</Value>
+    </Setting>
+    <Setting Name="EmailFrom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">epo@oneharvest.com.au</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

@@ -1,0 +1,49 @@
+﻿@*@model DomainModel.Entities.tblStagingAccCC
+@{
+    ViewBag.Title = "Map Account to Cost Centre";
+}
+
+<h2>Map Account to Cost Centre</h2>
+
+@using (@Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true)
+        @{
+    if (ViewBag.Result != null)
+    {
+        <div class="alert alert-success">@ViewBag.Result   Run time: @ViewBag.runtime</div>
+            
+    }
+        }
+        @Html.HiddenFor(model => model.StagingAccCCID)
+        <div class="form-group">
+            <div class="form-group">
+                @Html.Label("Cost Centre: ", new { @class = "control-label col-md-3"})
+                <div class="col-md-9">
+                    @Html.DropDownList("CostCenteCode", (SelectList)ViewBag.CCLst, "Select Cost Centre", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.StagingCostCentreID)
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.Label("Account Code: ", new { @class = "control-label col-md-3" })
+                <div class="col-md-9">
+                    @Html.ListBox("AccountCodes", (MultiSelectList)ViewBag.accLst, new { @class = "form-control accountlist" , Multiple= "multiple", size=20})
+                    @Html.ValidationMessageFor(model => model.AccountCode)
+                </div>
+            </div>
+            
+            
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" id="btn_adduser" class="btn btn-primary" value="Save" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+}*@
+
+

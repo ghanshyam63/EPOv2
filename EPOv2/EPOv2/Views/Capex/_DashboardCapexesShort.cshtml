@@ -1,0 +1,90 @@
+﻿@model IEnumerable<EPOv2.ViewModels.CapexDashboardViewModel>
+
+<table class="table table-responsive">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CapexNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+      
+        <th>
+            @Html.DisplayNameFor(model => model.Entity)
+        </th>
+       
+        <th class="text-right">
+            @Html.DisplayNameFor(model => model.TotalExGST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CapexNumber)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+           
+            <td >
+                @Html.DisplayFor(modelItem => item.Entity)
+            </td>
+          
+            <td class="text-right">
+                @Html.DisplayFor(modelItem => item.TotalExGST)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @if (ViewBag.Action == "Edit")
+                {
+                    <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewItem(this)" title="View capex" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                    if (item.isEditLocked)
+                    {
+                        <button type="button" value="@item.Id" id="EditItem-@item.Id" title="Edit capex" class="btn btn-success control-btn-crud" disabled="disabled">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" value="@item.Id" id="EditItem-@item.Id" onclick=" EditItem(this) " title="Edit capex" class="btn btn-success control-btn-crud">
+                            <span class="glyphicon glyphicon-edit"></span>
+                        </button>
+                    }
+                    if (item.isDeleteLocked)
+                    {
+                        <button type="button" title="Cancel item" class="btn btn-danger control-btn-crud" value="@item.Id" id="DeleteItem-@item.Id" disabled="disabled">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" value="@item.Id" id="DeleteItem-@item.Id" onclick="DeleteItem(this)" title="Delete item" class="btn btn-danger control-btn-crud">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+                    }
+                    <button type="button" title="Transaction list" class="btn btn-default control-btn-crud" value="@item.Id" id="Transaction-@item.Id" data-rel="popup-@item.Id" data-position-to="origin" onclick="ShowTransactions(this)">
+                        <span class="glyphicon glyphicon-list"></span>
+                    </button>
+                }
+                else
+                {
+                    <button type="button" value="@item.Id" id="ApproveItem-@item.Id" onclick="ApproveItem(this)" title="Approve capex" class="btn btn-success control-btn-crud">
+                        <span class="glyphicon glyphicon-thumbs-up"></span>
+                    </button>
+                }
+
+            </td>
+        </tr>
+    }
+
+</table>

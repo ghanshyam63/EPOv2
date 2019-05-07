@@ -1,0 +1,60 @@
+﻿@*@model DomainModel.Entities.tblStagingEmployeesDEV
+    @{
+        ViewBag.Title = "AddUser";
+    }
+
+    <h2>Add New User</h2>
+    @Html.AntiForgeryToken()
+    @using (@Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+        <div class="form-horizontal">
+            @Html.ValidationSummary(true)
+            @{
+        if (ViewBag.Result != null)
+        {
+            <div class="alert alert-success">@ViewBag.Result</div>
+        }
+    }
+            <div class="form-group">
+                <div class="form-group">
+                    @Html.Label("User: ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Employee, (SelectList)ViewBag.userLst, "Select user", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Employee)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Manager: ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Manager, (SelectList)ViewBag.mngLst, "Select manager", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Manager)
+                    </div>
+                </div>
+                <div class="form-group">
+                    @Html.Label("Level: ", new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.DropDownListFor(model => model.Level, (SelectList)ViewBag.lvlLst, "Select level", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.Level)
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" id="btn_adduser" class="btn btn-primary" value="Add user" />
+                    </div>
+                </div>
+            </div>
+            @*<div class="alert alert-info">
+                @ViewBag.runtime1
+
+                @ViewBag.runtime2
+
+                @ViewBag.Name
+            </div>
+
+        </div>
+        
+
+}*@
+
+

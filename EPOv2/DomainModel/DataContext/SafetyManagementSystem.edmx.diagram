@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d6debfcabed540ed9179938c4f7a55c6" Name="Diagram1">
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vFormStatu" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vFormStatusWithSafetyAction" Width="1.5" PointX="2.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vHazardReport" Width="1.5" PointX="4.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vIncidentAccident" Width="1.5" PointX="6.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vIncidentsByDay" Width="1.5" PointX="8.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vInspectionAudit" Width="1.5" PointX="0.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vJseaRiskAssessments_" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vRiskAssessment" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyAction" Width="1.5" PointX="4.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyActionsByMonthBySite" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyActionsByMonthByUser" Width="1.5" PointX="10.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyActionsThisMonthByUser" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyWalkTalk" Width="1.5" PointX="10.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyWalkTalksByDay" Width="1.5" PointX="6.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vIncidentsByMonth" Width="1.5" PointX="13.375" PointY="0.75" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vIncidentsByWeek" Width="1.5" PointX="13.375" PointY="3.75" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyWalkTalksByMonth" Width="1.5" PointX="13.375" PointY="7.75" />
+        <EntityTypeShape EntityType="SafetyManagementSystemModel.vSafetyWalkTalksByWeek" Width="1.5" PointX="13.375" PointY="10.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

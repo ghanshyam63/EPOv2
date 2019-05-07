@@ -1,0 +1,435 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Ettacher";
+
+}
+<script type="text/javascript">
+
+    var maxPageInFileId = "#MaxPagesInFile";
+    var EPOTotal = 0;
+
+    function searchVoucher(object) {
+        $('#div-voucherInfo').empty();
+        $('#div-GrniVoucherPO').empty();
+        $("#div-variancePanel").addClass("hidden");
+        $('html *').css({ 'cursor': 'wait !important' });
+        var vNumber = $("#VoucherSearch_VoucherNumber").val();
+        //alert(vNumber);
+        if ($('#optionsgrni2').attr('checked')) {
+            FetchVoucherDetails(vNumber);
+            FetchGrniVoucherPO(vNumber);
+            FetchVoucherAttaching(vNumber, true);
+
+        } else {
+            FetchVoucherDetails(vNumber);
+            FetchVoucherAttaching(vNumber);
+        }
+        FetchVoucherRelatedDocs(vNumber);
+
+
+    }
+
+    function FetchVoucherDetails(object) {
+        $("#loading1").removeClass("hidden");
+        $('#div-voucherInfo').addClass('hidden');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchVoucherInfoTable")',
+            cache: false,
+            data: {
+                voucherNumber: object
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#div-voucherInfo').html(result);
+                $("#loading1").addClass("hidden");
+                $('#div-voucherInfo').removeClass('hidden');
+                if ($('#optionsRadios2').attr('checked')) {
+                    switchToEPO();
+                }
+                CheckAutoApprove();
+            }
+        });
+    }
+
+    function FetchGrniVoucherPO(object) {
+        $("#loading3").removeClass("hidden");
+        $('#div-GrniVoucherPO').addClass('hidden');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchGrniVoucherPOInfo")',
+            cache: false,
+            data: {
+                voucherNumber: object
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                $('#div-GrniVoucherPO').empty();
+            },
+            success: function (result) {
+                $('#div-GrniVoucherPO').html(result);
+                $("#loading3").addClass("hidden");
+                $('#div-GrniVoucherPO').removeClass('hidden');
+                CheckVariance();
+            }
+        });
+    }
+
+    function FetchVoucherAttaching(object, isGRNI) {
+        $('#div-voucherAttachingForm').addClass("hidden");
+        $("#loading2").removeClass("hidden");
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchVoucherAttachingForm")',
+            cache: false,
+            data: {
+                voucherNumber: object,
+                isGrni: isGRNI
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                $('html *').css({ 'cursor': 'default !important' });
+            },
+            success: function (result) {
+                $('#div-voucherAttachingForm').html(result);
+                $("#loading2").addClass("hidden");
+                $('#div-voucherAttachingForm').removeClass("hidden");
+                if ($('#optionsgrni2').attr('checked')) {
+                    $("#SelectedDocumentTypeId").val("3").attr('selected', true);
+                }
+                $('html *').css({ 'cursor': 'default !important' });
+                reValidateForm();
+                CheckAutoApprove();
+
+            }
+        });
+    }
+
+    function FetchVoucherRelatedDocs(object) {
+        $('#voucherRelatedDocuments').empty();
+        $('#voucherRelatedDocuments').addClass('hidden');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchVoucherRelatedDocuments")',
+            cache: false,
+            data: {
+                voucherNumber: object
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                $('#voucherRelatedDocuments').addClass('hidden');
+            },
+            success: function (result) {
+                $('#voucherRelatedDocuments').html(result);
+                $('#voucherRelatedDocuments').removeClass('hidden');
+            }
+        });
+    }
+
+    function CheckAutoApprove(parameters) {
+        var isAutoApprove = $('#AutoApprove').val();
+        if (isAutoApprove === true) {
+            // $('#SelectedAuthoriser').prop('disabled', true);
+            // $('#SelectedAuthoriser').addClass('hidden');
+            $('#SelectedAuthoriser').val('b2c4a7f1-5d51-4ba5-adb5-0d814d00daba').attr('selected', true);
+
+            $('#IsAuthorised').attr('checked', true);
+            $('input[name=IsAuthorised]:hidden').val(true);
+            //$('#IsAuthorised').attr('value',true);
+            $('#IsAuthorised').attr('disabled', 'disabled');
+        }
+    }
+
+    function CheckAutoApproveByMatchingAmount(orderTotal, PONumber) {
+        var voucherTotal = parseFloat($('#div-voucherInfo #Amount').val());
+        if (Math.abs(voucherTotal - orderTotal) <= 0.20) {
+            $.when(CheckPOIsMatched(PONumber)).then(function(isMatched) {
+                if (isMatched) {
+                  $('#SelectedAuthoriser').val('b2c4a7f1-5d51-4ba5-adb5-0d814d00daba').attr('selected', true);
+                  $('#IsAuthorised').attr('checked', true);
+                  $('input[name=IsAuthorised]:hidden').val(true);
+                  $('#IsAuthorised').attr('disabled', 'disabled');
+                  return true;
+                }
+                else return false;
+            });
+            
+        }
+        return false;
+    }
+
+    function CheckPOIsMatched(POID) {
+        return $.ajax({
+            type: 'GET',
+            url: '@Url.Action("CheckIsPOFullyMatched")',
+            cache: false,
+            data: {
+                orderId: POID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                return 0;
+            },
+            success: function (result) {
+            }
+        });
+    }
+
+    function CheckVariance() {
+        var voucherTotal = parseFloat($("#div-VoucherInfo #Amount").val());
+        var poTotal = parseFloat($("#div-GrniVoucherPO #TotalPO").val());
+      
+
+        var variance = voucherTotal - poTotal;
+        variance = Math.abs(variance.toFixed(2));
+        if (variance !== 0) {
+            $("#div-variancePanel #varianceTotal").html("$" + variance);
+            $("#div-variancePanel").removeClass("hidden");
+        } else {
+            $('#SelectedAuthoriser').val('b2c4a7f1-5d51-4ba5-adb5-0d814d00daba').attr('selected', true);
+            $('#IsAuthorised').attr('checked', true);
+            $('input[name=IsAuthorised]:hidden').val(true);
+            $('#IsAuthorised').attr('disabled', 'disabled');
+        }
+    }
+
+    function reValidateForm() {
+        $("form").removeData("validator");
+        $("form").removeData("unobtrusiveValidation");
+        $.validator.unobtrusive.parse("form");
+    }
+
+    function selectInvoiceFile(object) {
+        if ($("#optionsRadios1").is(':checked')) {
+            GetMaxPageofFile(object.value);
+            $("#SelectedDocumentTypeId").val(1);
+        }
+        if ($("#optionsRadios2").is(':checked')) {
+            $.when(GetPOAmount(object.value)).then(function (EPOTotal) {
+                if (!CheckAutoApproveByMatchingAmount(parseFloat(EPOTotal), object.value)) {
+                    GetPOAuthoriser(object.value);
+                }
+            });
+            $("#SelectedDocumentTypeId").val(2);
+        }
+    }
+
+    function GetMaxPageofFile(fileName) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetMaxPagesOfFile")',
+            cache: false,
+            data: {
+                fileName: fileName
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $(maxPageInFileId).val(result);
+                $("#PageTo").attr('data-val-range-max', result);
+                $("#PageFrom").attr("data-val-range-max", result);
+                $("#PageTo").val(result);
+                reValidateForm();
+            }
+        });
+    }
+
+    function GetPOAmount(orderID) {
+       return $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetEPOAmount")',
+            cache: false,
+            data: {
+                orderId: orderID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                return 0;
+            },
+            success: function (result) {
+            }
+        });
+    }
+
+    function GetPOAuthoriser(orderID) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetOrderAuthoriserId")',
+            cache: false,
+            data: {
+                orderId: orderID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $(maxPageInFileId).val(result);
+                $("#SelectedAuthoriser").val(result);    
+            }
+        });
+    }
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    function submitForm() {
+        bootbox.confirm("Are you sure?", function (result) {
+            if (result === true) {
+                var supplier = $("#div-VoucherInfo #Supplier").val();
+                $('#VoucherAttachForm #SupplierCode').val(supplier);
+                var voucherNumber = $("#div-VoucherInfo #VoucherNumber").val();
+                $('#VoucherAttachForm #VoucherNumber').val(voucherNumber);
+                var invoiceNumber = $("#div-VoucherInfo #InvoiceNumber").val();
+                $('#VoucherAttachForm #InvoiceNumber').val(invoiceNumber);
+                var selectedDocument = $("#div-VoucherAttachment #SelectedFile").val();
+                $("#VoucherAttachForm #SelectedDocument").val(selectedDocument);
+                var account = $("#div-VoucherInfo #Account").val();
+                $("#VoucherAttachForm #AccountCode").val(account);
+                var amount = parseFloat($("#div-VoucherInfo #Amount").val());
+                $("#VoucherAttachForm #Amount").val(amount);
+                var duedate = $("#div-VoucherInfo #DueDate").val();
+                $("#VoucherAttachForm #DueDate").val(duedate);
+                var terms = $("#div-VoucherInfo #Terms").val();
+                $("#VoucherAttachForm #Terms").val(terms);
+
+
+                var $form = $('form[id="VoucherAttachForm"]');
+
+                $.ajax({
+                    type: 'POST',
+                    url: '@Url.Action("AttachDocumentToVoucher")',
+                    data: $form.serialize(),
+                    cache: false,
+                    error: function (xhr, status, error) {
+                        $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                    },
+                    success: function (result) {
+                        if (result.status === "Error") {
+                            $('#ErrorAlert').html(result.msg);
+                            $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                        }
+                        else if (result.status === "Success") {
+                            $('#SaveAlert').html(result.msg);
+                            $('#SaveAlert').show(500).fadeIn().delay(1000).hide(500).fadeOut();
+                            FetchVoucherRelatedDocs(voucherNumber);
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function refreshAttachmentList() {
+        switchToInvoice();
+    }
+
+    function switchToInvoice(parameters) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchVoucherAttachment")',
+            cache: false,
+            data: {
+                loadEPO: false
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $("#div-VoucherAttachment").html(result);
+            }
+        });
+    }
+
+    function switchToEPO(parameters) {
+        var supplier = $("#div-VoucherInfo #Supplier").val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchVoucherAttachment")',
+            cache: false,
+            data: {
+                loadEPO: true,
+                supplierCode: supplier
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $("#div-VoucherAttachment").html(result);
+            }
+        });
+    }
+
+    function switchToGrni(parameters) {
+        $('#optionsgrni2').attr('checked', 'checked');
+        $('#optionsgrni1').removeAttr('checked');
+    }
+
+    function switchToPO(parameters) {
+        $('#optionsgrni1').attr('checked', 'checked');
+        $('#optionsgrni2').removeAttr('checked');
+    }
+
+
+    function ViewDocument(object) {
+        var docId = object.value;
+        $("#VoucherDocViewId").val(docId);
+        $('#DocumentViewForm').attr('target', '_blank').submit();
+    }
+
+    function DeleteDocument(object) {
+        bootbox.confirm("Are you sure?", function (result) {
+            if (result === true) {
+                var docId = object.value;
+                $("#VoucherDocViewId").val(docId);
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("DeleteDocument")',
+                    cache: false,
+                    data: {
+                        documnetId: docId
+                    },
+                    error: function (xhr, status, error) {
+                        $(".alert").html(xhr.responseText);
+                    },
+                    success: function (result) {
+                        var vNumber = $("#VoucherSearch_VoucherNumber").val();
+                        FetchVoucherRelatedDocs(vNumber);
+                    }
+                });
+            }
+        });
+    }
+</script>
+
+
+<h3>Ettacher</h3>
+
+<div class="row">
+    
+    <div class="col-md-7" id="div-VoucherInfo">
+        @{
+            Html.RenderAction("FetchVoucherPanel");
+        }
+    </div>
+
+    <div id="loading2" class="hidden"></div>
+    <div class="col-md-5">
+        <div id="div-VoucherAttachment">
+            @{
+                Html.RenderAction("FetchVoucherAttachment");
+            }
+        </div>
+        <div id="voucherRelatedDocuments" class="hidden">
+
+        </div>
+    </div>
+</div>

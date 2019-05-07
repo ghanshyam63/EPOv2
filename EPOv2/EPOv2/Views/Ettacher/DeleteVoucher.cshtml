@@ -1,0 +1,92 @@
+﻿@model EPOv2.ViewModels.DeleteVoucherForm
+@{
+    ViewBag.Title = "Delete Voucher";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script type="text/javascript">
+
+    function searchVoucher(object) {
+        var vNumber = $("#VoucherNumber").val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FetchVoucherForDelete")',
+            cache: false,
+            data: {
+                voucherNumber: vNumber
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#div-deleteVoucherForm').empty();
+                $('#div-deleteVoucherForm').html(result);
+               
+            }
+        });
+    }
+        //alert(vNumber);
+        function submitForm() {
+            bootbox.confirm("Are you sure?", function (result) {
+                if (result === true) {
+                    var $form = $('form[id="DeleteVoucher"]');
+                  $.ajax({
+                        type: 'POST',
+                        url: '@Url.Action("DeleteVoucher")',
+                        data: $form.serialize(),
+                        cache: false,
+                        error: function (xhr, status, error) {
+                            $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                            $("#div-deletingVoucherDetails").hide();
+                            $("#btn-deletingVoucher").hide();
+                        },
+                        success: function (result) {
+                            $('#SaveAlert').show(500).fadeIn().delay(1000).hide(500).fadeOut();
+                            $("#div-deletingVoucherDetails").hide();
+                            $("#btn-deletingVoucher").hide();
+                        }
+                    });
+                }
+            });
+        }
+
+
+   
+
+</script>
+
+<br/>
+<div class="row">
+    <div class="col-md-6">
+        <div class="row">
+            <div class="col-md-12">
+                <div id="SaveAlert" class="alert alert-success" style="display: none;">Deleted Successfully</div>
+            </div>
+            <div class="col-md-12">
+                <div id="ErrorAlert" class="alert alert-danger" style="display: none;">Error! </div>
+            </div>
+        </div>
+        <div id="div-deleteVoucherForm">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <span class="panel-title">Delete Voucher</span>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-3">Voucher #</div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => Model.VoucherNumber, null, new { @class = "form-control input-sm", @onkeypress = "return isNumberKey(event)" })
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-default btn-sm" onclick="searchVoucher()">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+       
+    </div>

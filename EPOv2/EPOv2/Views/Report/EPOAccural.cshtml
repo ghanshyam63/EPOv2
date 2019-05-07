@@ -1,0 +1,102 @@
+﻿@model EPOv2.ViewModels.ReportEPOAccuralsFilterViewModel
+@{
+    ViewBag.Title = "EPO Accrual";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    $(document).on("focusin", "#ReceiptDate", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#ReceiptDate", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+   $(function () {
+        $("#ReceiptDate").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode != 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    function RunReport(parameters) {
+        $("#reportLoading").removeClass('hidden');
+        var $form = $('form[id="ReportForm"]');
+        $('#reportResult').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("PurchaseOrderAccurals", "Report")',
+            data: $form.serialize(),
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#reportLoading").addClass('hidden');
+                $("#reportResult").addClass('hidden');
+                $('#reportResult').empty();
+            },
+            success: function (result) {
+                $("#reportLoading").addClass('hidden');
+                $("#reportResult").removeClass('hidden');
+                $('#reportResult').html(result);
+            }
+        });
+    }
+
+    function ClearReportFilter(parameters) {
+        $("#reportResult").addClass('hidden');
+        $('#reportResult').empty();
+        $('#ReceiptDate').val("");
+        $('#SelectedFY').prop('selectedIndex', 0);
+        $('#SelectedFinancialPeriod').prop('selectedIndex', 0);
+    }
+</script>
+<h2>EPO Accrual Report</h2>
+
+<div class="panel panel-default">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+        @using (@Html.BeginForm("PurchaseOrderAccurals", "Report", FormMethod.Post, new { id = "ReportForm" }))
+        {
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Financial Year</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedFY, new SelectList(Model.FinancialYearList), "Select Financial Year", new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Financial Period</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedFinancialPeriod, new SelectList(Model.FinancialPeriodList), "Select Financial Period", new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-md-2 control-label ">Reciept Date</label>
+                <div class="col-md-2">@Html.TextBoxFor(m => m.ReceiptDate, null, new { @placeholder = "Select Date", @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <button type="button" name="button" value="cancel" class="cancel btn btn-warning btn-block  btn-sm" onclick="ClearReportFilter()">Clear</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" name="button" value="run" class="btn btn-success btn-block btn-sm" onclick="RunReport()">Run report</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="reportLoading">
+        <div class="spinner spinner-info"></div>
+    </div>
+</div>
+<div id="reportResult" class="hidden">
+    
+</div>
+
+

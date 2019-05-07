@@ -1,0 +1,64 @@
+﻿@model EPOv2.ViewModels.BudgetReportResult
+
+@if (Model.isError)
+{
+    <p class="bg-danger">Something happened. Please log a job by the way  IT geniuses already know about it.</p>
+}
+
+<div class="row">
+    <table class="table table-narrow table-condensed  text-verysmall col-sm-12" id="table-report">
+        @Html.Partial("_BudgetReportResultPart", Model.EstimateEPOSpend, new ViewDataDictionary { { "Name", "Estimate ePO Spend – based on the date the order is receipted" }, {"isEPO","True"}, { "isEstimate", "True" } })
+        <tr class="hidden" id="info-tr"><td colspan="16"><p class="bg-info" style="padding: 5px"><i class="fa fa-spinner fa-pulse fa-fw fa-2x"></i><span class="text-bold">ReForecast section is loading, please wait...</span></p></td></tr>
+        <tr id="reforecast"><td></td></tr>
+        @Html.Partial("_BudgetReportResultPart", Model.EPOApprovedNotReceipted, new ViewDataDictionary { { "Name", "ePOs Approved Not Receipted – based on the due date of the order" }, { "isEPO", "True" }, { "isEstimate", "False" } })
+    </table>
+</div>
+@*<div id="test"></div>*@
+<script type="text/javascript">
+    var m = @Html.Raw(Json.Encode(Model));
+    var ms = JSON.stringify(m);
+    $("#info-tr").removeClass("hidden");
+    $.ajax({
+        type: 'POST',
+        dataType: "text",
+        url: '@Url.Action("GetReForecastAndVarianceForBudgetReport")',
+        cache: false,
+        contentType: 'application/json; charset=utf-8',
+        data: ms 
+        ,
+        error: function (xhr, status, error) {
+            console.log("issue on loading ReForecast."+error+"|"+xhr.responseText);
+        },
+        success: function (result) {
+            console.log("loaded");
+            $("#info-tr").fadeOut(1000).addClass("hidden");
+            $("#reforecast").replaceWith(result);
+        }
+    });
+   
+    @*function showDetails(object, glCode, period) {
+        $.ajax({
+            type: 'GET',
+            dataType: "text",
+            url: '@Url.Action("GetDetailsForBudgetReport")',
+            cache: false,
+            contentType: 'application/json; charset=utf-8',
+            data: {
+                glCode: glCode,
+                period: period,
+                entity: $("#SelectedEntity").val(),
+                cc: $("#SelectedCostCenter").val()
+            },
+            error: function(xhr, status, error) {
+                console.log("issue on loading ReForecast." + error + "|" + xhr.responseText);
+            },
+            success: function(result) {
+                var div = $(object).find("div.epo-details");
+                
+                div.data("content", result);
+                div.popover("toggle");
+                //$("#test").html(result);
+            }
+        });
+    }*@
+</script>

@@ -1,0 +1,337 @@
+﻿@using EPOv2.ViewModels
+@model EPOv2.ViewModels.pdfPOPage
+@{
+
+    Layout = null;
+}
+<div id="@("pdfPage"+Model.Number)">
+
+<div class="row">
+    <div class="col-xs-4 pdf-logo"><img class="pdf-logo" src="@Server.MapPath(Model.PdfPOViewModel.LogoPath)" alt="" /></div>
+    @*<div class="col-xs-4 pdf-logo"><img class="pdf-logo" src="@Server.MapPath("~/content/logos/oneharvest.jpg")" alt="" /></div>*@
+    
+    
+    <div class="col-xs-5 pdf-entity">
+        <div class="row">
+            <div class="col-xs-6">
+                <small><em>Bill To:</em></small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <strong>@Model.PdfPOViewModel.EntityName</strong>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <span>PO BOX 180</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <span>CAROLE PARK QLD 4300 AUSTRALIA</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <span>ABN: @Model.PdfPOViewModel.EntityABN</span>
+            </div>
+        </div>
+        <div class="row pdf-APE">
+            <div class="col-xs-12">
+                <small><strong> Accounts Payable Enquiry:</strong></small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6">
+                <small>Telephone: @Model.PdfPOViewModel.EntityPhone</small>
+            </div>
+            <div class="col-xs-6">
+                <small>Fax: @Model.PdfPOViewModel.EntityFax</small>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-12">
+                <small>email: @Model.PdfPOViewModel.EntityEmail</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-xs-3 pdf-podetail">
+        <div class="row">
+            <div class="col-xs-12">
+                    <p class="text-uppercase text-right pdf-header"><strong>Purchase order</strong></p>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <span>Status:</span>
+            </div>
+            <div class="col-xs-5">
+                <span>@Model.PdfPOViewModel.Status</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <span>Order No:</span>
+            </div>
+            <div class="col-xs-5">
+                <span>@Model.PdfPOViewModel.PONumber</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <span>Revision No:</span>
+            </div>
+            <div class="col-xs-5">
+                <span>@Model.PdfPOViewModel.RevisionQty</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <span>Order Date:</span>
+            </div>
+            <div class="col-xs-5">
+                <span>@Model.PdfPOViewModel.PODate</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-7">
+                <span>Page Number:</span>
+            </div>
+            <div class="col-xs-5">
+                <span>@Model.Number of @Model.PageQty</span>
+            </div>
+        </div>
+    </div>
+</div>
+    <div class="row pdf-SupDel-row">
+        <div class="col-xs-6 pdf-supplierbox">
+            <div class="row">
+                <div class="col-xs-1">
+                    <small><em>To:</em></small>
+                </div>
+                <div class="col-xs-11 ">
+                    <span>@Model.PdfPOViewModel.SupplierName</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-11 col-xs-offset-1">
+                    <span>@Model.PdfPOViewModel.SupplierAddress</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-5 col-xs-offset-1">
+                    <span>@Model.PdfPOViewModel.SupplierCity</span>
+                </div>
+                <div class="col-xs-1">
+                    <span>@Model.PdfPOViewModel.SupplierState</span>
+                </div>
+                <div class="col-xs-1">
+                    <span>@Model.PdfPOViewModel.SupplierPostCode</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-11 col-xs-offset-1">
+                    @if (!String.IsNullOrEmpty(Model.PdfPOViewModel.SupplierContact))
+                    {
+                        <span>@Model.PdfPOViewModel.SupplierContact</span>
+                    }
+                    else
+                    {
+                        <span>&nbsp;</span>
+                    }
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-6 col-xs-offset-1">
+                    <span>Phone: @Model.PdfPOViewModel.SupplierPhone</span>
+                </div>
+                <div class="col-xs-5">
+                    <span>Fax: @Model.PdfPOViewModel.SupplierFax</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-11 col-xs-offset-1">
+                    <span>Email: @Model.PdfPOViewModel.SupplierEmail</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-6 pdf-deliverybox">
+            <div class="row">
+                <div class="col-xs-3">
+                    <small><em>Delivery To:</em></small>
+                </div>
+                <div class="col-xs-9">
+                    <span>@Model.PdfPOViewModel.DeliveryName</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-9 col-xs-offset-3">
+                    <span>@Model.PdfPOViewModel.DeliveryAddress</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-3 col-xs-offset-3">
+                    <span>@Model.PdfPOViewModel.DeliveryCity</span>
+                </div>
+                <div class="col-xs-1">
+                    <span>@Model.PdfPOViewModel.DeliveryState</span>
+                </div>
+                <div class="col-xs-1">
+                    <span>@Model.PdfPOViewModel.DeliveryPostCode</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Contact: </span>
+                </div>
+                <div class="col-xs-9">
+                    <span>@Model.PdfPOViewModel.Attention</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Phone: </span>
+                </div>
+                <div class="col-xs-9">
+                    <span>@Model.PdfPOViewModel.AttentionPhone</span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-2">
+                    <span>Email:</span>
+                </div>
+                <div class="col-xs-9">
+                    <span>@Model.PdfPOViewModel.AttentionEmail</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    @*foreach*@
+    <div class="row pdf-itemsTable">
+        <div class="col-xs-12">
+            <div class="pdf-orderitems">
+                <table class="table table-bordered">
+                    <tr class="pdf-tableHeaderRow">
+                        <td class="text-center  col-xs-1"><strong>LN</strong></td>
+                        <td class="text-center  col-xs-1"><strong>Qty</strong></td>
+                        <td class="text-center col-xs-6"><strong>Description</strong></td>
+                        <td class="text-center  col-xs-1"><strong>Due Date</strong></td>
+                        <td class="text-center  col-xs-1"><strong>Unit Price</strong></td>
+                        <td class="text-center  col-xs-1"><strong>GST</strong></td>
+                        <td class="text-center  col-xs-1"><strong>Amount Ex GST</strong></td>
+                    </tr>
+                    @foreach (OrderItemTableViewModel item in Model.PdfPOViewModel.OrderItems)
+                    {
+                        <tr>
+                            <td class="text-center">@item.Line</td>
+                            <td class="text-center">@item.Qty</td>
+                            <td class="text-left">@item.Description</td>
+                            <td class="text-center">@item.DueDate</td>
+                            <td class="text-right">@Model.PdfPOViewModel.CurrencySign@Html.DisplayFor(m => item.UnitPrice) </td>
+                            <td class="text-right">@Model.PdfPOViewModel.CurrencySign@Html.DisplayFor(m => @item.TotalTax)</td>
+                            <td class="text-right">@Model.PdfPOViewModel.CurrencySign@Html.DisplayFor(m => @item.TotalExTax)</td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
+    @*<p class="breakhere"></p>*@
+    <div class="row pdf-comment">
+        <div class="col-xs-12">
+            <div class="row pdf-commentHeader">
+                <div class="col-xs-11">
+                    <span class=""><strong>Comments:</strong></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-11">
+                    <span class="">
+                        @Model.PdfPOViewModel.Comment
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row pdf-terms">
+        <div class="col-xs-8">
+            <div class="row pdf-termsHeader ">
+                <div class="col-xs-12">
+                    <span class="text-center"><strong>Terms and Conditions</strong></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <span>
+                        To ensure prompt payment please makes sure that invoices quote all of the following:- Purchase Order Number - Delivery (Street) Address - Serial Numbers (where applicable).
+                        Please also ensure that invoice is made out to the company that you receive this purchase order from.
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-4">
+            <div class="row">
+                <div class="col-xs-7 pdf-totals">
+                    Total Ex GST
+                </div>
+                <div class="col-xs-5 pdf-totals text-right pdf-totals-numbers">
+                    @if (Model.isLast)
+                    {
+                        @Model.PdfPOViewModel.CurrencySign@Html.DisplayFor(m => m.PdfPOViewModel.TotalExGST)}
+                    else
+                    { <span>continued</span>}
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-7 pdf-totals">
+                    Total GST
+                </div>
+                <div class="col-xs-5 pdf-totals text-right pdf-totals-numbers">
+                    @if (Model.isLast)
+                    {
+                        @Model.PdfPOViewModel.CurrencySign@Html.DisplayFor(m => m.PdfPOViewModel.TotalGST);
+                    }
+                    else
+                    {
+                        <span>continued</span>
+                    }
+
+                    @* @Html.DisplayFor(m => m.PdfPOViewModel.TotalGST)*@
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-7 pdf-totals">
+                    Total (@Model.PdfPOViewModel.CurrencyName)
+                </div>
+                <div class="col-xs-5 pdf-totals text-right pdf-totals-numbers">
+                    @if (Model.isLast)
+                    {
+                        @Model.PdfPOViewModel.CurrencySign@Html.DisplayFor(m => m.PdfPOViewModel.TotalOrder)
+                    }
+                    else
+                    {<span>continued</span>}
+
+                </div>
+            </div>
+            <div class="row pdf-approved">
+                <div class="col-xs-12 ">
+                    <div class="row pdf-approvedHeader">
+                        <div class="col-xs-12">
+                            <span><strong>Approved By:</strong></span>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-xs-12">
+                            @Model.PdfPOViewModel.AuthoriserName
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        @*<p class="line">Line</p>*@
+    </div>
+</div>

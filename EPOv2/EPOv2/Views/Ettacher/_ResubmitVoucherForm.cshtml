@@ -1,0 +1,51 @@
+﻿@model EPOv2.ViewModels.ResubmitVoucherForm
+
+<div class="panel panel-info">
+    <div class="panel-heading">
+        <span class="panel-title">Resubmit Voucher</span>
+    </div>
+    <div class="panel-body">
+        @using (@Html.BeginForm("ResubmitVoucher", "Ettacher", FormMethod.Post, new { id = "ResubmitVoucher" }))
+        {
+            @Html.AntiForgeryToken()
+            @Html.HiddenFor(x => x.VoucherId)
+            <div class="row form-group">
+                <div class="col-md-3">Voucher #</div>
+                <div class="col-md-3">
+                    @Html.TextBoxFor(m => Model.VoucherNumber, null, new { @class = "form-control input-sm input", @onkeypress = "return isNumberKey(event)" })
+                </div>
+                <div class="col-md-1">
+                    <button type="button" class="btn btn-default btn-sm" onclick="searchVoucher()">
+                        <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                    </button>
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-2">
+                    Authoriser
+                </div>
+                <div class="col-md-6">
+                    @Html.DropDownListFor(m => m.SelectedAuthoriser, new SelectList(Model.AuthoriserList, "Id", "FullName"), "Select Authoriser", new { @class = "form-control input-sm" })
+                </div>
+            </div>
+            <div class="row form-group">
+                <div class="col col-md-2">
+                    Comments:
+                </div>
+                <div class="col-md-10">
+                    <span style="white-space: pre-line">@Model.DisplayComment</span>
+                    @Html.TextAreaFor(x => x.Comment, 4, 110, new { @class = "form-control ", onfocus = "cleanTextArea()" })
+                </div>
+
+            </div>
+            <div class="row form-group">
+
+                <div class="col-md-3 pull-left">
+                    <button type="button" name="button" value="Submit" class="btn btn-primary btn-block" onclick="submitForm()">Re-Submit</button>
+                </div>
+
+            </div>
+        }
+    </div>
+</div>
+    

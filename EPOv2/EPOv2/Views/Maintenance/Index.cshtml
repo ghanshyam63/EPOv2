@@ -1,0 +1,165 @@
+﻿@{
+    ViewBag.Title = "Maintenance";
+}
+
+
+<h2>Maintenance</h2>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Company Data</h3>
+                <p>Maintenance company data</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("ManageEntity", "Maintenance")'">Entity</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("ManageCostCentre", "Maintenance")'">Cost Centre</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("ManageAccount", "Maintenance")'">Account</button>
+                </p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapEntityToCC", "Maintenance")'">Map Entity-CC</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("MapAccountToCC", "Maintenance")'">Map CC-Account</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>User Data</h3>
+                <p>Maintenance user data</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("ManageUsers", "Maintenance")'">Users</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("RolesList", "UserManagement")'">Roles</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Routing</h3>
+                <p>All around routing & approving</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ChangeCostCentreOwner", "Maintenance")'">Cost Centre Owner</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ManageSubstitute", "Maintenance")'">Substitute</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ReassignOrder", "Maintenance")'">Re-assign</button>
+                </p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("CapexApprovers", "Maintenance")'">Capex Approvers</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("Divisions", "Maintenance")'">Divisions</button>
+                   
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Ettacher</h3>
+                <p></p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ManageVoucherDocumentTypes", "Maintenance")'">Voucher Document Style</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ManageVoucherStatuses", "Maintenance")'">Voucher Status</button>
+                </p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("DeleteVoucher", "Ettacher")'">Delete Voucher</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("VoucherStatus", "Ettacher")'">Change Voucher Status</button>
+                </p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ResubmitVoucher", "Ettacher")'">Re-submit Voucher</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("RestampVouchers", "Maintenance")'">Re-stamp Vouchers</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Orders</h3>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ManageReceiptGroups", "Maintenance")'">Receipt Group</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ManageItemKit", "Maintenance")'">Order Item Kit</button>
+
+                </p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("POStatus", "Maintenance")'">Change Order Status</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ChangeOrderAuthor", "Maintenance")'">Change Order Author</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Other</h3>
+                <p>something</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ManageAccountCategory", "Maintenance")'">Account Category</button>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("MapAccountToCategory", "Maintenance")'">Account To Category Map</button>
+                </p>
+                <p>
+                    
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            @*<span class="glyphicon glyphicon-briefcase" aria-hidden="true"></span>*@
+            @*<img src="..." alt="...">*@
+            <div class="caption">
+                <h3>Capex</h3>
+                <p>Capex maintenance</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("CapexStatus", "Maintenance")'">Change Capex status</button>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h3>Old EPO</h3>
+                <p></p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href = '@Url.Action("ConvertOldVouchers", "Maintenance")'">Convert old vouchers to new</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-sm-6 col-md-4">
+        <div class="thumbnail">
+            <div class="caption">
+                <h3>Works straight away!</h3>
+                <p>Do not click if you're not sure</p>
+                <p>
+                    <button href="#" class="btn btn-default btn-sm" role="button" onclick="window.location.href='@Url.Action("ReApplySubstitutions", "Maintenance")'">Re-Apply Substitutions</button>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+
+

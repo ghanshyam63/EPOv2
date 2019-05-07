@@ -1,0 +1,85 @@
+﻿@model EPOv2.ViewModels.CapexViewModel
+<div class="col-md-6">
+    <div class="panel panel-info ">
+        <div class="panel-heading">
+            <span class="panel-title">Change Capex status</span>
+        </div>
+        <div class="panel-body">
+            @if (Model.Id != 0)
+            {
+                using (@Html.BeginForm("CapexStatusChange", "Maintenance", FormMethod.Post, new { id = "CapexStatusChange" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.Id)
+                    
+                    <div class="row form-group">
+                        <div class="col-md-3">Capex #</div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => Model.Number, null, new { @class = "form-control input-sm", @onkeypress = "return isNumberKey(event)" })
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-default btn-sm" onclick="searchCapex()">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            Status
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(m => m.SelectedStatus, new SelectList(Model.StatusList, "Id", "Name"), "Select Status", new { @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-4 pull-left">
+                            <button type="button" name="button" value="Submit" class="btn btn-primary btn-block" onclick="submitForm()">Change Status</button>
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-3">Capex #</div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => Model.Number, null, new { @class = "form-control input-sm input", @onkeypress = "return isNumberKey(event)" })
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-default btn-sm" onclick="searchCapex()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Warning!</h4>
+                    <p>There is no relevant capex or capex already deleted/canceled</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@if (Model.Id != 0)
+{<div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title">Capex</span>
+            </div>
+            <div class="panel-body">
+                @{
+                    Html.RenderPartial("~/Views/Capex/_SearchCapexResult.cshtml", Model.CapexView);
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-center hidden" id="EPOloading1">
+                <div class="spinner spinner-info"></div>
+            </div>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,29 @@
+﻿@model List<DomainModel.Entities.User>
+@{
+    ViewBag.Title = "GetAllUsers";
+    var i = 0;
+}
+
+<h2>User with NULL/0 Employee ID</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>#</th>
+        <th>Login</th>
+        <th>Name</th>
+        <th>Email</th>
+
+    </tr>
+   @foreach (var item in Model)
+   {
+       i++;
+    <tr>
+        <td>@i</td>
+        <td>@item.UserName</td>
+        <td>@item.UserInfo.FirstName</td>
+        <td>@item.Email</td>
+
+    </tr>
+   }
+</table>
+

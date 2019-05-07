@@ -1,0 +1,134 @@
+﻿@model EPOv2.ViewModels.SearchEPOResult
+<script>
+    jQuery(function ($) {
+        var today = new Date();
+        $.fn.dataTable.moment("DD/MM/YYYY");
+        var table = $('#SearchDataTable').dataTable({
+            "iDisplayLength": 100,
+            "order": [[0, 'desc']],
+            "columns": [
+                { "orderable": false },
+                { "orderable": false },
+                null,
+                { "orderable": false },
+                { "orderable": false },
+                null,
+                null,
+                null,
+                { "orderable": false },
+                { "orderable": false }
+            ]
+           
+        });
+        
+    });
+</script>
+<div class="hidden" id="hidden-result-totals">
+    &nbsp;
+    <div class="col-sm-8">Result</div>
+    <div class="col-sm-3 text-right">Orders Count: @Model.OrderCount &emsp; Total: @Html.DisplayFor(x => x.Total)</div>
+</div>
+
+<div class="table small">
+    <table class="table" id="SearchDataTable">
+        <thead>
+            <tr>
+                <td>
+                    PO #
+                </td>
+                <td>
+                    Date
+                </td>
+                <td>
+                    Author
+                </td>
+                <td>Entity</td>
+                <td>
+                    Cost Centre
+                </td>
+                <td>Supplier</td>
+                <td>Status</td>
+                <td>Total</td>
+                <td class="col-md-2"></td>
+                <td>Temp #</td>
+            </tr>
+        </thead>
+        @foreach (var item in Model.SearchEpoResultItems)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x => item.Id)
+                    @Html.DisplayFor(x => item.OrderNumber)
+                </td>
+                <td>
+                   @item.Date.ToShortDateString()
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Entity)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.CostCentre)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Supplier)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Status)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(x => item.Total)
+                </td>
+                <td>
+                    <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewItem(this)" title="View order" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                    @if (item.isEditLocked)
+                    {
+                        <button type="button" title="Send Email" class="btn btn-warning control-btn-crud" value="@item.Id" id="EMailItem-@item.Id" onclick="SendEmail(this) ">
+                            <span class="glyphicon glyphicon-send"></span>
+                        </button>
+                        <button type="button" title="Open PDF" class="btn btn-primary control-btn-crud" value="@item.Id" id="OpenPdfItem-@item.Id" onclick="OpenPDFPO(this)">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </button>
+                    }
+                    else
+                    {
+                        <button type="button" title="Send Email" class="btn btn-warning control-btn-crud" disabled="disabled">
+                            <span class="glyphicon glyphicon-send"></span>
+                        </button>
+                        <button type="button" title="Open PDF" class="btn btn-primary control-btn-crud" disabled="disabled">
+                            <span class="glyphicon glyphicon-file"></span>
+                        </button>
+                    }
+                    @if (Model.UserRoles.Contains("Super Admin"))
+                    {
+                        <button type="button" title="Cancel item" class="btn btn-danger control-btn-crud" value="@item.Id" id="DeleteItem-@item.Id" onclick="CancelItem(this)">
+                            <span class="glyphicon glyphicon-remove"></span>
+                        </button>
+
+                        <button type="button" value="@item.Id" id="DeleteItem-@item.Id" onclick="DeleteItem(this)" title="Delete item" class="btn btn-danger control-btn-crud">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </button>
+
+                        <button type="button" value="@item.Id" id="CloseItem-@item.Id" onclick="CloseItem(this)" title="Close order" class="btn btn-warning control-btn-crud">
+                            <span class="glyphicon glyphicon-ban-circle"></span>
+                        </button>
+                    }
+                    <button type="button" title="Transaction list" class="btn btn-default control-btn-crud" value="@item.Id" id="Transaction-@item.Id" data-rel="popup-@item.Id" data-position-to="origin" onclick="ShowTransactions(this)">
+                        <span class="glyphicon glyphicon-list"></span>
+                    </button>
+                </td>
+                <td>
+                    @if (item.OrderNumber == "-")
+                    {
+                        @Html.DisplayFor(x => item.TempNumber)
+                    }
+                </td>
+            </tr>
+        }
+    </table>
+    <div id="my-dialog" class="material" data-position-to="origin"></div>
+</div>

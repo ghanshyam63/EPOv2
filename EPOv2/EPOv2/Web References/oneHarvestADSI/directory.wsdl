@@ -1,0 +1,702 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="GetADInfo">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetADInfoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetADInfoResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSMTPEmailAddresses">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetSMTPEmailAddressesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSMTPEmailAddressesResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectReportsByCN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetDirectReportsByCNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetDirectReportsByCNResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersAndMembership">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetUsersAndMembershipResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersAndMembershipResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFullName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFullUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetFullNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetFullNameResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSite">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFullUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSiteResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSiteResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailAddress">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFullUsername" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailAddressResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailAddressResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailAddressByCN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetEmailAddressByCNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetEmailAddressByCNResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByCN">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CN" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByCNResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetailsByCNResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByFullUserName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SamAccountNameWithDomain" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUserDetailsByFullUserNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUserDetailsByFullUserNameResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMembershipList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFullUserName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getMembershipListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getMembershipListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getGroupMembersList">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Membership" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="getGroupMembersListResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="getGroupMembersListResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isMemberOfV1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFullUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sMembership" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isMemberOfV1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isMemberOfV1Result" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isMemberOf">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sFullUserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="sMembership" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="isMemberOfResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="isMemberOfResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetGroupsAndMembers">
+        <s:complexType />
+      </s:element>
+      <s:element name="GetGroupsAndMembersResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetGroupsAndMembersResult">
+              <s:complexType>
+                <s:sequence>
+                  <s:element ref="s:schema" />
+                  <s:any />
+                </s:sequence>
+              </s:complexType>
+            </s:element>
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="GetADInfoSoapIn">
+    <wsdl:part name="parameters" element="tns:GetADInfo" />
+  </wsdl:message>
+  <wsdl:message name="GetADInfoSoapOut">
+    <wsdl:part name="parameters" element="tns:GetADInfoResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSMTPEmailAddressesSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSMTPEmailAddresses" />
+  </wsdl:message>
+  <wsdl:message name="GetSMTPEmailAddressesSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSMTPEmailAddressesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectReportsByCNSoapIn">
+    <wsdl:part name="parameters" element="tns:GetDirectReportsByCN" />
+  </wsdl:message>
+  <wsdl:message name="GetDirectReportsByCNSoapOut">
+    <wsdl:part name="parameters" element="tns:GetDirectReportsByCNResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersAndMembershipSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersAndMembership" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersAndMembershipSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersAndMembershipResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetFullNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetFullName" />
+  </wsdl:message>
+  <wsdl:message name="GetFullNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetFullNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSiteSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSite" />
+  </wsdl:message>
+  <wsdl:message name="GetSiteSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSiteResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailAddressSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailAddress" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailAddressSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailAddressByCNSoapIn">
+    <wsdl:part name="parameters" element="tns:GetEmailAddressByCN" />
+  </wsdl:message>
+  <wsdl:message name="GetEmailAddressByCNSoapOut">
+    <wsdl:part name="parameters" element="tns:GetEmailAddressByCNResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByCNSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByCN" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByCNSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByCNResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByFullUserNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByFullUserName" />
+  </wsdl:message>
+  <wsdl:message name="GetUserDetailsByFullUserNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUserDetailsByFullUserNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="getMembershipListSoapIn">
+    <wsdl:part name="parameters" element="tns:getMembershipList" />
+  </wsdl:message>
+  <wsdl:message name="getMembershipListSoapOut">
+    <wsdl:part name="parameters" element="tns:getMembershipListResponse" />
+  </wsdl:message>
+  <wsdl:message name="getGroupMembersListSoapIn">
+    <wsdl:part name="parameters" element="tns:getGroupMembersList" />
+  </wsdl:message>
+  <wsdl:message name="getGroupMembersListSoapOut">
+    <wsdl:part name="parameters" element="tns:getGroupMembersListResponse" />
+  </wsdl:message>
+  <wsdl:message name="isMemberOfV1SoapIn">
+    <wsdl:part name="parameters" element="tns:isMemberOfV1" />
+  </wsdl:message>
+  <wsdl:message name="isMemberOfV1SoapOut">
+    <wsdl:part name="parameters" element="tns:isMemberOfV1Response" />
+  </wsdl:message>
+  <wsdl:message name="isMemberOfSoapIn">
+    <wsdl:part name="parameters" element="tns:isMemberOf" />
+  </wsdl:message>
+  <wsdl:message name="isMemberOfSoapOut">
+    <wsdl:part name="parameters" element="tns:isMemberOfResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsAndMembersSoapIn">
+    <wsdl:part name="parameters" element="tns:GetGroupsAndMembers" />
+  </wsdl:message>
+  <wsdl:message name="GetGroupsAndMembersSoapOut">
+    <wsdl:part name="parameters" element="tns:GetGroupsAndMembersResponse" />
+  </wsdl:message>
+  <wsdl:portType name="DirectorySoap">
+    <wsdl:operation name="GetADInfo">
+      <wsdl:input message="tns:GetADInfoSoapIn" />
+      <wsdl:output message="tns:GetADInfoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSMTPEmailAddresses">
+      <wsdl:input message="tns:GetSMTPEmailAddressesSoapIn" />
+      <wsdl:output message="tns:GetSMTPEmailAddressesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectReportsByCN">
+      <wsdl:input message="tns:GetDirectReportsByCNSoapIn" />
+      <wsdl:output message="tns:GetDirectReportsByCNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersAndMembership">
+      <wsdl:input message="tns:GetUsersAndMembershipSoapIn" />
+      <wsdl:output message="tns:GetUsersAndMembershipSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetFullName">
+      <wsdl:input message="tns:GetFullNameSoapIn" />
+      <wsdl:output message="tns:GetFullNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSite">
+      <wsdl:input message="tns:GetSiteSoapIn" />
+      <wsdl:output message="tns:GetSiteSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddress">
+      <wsdl:input message="tns:GetEmailAddressSoapIn" />
+      <wsdl:output message="tns:GetEmailAddressSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddressByCN">
+      <wsdl:input message="tns:GetEmailAddressByCNSoapIn" />
+      <wsdl:output message="tns:GetEmailAddressByCNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailsByCN">
+      <wsdl:input message="tns:GetUserDetailsByCNSoapIn" />
+      <wsdl:output message="tns:GetUserDetailsByCNSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailsByFullUserName">
+      <wsdl:input message="tns:GetUserDetailsByFullUserNameSoapIn" />
+      <wsdl:output message="tns:GetUserDetailsByFullUserNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getMembershipList">
+      <wsdl:input message="tns:getMembershipListSoapIn" />
+      <wsdl:output message="tns:getMembershipListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="getGroupMembersList">
+      <wsdl:input message="tns:getGroupMembersListSoapIn" />
+      <wsdl:output message="tns:getGroupMembersListSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isMemberOfV1">
+      <wsdl:input message="tns:isMemberOfV1SoapIn" />
+      <wsdl:output message="tns:isMemberOfV1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="isMemberOf">
+      <wsdl:input message="tns:isMemberOfSoapIn" />
+      <wsdl:output message="tns:isMemberOfSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsAndMembers">
+      <wsdl:input message="tns:GetGroupsAndMembersSoapIn" />
+      <wsdl:output message="tns:GetGroupsAndMembersSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="DirectorySoap" type="tns:DirectorySoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetADInfo">
+      <soap:operation soapAction="http://tempuri.org/GetADInfo" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSMTPEmailAddresses">
+      <soap:operation soapAction="http://tempuri.org/GetSMTPEmailAddresses" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectReportsByCN">
+      <soap:operation soapAction="http://tempuri.org/GetDirectReportsByCN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersAndMembership">
+      <soap:operation soapAction="http://tempuri.org/GetUsersAndMembership" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFullName">
+      <soap:operation soapAction="http://tempuri.org/GetFullName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSite">
+      <soap:operation soapAction="http://tempuri.org/GetSite" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddress">
+      <soap:operation soapAction="http://tempuri.org/GetEmailAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddressByCN">
+      <soap:operation soapAction="http://tempuri.org/GetEmailAddressByCN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailsByCN">
+      <soap:operation soapAction="http://tempuri.org/GetUserDetailsByCN" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailsByFullUserName">
+      <soap:operation soapAction="http://tempuri.org/GetUserDetailsByFullUserName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMembershipList">
+      <soap:operation soapAction="http://tempuri.org/getMembershipList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroupMembersList">
+      <soap:operation soapAction="http://tempuri.org/getGroupMembersList" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isMemberOfV1">
+      <soap:operation soapAction="http://tempuri.org/isMemberOfV1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isMemberOf">
+      <soap:operation soapAction="http://tempuri.org/isMemberOf" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsAndMembers">
+      <soap:operation soapAction="http://tempuri.org/GetGroupsAndMembers" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="DirectorySoap12" type="tns:DirectorySoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetADInfo">
+      <soap12:operation soapAction="http://tempuri.org/GetADInfo" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSMTPEmailAddresses">
+      <soap12:operation soapAction="http://tempuri.org/GetSMTPEmailAddresses" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetDirectReportsByCN">
+      <soap12:operation soapAction="http://tempuri.org/GetDirectReportsByCN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersAndMembership">
+      <soap12:operation soapAction="http://tempuri.org/GetUsersAndMembership" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetFullName">
+      <soap12:operation soapAction="http://tempuri.org/GetFullName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSite">
+      <soap12:operation soapAction="http://tempuri.org/GetSite" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddress">
+      <soap12:operation soapAction="http://tempuri.org/GetEmailAddress" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetEmailAddressByCN">
+      <soap12:operation soapAction="http://tempuri.org/GetEmailAddressByCN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailsByCN">
+      <soap12:operation soapAction="http://tempuri.org/GetUserDetailsByCN" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserDetailsByFullUserName">
+      <soap12:operation soapAction="http://tempuri.org/GetUserDetailsByFullUserName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getMembershipList">
+      <soap12:operation soapAction="http://tempuri.org/getMembershipList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="getGroupMembersList">
+      <soap12:operation soapAction="http://tempuri.org/getGroupMembersList" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isMemberOfV1">
+      <soap12:operation soapAction="http://tempuri.org/isMemberOfV1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="isMemberOf">
+      <soap12:operation soapAction="http://tempuri.org/isMemberOf" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetGroupsAndMembers">
+      <soap12:operation soapAction="http://tempuri.org/GetGroupsAndMembers" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Directory">
+    <wsdl:port name="DirectorySoap" binding="tns:DirectorySoap">
+      <soap:address location="http://viis1.oneharvest.com.au/adsi/directory.asmx" />
+    </wsdl:port>
+    <wsdl:port name="DirectorySoap12" binding="tns:DirectorySoap12">
+      <soap12:address location="http://viis1.oneharvest.com.au/adsi/directory.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

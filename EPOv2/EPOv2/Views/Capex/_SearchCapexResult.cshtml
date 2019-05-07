@@ -1,0 +1,67 @@
+﻿@model IEnumerable<EPOv2.ViewModels.SearchCapexResult>
+
+
+<div class="table small">
+    <table class="table">
+        <thead>
+        <tr>
+            <td>
+                Capex #
+            </td>
+            <td>
+                Title #
+            </td>
+            <td>
+                Date
+            </td>
+            <td>Entity</td>
+            <td>
+                Cost Centre
+            </td>
+            <td>Author</td>
+            <td>Status</td>
+            <td>Total</td>
+            <td class="col-md-2"></td>
+        </tr>
+        </thead>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x => item.Id)
+                    @Html.DisplayFor(x => item.CapexNumber)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Title)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Date)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Entity)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.CostCentre)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Author)
+                </td>
+                <td>
+                    @Html.DisplayFor(x => item.Status)
+                </td>
+                <td class="text-right">
+                    @Html.DisplayFor(x => item.Total)
+                </td>
+                <td>
+                    <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewCapex(this)" title="View capex" class="btn btn-info control-btn-crud">
+                        <span class="glyphicon glyphicon-eye-open"></span>
+                    </button>
+                    <button type="button" title="Transaction list" class="btn btn-default control-btn-crud" value="@item.Id" id="Transaction-@item.Id" data-rel="popup-@item.Id" data-position-to="origin" onclick="ShowCapexTransactions(this)">
+                        <span class="glyphicon glyphicon-list"></span>
+                    </button>
+                </td>
+            </tr>
+        }
+    </table>
+    <div id="my-dialog-capex" class="material" data-position-to="origin"></div>
+</div>

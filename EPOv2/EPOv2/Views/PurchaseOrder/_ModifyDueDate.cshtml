@@ -1,0 +1,45 @@
+﻿@model DomainModel.Entities.Order
+
+@{
+    <form id="DueDateForm" method="post">
+
+    <div class="row">
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <b>  OrderID </b>
+        </div>
+        <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+    <b> Description </b>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <b>  Qty</b>
+        </div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <b> UnitPrice</b>
+</div>
+                
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <b> Total</b>
+</div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <b> Date Created</b>
+</div>
+        <div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+            <b>Created By</b>
+        </div>
+        <div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
+            <b>   Due Date</b>
+        </div>
+    </div>
+    
+          
+
+            @Html.EditorFor(x=>x.OrderItems)
+
+            
+     
+    </form>
+    <div class="col-md-12 col-lg-12" style="margin-top:20px;">
+        <button type="button" name="button" value="Save" class="btn btn-success btn-sm pull-right" style="width: 100px !important; margin-right: 40px !important;" onclick="ModifyDueDate()">Save</button>
+    </div>
+}
+

@@ -1,0 +1,48 @@
+﻿@model List<Microsoft.AspNet.Identity.EntityFramework.IdentityRole>
+@{
+    ViewBag.Title = "Roles List";
+    var i = 0;
+}
+
+<h2>Roles List</h2>
+@Html.ActionLink("Create New", "CreateRole")
+<table class="table table-bordered">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            Role Name
+        </th>
+        <th>
+            Users
+        </th>
+        <th>Actions</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td>
+                @i
+                @Html.HiddenFor(m=>item.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @foreach (var user in item.Users)
+                {
+                    @Html.DisplayFor(m => user.UserId)
+                    <br/>
+                }
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "EditRole", new { id = item.Id })
+                @*@Html.ActionLink("Delete", "DeleteRole", new { id = item.Id })*@
+            </td>
+        </tr>
+    }
+
+</table>

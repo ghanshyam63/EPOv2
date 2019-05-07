@@ -1,0 +1,124 @@
+﻿@model EPOv2.ViewModels.FakeRouting
+
+@{
+    ViewBag.Title = "Make Fake Routing";
+  
+}
+
+<h2>Make Fake Routing</h2>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        LoadSections();
+        //$('#SelectedEntity').change(function () {
+        //    $('html').css({ 'cursor': 'wait' });
+        //    var entityID = $('#SelectedEntity').val();
+        //    var ccID = $('#SelectedCostCentre').val();
+        //    var productID = $('#SelectedProductsList').val();
+        //    LoadSections(ccID, entityID, productID);
+        //    $('html').css({ 'cursor': 'default' });
+        //});
+
+        //$('#SelectedCostCentre').change(function () {
+        //    $('html').css({ 'cursor': 'wait' });
+        //    var entityID = $('#SelectedEntity').val();
+        //    var ccID = $('#SelectedCostCentre').val();
+        //    var productID = $('#SelectedProductsList').val();
+        //    LoadSections(ccID, entityID, productID);
+        //    $('html').css({ 'cursor': 'default' });
+        //});
+
+        //$('#SelectedProductsList').change(function() {
+        //    $('html').css({ 'cursor': 'wait' });
+        //    var entityID = $('#SelectedEntity').val();
+        //    var ccID = $('#SelectedCostCentre').val();
+        //    var productID = $('#SelectedProductsList').val();
+        //    LoadSections(ccID, entityID, productID);
+        //    $('html').css({ 'cursor': 'default' });
+        //});
+    });
+
+    function LoadSections() {
+       // if (ccID != null && entityID != null && productID != null && entityID != '' && ccID != '' && productID != '') {
+            GetExistingFakeRouting();
+            //GetEntryDataSection(weekID, siteID, productID);
+            //GetDemandSection(weekID, siteID, productID);
+      //  }
+    }
+
+    function GetExistingFakeRouting() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("LoadFakeRouting")',
+            data: {
+                //ccId: ccID,
+                //entityId: entityID,
+                //productId: productID
+            },
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#fr_main_section').empty();
+                $('#fr_main_section').addClass("hidden");
+            },
+            success: function (result) {
+                $('#fr_main_section').empty();
+                $('#fr_main_section').html(result);
+                $('#fr_main_section').removeClass("hidden");
+            }
+        });
+    }
+
+
+    @*function SaveChanges() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("SaveFakeRouting")',
+            data: {
+                weekId: weekID,
+                siteId: siteID,
+                productId: productID
+            },
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#dsp_demand_section').empty();
+                $('#dsp_demand_section').addClass("hidden");
+            },
+            success: function (result) {
+                $('#dsp_demand_section').empty();
+                $('#dsp_demand_section').html(result);
+                $('#dsp_demand_section').removeClass("hidden");
+            }
+        });
+    }*@
+    
+
+</script>
+<div class="col-md-12">
+    <div id="SaveAlert" class="alert alert-success" style="display: none;">Saved Successfully</div>
+</div>
+<div class="col-md-12">
+    <div id="ErrorAlert" class="alert alert-danger" style="display: none;">Error</div>
+</div>
+@using (Html.BeginForm())
+{
+    <div class="form-group col-md-12" id="dsp_filter_section">
+        <div class="col-md-2">
+            <h4>Site</h4> @Html.DropDownListFor(m => m.SelectedEntity, new SelectList(Model.Entities, "EntityId", "Name"), "Select Entity", new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <h4>Item Code</h4> @Html.DropDownListFor(m => m.SelectedCostCentre, new SelectList(Model.CostCentres, "CostCentreId", "CostCentreCode"), "Select CostCentre", new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <h4>Week Ending</h4> @Html.DropDownListFor(m => m.SelectedAccountsList, new SelectList(Model.Accounts, "AccountID", "AccountCode"), "Select Account", new { @class = "form-control" })
+        </div>
+        <div class="col-md-2">
+            <h4>Week Ending</h4> @Html.DropDownListFor(m => m.SelectedAuthoriser, new SelectList(Model.Authorisers), "Select Authoriser", new { @class = "form-control" })
+        </div>
+        <div class="col-md-4 align-center" id="fr_buttons">
+            <input type="submit" id="btn_saveTable" class="btn btn-primary" value="Save" onclick=" SaveChanges() " />
+        </div>
+
+    </div>
+}
+
+<div id="fr_main_section"></div>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="43ef1b0f4aba497a9029f06adcd4b8e9" Name="Diagram1">
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblAccount" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblAmendment" Width="1.5" PointX="10.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblAPSubstitutionLog" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblBudgetDetail" Width="1.5" PointX="12" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblBudgetHeader" Width="1.5" PointX="9.75" PointY="9.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapex" Width="1.5" PointX="3" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexApprover" Width="1.5" PointX="7.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexAuthoriser" Width="1.5" PointX="9.75" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexAuthoriserList" Width="1.5" PointX="12" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexLimit" Width="1.5" PointX="9.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexRole" Width="1.5" PointX="11.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexRoleLimit" Width="1.5" PointX="13.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCapexRouting" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblControl" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCostCentre" Width="1.5" PointX="0.75" PointY="14.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCreditCardPurchas" Width="1.5" PointX="15.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblCurrencyRate" Width="1.5" PointX="15.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblEntity" Width="1.5" PointX="0.75" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblEntityCCAcc" Width="1.5" PointX="3" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblGroup" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblGroupMember" Width="1.5" PointX="16.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblPerformanceLog" Width="1.5" PointX="11.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblPODelivery" Width="1.5" PointX="17.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblPODetail" Width="1.5" PointX="5.25" PointY="6" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblPODetailReceipt" Width="1.5" PointX="17.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblPOHeader" Width="1.5" PointX="3" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblPOPhasing" Width="1.5" PointX="7.5" PointY="8" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblRoutingAccountLimit" Width="1.5" PointX="5.25" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblRoutingList" Width="1.5" PointX="7.5" PointY="19.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblRoutingSubstitute" Width="1.5" PointX="17.75" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblRoutingTable" Width="1.5" PointX="9.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblSite" Width="1.5" PointX="3" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingAccCC" Width="1.5" PointX="5.25" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingAccount" Width="1.5" PointX="13.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingAccountsTMP" Width="1.5" PointX="19.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingCostCentre" Width="1.5" PointX="15.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingCostCentresDEV" Width="1.5" PointX="3" PointY="15.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingEmployee" Width="1.5" PointX="21.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingEmployeesDEV" Width="1.5" PointX="8" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblStagingLevel" Width="1.5" PointX="5.75" PointY="1.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblSubAccount" Width="1.5" PointX="0.75" PointY="17.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblSubscription" Width="1.5" PointX="21.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblSupplierNew" Width="1.5" PointX="21.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblTransaction" Width="1.5" PointX="21.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblUserDefault" Width="1.5" PointX="21.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblSupplier" Width="1.5" PointX="21.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.tblSupplierTemp1" Width="1.5" PointX="15.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.vwEntityCCAcc" Width="1.5" PointX="23.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblEntityCCAcc_tblAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblBudgetDetail_tblBudgetHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblPODetail_tblCapex" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblCapexAuthoriserList_tblCapexAuthoriser" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblEntityCostCentre_tblCostCentre" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblEntityCostCentre_tblEntity" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblSite_tblEntity" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblStagingCostCentresDEV_tblEntity" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblEntityCCAcc_tblSubAccount" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblPODetail_tblEntityCCAcc" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblRoutingAccountLimit_tblEntityCCAcc" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblPODetail_tblPOHeader" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblPOPhasing_tblPODetail" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblRoutingList_tblRoutingAccountLimit" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblRoutingTable_tblRoutingList" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblStagingAccCC_tblStagingCostCentresDEV" ManuallyRouted="false" />
+        <AssociationConnector Association="OldPurchaseOrderModel.FK_tblStagingEmployeesDEV_tblStagingLevels" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.vwAp_det_oldpo" Width="1.5" PointX="5.375" PointY="23.75" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.vwAp_grni_rf_oldpo" Width="1.5" PointX="7.375" PointY="23.75" />
+        <EntityTypeShape EntityType="OldPurchaseOrderModel.vwAp_mstr_oldpo" Width="1.5" PointX="9.375" PointY="23.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

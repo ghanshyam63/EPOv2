@@ -1,0 +1,58 @@
+﻿@model IEnumerable<DomainModel.Entities.Group>
+
+@{
+    ViewBag.Title = "Manage Receipt Groups";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Manage Receipt Groups</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateReceiptGroup")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModifiedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        <td>
+            <a href="@Url.Action("EditReceiptGroup", "Maintenance", new {id=item.Id})" class="btn btn-success control-btn-crud">
+                <span class="glyphicon glyphicon-edit"></span>
+            </a>
+            <a href="@Url.Action("DeleteReceiptGroup", "Maintenance", new { id = item.Id })" class="btn btn-danger control-btn-crud">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+            <a href="@Url.Action("ActivateReceiptGroup", "Maintenance", new { id = item.Id })" class="btn btn-info control-btn-crud">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

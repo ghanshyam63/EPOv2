@@ -1,0 +1,10 @@
+﻿@model IEnumerable<EPOv2.ViewModels.ItemKitDdlViewModel>
+    @if (Model != null)
+    {
+        <div class="row form-group">
+            <label class="col-sm-4 control-label ">Part</label>
+            <div class="col-md-5">
+                @Html.DropDownList("ItemKitId", new SelectList(Model, "Id", "Name"), "Select Part", new { @class = "form-control input-sm input", @onchange = "selectPart(this)" })
+            </div>
+        </div>
+    }

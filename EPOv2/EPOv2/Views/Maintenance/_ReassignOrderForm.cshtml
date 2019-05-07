@@ -1,0 +1,85 @@
+﻿@model EPOv2.ViewModels.OrderViewModel
+<div class="col-md-6">
+    <div class="panel panel-info ">
+        <div class="panel-heading">
+            <span class="panel-title">Re-assign Order</span>
+        </div>
+        <div class="panel-body">
+            @if (Model.OrderId != 0)
+            {
+                using (@Html.BeginForm("ReassignOrder", "Maintenance", FormMethod.Post, new { id = "ReassignOrder" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.HiddenFor(x => x.OrderId)
+                    @Html.HiddenFor(x => x.ApproverId)
+                    <div class="row form-group">
+                        <div class="col-md-3">Temp Order #</div>
+                        <div class="col-md-3">
+                            @Html.TextBoxFor(m => Model.TempOrder, null, new { @class = "form-control input-sm input", @onkeypress = "return isNumberKey(event)" })
+                        </div>
+                        <div class="col-md-1">
+                            <button type="button" class="btn btn-default btn-sm" onclick="searchOrder()">
+                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-2">
+                            Approver
+                        </div>
+                        <div class="col-md-6">
+                            @Html.DropDownListFor(m => m.SelectedApprover, new SelectList(Model.ApproverList, "Id", "FullName"), "Select Approver", new { @class = "form-control input-sm" })
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col-md-3 pull-left">
+                            <button type="button" name="button" value="Submit" class="btn btn-primary btn-block" onclick="submitForm()">Re-Assign</button>
+                        </div>
+                    </div>
+                }
+
+            }
+            else
+            {
+                <div class="row">
+                    <div class="col-md-3">Temp Order #</div>
+                    <div class="col-md-3">
+                        @Html.TextBoxFor(m => Model.TempOrder, null, new { @class = "form-control input-sm input", @onkeypress = "return isNumberKey(event)" })
+                    </div>
+                    <div class="col-md-1">
+                        <button type="button" class="btn btn-default btn-sm" onclick="searchOrder()">
+                            <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                        </button>
+                    </div>
+                </div>
+                <br />
+                <div class="alert alert-dismissible alert-warning">
+                    <button type="button" class="close" data-dismiss="alert">×</button>
+                    <h4>Warning!</h4>
+                    <p>There is no relevant order or order already approved/canceled</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+@if (Model.OrderId != 0)
+{<div class="col-md-12">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <span class="panel-title">Re-assign Order</span>
+            </div>
+            <div class="panel-body">
+                @{
+                    Html.RenderPartial("~/Views/PurchaseOrder/_SearchEPOResult.cshtml", Model.EPOView);
+                }
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 text-center hidden" id="EPOloading1">
+                <div class="spinner spinner-info"></div>
+            </div>
+        </div>
+    </div>
+}
+

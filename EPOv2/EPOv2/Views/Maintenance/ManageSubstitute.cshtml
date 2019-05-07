@@ -1,0 +1,138 @@
+﻿@using EPOv2.Business
+@model EPOv2.ViewModels.SubstituteApproverViewModel
+@{
+    ViewBag.Title = "ManageSubstitute";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    //var ad = new AD();
+}
+<script type="text/javascript">
+
+    $(document).on("focusin", ".datepicker", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", ".datepicker", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(function () {
+
+        $(".datepicker").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            minDate: -0,
+            dateFormat: 'dd/mm/yy',
+            showAnim: 'blind'
+        });
+
+        //  jQuery.validator = false;
+    });
+
+    function selectApprover(object) {
+       
+        var approverID = object.value;
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("GetSubstituteTable")',
+            cache: false,
+            data: {
+                approverId: approverID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#substitutionTable').empty();
+                $('#substitutionTable').html(result);
+               
+            }
+        });
+    }
+
+    function DeleteSubstitute(id) {
+        var approverID = $('#SelectedApprover').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("DeleteSubsitution")',
+            cache: false,
+            data: {
+                substitutionId: id,
+                approverId: approverID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#substitutionTable').empty();
+                $('#substitutionTable').html(result);
+                
+            }
+        });
+    }
+
+    function PermanentSub() {
+        $("#EndDate").toggleClass("hidden");
+        $("#label-EndDate").toggleClass("hidden");
+    }
+
+</script>
+
+<h2>Manage Substitute</h2>
+@using (@Html.BeginForm("SaveSubstituteApprover", "Maintenance", FormMethod.Post, new { id = "SubstituteForm" }))
+{
+   
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            Substitute for
+            @if (ViewBag.CurrentUserRoles.Contains("Super Admin") || ViewBag.CurrentUserRoles.Contains("Admin") || ViewBag.CurrentUserRoles.Contains("Account Admin"))
+            {
+                @Html.DropDownListFor(model => model.SelectedApprover, new SelectList(Model.ApproverList, "Id", "FullName"), "Select Approver", new { @class = " input-sm ddl-black-color", @onchange = "selectApprover(this)", @required = "required" })
+            }
+            else
+            {
+                @Model.Approver
+                @Html.HiddenFor(x=>x.SelectedApprover)
+            }
+            <span class="panel-head-sub">
+                Permanent sub
+            </span>
+           
+                @if (ViewBag.CurrentUserRoles.Contains("Super Admin") || ViewBag.CurrentUserRoles.Contains("Admin"))
+                {
+                    @Html.CheckBoxFor(model => model.isPermanent, new { @class = " panel-head-sub" })
+                }
+           
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>User</label>
+                        @Html.DropDownListFor(model => model.SelectedSubstitution, new SelectList(Model.SubtitutionList, "Id", "FullName"), "Select Substitution", new { @class = "form-control input-sm", @onchange = "selectSubstitution(this)", @required = "required" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label>Start</label>
+                        @Html.TextBoxFor(m => m.StartDate, null, new { @class = "datepicker form-control input-sm", @placeholder = "Select Start date", @required = "required" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="form-group">
+                        <label id="label-EndDate">End</label>
+                        @Html.TextBoxFor(m => m.EndDate, null, new { @class = "datepicker form-control input-sm", @placeholder = "Select End date", @required = "required" })
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <button type="submit" name="button" value="Save" class="btn btn-success btn-block ">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+    <div id="substitutionTable">
+        <!-- Table -->
+        @{
+            Html.RenderAction("GetSubstituteTable", new{approverId=Model.SelectedApprover});   
+        }
+    </div>

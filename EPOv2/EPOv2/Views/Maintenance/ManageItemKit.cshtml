@@ -1,0 +1,125 @@
+﻿@model IEnumerable<EPOv2.ViewModels.OrderItemKitViewModel>
+
+@{
+    ViewBag.Title = "Order Item Kit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    function selectEntity(object) {
+        var entityID = object.value;
+        if (entityID != null && entityID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCCEntityMap")',
+                cache: false,
+                data: {
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#ccMapping').html(result);
+                }
+            });
+        }
+    }
+
+    function DeleteEntityToCCMapping(ID) {
+        var entityID = $('#SelectedEntity').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("DeleteCCEntityMap")',
+            cache: false,
+            data: {
+                entityId: entityID,
+                id:ID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#ccMapping').html(result);
+            }
+        });
+    }
+
+    function ActivateEntityToCCMapping(ID) {
+        var entityID = $('#SelectedEntity').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("ActivateCCEntityMap")',
+            cache: false,
+            data: {
+                entityId: entityID,
+                id: ID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#ccMapping').html(result);
+            }
+        });
+    }
+</script>
+<h2>Order Item Kit</h2>
+
+<p>
+    @Html.ActionLink("Create New", "CreateItemKit")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CostCentre)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Account)
+        </th>
+
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CostCentre)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Account)
+        </td>
+
+        <td>
+            <a href="@Url.Action("EditItemKit", "Maintenance", new { id = item.Id })" class="btn btn-success control-btn-crud">
+                <span class="glyphicon glyphicon-edit"></span>
+            </a>
+            <a href="@Url.Action("DeleteItemKit", "Maintenance", new { id = item.Id })" class="btn btn-danger control-btn-crud">
+                <span class="glyphicon glyphicon-trash"></span>
+            </a>
+            <a href="@Url.Action("ActivateItemKit", "Maintenance", new { id = item.Id })" class="btn btn-info control-btn-crud">
+                <span class="glyphicon glyphicon-repeat"></span>
+            </a>
+        </td>
+    </tr>
+}
+
+</table>

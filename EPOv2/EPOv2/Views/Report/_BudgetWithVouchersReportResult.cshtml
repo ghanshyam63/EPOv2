@@ -1,0 +1,15 @@
+﻿@model EPOv2.ViewModels.BudgetWithVoucherReportResult
+
+@if (Model.isError)
+{
+    <p class="bg-danger">Something happened. Please log a job by the way  IT geniuses already know about it.</p>
+}
+
+<div class="row">
+    <table class="table table-narrow table-condensed  text-verysmall col-sm-12" id="table-report">
+        @Html.Partial("_BudgetWithVouchersReportResultPart", Model.EstimateEPOSpend, new ViewDataDictionary { { "Name", "Estimate ePO Spend – based on the date the order is receipted" }, {"isEPO","True"} })
+        @Html.Partial("_BudgetWithVouchersReportResultPart", Model.Vouchers, new ViewDataDictionary { { "Name", "Vouchers" }, { "isVoucher", "True" } })
+        @Html.Partial("_BudgetWithVouchersReportResultPart", Model.Reforecast, new ViewDataDictionary { { "Name", "Reforecast" } })
+        @Html.Partial("_BudgetWithVouchersReportResultPart", Model.Variance, new ViewDataDictionary { { "Name", "Variance" } })
+    </table>
+</div>

@@ -1,0 +1,45 @@
+﻿
+@{
+    ViewBag.Title = "TestValidation";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script>
+    function FetchVoucherAttaching(object) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("partialTestValidation")',
+            cache: false,
+            data: {
+               
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+                $('html *').css({ 'cursor': 'default !important' });
+            },
+            success: function (result) {
+                $('#div-voucherAttachingForm').html(result);
+                $('#div-voucherAttachingForm').removeClass("hidden");
+                $('html *').css({ 'cursor': 'default !important' });
+
+                $("form").removeData("validator");
+                $("form").removeData("unobtrusiveValidation");
+                $.validator.unobtrusive.parse("form");
+            }
+        });
+    }
+
+</script>
+
+<h2>TestValidation</h2>
+
+@*@{
+      Html.RenderAction("partialTestValidation");
+  }*@
+
+<button type="button" onclick="FetchVoucherAttaching()">Fetch</button>
+
+<div id="div-voucherAttachingForm">
+
+</div>

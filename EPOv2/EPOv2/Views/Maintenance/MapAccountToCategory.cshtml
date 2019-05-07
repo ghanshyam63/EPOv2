@@ -1,0 +1,68 @@
+﻿@model List<EPOv2.ViewModels.AccountToCategoryMatrixViewModel>
+
+@{
+    ViewBag.Title = "Map Account To Category";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    
+</script>
+
+<h2>Mapping Account To Cost Centre</h2>
+
+<p>
+    @Html.ActionLink("Add New", "AddAccountCategoryMapping")
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            Account Code
+        </th>
+        <th>
+            Account Name
+        </th>
+        <th>
+            Category
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AccountName)
+            </td>
+            @*<td>
+                @if (item.Style == 1)
+                {
+                    const string subAccount = "Sub Account";
+                    @subAccount;
+                }
+
+            </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryName)
+            </td>
+            <td>
+                @*<a href="@Url.Action("EditAccountToCategory", "Maintenance", new {id=item.Id})" class="btn btn-success control-btn-crud">
+                    <span class="glyphicon glyphicon-edit"></span>
+                </a>*@
+                <a href="@Url.Action("DeleteAccountToCategory", "Maintenance", new {id=item.Id})" class="btn btn-danger control-btn-crud">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </a>
+                <a href="@Url.Action("ActivateAccountToCategory", "Maintenance", new { id = item.Id })" class="btn btn-info control-btn-crud">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                </a>
+            </td>
+        </tr>
+    }
+
+</table>
+
+<div id="accountMapping"></div>
+

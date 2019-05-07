@@ -1,0 +1,371 @@
+﻿@model EPOv2.ViewModels.SearchViewModel
+@{
+    ViewBag.Title = "Search";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script src="//cdn.jsdelivr.net/jquery.scrollto/2.1.0/jquery.scrollTo.min.js"></script>
+<link href="~/Scripts/media/css/jquery.dataTables.css" rel="stylesheet" />
+<link href="~/Scripts/media/css/responsive.dataTables.min.css" rel="stylesheet" />
+<link href="~/Scripts/media/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+<script src="~/Scripts/media/js/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/media/js/dataTables.responsive.min.js"></script>
+<script src="~/Scripts/media/js/dataTables.bootstrap.min.js"></script>
+<script src="~/Scripts/moment.min.js"></script>
+<script src="~/Scripts/datetime-moment.js"></script>
+<script type="text/javascript">
+    var isActive = false;
+    var isOrderSwitched = false;
+    var currOrderId = 0;
+
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode !== 46 && charCode!==45 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+        return true;
+    }
+
+    function SearchEPO(parameters) {
+        $("#EPOloading1").removeClass('hidden');
+        var $form = $('form[id="SearchEPOForm"]');
+        $('#searchEPOResult').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SearchEPO","PurchaseOrder")',
+            data: $form.serialize(),
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#EPOloading1").addClass('hidden');
+                $("#epoResultPanel").addClass('hidden');
+                $('#searchEPOResult').empty();
+            },
+            success: function (result) {
+                $("#EPOloading1").addClass('hidden');
+                $("#epoResultPanel").removeClass('hidden');
+                $('#searchEPOResult').html(result);
+                $("body").scrollTo("#searchEPOResult",900,{offset: function (){return {top:-200, left:0}}});
+                $("#result-panel-head").html($("#hidden-result-totals").html());
+            }
+        });
+    }
+
+    function ClearSearchEPO(parameters) {
+        $("#epoResultPanel").addClass('hidden');
+        $('#searchEPOResult').empty();
+        $('#SearchEPOForm #OrderNumber').val("");
+        $('#SearchEPOForm #dateEPOFrom').val("");
+        $('#SearchEPOForm #dateEPOTo').val("");
+        $('#SearchEPOForm #dateEPODueFrom').val("");
+        $('#SearchEPOForm #dateEPODueTo').val("");
+        $('#SearchEPOForm #dateEPORecFrom').val("");
+        $('#SearchEPOForm #dateEPORecTo').val("");
+        $('#SearchEPOForm #SelectedEntity').prop('selectedIndex', 0);
+        $('#SearchEPOForm #SelectedCostCenter').prop('selectedIndex', 0);
+        $('#SearchEPOForm #SelectedAccount').prop('selectedIndex', 0);
+        $('#SearchEPOForm #SelectedSupplier').prop('selectedIndex', 0);
+        $('#SearchEPOForm #SelectedAuthor').prop('selectedIndex', 0);
+        $('#SearchEPOForm #SelectedAuthoriser').prop('selectedIndex', 0);
+        $('#SearchEPOForm #SelectedStatus').prop('selectedIndex', 0);
+        $('#SearchVoucherForm #SelectedCapexId').prop('selectedIndex', 0);
+        $('#SearchEPOForm #Details').val('');
+    }
+
+    //Voucher
+    function SearchVoucher(parameters) {
+        $("#Voucherloading1").removeClass('hidden');
+        var $form = $('form[id="SearchVoucherForm"]');
+        $('#searchVoucherResult').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SearchVoucher","Ettacher")',
+            data: $form.serialize(),
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#Voucherloading1").addClass('hidden');
+                $("#voucherResultPanel").addClass('hidden');
+                $('#searchVoucherResult').empty();
+            },
+            success: function (result) {
+                $("#Voucherloading1").addClass('hidden');
+                $("#voucherResultPanel").removeClass('hidden');
+                $('#searchVoucherResult').html(result);
+                $("body").scrollTo("#searchVoucherResult", 900, { offset: function () { return { top: -200, left: 0 } } });
+            }
+        });
+    }
+
+    function ClearSearchVoucher(parameters) {
+        $("#voucherResultPanel").addClass('hidden');
+        $('#searchVoucherResult').empty();
+        $('#SearchVoucherForm #VoucherNumber').val("");
+        $('#SearchVoucherForm #InvoiceNumber').val("");
+        $('#SearchVoucherForm #OrderNumber').val("");
+        $('#SearchVoucherForm #dateVoucherFrom').val("");
+        $('#SearchVoucherForm #dateVoucherTo').val("");
+        $('#SearchVoucherForm #SelectedSupplier').prop('selectedIndex', 0);
+        $('#SearchVoucherForm #SelectedAuthoriser').prop('selectedIndex', 0);
+        $('#SearchVoucherForm #SelectedStatus').prop('selectedIndex', 0);
+        $('#SearchVoucherForm #SelectedCapexId').prop('selectedIndex', 0);
+
+    }
+    //Capex---------------------
+    function ClearSearchCapex() {
+        $("#capexResultPanel").addClass('hidden');
+        $('#searchCapexResult').empty();
+        $('#SearchCapexForm #CapexNumber').val("");
+        $('#SearchCapexForm #Title').val("");
+        $('#SearchCapexForm #Description').val("");
+        $('#SearchCapexForm #SelectedEntity').prop('selectedIndex', 0);
+        $('#SearchCapexForm #dateCapexFrom').val("");
+        $('#SearchCapexForm #dateCapexTo').val("");
+        $('#SearchCapexForm #SelectedSupplier').prop('selectedIndex', 0);
+        $('#SearchCapexForm #SelectedAuthor').prop('selectedIndex', 0);
+        $('#SearchCapexForm #SelectedOwner').prop('selectedIndex', 0);
+        $('#SearchCapexForm #SelectedStatus').prop('selectedIndex', 0);
+    }
+
+    function SearchCapex(parameters) {
+        $("#Capexloading1").removeClass('hidden');
+        var $form = $('form[id="SearchCapexForm"]');
+        $('#searchCapexResult').empty();
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("SearchCapex","Capex")',
+            data: $form.serialize(),
+            cache: false,
+            error: function (xhr, status, error) {
+                $('#ErrorAlert').show(400).fadeIn().delay(2500).hide(600).fadeOut();
+                $("#Capexloading1").addClass('hidden');
+                $("#capexResultPanel").addClass('hidden');
+                $('#searchCapexResult').empty();
+            },
+            success: function (result) {
+                $("#Capexloading1").addClass('hidden');
+                $("#capexResultPanel").removeClass('hidden');
+                $('#searchCapexResult').html(result);
+                $("body").scrollTo("#searchCapexResult", 900, { offset: function () { return { top: -200, left: 0 } } });
+            }
+        });
+    }
+
+    function ViewCapex(object) {
+        var itemID = object.value;
+        $("#SelectedCapex").val(itemID);
+        if (event.ctrlKey) {
+            $('#SearchCapexBtnForm').attr('target', '_blank').attr("Action", '@Url.Action("ViewCapex", "Capex")').submit();
+        } else {
+            $('#SearchCapexBtnForm').attr('target', '_self').attr("Action", '@Url.Action("ViewCapex", "Capex")').submit();
+        }
+    }
+
+    function ShowTransactions(object) {
+        var orderID = object.value;
+        if (currOrderId !== orderID) {
+            isOrderSwitched = true;
+            currOrderId = orderID;
+        } else {
+            isOrderSwitched = false;
+        }
+        if (isOrderSwitched) {
+            if (isActive) {
+                $('.material').removeClass('active');
+                isActive = false;
+            }
+
+            //currOrderId = orderID;
+            var btnTop = $(object).offset().top - $(window).scrollTop();;
+            var Left = $(object).offset().left;
+            var modTop = 0;
+            if (CalculateModalTop(0, btnTop)) modTop = btnTop - 207;
+            else {
+                modTop = btnTop + 23;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("ShowTransactions", "Home")',
+                cache: false,
+                data: {
+                    orderId: orderID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#my-dialog').html(result);
+                    $('.material').css({ top: modTop, bottom: '', left: Left });
+                    $('.material').addClass('active');
+                    isActive = true;
+                }
+            });
+        } else {
+            isActive = false;
+            $('.material').toggleClass('active');
+        }
+    }
+
+    function ShowCapexTransactions(object) {
+        var orderID = object.value;
+        if (currOrderId !== orderID) {
+            isOrderSwitched = true;
+            currOrderId = orderID;
+        } else {
+            isOrderSwitched = false;
+        }
+        if (isOrderSwitched) {
+            if (isActive) {
+                $('.material').removeClass('active');
+                isActive = false;
+            }
+
+            //currOrderId = orderID;
+            var btnTop = $(object).offset().top - $(window).scrollTop();;
+            var Left = $(object).offset().left;
+            var modTop = 0;
+            if (CalculateModalTop(0, btnTop)) modTop = btnTop - 207;
+            else {
+                modTop = btnTop + 23;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("ShowTransactions", "Capex")',
+                cache: false,
+                data: {
+                    capexId: orderID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#my-dialog-capex').html(result);
+                    $('.material').css({ top: modTop, bottom: '', left: Left });
+                    $('.material').addClass('active');
+                    isActive = true;
+                }
+            });
+        } else {
+            isActive = false;
+            $('.material').toggleClass('active');
+        }
+    }
+
+    function CalculateModalTop(winTop, btnTop) {
+        var tT = winTop + btnTop;
+        if (tT >= 307) {
+            $('.material').css({ 'transform-origin': 'bottom left' });
+            return true;
+        } else {
+            $('.material').css({ 'transform-origin': 'top left' });
+            return false;
+        }
+    }
+
+    function ViewItem(object) {
+        var itemID = object.value;
+        $("#searchpo #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#SearchEPOBtnForm').attr('target', '_blank').attr("Action", '@Url.Action("ViewOrder", "PurchaseOrder")').submit();
+        } else {
+            $('#SearchEPOBtnForm').attr('target', '_self').attr("Action", '@Url.Action("ViewOrder", "PurchaseOrder")').submit();
+        }
+    }
+
+    function OpenPDFPO(object) {
+        var itemID = object.value;
+        // alert(itemID);
+        $("#searchpo #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#SearchEPOBtnForm').attr('target', '_blank').attr("Action", '@Url.Action("OpenPDFPO", "PurchaseOrder")').submit();
+        } else {
+            $('#SearchEPOBtnForm').attr('target', '_self').attr("Action", '@Url.Action("OpenPDFPO", "PurchaseOrder")').submit();
+        }
+    }
+    function DeleteItem(object) {
+        bootbox.confirm("Are you sure you want to Delete order?", function (result) {
+            if (result === true) {
+                var itemID = object.value;
+                $("#searchpo #SelectedItem").val(itemID);
+                $('#SearchEPOBtnForm').attr("Action", '@Url.Action("DeleteOrder","PurchaseOrder")').submit();
+            }
+        });
+    }
+
+    function CancelItem(object) {
+        bootbox.confirm("Are you sure you want to Cancel order?", function (result) {
+            if (result === true) {
+                var itemID = object.value;
+                $("#searchpo #SelectedItem").val(itemID);
+                $('#SearchEPOBtnForm').attr("Action", '@Url.Action("CancelOrder","PurchaseOrder")').submit();
+            }
+        });
+    }
+    function SendEmail(object) {
+        var itemID = object.value;
+        $("#searchpo #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#SearchEPOBtnForm').attr('target', '_blank').attr("Action", '@Url.Action("SendPObyEmail", "PurchaseOrder")').submit();
+        } else {
+            $('#SearchEPOBtnForm').attr('target', '_self').attr("Action", '@Url.Action("SendPObyEmail", "PurchaseOrder")').submit();
+        }
+    }
+
+    function ViewVoucher(object) {
+        var itemID = object.value;
+        $("#searchvoucher #SelectedInvoice").val(itemID);
+        if (event.ctrlKey) {
+            $('#SearchVoucherBtnForm').attr('target', '_blank').attr("Action", '@Url.Action("ViewInvoice", "Ettacher")').submit();
+        }else{
+            $('#SearchVoucherBtnForm').attr('target', '_self').attr("Action", '@Url.Action("ViewInvoice", "Ettacher")').submit();
+        }
+    }
+
+
+
+</script>
+<h2>Search</h2>
+
+@*<h3> Search page under development. </h3>*@
+
+<ul class="nav nav-tabs">
+    <li class="active"><a href="#searchpo" data-toggle="tab" aria-expanded="True" >EPO</a></li>
+    <li class=""><a href="#searchvoucher" data-toggle="tab" aria-expanded="False">Voucher</a></li>
+    <li class=""><a href="#searchcapex" data-toggle="tab" aria-expanded="False">Capex</a></li>
+
+</ul>
+
+<div id="myTabContent" class="tab-content">
+    <div class="tab-pane fade active in" id="searchpo">
+        @using (@Html.BeginForm("EditOrder", "PurchaseOrder", FormMethod.Post, new { id = "SearchEPOBtnForm" }))
+        {
+            @Html.HiddenFor(x => x.SelectedItem)
+            ;
+        }
+        @{
+            Html.RenderPartial("_SearchEPO", Model);
+        }
+    </div>
+    <div class="tab-pane fade" id="searchvoucher">
+        @using (@Html.BeginForm("ViewInvoice", "Ettacher", FormMethod.Post, new { id = "SearchVoucherBtnForm" }))
+        {
+            @Html.HiddenFor(x => x.SelectedItem, new { id = "SelectedInvoice" })
+            ;
+        }
+        @{
+            Html.RenderPartial("_SearchVoucher", Model);
+        }
+    </div>
+    <div class="tab-pane fade" id="searchcapex">
+        @using (@Html.BeginForm("ViewCapex", "Capex", FormMethod.Post, new { id = "SearchCapexBtnForm" }))
+        {
+            @Html.HiddenFor(x => x.SelectedItem, new { id = "SelectedCapex" })
+        }
+        @{
+            Html.RenderPartial("_SearchCapex", Model);
+        }
+    </div>
+
+</div>

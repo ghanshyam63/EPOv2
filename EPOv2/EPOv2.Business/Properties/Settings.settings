@@ -1,0 +1,15 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="EPOv2.Business.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="EmailFrom" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">epo@oneharvest.com.au</Value>
+    </Setting>
+    <Setting Name="DevEmail" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">aleksei.kogtev@oneharvest.com.au</Value>
+    </Setting>
+    <Setting Name="CapexApproveURL" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://viis1.oneharvest.com.au/epov2/Capex/ApproveCapex?SelectedItem=</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

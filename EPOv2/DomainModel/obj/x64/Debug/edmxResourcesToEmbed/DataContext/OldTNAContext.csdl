@@ -1,0 +1,1225 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OldTNAModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="ActiveDirectoryTerminatedExclude">
+    <Key>
+      <PropertyRef Name="sAMAccountName" />
+    </Key>
+    <Property Name="sAMAccountName" Type="String" MaxLength="200" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="ApprovalList">
+    <Key>
+      <PropertyRef Name="ApprovalListID" />
+    </Key>
+    <Property Name="ApprovalListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="ApproverUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Site" Relationship="Self.FK_ApprovalList_Site" FromRole="ApprovalList" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="con_det">
+    <Key>
+      <PropertyRef Name="rpt_id" />
+      <PropertyRef Name="con_id" />
+    </Key>
+    <Property Name="rpt_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="con_id" Type="Int32" Nullable="false" />
+    <Property Name="con_site" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="con_email" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="con_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="dtproperties">
+    <Key>
+      <PropertyRef Name="id" />
+      <PropertyRef Name="property" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="objectid" Type="Int32" />
+    <Property Name="property" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="value" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="uvalue" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+    <Property Name="lvalue" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="version" Type="Int32" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeException">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+    </Key>
+    <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ReasonCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="EmployeeInformation">
+    <Key>
+      <PropertyRef Name="EmployeeNo" />
+    </Key>
+    <Property Name="Site" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeNo" Type="Int32" Nullable="false" />
+    <Property Name="Last_Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Given_Names" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PayCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="EmploymentStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="EmployeeLocation">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlarmUpdatedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AlarmDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SiteId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DevNo" Type="Int32" Nullable="false" />
+    <Property Name="AreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeLocationNew">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlarmUpdatedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AlarmDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SiteId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DevNo" Type="Int32" Nullable="false" />
+    <Property Name="AreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CardId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EmployeeLocationNew1">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlarmUpdatedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AlarmDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SiteId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DevNo" Type="Int32" Nullable="false" />
+    <Property Name="AreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CardId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EmployeeLocationtest">
+    <Key>
+      <PropertyRef Name="EmployeeLocationId" />
+    </Key>
+    <Property Name="EmployeeLocationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AlarmUpdatedTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AlarmDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="SiteId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Username" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Action" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DevNo" Type="Int32" Nullable="false" />
+    <Property Name="AreaDescription" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="CardId" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="EmployeeManager">
+    <Key>
+      <PropertyRef Name="EmployeeManagerID" />
+    </Key>
+    <Property Name="EmployeeManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeNo" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="DirectManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="EmployeeTotalTime">
+    <Key>
+      <PropertyRef Name="EmployeeTotalTimeId" />
+    </Key>
+    <Property Name="EmployeeTotalTimeId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="WorkDate" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="TotalTime" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Salary" Type="Boolean" Nullable="false" />
+    <Property Name="State" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OrgUnitName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Award" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PayCode" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="GroupDescription" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="GLCodeMapping">
+    <Key>
+      <PropertyRef Name="MappingID" />
+    </Key>
+    <Property Name="MappingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="tic_paycode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="CostCentre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="AccountCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="SubAccountCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="Site" Relationship="Self.FK_GLCodeMapping_Site" FromRole="GLCodeMapping" ToRole="Site" />
+  </EntityType>
+  <EntityType Name="LabourHireCompany">
+    <Key>
+      <PropertyRef Name="LabourHireCompanyID" />
+    </Key>
+    <Property Name="LabourHireCompanyID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tid_team" Type="String" MaxLength="50" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="EPOSupplierCode" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EPODeliveryID" Type="Int32" />
+    <Property Name="EPOGroupID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="LabourHireCompanyRate">
+    <Key>
+      <PropertyRef Name="LabourHireCompanyRateID" />
+    </Key>
+    <Property Name="LabourHireCompanyRateID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LabourHireCompanyID" Type="Int32" />
+    <Property Name="Grade" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="Location">
+    <Key>
+      <PropertyRef Name="LocationCode" />
+    </Key>
+    <Property Name="LocationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="LocationDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="MacroOutputBDL">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="DateTime" Precision="3" />
+    <Property Name="EmpNo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RecID" Type="Int32" Nullable="false" />
+    <Property Name="ShiftID" Type="Int32" />
+    <Property Name="PayCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Start" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="EM20" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NS30" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MEA3" Type="Int32" />
+    <Property Name="CALLX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CALLX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="ORDHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MacroOutputBNE">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="DateTime" Precision="3" />
+    <Property Name="EmpNo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RecID" Type="Int32" Nullable="false" />
+    <Property Name="ShiftID" Type="Int32" />
+    <Property Name="PayCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Start" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NS20" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX175" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MEA4" Type="Int32" />
+    <Property Name="ORDHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MacroOutputPTH">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="DateTime" Precision="3" />
+    <Property Name="EmpNo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RecID" Type="Int32" Nullable="false" />
+    <Property Name="ShiftID" Type="Int32" />
+    <Property Name="PayCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Start" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NS20" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX175" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MEA4" Type="Int32" />
+    <Property Name="ORDHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="MacroOutputSYD">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="DateTime" Precision="3" />
+    <Property Name="EmpNo" Type="String" MaxLength="5" FixedLength="false" Unicode="false" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="RecID" Type="Int32" Nullable="false" />
+    <Property Name="ShiftID" Type="Int32" />
+    <Property Name="PayCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Start" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NS20" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX175" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MEA4" Type="Int32" />
+    <Property Name="ORDHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Reason">
+    <Key>
+      <PropertyRef Name="ReasonCode" />
+    </Key>
+    <Property Name="ReasonCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReasonDesc" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ReasonType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RockyTypeMatch" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="rpt_det">
+    <Key>
+      <PropertyRef Name="rpt_sys" />
+      <PropertyRef Name="rpt_id" />
+      <PropertyRef Name="rpt_not_id" />
+    </Key>
+    <Property Name="rpt_sys" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="rpt_id" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="rpt_not_id" Type="Int32" Nullable="false" />
+    <Property Name="rpt_not_username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="rpt_not_email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="rpt_not_sms" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" />
+    <Property Name="userid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Site">
+    <Key>
+      <PropertyRef Name="SiteID" />
+    </Key>
+    <Property Name="SiteID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SiteName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ManualEntryAutoApprove" Type="Boolean" />
+    <Property Name="TimeInterval" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="MealInterval" Type="Decimal" Precision="6" Scale="2" />
+    <Property Name="UseApprovalList" Type="Boolean" />
+    <Property Name="PreloadDate" Type="Int32" />
+    <Property Name="EntityID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="NextEmployeeNumber" Type="Int32" />
+    <Property Name="ModifyEmployeeList" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="ApprovalList" Relationship="Self.FK_ApprovalList_Site" FromRole="Site" ToRole="ApprovalList" />
+    <NavigationProperty Name="GLCodeMapping" Relationship="Self.FK_GLCodeMapping_Site" FromRole="Site" ToRole="GLCodeMapping" />
+  </EntityType>
+  <EntityType Name="STPControl">
+    <Key>
+      <PropertyRef Name="ControlID" />
+    </Key>
+    <Property Name="ControlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ControlCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ControlText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ControlValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="tblActiveDays">
+    <Key>
+      <PropertyRef Name="DayID" />
+    </Key>
+    <Property Name="DayID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="PeriodDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblTransaction">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RefID" Type="Int32" />
+    <Property Name="RefType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FromValue" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="ToValue" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tic_ctrl">
+    <Key>
+      <PropertyRef Name="tic_type" />
+      <PropertyRef Name="tic_devno" />
+      <PropertyRef Name="tic_siteid" />
+      <PropertyRef Name="tic_workcenter" />
+      <PropertyRef Name="tic_dept" />
+    </Key>
+    <Property Name="tic_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_devno" Type="Int32" Nullable="false" />
+    <Property Name="tic_siteid" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_workcenter" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_include" Type="Boolean" />
+    <Property Name="tic_dept" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_paycode" Type="String" MaxLength="4" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tic_det">
+    <Key>
+      <PropertyRef Name="tic_site" />
+      <PropertyRef Name="tic_paycode" />
+    </Key>
+    <Property Name="tic_site" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_paycode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_paycodedesc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tic_type" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tic_active" Type="Boolean" />
+    <Property Name="userid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_allowances">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+      <PropertyRef Name="tid_alcode" />
+    </Key>
+    <Property Name="tid_recid" Type="Int32" Nullable="false" />
+    <Property Name="tid_alcode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tid_alunit" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="tid_AllowanceType" Type="Int32" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_det">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="Int32" Nullable="false" />
+    <Property Name="tid_site" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_team" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_location" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="tid_card" Type="Int32" />
+    <Property Name="tid_date" Type="DateTime" Precision="3" />
+    <Property Name="tid_type" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_empno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tid_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_scan_in" Type="DateTime" Precision="3" />
+    <Property Name="tid_scan_out" Type="DateTime" Precision="3" />
+    <Property Name="tid_start" Type="DateTime" Precision="3" />
+    <Property Name="tid_finish" Type="DateTime" Precision="3" />
+    <Property Name="tid_meal" Type="Double" />
+    <Property Name="tid_meal_corr" Type="Double" />
+    <Property Name="tid_hours" Type="Double" />
+    <Property Name="tid_status" Type="Int32" />
+    <Property Name="tid_approver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tid_grade" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="POID" Type="Int32" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_det_archive">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="Int32" Nullable="false" />
+    <Property Name="tid_site" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_team" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_location" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="tid_card" Type="Int32" />
+    <Property Name="tid_date" Type="DateTime" Precision="3" />
+    <Property Name="tid_type" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_empno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tid_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_scan_in" Type="DateTime" Precision="3" />
+    <Property Name="tid_scan_out" Type="DateTime" Precision="3" />
+    <Property Name="tid_start" Type="DateTime" Precision="3" />
+    <Property Name="tid_finish" Type="DateTime" Precision="3" />
+    <Property Name="tid_meal" Type="Double" />
+    <Property Name="tid_meal_corr" Type="Double" />
+    <Property Name="tid_hours" Type="Double" />
+    <Property Name="tid_status" Type="Int32" />
+    <Property Name="tid_approver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tid_grade" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="POID" Type="Int32" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tit_alarm_archive">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+      <PropertyRef Name="UPDATED" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="Int32" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA1" Type="Int32" />
+    <Property Name="DATA2" Type="Int32" />
+    <Property Name="DATA3" Type="Int32" />
+    <Property Name="DATA4" Type="Int32" />
+    <Property Name="DATA5" Type="Int32" />
+    <Property Name="DATA6" Type="Int32" />
+    <Property Name="DATA7" Type="Int32" />
+    <Property Name="DATA8" Type="Int32" />
+    <Property Name="CHALLNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="DEVTYPE" Type="Int32" />
+    <Property Name="COLOR" Type="Int32" />
+    <Property Name="ALARMDETAILS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL" Type="Int32" />
+    <Property Name="UPDATED" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ROUNDTIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tit_departments">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="DEVICENO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="DEVICENO" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="COMMENTS" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CARDBACK" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CARDFRONT" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmployeeType" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="UPDATED" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tit_users">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="DEVICENO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="DEVICENO" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="CARDONLY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LONGACCESS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="USERTRACE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="PRIVILEGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LST_DOOR" Type="Int32" />
+    <Property Name="LST_DOORSTR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="LSTDR_TIME" Type="DateTime" Precision="3" />
+    <Property Name="LSTDR_REGION" Type="Int32" />
+    <Property Name="LST_REGIONSTR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="PINCARDNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERTYPE" Type="Int32" />
+    <Property Name="PICTURE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CARDLAYOUT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="GROUPS" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="COMMENTS" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="POSITION1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DEPARTMENT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EXTENSION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="START_DATE" Type="DateTime" Precision="3" />
+    <Property Name="START_TIME" Type="DateTime" Precision="3" />
+    <Property Name="END_DATE" Type="DateTime" Precision="3" />
+    <Property Name="END_TIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="MEMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LAYOUTCODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="TAG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LST_CHALL" Type="Int32" />
+    <Property Name="LST_CHALLSTR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tit_users_new">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="DEVICENO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="DEVICENO" Type="Int32" Nullable="false" />
+    <Property Name="DESCRIPTION" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="CARDONLY" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LONGACCESS" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="USERTRACE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="PRIVILEGED" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LST_DOOR" Type="Int32" />
+    <Property Name="LST_DOORSTR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="LSTDR_TIME" Type="DateTime" Precision="3" />
+    <Property Name="LSTDR_REGION" Type="Int32" />
+    <Property Name="LST_REGIONSTR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="PINCARDNO" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="USERTYPE" Type="Int32" />
+    <Property Name="PICTURE" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="CARDLAYOUT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="GROUPS" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="COMMENTS" Type="Binary" MaxLength="Max" FixedLength="false" />
+    <Property Name="FIRST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LAST_NAME" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="POSITION1" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="DEPARTMENT" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+    <Property Name="PHONE" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="EXTENSION" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+    <Property Name="START_DATE" Type="DateTime" Precision="3" />
+    <Property Name="START_TIME" Type="DateTime" Precision="3" />
+    <Property Name="END_DATE" Type="DateTime" Precision="3" />
+    <Property Name="END_TIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="MEMBER" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="LAYOUTCODE" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="TAG" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="LST_CHALL" Type="Int32" />
+    <Property Name="LST_CHALLSTR" Type="String" MaxLength="40" FixedLength="false" Unicode="false" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tit_users_static_old">
+    <Key>
+      <PropertyRef Name="tusid" />
+    </Key>
+    <Property Name="tusid" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="siteid" Type="String" MaxLength="3" FixedLength="true" Unicode="false" />
+    <Property Name="systemno" Type="Int32" />
+    <Property Name="deviceno" Type="Int32" />
+    <Property Name="member" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="department" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="tra_det">
+    <Key>
+      <PropertyRef Name="tra_id" />
+      <PropertyRef Name="tra_recid" />
+    </Key>
+    <Property Name="tra_id" Type="Int32" Nullable="false" />
+    <Property Name="tra_recid" Type="Int32" Nullable="false" />
+    <Property Name="tra_details" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="userid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UploadQueue">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="SystemNo" Type="Int32" />
+    <Property Name="DeviceNo" Type="Int32" />
+    <Property Name="Description" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="First_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Last_Name" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Department" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Member" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ReplyTo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="UserAlias">
+    <Key>
+      <PropertyRef Name="AliasID" />
+    </Key>
+    <Property Name="AliasID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmpCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmpFullName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ADCommonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="EmployeeExclude">
+    <Key>
+      <PropertyRef Name="EmpNo" />
+    </Key>
+    <Property Name="EmpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="EmployeeManager_Backup">
+    <Key>
+      <PropertyRef Name="EmployeeManagerID" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="EmployeeManagerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="EmployeeNo" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="DirectManager" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Source" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="km01">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="Int32" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA1" Type="Int32" />
+    <Property Name="DATA2" Type="Int32" />
+    <Property Name="DATA3" Type="Int32" />
+    <Property Name="DATA4" Type="Int32" />
+    <Property Name="DATA5" Type="Int32" />
+    <Property Name="DATA6" Type="Int32" />
+    <Property Name="DATA7" Type="Int32" />
+    <Property Name="DATA8" Type="Int32" />
+    <Property Name="CHALLNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="DEVTYPE" Type="Int32" />
+    <Property Name="COLOR" Type="Int32" />
+    <Property Name="ALARMDETAILS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL" Type="Int32" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+    <Property Name="ROUNDTIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+  </EntityType>
+  <EntityType Name="MacroOutputBDL_EBABackDate">
+    <Key>
+      <PropertyRef Name="RecID" />
+    </Key>
+    <Property Name="WeekEnding" Type="DateTime" Precision="3" />
+    <Property Name="EmpNo" Type="String" MaxLength="5" FixedLength="false" Unicode="true" />
+    <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="RecID" Type="Int32" Nullable="false" />
+    <Property Name="ShiftID" Type="Int32" />
+    <Property Name="PayCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Date" Type="DateTime" Precision="3" />
+    <Property Name="Start" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Finish" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MealBreak" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="Hours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="CodeHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OTHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="AF15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="NS30" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SAOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="SUX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX15" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="DOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="WOTX2" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="OT25" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="MEA3" Type="Int32" />
+    <Property Name="ORDHours" Type="Decimal" Precision="5" Scale="2" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="RosterOnPaycodeMapping">
+    <Key>
+      <PropertyRef Name="Site" />
+      <PropertyRef Name="Paycode" />
+      <PropertyRef Name="DevNo" />
+      <PropertyRef Name="Devname" />
+    </Key>
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Paycode" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DevNo" Type="Int32" Nullable="false" />
+    <Property Name="Devname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SMSEmployee">
+    <Key>
+      <PropertyRef Name="EmpNo" />
+    </Key>
+    <Property Name="EmpNo" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Firstname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="lastname" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="ticket25457">
+    <Key>
+      <PropertyRef Name="ExceptionID" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="ExceptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EmployeeName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ManagerName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ExceptionDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="Int32" />
+    <Property Name="ReasonCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="LocationCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedBy" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_ctrl">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="UPDATED" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="UPDATED" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_det_EBABackDate">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="Int32" Nullable="false" />
+    <Property Name="tid_site" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_team" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_location" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="tid_card" Type="Int32" />
+    <Property Name="tid_date" Type="DateTime" Precision="3" />
+    <Property Name="tid_type" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_empno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tid_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_scan_in" Type="DateTime" Precision="3" />
+    <Property Name="tid_scan_out" Type="DateTime" Precision="3" />
+    <Property Name="tid_start" Type="DateTime" Precision="3" />
+    <Property Name="tid_finish" Type="DateTime" Precision="3" />
+    <Property Name="tid_meal" Type="Double" />
+    <Property Name="tid_meal_corr" Type="Double" />
+    <Property Name="tid_hours" Type="Double" />
+    <Property Name="tid_status" Type="Int32" />
+    <Property Name="tid_approver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tid_grade" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="POID" Type="Int32" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_det_roster_on">
+    <Key>
+      <PropertyRef Name="tid_recid" />
+    </Key>
+    <Property Name="tid_recid" Type="Int32" Nullable="false" />
+    <Property Name="tid_site" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_team" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_location" Type="String" MaxLength="8" FixedLength="true" Unicode="false" />
+    <Property Name="tid_card" Type="Int32" />
+    <Property Name="tid_date" Type="DateTime" Precision="3" />
+    <Property Name="tid_type" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+    <Property Name="tid_empno" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+    <Property Name="tid_name" Type="String" MaxLength="50" FixedLength="true" Unicode="false" />
+    <Property Name="tid_scan_in" Type="DateTime" Precision="3" />
+    <Property Name="tid_scan_out" Type="DateTime" Precision="3" />
+    <Property Name="tid_start" Type="DateTime" Precision="3" />
+    <Property Name="tid_finish" Type="DateTime" Precision="3" />
+    <Property Name="tid_meal" Type="Double" />
+    <Property Name="tid_meal_corr" Type="Double" />
+    <Property Name="tid_hours" Type="Double" />
+    <Property Name="tid_status" Type="Int32" />
+    <Property Name="tid_approver" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="tid_grade" Type="String" MaxLength="3" FixedLength="false" Unicode="true" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="POID" Type="Int32" />
+    <Property Name="userid" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tid_tl_det">
+    <Key>
+      <PropertyRef Name="tid_team" />
+    </Key>
+    <Property Name="tid_team" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="tid_teamleader" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="tid_teamleaderemail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tit_alarm">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="Int32" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA1" Type="Int32" />
+    <Property Name="DATA2" Type="Int32" />
+    <Property Name="DATA3" Type="Int32" />
+    <Property Name="DATA4" Type="Int32" />
+    <Property Name="DATA5" Type="Int32" />
+    <Property Name="DATA6" Type="Int32" />
+    <Property Name="DATA7" Type="Int32" />
+    <Property Name="DATA8" Type="Int32" />
+    <Property Name="CHALLNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="DEVTYPE" Type="Int32" />
+    <Property Name="COLOR" Type="Int32" />
+    <Property Name="ALARMDETAILS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL" Type="Int32" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+    <Property Name="ROUNDTIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tit_alarm_from_tid_det">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="Int32" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA1" Type="Int32" />
+    <Property Name="DATA2" Type="Int32" />
+    <Property Name="DATA3" Type="Int32" />
+    <Property Name="DATA4" Type="Int32" />
+    <Property Name="DATA5" Type="Int32" />
+    <Property Name="DATA6" Type="Int32" />
+    <Property Name="DATA7" Type="Int32" />
+    <Property Name="DATA8" Type="Int32" />
+    <Property Name="CHALLNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="DEVTYPE" Type="Int32" />
+    <Property Name="COLOR" Type="Int32" />
+    <Property Name="ALARMDETAILS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL" Type="Int32" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+    <Property Name="ROUNDTIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tit_alarm_from_tid_det_detailed">
+    <Key>
+      <PropertyRef Name="SITEID" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="TID_EMPNO" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+    <Property Name="tid_date" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tit_alarm_test">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="Int32" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA1" Type="Int32" />
+    <Property Name="DATA2" Type="Int32" />
+    <Property Name="DATA3" Type="Int32" />
+    <Property Name="DATA4" Type="Int32" />
+    <Property Name="DATA5" Type="Int32" />
+    <Property Name="DATA6" Type="Int32" />
+    <Property Name="DATA7" Type="Int32" />
+    <Property Name="DATA8" Type="Int32" />
+    <Property Name="CHALLNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="DEVTYPE" Type="Int32" />
+    <Property Name="COLOR" Type="Int32" />
+    <Property Name="ALARMDETAILS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL" Type="Int32" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+    <Property Name="ROUNDTIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tit_dev">
+    <Key>
+      <PropertyRef Name="SiteId" />
+      <PropertyRef Name="DevNo" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="SiteId" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="DevNo" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Tmp_tit_alarm">
+    <Key>
+      <PropertyRef Name="SITEID" />
+      <PropertyRef Name="SYSTEMNO" />
+      <PropertyRef Name="ALARMNUMBER" />
+      <PropertyRef Name="CHALLENGERNO" />
+    </Key>
+    <Property Name="SITEID" Type="String" MaxLength="3" FixedLength="true" Unicode="false" Nullable="false" />
+    <Property Name="SYSTEMNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMNUMBER" Type="Int32" Nullable="false" />
+    <Property Name="CHALLENGERNO" Type="Int32" Nullable="false" />
+    <Property Name="ALARMDATE" Type="DateTime" Precision="0" />
+    <Property Name="DATA1" Type="Int32" />
+    <Property Name="DATA2" Type="Int32" />
+    <Property Name="DATA3" Type="Int32" />
+    <Property Name="DATA4" Type="Int32" />
+    <Property Name="DATA5" Type="Int32" />
+    <Property Name="DATA6" Type="Int32" />
+    <Property Name="DATA7" Type="Int32" />
+    <Property Name="DATA8" Type="Int32" />
+    <Property Name="CHALLNAME" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNO" Type="Int32" />
+    <Property Name="DEVTYPE" Type="Int32" />
+    <Property Name="COLOR" Type="Int32" />
+    <Property Name="ALARMDETAILS" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="DEVNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="USERNAME" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="INTERNAL" Type="Int32" />
+    <Property Name="UPDATED" Type="DateTime" Precision="3" />
+    <Property Name="ROUNDTIME" Type="DateTime" Precision="3" />
+    <Property Name="STATUS" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="PROCESSED" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tna_ctrl">
+    <Key>
+      <PropertyRef Name="ctr_code" />
+      <PropertyRef Name="ctr_id" />
+    </Key>
+    <Property Name="ctr_code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ctr_id" Type="Int32" Nullable="false" />
+    <Property Name="ctr_text" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ctr_value" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ctr_sortorder" Type="Int32" />
+    <Property Name="ctr_active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="WeekendWorkers">
+    <Key>
+      <PropertyRef Name="Site" />
+      <PropertyRef Name="EmpNo" />
+      <PropertyRef Name="Firstname" />
+      <PropertyRef Name="Lastname" />
+      <PropertyRef Name="Active" />
+    </Key>
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="EmpNo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Firstname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Lastname" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+  </EntityType>
+  <Association Name="FK_ApprovalList_Site">
+    <End Role="Site" Type="Self.Site" Multiplicity="0..1" />
+    <End Role="ApprovalList" Type="Self.ApprovalList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="SiteID" />
+      </Principal>
+      <Dependent Role="ApprovalList">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_GLCodeMapping_Site">
+    <End Role="Site" Type="Self.Site" Multiplicity="0..1" />
+    <End Role="GLCodeMapping" Type="Self.GLCodeMapping" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Site">
+        <PropertyRef Name="SiteID" />
+      </Principal>
+      <Dependent Role="GLCodeMapping">
+        <PropertyRef Name="SiteID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OldTNAContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="ActiveDirectoryTerminatedExclude" EntityType="Self.ActiveDirectoryTerminatedExclude" />
+    <EntitySet Name="ApprovalList" EntityType="Self.ApprovalList" />
+    <EntitySet Name="con_det" EntityType="Self.con_det" />
+    <EntitySet Name="dtproperties" EntityType="Self.dtproperties" />
+    <EntitySet Name="EmployeeException" EntityType="Self.EmployeeException" />
+    <EntitySet Name="EmployeeInformation" EntityType="Self.EmployeeInformation" />
+    <EntitySet Name="EmployeeLocation" EntityType="Self.EmployeeLocation" />
+    <EntitySet Name="EmployeeLocationNew" EntityType="Self.EmployeeLocationNew" />
+    <EntitySet Name="EmployeeLocationNew1" EntityType="Self.EmployeeLocationNew1" />
+    <EntitySet Name="EmployeeLocationtest" EntityType="Self.EmployeeLocationtest" />
+    <EntitySet Name="EmployeeManager" EntityType="Self.EmployeeManager" />
+    <EntitySet Name="EmployeeTotalTime" EntityType="Self.EmployeeTotalTime" />
+    <EntitySet Name="GLCodeMapping" EntityType="Self.GLCodeMapping" />
+    <EntitySet Name="LabourHireCompany" EntityType="Self.LabourHireCompany" />
+    <EntitySet Name="LabourHireCompanyRate" EntityType="Self.LabourHireCompanyRate" />
+    <EntitySet Name="Location" EntityType="Self.Location" />
+    <EntitySet Name="MacroOutputBDL" EntityType="Self.MacroOutputBDL" />
+    <EntitySet Name="MacroOutputBNE" EntityType="Self.MacroOutputBNE" />
+    <EntitySet Name="MacroOutputPTH" EntityType="Self.MacroOutputPTH" />
+    <EntitySet Name="MacroOutputSYD" EntityType="Self.MacroOutputSYD" />
+    <EntitySet Name="Reason" EntityType="Self.Reason" />
+    <EntitySet Name="rpt_det" EntityType="Self.rpt_det" />
+    <EntitySet Name="Site" EntityType="Self.Site" />
+    <EntitySet Name="STPControl" EntityType="Self.STPControl" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="tblActiveDays" EntityType="Self.tblActiveDays" />
+    <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" />
+    <EntitySet Name="tic_ctrl" EntityType="Self.tic_ctrl" />
+    <EntitySet Name="tic_det" EntityType="Self.tic_det" />
+    <EntitySet Name="tid_allowances" EntityType="Self.tid_allowances" />
+    <EntitySet Name="tid_det" EntityType="Self.tid_det" />
+    <EntitySet Name="tid_det_archive" EntityType="Self.tid_det_archive" />
+    <EntitySet Name="tit_alarm_archive" EntityType="Self.tit_alarm_archive" />
+    <EntitySet Name="tit_departments" EntityType="Self.tit_departments" />
+    <EntitySet Name="tit_users" EntityType="Self.tit_users" />
+    <EntitySet Name="tit_users_new" EntityType="Self.tit_users_new" />
+    <EntitySet Name="tit_users_static_old" EntityType="Self.tit_users_static_old" />
+    <EntitySet Name="tra_det" EntityType="Self.tra_det" />
+    <EntitySet Name="UploadQueue" EntityType="Self.UploadQueue" />
+    <EntitySet Name="UserAlias" EntityType="Self.UserAlias" />
+    <EntitySet Name="EmployeeExclude" EntityType="Self.EmployeeExclude" />
+    <EntitySet Name="EmployeeManager_Backup" EntityType="Self.EmployeeManager_Backup" />
+    <EntitySet Name="km01" EntityType="Self.km01" />
+    <EntitySet Name="MacroOutputBDL_EBABackDate" EntityType="Self.MacroOutputBDL_EBABackDate" />
+    <EntitySet Name="RosterOnPaycodeMapping" EntityType="Self.RosterOnPaycodeMapping" />
+    <EntitySet Name="SMSEmployee" EntityType="Self.SMSEmployee" />
+    <EntitySet Name="ticket25457" EntityType="Self.ticket25457" />
+    <EntitySet Name="tid_ctrl" EntityType="Self.tid_ctrl" />
+    <EntitySet Name="tid_det_EBABackDate" EntityType="Self.tid_det_EBABackDate" />
+    <EntitySet Name="tid_det_roster_on" EntityType="Self.tid_det_roster_on" />
+    <EntitySet Name="tid_tl_det" EntityType="Self.tid_tl_det" />
+    <EntitySet Name="tit_alarm" EntityType="Self.tit_alarm" />
+    <EntitySet Name="tit_alarm_from_tid_det" EntityType="Self.tit_alarm_from_tid_det" />
+    <EntitySet Name="tit_alarm_from_tid_det_detailed" EntityType="Self.tit_alarm_from_tid_det_detailed" />
+    <EntitySet Name="tit_alarm_test" EntityType="Self.tit_alarm_test" />
+    <EntitySet Name="tit_dev" EntityType="Self.tit_dev" />
+    <EntitySet Name="Tmp_tit_alarm" EntityType="Self.Tmp_tit_alarm" />
+    <EntitySet Name="tna_ctrl" EntityType="Self.tna_ctrl" />
+    <EntitySet Name="WeekendWorkers" EntityType="Self.WeekendWorkers" />
+    <AssociationSet Name="FK_ApprovalList_Site" Association="Self.FK_ApprovalList_Site">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="ApprovalList" EntitySet="ApprovalList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_GLCodeMapping_Site" Association="Self.FK_GLCodeMapping_Site">
+      <End Role="Site" EntitySet="Site" />
+      <End Role="GLCodeMapping" EntitySet="GLCodeMapping" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

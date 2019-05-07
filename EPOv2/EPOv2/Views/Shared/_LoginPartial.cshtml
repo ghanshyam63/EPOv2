@@ -1,0 +1,97 @@
+﻿@using EPOv2.Business
+@model  EPOv2.Business.Interfaces.IAd
+    @{
+        var fullName = Model.GetCurrentFullName();
+        var currentUserRoles = Model.GetCurrentUserRoles();
+    }
+
+@if (Request.IsAuthenticated)
+{
+    //using (Html.BeginForm("LogOff", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    //{
+        @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        @if (Request.IsAuthenticated)
+        {
+            if (currentUserRoles.Contains("Super Admin") || currentUserRoles.Contains("Admin") )
+            {
+                <li class="dropdown">
+                    @Html.ActionLink("Admin Panel", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                    <ul class="dropdown-menu">
+                        @if (User.Identity.Name.Contains("kogtev"))
+                        {
+                            <li>@Html.ActionLink("Orders List", "Index", "PurchaseOrder")</li>
+                            <li class="divider"></li>
+                        }
+                        <li>@Html.ActionLink("Maintenance", "Index", "Maintenance")</li>
+                        <li>@Html.ActionLink("Reports", "Index", "Report")</li>
+                        @if (User.Identity.Name.Contains("kogtev"))
+                        {
+                            <li>@Html.ActionLink("Data Management", "Index", "DataManagement")</li>
+                            <li class="divider"></li>
+                            <li>@Html.ActionLink("Generate PDF", "PdfPOView", "PurchaseOrder")</li>
+                            @*<li>@Html.ActionLink("PDF PO", "PdfPO", "test")</li>
+                            <li>@Html.ActionLink("Testing", "RaisingPO", "Test")</li>
+                            <li>@Html.ActionLink("PDF PO - VIEW", "PdfPOView", "test")</li>
+                            <li>@Html.ActionLink("Send email", "SendEmail", "test")</li>
+                            <li>@Html.ActionLink("Open PDF", "OpenPDF", "test")</li>
+                            <li>@Html.ActionLink("Test Validation 2", "TestValidation2", "test")</li>
+                            <li>@Html.ActionLink("Test Validation", "TestValidation", "test")</li>
+                            <li>@Html.ActionLink("MultiPage PDF", "PdfMultiPage", "test")</li>
+                            <li>@Html.ActionLink("TestWatermark", "Watermark", "test")</li>
+                            <li>@Html.ActionLink("Test Copy PDF", "CopyPDFPage", "test")</li>*@
+                        }
+
+                    </ul>
+                </li>
+
+
+            }
+           
+
+            if (currentUserRoles.Contains("dstewar") || currentUserRoles.Contains("geverin"))
+            {
+                <li class="dropdown">
+                    @Html.ActionLink("Admin Panel", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                    <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Re-Assign Order", "ReassignOrder", "Maintenance")</li>
+                    </ul>
+                </li>
+
+            }
+
+            if (currentUserRoles.Contains("Account Admin"))
+            {
+                <li class="dropdown">
+                    @Html.ActionLink("Admin Panel", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Manage Receipt Groups", "ManageReceiptGroups", "Maintenance")</li>
+                        <li>@Html.ActionLink("Authorise Voucher Manually", "VoucherStatusChange", "Ettacher")</li>
+                        <li>@Html.ActionLink("Change PO Status", "POStatus", "Maintenance")</li>
+                    </ul>
+                </li>
+            }
+
+
+
+            if (currentUserRoles.Contains("Super Admin") || currentUserRoles.Contains("Admin") || currentUserRoles.Contains("kogtev") || currentUserRoles.Contains("abeard") || currentUserRoles.Contains("pcabass"))
+            {
+                <li class="dropdown">
+                    @Html.ActionLink("Admin Tools", null, null, null, new { @class = "dropdown-toggle", data_toggle = "dropdown" })
+                    <ul class="dropdown-menu">
+                        <li>@Html.ActionLink("Find User group", "FindUserGroups", "Administrator")</li>
+                    </ul>
+                </li>
+                
+            }
+
+        }
+        <li>
+            @Html.ActionLink("Hello " + fullName + "!", null, null, null, new { title = "Manage" })
+        </li>
+        <li>@Html.ActionLink("Go to Intranet", "Intranet", "Home")</li>
+        @*<li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>*@
+    </ul>
+  //  }
+}

@@ -1,0 +1,179 @@
+﻿@model EPOv2.ViewModels.InvoicePageViewModel
+@{
+    ViewBag.Title = "Invoice";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+
+    $(function() {
+        if (parseFloat($("#Variance").val()) !== 0) {
+            $("#div-variancePanel").removeClass("hidden");
+        }
+    });
+
+   
+
+    function ViewDocument(object) {
+        var docId = object.value;
+        $("#VoucherDocViewId").val(docId);
+        var id = "#ViewItem-" + docId;
+        var docType = $(id).data("type");
+        $('#VoucherDocViewStyle').val(docType);
+        $('#DocumentViewForm').attr('target', '_blank').submit();
+    }
+
+</script>
+
+    <h3>Authorisation Invoice #@Model.InvoiceNumber From @Model.SupplierName</h3>
+
+
+<div class="row">
+        <div class="col-md-8">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+                    <h3 class="panel-title">General info </h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-md-5">
+                        <h4>
+                            This Invoice Total: @Html.DisplayFor(x => x.InvoiceTotal)
+                        </h4>
+                        <h4>PO Total: @Html.DisplayFor(x => x.OrderTotal)</h4>
+                        <h5>Related Invoice Total: @Html.DisplayFor(x => x.RelatedInvoiceTotal)</h5>
+                    </div>
+                    <div class="col-md-7">
+                        <label>Comments</label><br/>
+                        <span style="white-space: pre-line">@Model.DisplayComment</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    <div class="col-md-4">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <h3 class="panel-title">Related document</h3>
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("ViewDocument", "Ettacher", FormMethod.Post, new { id = "DocumentViewForm" }))
+                {
+                    @Html.HiddenFor(x => x.VoucherDocumentId, new { id = "VoucherDocViewId" })
+                    @Html.HiddenFor(x => x.VoucherDocumentType, new {id="VoucherDocViewStyle"})
+                }
+                <table class="table table-responsive">
+                    <thead>
+                    <tr>
+                        <th>@Html.DisplayNameFor(x => x.RelatedDocuments[0].Type)</th>
+                        <th>@Html.DisplayNameFor(x => x.RelatedDocuments[0].Authoriser)</th>
+                        @*<th>@Html.DisplayNameFor(x => x.RelatedDocuments[0].Date)</th>*@
+                        <th></th>
+                    </tr>
+                    </thead>
+                    @foreach (var item in Model.RelatedDocuments)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(x => item.Type)</td>
+                            <td>@Html.DisplayFor(x => item.Authoriser)</td>
+                            @*<td>@Html.DisplayFor(x => item.Date)</td>*@
+                            <td>
+                                @Html.HiddenFor(x => item.DocumentId)
+                                @Html.HiddenFor(x=>x.VoucherDocumentType)
+                                <button type="button" value="@item.DocumentId" id="ViewItem-@item.DocumentId" data-type="@item.Type" onclick="ViewDocument(this)" title="View order" class="btn btn-info control-btn-crud">
+                                    <span class="glyphicon glyphicon-eye-open"></span>
+                                </button>
+                            </td>
+                        </tr>
+                    }
+                </table>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="hidden" id="div-variancePanel">
+    @if (Model.Variance < 0)
+    {
+        <div class="alert alert-dismissible alert-danger">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p>
+                There is an UNFAVOURABLE invoice variance of <span id="varianceTotal">
+                @{
+                    var variance = Convert.ToDouble(Math.Abs(Model.Variance));
+                    @:(@String.Format("{0:C}", variance))
+                }
+                </span>
+            </p>
+        </div>
+    }
+    else
+    {
+        <div class="alert alert-dismissible alert-success">
+            <button type="button" class="close" data-dismiss="alert">×</button>
+            <p>
+                There is an invoice variance of <span id="varianceTotal">
+                   @Html.DisplayFor(x => Model.Variance)
+                </span>
+            </p>
+        </div>
+    }
+</div>
+
+@{
+    if (Model.VoucherInfo != null)
+    {
+        Html.RenderPartial("_VoucherInfo", Model.VoucherInfo);
+    }
+    if (Model.VoucherDetails != null)
+    {
+        Html.RenderPartial("_VoucherDetails", Model.VoucherDetails);
+    }
+}
+    @if(Model.isGRNI)
+    {
+        Html.RenderPartial("_QadOrderItems", Model.QadOrderItems);
+        
+    }
+
+    @if (Model.OrderItems != null && Model.OrderItems.Count>0)
+    {
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">Purchase order info</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-responsive">
+                    <thead>
+                        <tr>
+                            <th>PO #</th>
+                            <th>Line</th>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            @*<th>Unit price</th>*@
+                            <th>Total ex GST</th>
+                            <th>GST Total</th>
+                            <th>Line Total</th>
+                            <th>Status</th>
+                            <th>Author</th>
+                        </tr>
+                    </thead>
+                    @foreach (var po in Model.OrderItems)
+                    {
+                        <tr>
+                            <td>@Html.DisplayFor(x => po.OrderNumber)</td>
+                            <td>@Html.DisplayFor(x => po.Line)</td>
+                            <td>@Html.DisplayFor(x => po.Description)</td>
+                            <td>@Html.DisplayFor(x => po.Qty)</td>
+                            @*<td class="text-right">@Html.DisplayFor(x => po.UnitPrice)</td>*@
+                            <td class="text-right">@Html.DisplayFor(x => po.TotalExTax)</td>
+                            <td class="text-right">@Html.DisplayFor(x => po.TotalTax)</td>
+                            <td class="text-right">@Html.DisplayFor(x => po.Total)</td>
+                            <td>@Html.DisplayFor(x => po.Status)</td>
+                            <td>@Html.DisplayFor(x => po.Author)</td>
+                        </tr>
+                    }
+
+                </table>
+            </div>
+        </div>
+    }

@@ -1,0 +1,23 @@
+﻿@model EPOv2.ViewModels.BudgetReportEntryDataViewModel
+<div class="form-group col-md-12">
+    <label class="control-label col-md-3">Entity</label>
+    <div class="col-md-7">
+        @Html.DropDownListFor(model => model.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", @onchange = "selectEntity(this)" })
+    </div>
+</div>
+<div class="form-group col-md-12">
+    <label class="control-label col-md-3">Cost Centre</label>
+    <div class="col-md-7">
+        @Html.DropDownListFor(m => m.SelectedCostCenter, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm input", @disabled = "disabled" })
+    </div>
+</div>
+<div class="form-group col-md-12">
+    <label class="control-label col-md-3">Category</label>
+    <div class="col-md-7">
+        @Html.DropDownListFor(m => m.SelectedCategory, new SelectList(Model.AccountCategories, "Id", "Name"), "Select Category ", new { @class = "form-control input-sm input" })
+    </div>
+</div>
+<div class="form-group col-md-offset-3 col-md-7">
+    <button type="button" name="button" value="RunGeneral" class="btn btn-primary  btn-inv-sml" onclick="RunReport()">Run with GL Codes</button>
+    <button type="button" name="button" value="RunVouchers" class="btn btn-info btn-inv-sml" onclick="RunReportwithVouchers()">Run with Vouchers</button>
+</div>

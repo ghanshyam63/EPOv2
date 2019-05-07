@@ -1,0 +1,56 @@
+﻿@model IEnumerable<DomainModel.Entities.vRockyEmployees>
+@{
+    ViewBag.Title = "RockieEmp";
+    var i = 0;
+}
+
+<h2>Rockie Employees</h2>
+
+<table class="table">
+    <tr>
+        <th>
+            #
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmpNo)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Surname)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Level)
+        </th>
+        @*<th></th>*@
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        i++;
+        <tr>
+            <td>
+                @i
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmpNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Surname)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Level)
+            </td>
+            @*<td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.StagingEmpID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.StagingEmpID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.StagingEmpID })
+            </td>*@
+        </tr>
+    }
+
+</table>

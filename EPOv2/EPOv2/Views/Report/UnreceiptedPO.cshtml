@@ -1,0 +1,92 @@
+﻿@model EPOv2.ViewModels.UnrecieptedPOReportViewModel
+@{
+    ViewBag.Title = "UnreceiptedPO";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Unreceipted PO</h2>
+
+<div class="table">
+    @using (@Html.BeginForm("ViewOrder", "PurchaseOrder", FormMethod.Post, new { id = "Dasboard" }))
+    {
+        @Html.HiddenFor(x => x.SelectedItem);
+    }
+    <table class="table table-striped">
+        <tr>
+            <th class="col-md-1">
+                Order #
+            </th>
+            <th class="col-md-1">
+                CC
+            </th>
+            <th class="col-md-2">
+                Supplier
+            </th>
+            <th class="col-md-1">
+                Author
+            </th>
+            @*<th>
+                Approver
+            </th>*@
+            <th class="col-md-2">
+                Receipt group
+            </th>
+            <th class="col-md-3">
+                Receivers
+            </th>
+            <th >
+                Total
+            </th>
+            <th >
+                Status
+            </th>
+
+        </tr>
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>
+                    @Html.HiddenFor(x => item.Id)
+                    <button type="button" value="@item.Id" id="ViewItem-@item.Id" onclick="ViewItem(this)"> @item.OrderNumber</button>
+                </td>
+                <td>
+                    @item.CostCentre
+                </td>
+                <td>
+                    @item.SupplierName
+                </td>
+                <td>
+                    @item.Author
+                </td>
+                @*<td>
+                    @item.Approver
+                </td>*@
+                <td>
+                    @item.ReceiptGroup
+                </td>
+                <td>
+                    @foreach (var r in item.Recievers)
+                    {
+                        <span>@r;</span>
+                    }
+                </td>
+                <td class="text-right">
+                    $@item.Total
+                </td>
+                <td>
+                    @item.Status
+                </td>
+            </tr>
+        }
+    </table>
+</div>
+@section Scripts{
+    <script type="text/javascript">
+        function ViewItem(object) {
+            var itemID = object.value;
+            $("#Dasboard #SelectedItem").val(itemID);
+                $('#Dasboard').attr('target', '_blank').attr("Action", '@Url.Action("ViewOrder","PurchaseOrder")').submit();
+
+        }
+    </script>
+}

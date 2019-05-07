@@ -1,0 +1,41 @@
+﻿@using EPOv2.Business
+@model EPOv2.ViewModels.CapexCompanyBox
+
+<div class="row ">
+    <div class="form-group col-md-11">
+        <label class="col-md-3 CapexForm">Company</label>
+        <div class="col-md-7">
+            @(Model.IsLocked ? Html.DropDownListFor(model => model.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", @onchange = "selectEntity(this)", @disabled = "disabled" })
+                    : Html.DropDownListFor(model => model.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", @onchange = "selectEntity(this)" })
+            )
+            @Html.ValidationMessageFor(model => model.SelectedEntity, "Please select Entity", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-md-3 CapexForm">Cost Centre</label>
+        <div class="col-md-7">
+            @Html.DropDownListFor(m => m.SelectedCostCentre, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm input", @disabled = "disabled", @onchange = "selectCostCenter(this)" })
+            @Html.ValidationMessageFor(model => model.SelectedCostCentre, "Please select Cost Centre", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+<div class="row form-group">
+    <div class="form-group col-md-11">
+        <label class="col-md-3 CapexForm">Owner</label>
+        <div class="col-md-7 ">
+            @Html.DropDownListFor(m => m.SelectedOwner, new SelectList(Model.Users, "Id", "FullName"), "Select Owner ", new { @class = "form-control input-sm input", @onchange = "selectOwner(this)", @disabled = "disabled" })
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="form-group col-md-11">
+        <label class="col-md-3 CapexForm">Capex type</label>
+        <div class="col-md-7">
+            @Html.DropDownListFor(m => m.SelectedCapexType, new SelectList(Enum.GetValues(typeof(Data.CapexType))), "Select Style", new { @class = "form-control input-sm input", @onchange = "selectStyle(this)" })
+            @Html.ValidationMessageFor(model => model.SelectedCapexType, "Please select Style", new { @class = "text-danger" })
+        </div>
+    </div>
+</div>
+

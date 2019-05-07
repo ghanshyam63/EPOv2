@@ -1,0 +1,54 @@
+﻿@model EPOv2.ViewModels.VoucherAttachingFormViewModel
+
+ 
+@using (@Html.BeginForm("AttachDocumentToVoucher", "Ettacher", FormMethod.Post, new { id = "VoucherAttachFrom" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "The following errors were found:", new { @class = "text-danger" })
+    @*@Html.ValidationSummary()*@
+    @Html.HiddenFor(x => x.SupplierCode)
+    @Html.HiddenFor(x => x.VoucherNumber)
+    @Html.HiddenFor(x => x.MaxPagesInFile)
+
+
+    <div class="row">
+        <div class="col-md-2">
+            Page #
+        </div>
+        <div class="col-md-2">
+            From @Html.TextBoxFor(x => x.PageFrom, null, new { @class = "form-control input-sm ", @onkeypress = "return isNumberKey(event)" })
+        </div>
+        <div class="col-md-2">
+            To @Html.TextBoxFor(x => x.PageTo, null, new { @class = "form-control input-sm ", @onkeypress = "return isNumberKey(event)" })
+            @*@Html.ValidationMessageFor(model => model.PageTo, "Incorect number", new { @class = "text-danger" }) @Html.ValidationMessageFor(model => model.PageFrom, "Incorect number", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-2">
+            Comment
+        </div>
+        <div>
+            @Html.TextAreaFor(m => m.Comment, 4, 90, new { @class = "form-control " })
+        </div>
+    </div>
+    <div class="row">
+        <div class="col col-md-2">
+            Options
+        </div>
+        <div>
+            @Html.CheckBoxFor(x => x.IsAuthorised) Already authorised
+            @Html.CheckBoxFor(x => x.ReplaceExistingFile) Replase existing file
+            @Html.CheckBoxFor(x => x.isEPO) EPO
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-2 pull-right">
+            <button type="submit" name="button" value="Submit" class="btn btn-primary btn-block">E-ttach</button>
+        </div>
+        <div class="col-md-2 pull-right">
+            <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block ">Cancel</button>
+        </div>
+    </div>
+
+}
+

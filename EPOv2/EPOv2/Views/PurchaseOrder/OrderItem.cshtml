@@ -1,0 +1,416 @@
+﻿@model EPOv2.ViewModels.OrderItemViewModel
+@{
+    ViewBag.Title = "New Item";
+    var isHidden = "";
+    if (!Model.isCapex)
+    {
+        isHidden = "hidden";
+    }
+}
+<script type="text/javascript">
+
+    $(document).on("focusin", "#datepicker", function(event) {
+
+        $(this).prop('readonly', true);
+
+    });
+
+    $(document).on("focusout", "#datepicker", function(event) {
+
+        $(this).prop('readonly', false);
+
+    });
+
+    $(function () {
+        $('#POItemForm').submit(function () {
+            //return validateFields(self);//false stops POST, true continues POST
+            if ($("#Qty").val() == 0 || $("#UnitPrice").val() == 0)
+            {
+               alert("Quantity and Unit Price should be greater than 0.");
+                return false;
+            }
+        });
+
+        selectAccount();
+        $('.UpdateCheckBox').on('change', function () {
+            $('.UpdateCheckBox').not(this).prop('checked', false);
+            calculateTotals(this);
+    });
+    });
+    $(function() {
+
+        $("#datepicker").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            minDate: -0,
+            dateFormat: 'dd/mm/yy',
+            showAnim: 'blind'
+        });
+
+        var currId = parseFloat($("#SelectedCurrency").val());
+        if (currId !== 1) {
+            changeCurrency();
+            calculateTotals();
+        }
+
+    });
+
+    function isNumberKey(evt) {
+        var charCode = (evt.which) ? evt.which : event.keyCode;
+        if (charCode !== 46 && charCode > 31
+            && (charCode < 48 || charCode > 57))
+            return false;
+       return true;
+    }
+
+
+
+    function calculateTotals(object) {
+        var price = parseFloat($("#UnitPrice").val());
+        var qty = parseFloat($("#Qty").val());
+        var taxP = parseInt($("#TaxPercent").val());
+
+        var isTax = $("#IsTaxable").prop('checked');
+        var isGST = $("#IsGSTInclusive").prop('checked');
+        var isGSTFree = $("#IsGSTFree").prop('checked');
+
+       
+        //var total = qty * price;
+
+        //$("#span-total").text('$' + total);
+        //$("#Total").val(total);
+
+        if (isGST) {
+            calcTotalPlanA(price, qty);
+        } else if (isTax) {
+            calcTotalPlanB(price, qty, taxP);
+        } else if (isGSTFree) {
+            calcTotalPlanC(price, qty);
+        }
+    }
+
+    function calcTotalPlanA(price, qty) {
+        var gst = price / 11;
+        var totalExTax = price * qty / 1.1;
+        var totalIncTax = price * qty;
+        var totalGst = totalIncTax - totalExTax;
+        renderCalcResult(totalIncTax, totalGst, totalExTax);
+        ConvertTotals(totalIncTax, totalGst, totalExTax);
+    }
+
+    function calcTotalPlanB(price, qty, tax) {
+        var gst = (price * (tax / 100)) * qty;
+        var totalExTax = price * qty;
+        var totalIncTax = price * qty + gst;
+        var totalGst = gst;
+        renderCalcResult(totalIncTax, totalGst, totalExTax);
+        ConvertTotals(totalIncTax, totalGst, totalExTax);
+    }
+
+    function calcTotalPlanC(price, qty) {
+        var totalExTax = price * qty;
+        var totalIncTax = price * qty;
+        var totalGst = 0;
+        renderCalcResult(totalIncTax, totalGst, totalExTax);
+        ConvertTotals(totalIncTax, totalGst, totalExTax);
+    }
+
+    function renderCalcResult(totalIncTax, totalGst, totalExTax) {
+        var currChar = $('#SelectedCurrency option:selected').text();
+        currChar = currChar.substring(3, 4);
+        //Hidden Fields
+        $("#Total").val(totalIncTax.toFixed(2));
+        $("#TotalTax").val(totalGst.toFixed(2));
+        $("#TotalExTax").val(totalExTax.toFixed(2));
+        //Span fields
+        $("#span-totalextax").text(currChar + totalExTax.toFixed(2));
+        $("#span-totaltax").text(currChar + totalGst.toFixed(2));
+        $("#span-total").text(currChar + totalIncTax.toFixed(2));
+    }
+
+    function renderCalcResult_Converted(totalIncTax, totalGst, totalExTax) {
+        //Hidden Fields
+        $("#ConvertedTotal").val(totalIncTax.toFixed(2));
+        $("#ConvertedTotalExTax").val(totalGst.toFixed(2));
+        $("#ConvertedTotalTax").val(totalExTax.toFixed(2));
+        //Span fields
+        $("#span-converted-totalextax").text('$' + totalExTax.toFixed(2));
+        $("#span-converted-totaltax").text('$' + totalGst.toFixed(2));
+        $("#span-converted-total").text('$' + totalIncTax.toFixed(2));
+    }
+
+    function changeCurrency(object) {
+        var currId = parseFloat($("#SelectedCurrency").val());
+        if (currId !== 1) {
+            $("#currRate-block").removeClass("hidden");
+            $("#div-converted-totalextax").removeClass("hidden");
+            $("#div-converted-totaltax").removeClass("hidden");
+            $("#div-converted-total").removeClass("hidden");
+        } else {
+            $("#currRate-block").addClass("hidden");
+            $("#div-converted-totalextax").addClass("hidden");
+            $("#div-converted-totaltax").addClass("hidden");
+            $("#div-converted-total").addClass("hidden");
+        }
+    }
+
+    function ConvertTotals(totalIncTax, totalGst, totalExTax) {
+        var currRate = parseFloat($("#CurrencyRate").val());
+
+        totalIncTax = totalIncTax * currRate;
+        totalGst = totalGst * currRate;
+        totalExTax = totalExTax * currRate;
+        renderCalcResult_Converted(totalIncTax, totalGst, totalExTax);
+    }
+
+    function selectAccount(object) {
+
+        var isPossibleItemKit = $("#IsItemKit").val();
+        if (isPossibleItemKit) {
+            var accountID = $("#SelectedAccount").val();
+            var orderID = $("#OrderId").val();
+
+            if (accountID != null && accountID != '') {
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("FetchItemKit")',
+                    cache: false,
+                    data: {
+                        accountId: accountID,
+                        orderId: orderID
+                    },
+                    error: function(xhr, status, error) {
+                        $(".alert").html(xhr.responseText);
+                    },
+                    success: function (result) {
+                        if (result !== "") {
+                            $('#div-itemKit').html(result);
+                            $('#div-itemKit').removeClass("hidden");
+                        } else {
+                            $('#div-itemKit').addClass("hidden");
+                        }
+                        //$('input[id=SupplierId]').val(supplierID);
+                        //$('#SupplierEmail').val($('#EmailForSupplier').val());
+                    }
+                });
+            }
+        }
+    }
+
+
+    function selectPart(object) {
+        var itemKitID = object.value;
+        if (itemKitID != null && itemKitID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchItemKitDetails")',
+                cache: false,
+                data: {
+                    itemKitId: itemKitID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (data) {
+                    $('#Description').val(data.result.Description);
+                    $('#UnitPrice').val(data.result.Price);
+                    calculateTotals();
+                }
+            });}
+    }
+
+
+</script>
+<div class="col-md-12">
+    <div class="well well-sm col-md-2"><h3>New Item</h3></div>
+</div>
+<br>
+@using (@Html.BeginForm("SaveOrderItem", "PurchaseOrder", FormMethod.Post, new { id = "POItemForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "The following errors were found:", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.OrderId)
+    @Html.HiddenFor(m => m.Line)
+    @Html.HiddenFor(m => m.RevisionQty)
+    @Html.HiddenFor(m => m.IsRevision)
+    @Html.HiddenFor(m => m.IsRestrictedEdit)
+    @Html.HiddenFor(m => m.Status)
+    @Html.HiddenFor(m => m.Total)
+    @Html.HiddenFor(m => m.TotalExTax)
+    @Html.HiddenFor(m => m.TotalTax)
+    @Html.HiddenFor(m => m.Accounts)
+    @Html.HiddenFor(m => m.TaxPercent)
+    @Html.HiddenFor(m => m.itemId)
+    @Html.HiddenFor(m => m.SelectedCapexId)
+    @Html.HiddenFor(m => m.ConvertedTotal)
+    @Html.HiddenFor(m => m.ConvertedTotalExTax)
+    @Html.HiddenFor(m => m.ConvertedTotalTax)
+    @Html.HiddenFor(m => m.IsItemKit)
+
+    if (Model.IsRestrictedEdit)
+    {
+        @Html.HiddenFor(m => m.DueDate)
+        @Html.HiddenFor(m => m.Description)
+        @Html.HiddenFor(m => m.Qty)
+        @Html.HiddenFor(m => m.UnitPrice)
+        @Html.HiddenFor(m => m.IsGSTInclusive)
+        @Html.HiddenFor(m => m.SelectedCurrency)
+        @Html.HiddenFor(m => m.IsTaxable)
+        @Html.HiddenFor(m => m.CurrencyRate)
+    }
+
+    <div id="item-info">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Line #</label><span class=" badge">@Model.Line</span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Revision #</label><span class="badge">@Model.RevisionQty</span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Coste Centre</label><span class="col-md-5 badge">@Model.CostCentre</span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Account</label>
+                    <div class="col-md-5">
+                        @Html.DropDownListFor(m => m.SelectedAccount, new SelectList(Model.AccountViewModels, "Id", "FullName"), "Select Account", new { @class = "form-control input-sm input", @onchange = "selectAccount(this)", tabindex = "1" })
+                        @Html.ValidationMessageFor(model => model.SelectedAccount, "Please select Account", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Sub Account</label>
+                    <div class="col-md-5">
+                        @Html.DropDownListFor(m => m.SelectedSubAccount, new SelectList(Model.SubAccountViewModels, "Id", "FullName"), "Select Sub Account", new { @class = "form-control input-sm input", tabindex = "2" })
+                    </div>
+                </div>
+                <div class="hidden" id="div-itemKit">
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Status</label><span class="col-md-2 badge">@Model.Status</span>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Due Date</label>
+                    <div class="col-md-5">
+                        @if (Model.IsRestrictedEdit)
+                        {
+                            @Html.TextBoxFor(m => m.DueDate, null, new { @id = "datepicker", @placeholder = "Select Due date", @disabled = "disabled", tabindex = "3" })
+                        }
+                        else
+                        {
+                            @Html.TextBoxFor(m => m.DueDate, null, new { @id = "datepicker", @placeholder = "Select Due date", tabindex = "3" })
+                            <br />
+                            @Html.ValidationMessageFor(model => model.DueDate, "Select Date", new { @class = "text-danger" })
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Description</label>
+                    <div class="col-sm-8">
+                        @(Model.IsRestrictedEdit ? Html.TextAreaFor(m => m.Description, 4, 60, new { @class = "form-control input-sm input", @disabled = "disabled", tabindex = "4" })
+                            : Html.TextAreaFor(m => m.Description, 4, 60, new { @class = "form-control input-sm input", tabindex = "4" }))
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Quantity</label>
+                    <div class="col-sm-2">
+                        @(Model.IsRestrictedEdit ? Html.TextBoxFor(m => m.Qty, null, new { @class = "form-control input-sm input text-right", @disabled = "disabled", tabindex = "5" })
+                            : Html.TextBoxFor(m => m.Qty, null, new { @class = "form-control input-sm input text-right", @onkeypress = "return isNumberKey(event)", @onchange = "calculateTotals(this)", tabindex = "5" }))
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Unit Price</label>
+                    <div class="col-sm-2">
+                        @(Model.IsRestrictedEdit ? Html.TextBoxFor(m => m.UnitPrice, null, new { @class = "form-control input-sm input text-right", @disabled = "disabled", tabindex = "6" })
+                            : Html.TextBoxFor(m => m.UnitPrice, null, new { @class = "form-control input-sm input text-right", @onkeypress = "return isNumberKey(event)", @onchange = "calculateTotals(this)", tabindex = "6" }))
+                    </div>
+                    <div class="col-sm-1">
+                        @(Model.IsRestrictedEdit ? Html.CheckBoxFor(m => m.IsGSTInclusive, new { @class = "check-box UpdateCheckBox", @disabled = "disabled" })
+                            : Html.CheckBoxFor(m => m.IsGSTInclusive, new { @class = "check-box UpdateCheckBox", @onchange = "calculateTotals(this)" }))
+                    </div>
+                    <label class="col-sm-3 control-label">GST Inclusive</label>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label">Currency</label>
+                    <div class="col-sm-2">
+                        @(Model.IsRestrictedEdit ? Html.DropDownListFor(m => m.SelectedCurrency, new SelectList(Model.Currencies, "Id", "Name"), "Select Currency", new { @class = "form-control input-sm input", @disabled = "disabled" })
+                            : Html.DropDownListFor(m => m.SelectedCurrency, new SelectList(Model.Currencies, "Id", "Name"), "Select Currency", new { @class = "form-control input-sm input", @onchange = "changeCurrency(this)" }))
+                        @Html.ValidationMessageFor(model => model.SelectedCurrency, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="col-sm-1">
+                        @(Model.IsRestrictedEdit ? Html.CheckBoxFor(m => m.IsTaxable, new { @class = "check-box UpdateCheckBox", @disabled = "disabled" })
+                            : Html.CheckBoxFor(m => m.IsTaxable, new { @class = "check-box UpdateCheckBox", @onchange = "calculateTotals(this)" }))
+                    </div>
+                    <label class="col-sm-2 control-label">GST Exclusive</label>
+                    <div class="col-sm-1">
+                        @(Model.IsRestrictedEdit ? Html.CheckBoxFor(m => m.IsGSTFree, new { @class = "check-box UpdateCheckBox", @disabled = "disabled" })
+                            : Html.CheckBoxFor(m => m.IsGSTFree, new { @class = "check-box UpdateCheckBox", @onchange = "calculateTotals(this)" }))
+                    </div>
+                    <label class="col-sm-2 control-label">GST Free</label>
+                </div>
+                <div class="row form-group hidden" id="currRate-block">
+                    <label class="col-sm-4 control-label ">Currency Rate</label>
+                    <div class="col-sm-2">
+                        @(Model.IsRestrictedEdit ? Html.TextBoxFor(m => m.CurrencyRate, null, new { @class = "form-control input-sm text-right", @disabled = "disabled" })
+                            : Html.TextBoxFor(m => m.CurrencyRate, null, new { @class = "form-control input-sm text-right", @onkeypress = "return isNumberKey(event)", @onchange = "calculateTotals(this)" }))
+                    </div>
+                </div>
+                <hr />
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Total ex Tax</label><span class="col-md-2 badge"><div id="span-totalextax" class="text-right item-total-badge-div">@Html.DisplayFor(x => x.TotalExTax, new { @class = "text-right" })</div></span>
+                    <div class="col-sm-6 hidden" id="div-converted-totalextax">
+                        <label class="col-sm-8 control-label ">Total ex Tax(AUD$)</label><span class="col-md-4 badge badge-lightdanger"><div id="span-converted-totalextax" class="text-right item-total-badge-div">@Html.DisplayFor(x => x.ConvertedTotalExTax, new { @class = "text-right" })</div></span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Tax Total</label><span class="col-md-2 badge"><div id="span-totaltax" class="text-right item-total-badge-div">@Html.DisplayFor(x => x.TotalTax, new { @class = "text-right" })</div></span>
+                    <div class="col-sm-6 hidden" id="div-converted-totaltax">
+                        <label class="col-sm-8 control-label ">Tax Total(AUD$)</label>
+                        <span class="col-md-4 badge badge-lightdanger">
+                            <div id="span-converted-totaltax" class="text-right item-total-badge-div">@Html.DisplayFor(x => x.ConvertedTotalTax, new { @class = "text-right" })</div>
+                        </span>
+                    </div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-4 control-label ">Total inc Tax</label><span class="col-md-2 badge"><div id="span-total" class="text-right item-total-badge-div">@Html.DisplayFor(x => x.Total, new { @class = "text-right" })</div></span>
+                    <div class="col-sm-6 hidden" id="div-converted-total">
+                        <label class="col-sm-8 control-label ">Total inc Tax(AUD$)</label><span class="col-md-4 badge badge-lightdanger"><div id="span-converted-total" class="text-right item-total-badge-div">@Html.DisplayFor(x => x.ConvertedTotal, new { @class = "text-right" })</div></span>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group col-md-6">
+                <div class="panel panel-info hidden">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">Budget block</h3>
+                    </div>
+                    <div class="panel-body">
+                        Under development
+                    </div>
+                </div>
+            </div>
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            <div class="row form-group">
+                <div class="col-md-2 pull-right">
+                    <button type="submit" name="button" value="Save" id="btnSave" class="btn btn-success btn-block " tabindex="7" autofocus>Save</button>
+                </div>
+                <div class="col-md-2 col-lg-offset-2 pull-right">
+                    <button type="submit" name="button" value="cancel" class="cancel btn btn-warning btn-block " tabindex="8">Cancel</button>
+                </div>
+
+
+            </div>
+
+
+
+
+        </div>
+    </div>
+}

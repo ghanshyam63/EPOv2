@@ -1,0 +1,82 @@
+﻿@model IEnumerable<EPOv2.ViewModels.SearchVoucherResult>
+@{
+    ViewBag.Title = "EttacherReportAuthorised";
+    Layout = null;
+}
+
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="epo report" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <style>
+        @Html.Raw(File.ReadAllText(Server.MapPath("~/Content/bootstrap-mail.css")))
+    </style>
+
+</head>
+<body>
+    <div class="container body-content">
+        <div class="table small">
+            <table class="small table col-sm-12 table-condensed table-striped">
+                <thead>
+                    <tr>
+                        <th  class="col-sm-1">
+                            Voucher #
+                        </th>
+                        <th  class="col-sm-1">
+                            Invoice #
+                        </th>
+                        <th  class="col-sm-2">
+                            Supplier
+                        </th>
+                        <th  class="col-sm-1 ">Total</th>
+                        <th  class="col-sm-1">
+                            Authoriser
+                        </th>
+                        <th  class="col-sm-1">Auth. date</th>
+                        <th  class="col-sm-1">Status</th>
+                        <th  class="col-sm-1">Scanned</th>
+                        <th  class="col-sm-3">Comment</th>
+                    </tr>
+                </thead>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.HiddenFor(x => item.Id)
+                            @Html.DisplayFor(x => item.VoucherNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.InvoiceNumber)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Supplier)
+                        </td>
+                        <td class="text-right">
+                            @Html.DisplayFor(x => item.Total)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Authoriser)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.AuthorisationDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Status)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x => item.Date)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(x=>item.Comment)
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+</body>
+</html>

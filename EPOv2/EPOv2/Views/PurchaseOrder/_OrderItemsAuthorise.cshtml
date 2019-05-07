@@ -1,0 +1,90 @@
+﻿@model List<EPOv2.ViewModels.OrderItemTableViewModel>
+<table class="table table-condensed">
+    <tr>
+        <th>
+            Line
+        </th>
+        <th>
+            Rev
+        </th>
+        <th>
+            Qty
+        </th>
+        <th>
+            Details
+        </th>
+        <th>
+            Account/Capex
+        </th>
+        <th>
+            Sub
+        </th>
+        <th>
+            Due Date
+        </th>
+        <th class="text-right">
+            ex GST Price
+        </th>
+        <th class="text-right">
+            GST Total
+        </th>
+        <th class="text-right">
+            Line Total
+        </th>
+        <th>
+           
+        </th>
+    </tr>
+    @if (Model != null)
+    {
+        foreach (var item in Model)
+         {
+             <tr>
+                 <td>
+                     @Html.HiddenFor(x=>item.Id)
+                     @Html.HiddenFor(x => item.CurrencyName)
+                     @item.Line
+                 </td>
+                 <td>
+                     @item.RevisionQty
+                 </td>
+                 <td>
+                     @item.Qty
+                 </td>
+                 <td>
+                     @item.Description
+                 </td>
+                 <td>
+                     @item.AccountName
+                 </td>
+                 <td>
+                     @item.SubAccountName
+                 </td>
+                 <td>
+                     @item.DueDate
+                 </td>
+                 <td class="text-right">
+                     @item.CurrencyName.Substring(3, 1)@item.TotalExTax
+                 </td>
+                 <td class="text-right">
+                     @item.CurrencyName.Substring(3, 1)@item.TotalTax
+                 </td>
+                 <td class="text-right">
+                     @item.CurrencyName.Substring(3, 1)@Html.DisplayFor(m => @item.Total)
+
+
+                     @if (item.isForeignCurrency)
+                     {
+                         var lB = "(";
+                         var rB = ")";
+                         @lB@Html.DisplayFor(m => item.ConvertedTotal, new { @class = "text-right" }) @rB;
+                     }
+                 </td>
+                 <td>
+                     
+                 </td>
+             </tr>
+         }
+    }
+    
+</table>

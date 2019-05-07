@@ -1,0 +1,292 @@
+﻿@model EPOv2.ViewModels.NewPOViewModel
+
+@{
+    ViewBag.Title = "Authorise Order";
+}
+<script>
+    function selectEntity(object) {
+        var entityID = object.value;
+        if (entityID != null && entityID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCompanyBox")',
+                cache: false,
+                data: {
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+
+                },
+                success: function (result) {
+                    $('#div-companybox').html(result);
+                    $('select[id=SelectedCostCenter]').removeAttr("disabled");
+                    $('input[id=EntityId]').val(entityID);
+                    filterSuppliers(entityID);
+                }
+            });
+        }
+    }
+
+    function selectCostCenter(object) {
+        var ccID = object.value;
+        $('input[id=CostCenterId]').val(ccID);
+    }
+    function selectReceiptGroup(object) {
+        var rgID = object.value;
+        $('input[id=GroupId]').val(rgID);
+    }
+    function selectMethod(object) {
+        var methodID = object.value;
+        $('input[id=Transmission]').val(methodID);
+    }
+
+    function selectDeliveryAddress(object) {
+        var daID = object.value;
+        // alert(daID);
+        if (daID != null && daID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchDeliveryBox")',
+                cache: false,
+                data: {
+                    daId: daID
+                },
+                error: function (xhr, status, error) {
+
+                },
+                success: function (result) {
+                    $('#div-deliverybox').html(result);
+                    $('select[id=SelectedUser]').removeAttr("disabled");
+                    $('input[id=DeliveryAddressId]').val(daID);
+                }
+            });
+        }
+    }
+
+    function selectAttention(object) {
+        var userID = object.value;
+        var daID = $('select[id=SelectedDeliveryAddress]').val();
+        //alert(userID);
+        //alert(daID);
+        if (userID != null && userID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchDeliveryBox")',
+                cache: false,
+                data: {
+                    daId: daID,
+                    userId: userID
+                },
+                error: function (xhr, status, error) {
+                },
+                success: function (result) {
+                    $('#div-deliverybox').html(result);
+                    $('input[id=UserId]').val(userID);
+
+                }
+            });
+        }
+    }
+
+    function selectSupplier(object) {
+        var supplierID = object.value;
+        var entityID = $("#SelectedEntity").val();
+        //alert(entityID);
+        if (supplierID != null && supplierID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchSupplierBox")',
+                cache: false,
+                data: {
+                    supplierId: supplierID,
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                },
+                success: function (result) {
+                    $('#div-supplierbox').html(result);
+                    $('input[id=SupplierId]').val(supplierID);
+                }
+            });
+        }
+    }
+
+    function filterSuppliers(entityID) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FilterSuppliers")',
+            cache: false,
+            data: {
+                entityId: entityID
+            },
+            error: function (xhr, status, error) {
+            },
+            success: function (result) {
+                $('#div-supplierbox').html(result);
+               // $('input[id=SupplierId]').val(supplierID);
+            }
+        });
+    }
+
+    function addNewItem() {
+        $('#POForm').attr('action', 'NewOrderItem').submit();
+    }
+    function EditItem(object) {
+        var itemID = object.value;
+        $("#EditingItemId").val(itemID);
+        $('#POForm').attr('action', 'EditOrderItem').submit();
+    }
+    function DeleteItem(object) {
+        var itemID = object.value;
+        $("#DeletingItemId").val(itemID);
+        $('#POForm').attr('action', 'DeleteOrderItem').submit();
+    }
+
+    function changeSupplierEmail(object) {
+        var value = object.value;
+        $("#SupplierEmail").val(value);
+    }
+
+    function authoriseOrder(object) {
+        bootbox.confirm("Are you sure?", function (result) {
+            if (result == true) {
+                $('#POForm').submit();
+            }
+        });
+    }
+</script>
+
+<div class="col-md-12">
+    <div class="well well-sm col-md-2">
+        <h3>Authorise PO</h3>
+    </div>
+</div>
+
+@using (@Html.BeginForm("ApproveOrder", "PurchaseOrder", FormMethod.Post, new { id = "POForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.TempOrderNumber)
+    @Html.HiddenFor(m => m.EntityId)
+    @Html.HiddenFor(m => m.CostCenterId)
+    @Html.HiddenFor(m => m.CapexId)
+    @Html.HiddenFor(m => m.GroupId)
+    @Html.HiddenFor(m => m.DeliveryAddressId)
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.SupplierId)
+    @Html.HiddenFor(m => m.Transmission)
+    @Html.HiddenFor(m => m.StatusName)
+    @Html.HiddenFor(m => m.EditingItemId)
+    @Html.HiddenFor(m => m.DeletingItemId)
+    @Html.HiddenFor(m => m.TotalOrder)
+    @Html.HiddenFor(m => m.SupplierEmail)
+  
+
+    <div id="order-head">
+        <div class="row">
+            <div class="col-md-2">
+                Author
+                @Html.TextBoxFor(m => m.Author, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Order #
+                @Html.TextBoxFor(m => m.OrderNumber, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Revision
+                @Html.TextBoxFor(m => m.RevisionQty, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Order Date
+                @Html.TextBoxFor(m => m.OrderDate, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                Status
+                @Html.TextBoxFor(m => m.StatusName, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+            </div>
+            <div class="col-md-2">
+                <br />
+                @*<a class="btn btn-default btn-sm" href="#" role="button">Print Order</a>*@
+            </div>
+        </div>
+    </div>
+    <hr class="hr-sm" />
+    <div id="order-body" class="color-blue">
+        <div class="row">
+            <div class="col-md-3 " id="div-companybox">
+                @{
+                    Html.RenderPartial("_CompanyBoxAuthorise",  Model.CompanyBox);
+                 }
+            </div>
+            <div class="col-md-4 " id="div-deliverybox">
+                @{
+                    Html.RenderPartial("_DeliveryBoxAuthorise", Model.DeliveryBox);
+                 }
+            </div>
+            @*<div class="col-sm-1"></div>*@
+            <div class="col-md-4 " id="div-supplierbox">
+                @{
+                    Html.RenderPartial("_SupplierBoxAuthorise", Model.SupplierBox);
+                 }
+            </div>
+        </div>
+    </div>
+    <div id="order-items" class="">
+        <div class="row">
+            <div class="col-md-12" id="div-orderItems">
+                @{
+    Html.RenderPartial("_OrderItemsAuthorise", Model.Items);
+                }
+            </div>
+        </div>
+    </div>
+    @*<hr />*@
+    <div id="order-bottom" class="color-lightGreen">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="col-md-5" id="div-bottom-comment">
+                    <label>Comments: (Appears on purchase order)</label>
+                    @Html.TextAreaFor(m => m.Comment, 4, 60, new { @class = "form-control " })
+                </div>
+                <div class="col-md-5" id="div-bottom-intcommnet">
+                    <label>Internal Comments (does not appear on Purchase Order)</label>
+                    @Html.TextAreaFor(m => m.InternalComment, 4, 60, new { @class = "form-control " })
+                </div>
+                <div class="col-md-2" id="div-bottom-EpoTotal">
+                    <div class="row">
+                        <div class="col-md-12">
+                            Total Ex GST
+                            @Html.TextBoxFor(m => m.TotalExGST, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Total GST
+                            @Html.TextBoxFor(m => m.TotalGST, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            Total(@Model.CurrencyName)
+                            @Html.TextBoxFor(m => m.TotalOrder, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <hr />
+    <div class="row form-group ">
+        <div class="col-md-2 pull-right">
+            <button type="button" name="button" value="Save" class="btn btn-success btn-block" onclick="authoriseOrder(this)">Authorise</button>
+        </div>
+        <div class="col-md-2 pull-right">
+            <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block ">Cancel</button>
+        </div>
+
+    </div>
+
+}
+
+

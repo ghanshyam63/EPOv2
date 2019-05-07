@@ -1,0 +1,35 @@
+﻿@model IEnumerable<EPOv2.ViewModels.VoucherDetail>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">Voucher details</div>
+                    <div class="panel-body">
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>Line</th>
+                                    <th>Entity</th>
+                                    <th>CC</th>
+                                    <th>Account</th>
+                                    <th>Sub account</th>
+                                    <th>Description</th>
+                                    <th class="text-right">Amount $</th>
+                                </tr>
+                            </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>
+                                            @item.Line
+                                        </td>
+                                        <td>@item.Entity</td>
+                                        <td>@item.CostCentre</td>
+                                        <td>@item.AccountCode</td>
+                                        <td>@item.SubAccount</td>
+                                        <td>@item.Description</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.Amount)</td>
+                                    </tr>
+                                }
+                        </table>
+                    </div>
+                </div>
+

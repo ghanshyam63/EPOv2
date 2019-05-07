@@ -1,0 +1,1285 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SafetyManagementSystemModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vFormStatus' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vFormStatus">
+    <Key>
+      <PropertyRef Name="FormHeaderId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="FormHeaderId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vFormStatusWithSafetyActions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vFormStatusWithSafetyActions">
+    <Key>
+      <PropertyRef Name="FormHeaderId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="FormHeaderId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="SafetyActionId" Type="int" />
+    <Property Name="SATitle" Type="nvarchar" MaxLength="100" />
+    <Property Name="SACreated" Type="datetime" />
+    <Property Name="SAModified" Type="datetime" />
+    <Property Name="SASite" Type="int" />
+    <Property Name="SAModifiedByName" Type="nvarchar" MaxLength="100" />
+    <Property Name="SAModifiedByEmpNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="AssignedToName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AssignedToEmpNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="PercentageComplete" Type="int" />
+    <Property Name="MexNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+    <Property Name="Priority" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vHazardReports' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vHazardReports">
+    <Key>
+      <PropertyRef Name="HazardReportId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Department" />
+      <PropertyRef Name="WhatIsHazard" />
+      <PropertyRef Name="WhereIsHazard" />
+      <PropertyRef Name="SafetyHazAndEnviroImpacts" />
+      <PropertyRef Name="HowFixed" />
+    </Key>
+    <Property Name="HazardReportId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="PersonReporting" Type="varchar" MaxLength="100" />
+    <Property Name="Department" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WhatIsHazard" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WhereIsHazard" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SafetyHazAndEnviroImpacts" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HazardSeriousLevel" Type="varchar" MaxLength="50" />
+    <Property Name="HowFixed" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vIncidentAccident' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vIncidentAccident">
+    <Key>
+      <PropertyRef Name="IncidentAccidentId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Employee" />
+      <PropertyRef Name="Position" />
+      <PropertyRef Name="BusinessName" />
+      <PropertyRef Name="ContactTelephoneNumber" />
+      <PropertyRef Name="DateOfIncidentAccident" />
+      <PropertyRef Name="TimeOfIncidentAccident" />
+      <PropertyRef Name="ShiftStartTime" />
+      <PropertyRef Name="LocationOfIncidentAccident" />
+      <PropertyRef Name="DateReported" />
+      <PropertyRef Name="ToWhom" />
+      <PropertyRef Name="NameOfWitnessWitnesses" />
+      <PropertyRef Name="WhatHappened" />
+      <PropertyRef Name="Causes" />
+      <PropertyRef Name="FirstAidAdministered" />
+      <PropertyRef Name="FirstAider" />
+      <PropertyRef Name="CauseOfIncident" />
+    </Key>
+    <Property Name="IncidentAccidentId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="IncidentAccidentFormType" Type="varchar" MaxLength="50" />
+    <Property Name="Employee" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Position" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EmploymentRelationship" Type="varchar" MaxLength="50" />
+    <Property Name="BusinessName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ContactTelephoneNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfIncidentAccident" Type="datetime" Nullable="false" />
+    <Property Name="TimeOfIncidentAccident" Type="datetime" Nullable="false" />
+    <Property Name="ShiftStartTime" Type="datetime" Nullable="false" />
+    <Property Name="LocationOfIncidentAccident" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateReported" Type="datetime" Nullable="false" />
+    <Property Name="ToWhom" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NameOfWitnessWitnesses" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="WhatHappened" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Causes" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TreatmentDetails" Type="varchar" MaxLength="50" />
+    <Property Name="OtherTreatmentDetails" Type="nvarchar(max)" />
+    <Property Name="FirstAidAdministered" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="FollowUp" Type="varchar" MaxLength="50" />
+    <Property Name="HeathSafetyRepName" Type="nvarchar(max)" />
+    <Property Name="InjurySeverity" Type="varchar" MaxLength="50" />
+    <Property Name="InjurySeverityOther" Type="nvarchar(max)" />
+    <Property Name="FirstAider" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CauseOfIncident" Type="nvarchar(max)" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vIncidentsByDay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vIncidentsByDay">
+    <Key>
+      <PropertyRef Name="IncidentsByDayId" />
+      <PropertyRef Name="Day" />
+    </Key>
+    <Property Name="IncidentsByDayId" Type="bigint" Nullable="false" />
+    <Property Name="Day" Type="date" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vIncidentsByMonth' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vIncidentsByMonth">
+    <Key>
+      <PropertyRef Name="IncidentsByMonthId" />
+    </Key>
+    <Property Name="IncidentsByMonthId" Type="bigint" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vIncidentsByWeek' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vIncidentsByWeek">
+    <Key>
+      <PropertyRef Name="IncidentsByWeekId" />
+    </Key>
+    <Property Name="IncidentsByWeekId" Type="bigint" Nullable="false" />
+    <Property Name="Week" Type="int" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vInspectionAudits' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vInspectionAudits">
+    <Key>
+      <PropertyRef Name="InspectionAuditId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="PersonCompetingForm" />
+    </Key>
+    <Property Name="InspectionAuditId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="PersonCompetingForm" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Q1_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q1_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q1_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q1_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q1_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q1_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q1_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q1_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q2_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q2_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q2_2_ItemsRequired" Type="nvarchar(max)" />
+    <Property Name="Q2_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q2_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q3_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q3_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q3_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q3_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q3_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q3_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q3_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q3_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_7" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_7_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_8" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_8_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_9" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_9_Description" Type="nvarchar(max)" />
+    <Property Name="Q4_10" Type="varchar" MaxLength="50" />
+    <Property Name="Q4_10_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q5_7" Type="varchar" MaxLength="50" />
+    <Property Name="Q5_7_Description" Type="nvarchar(max)" />
+    <Property Name="Q6_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q6_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q6_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q6_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q6_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q6_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q6_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q6_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q7_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q7_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q7_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q7_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q7_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q7_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_7" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_7_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_8" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_8_Description" Type="nvarchar(max)" />
+    <Property Name="Q8_9" Type="varchar" MaxLength="50" />
+    <Property Name="Q8_9_Description" Type="nvarchar(max)" />
+    <Property Name="Q9_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q9_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q9_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q9_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q9_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q9_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q9_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q9_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q9_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q9_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_7" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_7_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_8" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_8_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_9" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_9_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_10" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_10_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_11" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_11_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_12" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_12_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_13" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_13_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_14" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_14_Description" Type="nvarchar(max)" />
+    <Property Name="Q10_15" Type="varchar" MaxLength="50" />
+    <Property Name="Q10_15_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_7" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_7_Description" Type="nvarchar(max)" />
+    <Property Name="Q11_8" Type="varchar" MaxLength="50" />
+    <Property Name="Q11_8_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q12_7" Type="varchar" MaxLength="50" />
+    <Property Name="Q12_7_Description" Type="nvarchar(max)" />
+    <Property Name="Q13_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q13_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q13_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q13_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q13_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q13_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q13_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q13_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q13_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q13_5_Description" Type="nvarchar(max)" />
+    <Property Name="Q13_6" Type="varchar" MaxLength="50" />
+    <Property Name="Q13_6_Description" Type="nvarchar(max)" />
+    <Property Name="Q14_1" Type="varchar" MaxLength="50" />
+    <Property Name="Q14_1_Description" Type="nvarchar(max)" />
+    <Property Name="Q14_2" Type="varchar" MaxLength="50" />
+    <Property Name="Q14_2_Description" Type="nvarchar(max)" />
+    <Property Name="Q14_3" Type="varchar" MaxLength="50" />
+    <Property Name="Q14_3_Description" Type="nvarchar(max)" />
+    <Property Name="Q14_4" Type="varchar" MaxLength="50" />
+    <Property Name="Q14_4_Description" Type="nvarchar(max)" />
+    <Property Name="Q14_5" Type="varchar" MaxLength="50" />
+    <Property Name="Q14_5_Description" Type="nvarchar(max)" />
+    <Property Name="OtherHealthSafetyIssues" Type="nvarchar(max)" />
+    <Property Name="ObservationNumber" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vJseaRiskAssessments ' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vJseaRiskAssessments ">
+    <Key>
+      <PropertyRef Name="JseaRiskAssessmentId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="TaskDate" />
+      <PropertyRef Name="TaskLocation" />
+      <PropertyRef Name="TaskValidTill" />
+      <PropertyRef Name="PersonResponsible" />
+      <PropertyRef Name="PlantEquipmentUsed" />
+      <PropertyRef Name="MaterialUsed" />
+      <PropertyRef Name="Permit" />
+      <PropertyRef Name="PermitNumber" />
+      <PropertyRef Name="DetailsOfEquipment" />
+      <PropertyRef Name="PrepByName" />
+      <PropertyRef Name="EnviroRevPrepByName" />
+      <PropertyRef Name="SafetyRevPrepByName" />
+      <PropertyRef Name="ApprovedPrepByName" />
+      <PropertyRef Name="JobStep" />
+      <PropertyRef Name="ControlMeasures" />
+      <PropertyRef Name="PersonResponsibleEnsureImp" />
+      <PropertyRef Name="SignOffName" />
+      <PropertyRef Name="SignOffDate" />
+      <PropertyRef Name="SignOffTime" />
+      <PropertyRef Name="SignOffEmployer" />
+      <PropertyRef Name="SignOffComments" />
+    </Key>
+    <Property Name="JseaRiskAssessmentId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="TaskDate" Type="datetime" Nullable="false" />
+    <Property Name="TaskLocation" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="TaskValidTill" Type="datetime" Nullable="false" />
+    <Property Name="PersonResponsible" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PlantEquipmentUsed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="MaterialUsed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Permit" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PermitNumber" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DetailsOfEquipment" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrepByName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PrepByPosition" Type="nvarchar(max)" />
+    <Property Name="PrepByDate" Type="nvarchar(max)" />
+    <Property Name="EnviroRevPrepByName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="EnviroRevPosition" Type="nvarchar(max)" />
+    <Property Name="EnviroRevDate" Type="nvarchar(max)" />
+    <Property Name="SafetyRevPrepByName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SafetyRevPosition" Type="nvarchar(max)" />
+    <Property Name="SafetyRevDate" Type="nvarchar(max)" />
+    <Property Name="ApprovedPrepByName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="ApprovedByPosition" Type="nvarchar(max)" />
+    <Property Name="ApprovedByDate" Type="nvarchar(max)" />
+    <Property Name="JobStep" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PotentialRisksImpacts" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentRiskRating" Type="varchar" MaxLength="50" />
+    <Property Name="ControlMeasures" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NewRiskRating" Type="varchar" MaxLength="50" />
+    <Property Name="PersonResponsibleEnsureImp" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SignOffName" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SignOffDate" Type="datetime" Nullable="false" />
+    <Property Name="SignOffTime" Type="datetime" Nullable="false" />
+    <Property Name="SignOffEmployer" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SignOffComments" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Activity" Type="nvarchar(max)" />
+    <Property Name="ReviewPersonResponsible" Type="nvarchar(max)" />
+    <Property Name="ReviewDatePerformed" Type="datetime" />
+    <Property Name="ReviewFindings" Type="nvarchar(max)" />
+    <Property Name="ReviewActionIfRequired" Type="nvarchar(max)" />
+    <Property Name="ReviewDateClosed" Type="datetime" />
+    <Property Name="ReviewClosedBy" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vRiskAssessments' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vRiskAssessments">
+    <Key>
+      <PropertyRef Name="RiskAssessmentId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="HazardManagementTeam" />
+      <PropertyRef Name="Location" />
+      <PropertyRef Name="HazardBeingAssessed" />
+      <PropertyRef Name="DateOfAssessment" />
+      <PropertyRef Name="TimeOfAssessment" />
+      <PropertyRef Name="AreaSection" />
+      <PropertyRef Name="PartHistory" />
+      <PropertyRef Name="SafetyHazardsEnvironmentalImpacts" />
+      <PropertyRef Name="CurrentControls" />
+      <PropertyRef Name="ProposedNewControls" />
+    </Key>
+    <Property Name="RiskAssessmentId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="HowHazardProblemIdentified" Type="varchar" MaxLength="50" />
+    <Property Name="HowHazardProblemIdentifiedOther" Type="nvarchar(max)" />
+    <Property Name="HazardManagementTeam" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="IncidentReportNumber" Type="nvarchar(max)" />
+    <Property Name="Location" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="HazardBeingAssessed" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="DateOfAssessment" Type="datetime" Nullable="false" />
+    <Property Name="TimeOfAssessment" Type="datetime" Nullable="false" />
+    <Property Name="AreaSection" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PartHistory" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SafetyHazardsEnvironmentalImpacts" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="PotentialRisksImpacts" Type="varchar" MaxLength="50" />
+    <Property Name="CurrentControls" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="CurrentRiskRating" Type="varchar" MaxLength="50" />
+    <Property Name="ControlsAdequate" Type="varchar" MaxLength="50" />
+    <Property Name="ProposedNewControls" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="NewRiskRating" Type="varchar" MaxLength="50" />
+    <Property Name="ObservationNumber" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyActions' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyActions">
+    <Key>
+      <PropertyRef Name="SafetyActionId" />
+      <PropertyRef Name="FormHeaderId" />
+      <PropertyRef Name="SATitle" />
+      <PropertyRef Name="SACreated" />
+      <PropertyRef Name="SAModified" />
+      <PropertyRef Name="SAModifiedByName" />
+      <PropertyRef Name="SAModifiedByEmpNo" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="DueDate" />
+      <PropertyRef Name="PercentageComplete" />
+      <PropertyRef Name="MexNumber" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="SafetyActionId" Type="int" Nullable="false" />
+    <Property Name="FormHeaderId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Modified" Type="datetime" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="SATitle" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SACreated" Type="datetime" Nullable="false" />
+    <Property Name="SAModified" Type="datetime" Nullable="false" />
+    <Property Name="SASite" Type="varchar" MaxLength="3" />
+    <Property Name="SAModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SAModifiedByEmpNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="StartDate" Type="datetime" Nullable="false" />
+    <Property Name="DueDate" Type="datetime" Nullable="false" />
+    <Property Name="AssignedToName" Type="nvarchar" MaxLength="100" />
+    <Property Name="AssignedToEmpNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="PercentageComplete" Type="int" Nullable="false" />
+    <Property Name="MexNumber" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="1000" Nullable="false" />
+    <Property Name="Priority" Type="varchar" MaxLength="50" />
+    <Property Name="Status" Type="varchar" MaxLength="50" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyActionsByMonthBySite' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyActionsByMonthBySite">
+    <Key>
+      <PropertyRef Name="SafetyActionsByMonthBySiteId" />
+    </Key>
+    <Property Name="SafetyActionsByMonthBySiteId" Type="bigint" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" Nullable="false" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyActionsByMonthByUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyActionsByMonthByUser">
+    <Key>
+      <PropertyRef Name="SafetyActionsByMonthByUserId" />
+    </Key>
+    <Property Name="SafetyActionsByMonthByUserId" Type="bigint" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar" MaxLength="20" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyActionsThisMonthByUser' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyActionsThisMonthByUser">
+    <Key>
+      <PropertyRef Name="SafetyActionsThisMonthByUserId" />
+    </Key>
+    <Property Name="SafetyActionsThisMonthByUserId" Type="bigint" Nullable="false" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyWalkTalks' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyWalkTalks">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalkId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Task" />
+      <PropertyRef Name="Improvements" />
+      <PropertyRef Name="Observations" />
+      <PropertyRef Name="SuggestedImprovements" />
+    </Key>
+    <Property Name="SafetyWalkTalkId" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Modified" Type="datetime" Nullable="false" />
+    <Property Name="CreatedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="ModifiedByName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="nvarchar(max)" />
+    <Property Name="CurrentOwnerName" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="nvarchar(max)" />
+    <Property Name="FormType" Type="varchar" MaxLength="100" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="FormStatus" Type="varchar" MaxLength="100" />
+    <Property Name="Task" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Improvements" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Observations" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="SuggestedImprovements" Type="nvarchar(max)" Nullable="false" />
+    <Property Name="Notes" Type="nvarchar(max)" />
+    <Property Name="MexNumber" Type="nvarchar(max)" />
+    <Property Name="ObservationNumber" Type="nvarchar(max)" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyWalkTalksByDay' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyWalkTalksByDay">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalksByDayId" />
+      <PropertyRef Name="Day" />
+    </Key>
+    <Property Name="SafetyWalkTalksByDayId" Type="bigint" Nullable="false" />
+    <Property Name="Day" Type="date" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyWalkTalksByMonth' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyWalkTalksByMonth">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalksByMonthId" />
+    </Key>
+    <Property Name="SafetyWalkTalksByMonthId" Type="bigint" Nullable="false" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'SafetyManagementSystem.dbo.vSafetyWalkTalksByWeek' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vSafetyWalkTalksByWeek">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalksByWeekId" />
+    </Key>
+    <Property Name="SafetyWalkTalksByWeekId" Type="bigint" Nullable="false" />
+    <Property Name="Week" Type="int" />
+    <Property Name="Month" Type="int" />
+    <Property Name="MonthName" Type="nvarchar" MaxLength="30" />
+    <Property Name="Year" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="3" />
+    <Property Name="Count" Type="int" />
+  </EntityType>
+  <EntityContainer Name="SafetyManagementSystemModelStoreContainer">
+    <EntitySet Name="vFormStatus" EntityType="Self.vFormStatus" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vFormStatus].[FormHeaderId] AS [FormHeaderId], 
+    [vFormStatus].[Site] AS [Site], 
+    [vFormStatus].[Created] AS [Created], 
+    [vFormStatus].[Modified] AS [Modified], 
+    [vFormStatus].[CreatedByName] AS [CreatedByName], 
+    [vFormStatus].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vFormStatus].[ModifiedByName] AS [ModifiedByName], 
+    [vFormStatus].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vFormStatus].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vFormStatus].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vFormStatus].[FormType] AS [FormType], 
+    [vFormStatus].[Title] AS [Title], 
+    [vFormStatus].[FormStatus] AS [FormStatus]
+    FROM [dbo].[vFormStatus] AS [vFormStatus]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vFormStatusWithSafetyActions" EntityType="Self.vFormStatusWithSafetyActions" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vFormStatusWithSafetyActions].[FormHeaderId] AS [FormHeaderId], 
+    [vFormStatusWithSafetyActions].[Site] AS [Site], 
+    [vFormStatusWithSafetyActions].[Created] AS [Created], 
+    [vFormStatusWithSafetyActions].[Modified] AS [Modified], 
+    [vFormStatusWithSafetyActions].[CreatedByName] AS [CreatedByName], 
+    [vFormStatusWithSafetyActions].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vFormStatusWithSafetyActions].[ModifiedByName] AS [ModifiedByName], 
+    [vFormStatusWithSafetyActions].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vFormStatusWithSafetyActions].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vFormStatusWithSafetyActions].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vFormStatusWithSafetyActions].[FormType] AS [FormType], 
+    [vFormStatusWithSafetyActions].[Title] AS [Title], 
+    [vFormStatusWithSafetyActions].[FormStatus] AS [FormStatus], 
+    [vFormStatusWithSafetyActions].[SafetyActionId] AS [SafetyActionId], 
+    [vFormStatusWithSafetyActions].[SATitle] AS [SATitle], 
+    [vFormStatusWithSafetyActions].[SACreated] AS [SACreated], 
+    [vFormStatusWithSafetyActions].[SAModified] AS [SAModified], 
+    [vFormStatusWithSafetyActions].[SASite] AS [SASite], 
+    [vFormStatusWithSafetyActions].[SAModifiedByName] AS [SAModifiedByName], 
+    [vFormStatusWithSafetyActions].[SAModifiedByEmpNo] AS [SAModifiedByEmpNo], 
+    [vFormStatusWithSafetyActions].[StartDate] AS [StartDate], 
+    [vFormStatusWithSafetyActions].[DueDate] AS [DueDate], 
+    [vFormStatusWithSafetyActions].[AssignedToName] AS [AssignedToName], 
+    [vFormStatusWithSafetyActions].[AssignedToEmpNo] AS [AssignedToEmpNo], 
+    [vFormStatusWithSafetyActions].[PercentageComplete] AS [PercentageComplete], 
+    [vFormStatusWithSafetyActions].[MexNumber] AS [MexNumber], 
+    [vFormStatusWithSafetyActions].[Description] AS [Description], 
+    [vFormStatusWithSafetyActions].[Priority] AS [Priority], 
+    [vFormStatusWithSafetyActions].[Status] AS [Status]
+    FROM [dbo].[vFormStatusWithSafetyActions] AS [vFormStatusWithSafetyActions]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vHazardReports" EntityType="Self.vHazardReports" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vHazardReports].[HazardReportId] AS [HazardReportId], 
+    [vHazardReports].[Site] AS [Site], 
+    [vHazardReports].[Created] AS [Created], 
+    [vHazardReports].[Modified] AS [Modified], 
+    [vHazardReports].[CreatedByName] AS [CreatedByName], 
+    [vHazardReports].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vHazardReports].[ModifiedByName] AS [ModifiedByName], 
+    [vHazardReports].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vHazardReports].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vHazardReports].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vHazardReports].[FormType] AS [FormType], 
+    [vHazardReports].[Title] AS [Title], 
+    [vHazardReports].[PersonReporting] AS [PersonReporting], 
+    [vHazardReports].[Department] AS [Department], 
+    [vHazardReports].[WhatIsHazard] AS [WhatIsHazard], 
+    [vHazardReports].[WhereIsHazard] AS [WhereIsHazard], 
+    [vHazardReports].[SafetyHazAndEnviroImpacts] AS [SafetyHazAndEnviroImpacts], 
+    [vHazardReports].[HazardSeriousLevel] AS [HazardSeriousLevel], 
+    [vHazardReports].[HowFixed] AS [HowFixed]
+    FROM [dbo].[vHazardReports] AS [vHazardReports]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vIncidentAccident" EntityType="Self.vIncidentAccident" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vIncidentAccident].[IncidentAccidentId] AS [IncidentAccidentId], 
+    [vIncidentAccident].[Site] AS [Site], 
+    [vIncidentAccident].[Created] AS [Created], 
+    [vIncidentAccident].[Modified] AS [Modified], 
+    [vIncidentAccident].[CreatedByName] AS [CreatedByName], 
+    [vIncidentAccident].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vIncidentAccident].[ModifiedByName] AS [ModifiedByName], 
+    [vIncidentAccident].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vIncidentAccident].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vIncidentAccident].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vIncidentAccident].[FormType] AS [FormType], 
+    [vIncidentAccident].[Title] AS [Title], 
+    [vIncidentAccident].[FormStatus] AS [FormStatus], 
+    [vIncidentAccident].[IncidentAccidentFormType] AS [IncidentAccidentFormType], 
+    [vIncidentAccident].[Employee] AS [Employee], 
+    [vIncidentAccident].[Position] AS [Position], 
+    [vIncidentAccident].[EmploymentRelationship] AS [EmploymentRelationship], 
+    [vIncidentAccident].[BusinessName] AS [BusinessName], 
+    [vIncidentAccident].[ContactTelephoneNumber] AS [ContactTelephoneNumber], 
+    [vIncidentAccident].[DateOfIncidentAccident] AS [DateOfIncidentAccident], 
+    [vIncidentAccident].[TimeOfIncidentAccident] AS [TimeOfIncidentAccident], 
+    [vIncidentAccident].[ShiftStartTime] AS [ShiftStartTime], 
+    [vIncidentAccident].[LocationOfIncidentAccident] AS [LocationOfIncidentAccident], 
+    [vIncidentAccident].[DateReported] AS [DateReported], 
+    [vIncidentAccident].[ToWhom] AS [ToWhom], 
+    [vIncidentAccident].[NameOfWitnessWitnesses] AS [NameOfWitnessWitnesses], 
+    [vIncidentAccident].[WhatHappened] AS [WhatHappened], 
+    [vIncidentAccident].[Causes] AS [Causes], 
+    [vIncidentAccident].[TreatmentDetails] AS [TreatmentDetails], 
+    [vIncidentAccident].[OtherTreatmentDetails] AS [OtherTreatmentDetails], 
+    [vIncidentAccident].[FirstAidAdministered] AS [FirstAidAdministered], 
+    [vIncidentAccident].[FollowUp] AS [FollowUp], 
+    [vIncidentAccident].[HeathSafetyRepName] AS [HeathSafetyRepName], 
+    [vIncidentAccident].[InjurySeverity] AS [InjurySeverity], 
+    [vIncidentAccident].[InjurySeverityOther] AS [InjurySeverityOther], 
+    [vIncidentAccident].[FirstAider] AS [FirstAider], 
+    [vIncidentAccident].[CauseOfIncident] AS [CauseOfIncident]
+    FROM [dbo].[vIncidentAccident] AS [vIncidentAccident]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vIncidentsByDay" EntityType="Self.vIncidentsByDay" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vIncidentsByDay].[IncidentsByDayId] AS [IncidentsByDayId], 
+    [vIncidentsByDay].[Day] AS [Day], 
+    [vIncidentsByDay].[Month] AS [Month], 
+    [vIncidentsByDay].[MonthName] AS [MonthName], 
+    [vIncidentsByDay].[Year] AS [Year], 
+    [vIncidentsByDay].[Site] AS [Site], 
+    [vIncidentsByDay].[Count] AS [Count]
+    FROM [dbo].[vIncidentsByDay] AS [vIncidentsByDay]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vIncidentsByMonth" EntityType="Self.vIncidentsByMonth" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vIncidentsByMonth].[IncidentsByMonthId] AS [IncidentsByMonthId], 
+    [vIncidentsByMonth].[Month] AS [Month], 
+    [vIncidentsByMonth].[MonthName] AS [MonthName], 
+    [vIncidentsByMonth].[Year] AS [Year], 
+    [vIncidentsByMonth].[Site] AS [Site], 
+    [vIncidentsByMonth].[Count] AS [Count]
+    FROM [dbo].[vIncidentsByMonth] AS [vIncidentsByMonth]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vIncidentsByWeek" EntityType="Self.vIncidentsByWeek" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vIncidentsByWeek].[IncidentsByWeekId] AS [IncidentsByWeekId], 
+    [vIncidentsByWeek].[Week] AS [Week], 
+    [vIncidentsByWeek].[Month] AS [Month], 
+    [vIncidentsByWeek].[MonthName] AS [MonthName], 
+    [vIncidentsByWeek].[Year] AS [Year], 
+    [vIncidentsByWeek].[Site] AS [Site], 
+    [vIncidentsByWeek].[Count] AS [Count]
+    FROM [dbo].[vIncidentsByWeek] AS [vIncidentsByWeek]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vInspectionAudits" EntityType="Self.vInspectionAudits" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vInspectionAudits].[InspectionAuditId] AS [InspectionAuditId], 
+    [vInspectionAudits].[Site] AS [Site], 
+    [vInspectionAudits].[Created] AS [Created], 
+    [vInspectionAudits].[Modified] AS [Modified], 
+    [vInspectionAudits].[CreatedByName] AS [CreatedByName], 
+    [vInspectionAudits].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vInspectionAudits].[ModifiedByName] AS [ModifiedByName], 
+    [vInspectionAudits].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vInspectionAudits].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vInspectionAudits].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vInspectionAudits].[FormType] AS [FormType], 
+    [vInspectionAudits].[Title] AS [Title], 
+    [vInspectionAudits].[FormStatus] AS [FormStatus], 
+    [vInspectionAudits].[PersonCompetingForm] AS [PersonCompetingForm], 
+    [vInspectionAudits].[Q1_1] AS [Q1_1], 
+    [vInspectionAudits].[Q1_1_Description] AS [Q1_1_Description], 
+    [vInspectionAudits].[Q1_2] AS [Q1_2], 
+    [vInspectionAudits].[Q1_2_Description] AS [Q1_2_Description], 
+    [vInspectionAudits].[Q1_3] AS [Q1_3], 
+    [vInspectionAudits].[Q1_3_Description] AS [Q1_3_Description], 
+    [vInspectionAudits].[Q1_4] AS [Q1_4], 
+    [vInspectionAudits].[Q1_4_Description] AS [Q1_4_Description], 
+    [vInspectionAudits].[Q2_1] AS [Q2_1], 
+    [vInspectionAudits].[Q2_1_Description] AS [Q2_1_Description], 
+    [vInspectionAudits].[Q2_2_ItemsRequired] AS [Q2_2_ItemsRequired], 
+    [vInspectionAudits].[Q2_3] AS [Q2_3], 
+    [vInspectionAudits].[Q2_3_Description] AS [Q2_3_Description], 
+    [vInspectionAudits].[Q3_1] AS [Q3_1], 
+    [vInspectionAudits].[Q3_1_Description] AS [Q3_1_Description], 
+    [vInspectionAudits].[Q3_2] AS [Q3_2], 
+    [vInspectionAudits].[Q3_2_Description] AS [Q3_2_Description], 
+    [vInspectionAudits].[Q3_3] AS [Q3_3], 
+    [vInspectionAudits].[Q3_3_Description] AS [Q3_3_Description], 
+    [vInspectionAudits].[Q3_4] AS [Q3_4], 
+    [vInspectionAudits].[Q3_4_Description] AS [Q3_4_Description], 
+    [vInspectionAudits].[Q4_1] AS [Q4_1], 
+    [vInspectionAudits].[Q4_1_Description] AS [Q4_1_Description], 
+    [vInspectionAudits].[Q4_2] AS [Q4_2], 
+    [vInspectionAudits].[Q4_2_Description] AS [Q4_2_Description], 
+    [vInspectionAudits].[Q4_3] AS [Q4_3], 
+    [vInspectionAudits].[Q4_3_Description] AS [Q4_3_Description], 
+    [vInspectionAudits].[Q4_4] AS [Q4_4], 
+    [vInspectionAudits].[Q4_4_Description] AS [Q4_4_Description], 
+    [vInspectionAudits].[Q4_5] AS [Q4_5], 
+    [vInspectionAudits].[Q4_5_Description] AS [Q4_5_Description], 
+    [vInspectionAudits].[Q4_6] AS [Q4_6], 
+    [vInspectionAudits].[Q4_6_Description] AS [Q4_6_Description], 
+    [vInspectionAudits].[Q4_7] AS [Q4_7], 
+    [vInspectionAudits].[Q4_7_Description] AS [Q4_7_Description], 
+    [vInspectionAudits].[Q4_8] AS [Q4_8], 
+    [vInspectionAudits].[Q4_8_Description] AS [Q4_8_Description], 
+    [vInspectionAudits].[Q4_9] AS [Q4_9], 
+    [vInspectionAudits].[Q4_9_Description] AS [Q4_9_Description], 
+    [vInspectionAudits].[Q4_10] AS [Q4_10], 
+    [vInspectionAudits].[Q4_10_Description] AS [Q4_10_Description], 
+    [vInspectionAudits].[Q5_1] AS [Q5_1], 
+    [vInspectionAudits].[Q5_1_Description] AS [Q5_1_Description], 
+    [vInspectionAudits].[Q5_2] AS [Q5_2], 
+    [vInspectionAudits].[Q5_2_Description] AS [Q5_2_Description], 
+    [vInspectionAudits].[Q5_3] AS [Q5_3], 
+    [vInspectionAudits].[Q5_3_Description] AS [Q5_3_Description], 
+    [vInspectionAudits].[Q5_4] AS [Q5_4], 
+    [vInspectionAudits].[Q5_4_Description] AS [Q5_4_Description], 
+    [vInspectionAudits].[Q5_5] AS [Q5_5], 
+    [vInspectionAudits].[Q5_5_Description] AS [Q5_5_Description], 
+    [vInspectionAudits].[Q5_6] AS [Q5_6], 
+    [vInspectionAudits].[Q5_6_Description] AS [Q5_6_Description], 
+    [vInspectionAudits].[Q5_7] AS [Q5_7], 
+    [vInspectionAudits].[Q5_7_Description] AS [Q5_7_Description], 
+    [vInspectionAudits].[Q6_1] AS [Q6_1], 
+    [vInspectionAudits].[Q6_1_Description] AS [Q6_1_Description], 
+    [vInspectionAudits].[Q6_2] AS [Q6_2], 
+    [vInspectionAudits].[Q6_2_Description] AS [Q6_2_Description], 
+    [vInspectionAudits].[Q6_3] AS [Q6_3], 
+    [vInspectionAudits].[Q6_3_Description] AS [Q6_3_Description], 
+    [vInspectionAudits].[Q6_4] AS [Q6_4], 
+    [vInspectionAudits].[Q6_4_Description] AS [Q6_4_Description], 
+    [vInspectionAudits].[Q7_1] AS [Q7_1], 
+    [vInspectionAudits].[Q7_1_Description] AS [Q7_1_Description], 
+    [vInspectionAudits].[Q7_2] AS [Q7_2], 
+    [vInspectionAudits].[Q7_2_Description] AS [Q7_2_Description], 
+    [vInspectionAudits].[Q7_3] AS [Q7_3], 
+    [vInspectionAudits].[Q7_3_Description] AS [Q7_3_Description], 
+    [vInspectionAudits].[Q8_1] AS [Q8_1], 
+    [vInspectionAudits].[Q8_1_Description] AS [Q8_1_Description], 
+    [vInspectionAudits].[Q8_2] AS [Q8_2], 
+    [vInspectionAudits].[Q8_2_Description] AS [Q8_2_Description], 
+    [vInspectionAudits].[Q8_3] AS [Q8_3], 
+    [vInspectionAudits].[Q8_3_Description] AS [Q8_3_Description], 
+    [vInspectionAudits].[Q8_4] AS [Q8_4], 
+    [vInspectionAudits].[Q8_4_Description] AS [Q8_4_Description], 
+    [vInspectionAudits].[Q8_5] AS [Q8_5], 
+    [vInspectionAudits].[Q8_5_Description] AS [Q8_5_Description], 
+    [vInspectionAudits].[Q8_6] AS [Q8_6], 
+    [vInspectionAudits].[Q8_6_Description] AS [Q8_6_Description], 
+    [vInspectionAudits].[Q8_7] AS [Q8_7], 
+    [vInspectionAudits].[Q8_7_Description] AS [Q8_7_Description], 
+    [vInspectionAudits].[Q8_8] AS [Q8_8], 
+    [vInspectionAudits].[Q8_8_Description] AS [Q8_8_Description], 
+    [vInspectionAudits].[Q8_9] AS [Q8_9], 
+    [vInspectionAudits].[Q8_9_Description] AS [Q8_9_Description], 
+    [vInspectionAudits].[Q9_1] AS [Q9_1], 
+    [vInspectionAudits].[Q9_1_Description] AS [Q9_1_Description], 
+    [vInspectionAudits].[Q9_2] AS [Q9_2], 
+    [vInspectionAudits].[Q9_2_Description] AS [Q9_2_Description], 
+    [vInspectionAudits].[Q9_3] AS [Q9_3], 
+    [vInspectionAudits].[Q9_3_Description] AS [Q9_3_Description], 
+    [vInspectionAudits].[Q9_4] AS [Q9_4], 
+    [vInspectionAudits].[Q9_4_Description] AS [Q9_4_Description], 
+    [vInspectionAudits].[Q9_5] AS [Q9_5], 
+    [vInspectionAudits].[Q9_5_Description] AS [Q9_5_Description], 
+    [vInspectionAudits].[Q10_1] AS [Q10_1], 
+    [vInspectionAudits].[Q10_1_Description] AS [Q10_1_Description], 
+    [vInspectionAudits].[Q10_2] AS [Q10_2], 
+    [vInspectionAudits].[Q10_2_Description] AS [Q10_2_Description], 
+    [vInspectionAudits].[Q10_3] AS [Q10_3], 
+    [vInspectionAudits].[Q10_3_Description] AS [Q10_3_Description], 
+    [vInspectionAudits].[Q10_4] AS [Q10_4], 
+    [vInspectionAudits].[Q10_4_Description] AS [Q10_4_Description], 
+    [vInspectionAudits].[Q10_5] AS [Q10_5], 
+    [vInspectionAudits].[Q10_5_Description] AS [Q10_5_Description], 
+    [vInspectionAudits].[Q10_6] AS [Q10_6], 
+    [vInspectionAudits].[Q10_6_Description] AS [Q10_6_Description], 
+    [vInspectionAudits].[Q10_7] AS [Q10_7], 
+    [vInspectionAudits].[Q10_7_Description] AS [Q10_7_Description], 
+    [vInspectionAudits].[Q10_8] AS [Q10_8], 
+    [vInspectionAudits].[Q10_8_Description] AS [Q10_8_Description], 
+    [vInspectionAudits].[Q10_9] AS [Q10_9], 
+    [vInspectionAudits].[Q10_9_Description] AS [Q10_9_Description], 
+    [vInspectionAudits].[Q10_10] AS [Q10_10], 
+    [vInspectionAudits].[Q10_10_Description] AS [Q10_10_Description], 
+    [vInspectionAudits].[Q10_11] AS [Q10_11], 
+    [vInspectionAudits].[Q10_11_Description] AS [Q10_11_Description], 
+    [vInspectionAudits].[Q10_12] AS [Q10_12], 
+    [vInspectionAudits].[Q10_12_Description] AS [Q10_12_Description], 
+    [vInspectionAudits].[Q10_13] AS [Q10_13], 
+    [vInspectionAudits].[Q10_13_Description] AS [Q10_13_Description], 
+    [vInspectionAudits].[Q10_14] AS [Q10_14], 
+    [vInspectionAudits].[Q10_14_Description] AS [Q10_14_Description], 
+    [vInspectionAudits].[Q10_15] AS [Q10_15], 
+    [vInspectionAudits].[Q10_15_Description] AS [Q10_15_Description], 
+    [vInspectionAudits].[Q11_1] AS [Q11_1], 
+    [vInspectionAudits].[Q11_1_Description] AS [Q11_1_Description], 
+    [vInspectionAudits].[Q11_2] AS [Q11_2], 
+    [vInspectionAudits].[Q11_2_Description] AS [Q11_2_Description], 
+    [vInspectionAudits].[Q11_3] AS [Q11_3], 
+    [vInspectionAudits].[Q11_3_Description] AS [Q11_3_Description], 
+    [vInspectionAudits].[Q11_4] AS [Q11_4], 
+    [vInspectionAudits].[Q11_4_Description] AS [Q11_4_Description], 
+    [vInspectionAudits].[Q11_5] AS [Q11_5], 
+    [vInspectionAudits].[Q11_5_Description] AS [Q11_5_Description], 
+    [vInspectionAudits].[Q11_6] AS [Q11_6], 
+    [vInspectionAudits].[Q11_6_Description] AS [Q11_6_Description], 
+    [vInspectionAudits].[Q11_7] AS [Q11_7], 
+    [vInspectionAudits].[Q11_7_Description] AS [Q11_7_Description], 
+    [vInspectionAudits].[Q11_8] AS [Q11_8], 
+    [vInspectionAudits].[Q11_8_Description] AS [Q11_8_Description], 
+    [vInspectionAudits].[Q12_1] AS [Q12_1], 
+    [vInspectionAudits].[Q12_1_Description] AS [Q12_1_Description], 
+    [vInspectionAudits].[Q12_2] AS [Q12_2], 
+    [vInspectionAudits].[Q12_2_Description] AS [Q12_2_Description], 
+    [vInspectionAudits].[Q12_3] AS [Q12_3], 
+    [vInspectionAudits].[Q12_3_Description] AS [Q12_3_Description], 
+    [vInspectionAudits].[Q12_4] AS [Q12_4], 
+    [vInspectionAudits].[Q12_4_Description] AS [Q12_4_Description], 
+    [vInspectionAudits].[Q12_5] AS [Q12_5], 
+    [vInspectionAudits].[Q12_5_Description] AS [Q12_5_Description], 
+    [vInspectionAudits].[Q12_6] AS [Q12_6], 
+    [vInspectionAudits].[Q12_6_Description] AS [Q12_6_Description], 
+    [vInspectionAudits].[Q12_7] AS [Q12_7], 
+    [vInspectionAudits].[Q12_7_Description] AS [Q12_7_Description], 
+    [vInspectionAudits].[Q13_1] AS [Q13_1], 
+    [vInspectionAudits].[Q13_1_Description] AS [Q13_1_Description], 
+    [vInspectionAudits].[Q13_2] AS [Q13_2], 
+    [vInspectionAudits].[Q13_2_Description] AS [Q13_2_Description], 
+    [vInspectionAudits].[Q13_3] AS [Q13_3], 
+    [vInspectionAudits].[Q13_3_Description] AS [Q13_3_Description], 
+    [vInspectionAudits].[Q13_4] AS [Q13_4], 
+    [vInspectionAudits].[Q13_4_Description] AS [Q13_4_Description], 
+    [vInspectionAudits].[Q13_5] AS [Q13_5], 
+    [vInspectionAudits].[Q13_5_Description] AS [Q13_5_Description], 
+    [vInspectionAudits].[Q13_6] AS [Q13_6], 
+    [vInspectionAudits].[Q13_6_Description] AS [Q13_6_Description], 
+    [vInspectionAudits].[Q14_1] AS [Q14_1], 
+    [vInspectionAudits].[Q14_1_Description] AS [Q14_1_Description], 
+    [vInspectionAudits].[Q14_2] AS [Q14_2], 
+    [vInspectionAudits].[Q14_2_Description] AS [Q14_2_Description], 
+    [vInspectionAudits].[Q14_3] AS [Q14_3], 
+    [vInspectionAudits].[Q14_3_Description] AS [Q14_3_Description], 
+    [vInspectionAudits].[Q14_4] AS [Q14_4], 
+    [vInspectionAudits].[Q14_4_Description] AS [Q14_4_Description], 
+    [vInspectionAudits].[Q14_5] AS [Q14_5], 
+    [vInspectionAudits].[Q14_5_Description] AS [Q14_5_Description], 
+    [vInspectionAudits].[OtherHealthSafetyIssues] AS [OtherHealthSafetyIssues], 
+    [vInspectionAudits].[ObservationNumber] AS [ObservationNumber]
+    FROM [dbo].[vInspectionAudits] AS [vInspectionAudits]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vJseaRiskAssessments " EntityType="Self.vJseaRiskAssessments " store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vJseaRiskAssessments ].[JseaRiskAssessmentId] AS [JseaRiskAssessmentId], 
+    [vJseaRiskAssessments ].[Site] AS [Site], 
+    [vJseaRiskAssessments ].[Created] AS [Created], 
+    [vJseaRiskAssessments ].[Modified] AS [Modified], 
+    [vJseaRiskAssessments ].[CreatedByName] AS [CreatedByName], 
+    [vJseaRiskAssessments ].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vJseaRiskAssessments ].[ModifiedByName] AS [ModifiedByName], 
+    [vJseaRiskAssessments ].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vJseaRiskAssessments ].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vJseaRiskAssessments ].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vJseaRiskAssessments ].[FormType] AS [FormType], 
+    [vJseaRiskAssessments ].[Title] AS [Title], 
+    [vJseaRiskAssessments ].[FormStatus] AS [FormStatus], 
+    [vJseaRiskAssessments ].[TaskDate] AS [TaskDate], 
+    [vJseaRiskAssessments ].[TaskLocation] AS [TaskLocation], 
+    [vJseaRiskAssessments ].[TaskValidTill] AS [TaskValidTill], 
+    [vJseaRiskAssessments ].[PersonResponsible] AS [PersonResponsible], 
+    [vJseaRiskAssessments ].[PlantEquipmentUsed] AS [PlantEquipmentUsed], 
+    [vJseaRiskAssessments ].[MaterialUsed] AS [MaterialUsed], 
+    [vJseaRiskAssessments ].[Permit] AS [Permit], 
+    [vJseaRiskAssessments ].[PermitNumber] AS [PermitNumber], 
+    [vJseaRiskAssessments ].[DetailsOfEquipment] AS [DetailsOfEquipment], 
+    [vJseaRiskAssessments ].[PrepByName] AS [PrepByName], 
+    [vJseaRiskAssessments ].[PrepByPosition] AS [PrepByPosition], 
+    [vJseaRiskAssessments ].[PrepByDate] AS [PrepByDate], 
+    [vJseaRiskAssessments ].[EnviroRevPrepByName] AS [EnviroRevPrepByName], 
+    [vJseaRiskAssessments ].[EnviroRevPosition] AS [EnviroRevPosition], 
+    [vJseaRiskAssessments ].[EnviroRevDate] AS [EnviroRevDate], 
+    [vJseaRiskAssessments ].[SafetyRevPrepByName] AS [SafetyRevPrepByName], 
+    [vJseaRiskAssessments ].[SafetyRevPosition] AS [SafetyRevPosition], 
+    [vJseaRiskAssessments ].[SafetyRevDate] AS [SafetyRevDate], 
+    [vJseaRiskAssessments ].[ApprovedPrepByName] AS [ApprovedPrepByName], 
+    [vJseaRiskAssessments ].[ApprovedByPosition] AS [ApprovedByPosition], 
+    [vJseaRiskAssessments ].[ApprovedByDate] AS [ApprovedByDate], 
+    [vJseaRiskAssessments ].[JobStep] AS [JobStep], 
+    [vJseaRiskAssessments ].[PotentialRisksImpacts] AS [PotentialRisksImpacts], 
+    [vJseaRiskAssessments ].[CurrentRiskRating] AS [CurrentRiskRating], 
+    [vJseaRiskAssessments ].[ControlMeasures] AS [ControlMeasures], 
+    [vJseaRiskAssessments ].[NewRiskRating] AS [NewRiskRating], 
+    [vJseaRiskAssessments ].[PersonResponsibleEnsureImp] AS [PersonResponsibleEnsureImp], 
+    [vJseaRiskAssessments ].[SignOffName] AS [SignOffName], 
+    [vJseaRiskAssessments ].[SignOffDate] AS [SignOffDate], 
+    [vJseaRiskAssessments ].[SignOffTime] AS [SignOffTime], 
+    [vJseaRiskAssessments ].[SignOffEmployer] AS [SignOffEmployer], 
+    [vJseaRiskAssessments ].[SignOffComments] AS [SignOffComments], 
+    [vJseaRiskAssessments ].[Activity] AS [Activity], 
+    [vJseaRiskAssessments ].[ReviewPersonResponsible] AS [ReviewPersonResponsible], 
+    [vJseaRiskAssessments ].[ReviewDatePerformed] AS [ReviewDatePerformed], 
+    [vJseaRiskAssessments ].[ReviewFindings] AS [ReviewFindings], 
+    [vJseaRiskAssessments ].[ReviewActionIfRequired] AS [ReviewActionIfRequired], 
+    [vJseaRiskAssessments ].[ReviewDateClosed] AS [ReviewDateClosed], 
+    [vJseaRiskAssessments ].[ReviewClosedBy] AS [ReviewClosedBy]
+    FROM [dbo].[vJseaRiskAssessments ] AS [vJseaRiskAssessments ]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vRiskAssessments" EntityType="Self.vRiskAssessments" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vRiskAssessments].[RiskAssessmentId] AS [RiskAssessmentId], 
+    [vRiskAssessments].[Site] AS [Site], 
+    [vRiskAssessments].[Created] AS [Created], 
+    [vRiskAssessments].[Modified] AS [Modified], 
+    [vRiskAssessments].[CreatedByName] AS [CreatedByName], 
+    [vRiskAssessments].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vRiskAssessments].[ModifiedByName] AS [ModifiedByName], 
+    [vRiskAssessments].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vRiskAssessments].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vRiskAssessments].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vRiskAssessments].[FormType] AS [FormType], 
+    [vRiskAssessments].[Title] AS [Title], 
+    [vRiskAssessments].[FormStatus] AS [FormStatus], 
+    [vRiskAssessments].[HowHazardProblemIdentified] AS [HowHazardProblemIdentified], 
+    [vRiskAssessments].[HowHazardProblemIdentifiedOther] AS [HowHazardProblemIdentifiedOther], 
+    [vRiskAssessments].[HazardManagementTeam] AS [HazardManagementTeam], 
+    [vRiskAssessments].[IncidentReportNumber] AS [IncidentReportNumber], 
+    [vRiskAssessments].[Location] AS [Location], 
+    [vRiskAssessments].[HazardBeingAssessed] AS [HazardBeingAssessed], 
+    [vRiskAssessments].[DateOfAssessment] AS [DateOfAssessment], 
+    [vRiskAssessments].[TimeOfAssessment] AS [TimeOfAssessment], 
+    [vRiskAssessments].[AreaSection] AS [AreaSection], 
+    [vRiskAssessments].[PartHistory] AS [PartHistory], 
+    [vRiskAssessments].[SafetyHazardsEnvironmentalImpacts] AS [SafetyHazardsEnvironmentalImpacts], 
+    [vRiskAssessments].[PotentialRisksImpacts] AS [PotentialRisksImpacts], 
+    [vRiskAssessments].[CurrentControls] AS [CurrentControls], 
+    [vRiskAssessments].[CurrentRiskRating] AS [CurrentRiskRating], 
+    [vRiskAssessments].[ControlsAdequate] AS [ControlsAdequate], 
+    [vRiskAssessments].[ProposedNewControls] AS [ProposedNewControls], 
+    [vRiskAssessments].[NewRiskRating] AS [NewRiskRating], 
+    [vRiskAssessments].[ObservationNumber] AS [ObservationNumber]
+    FROM [dbo].[vRiskAssessments] AS [vRiskAssessments]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyActions" EntityType="Self.vSafetyActions" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyActions].[SafetyActionId] AS [SafetyActionId], 
+    [vSafetyActions].[FormHeaderId] AS [FormHeaderId], 
+    [vSafetyActions].[Site] AS [Site], 
+    [vSafetyActions].[Created] AS [Created], 
+    [vSafetyActions].[Modified] AS [Modified], 
+    [vSafetyActions].[CreatedByName] AS [CreatedByName], 
+    [vSafetyActions].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vSafetyActions].[ModifiedByName] AS [ModifiedByName], 
+    [vSafetyActions].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vSafetyActions].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vSafetyActions].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vSafetyActions].[FormType] AS [FormType], 
+    [vSafetyActions].[Title] AS [Title], 
+    [vSafetyActions].[FormStatus] AS [FormStatus], 
+    [vSafetyActions].[SATitle] AS [SATitle], 
+    [vSafetyActions].[SACreated] AS [SACreated], 
+    [vSafetyActions].[SAModified] AS [SAModified], 
+    [vSafetyActions].[SASite] AS [SASite], 
+    [vSafetyActions].[SAModifiedByName] AS [SAModifiedByName], 
+    [vSafetyActions].[SAModifiedByEmpNo] AS [SAModifiedByEmpNo], 
+    [vSafetyActions].[StartDate] AS [StartDate], 
+    [vSafetyActions].[DueDate] AS [DueDate], 
+    [vSafetyActions].[AssignedToName] AS [AssignedToName], 
+    [vSafetyActions].[AssignedToEmpNo] AS [AssignedToEmpNo], 
+    [vSafetyActions].[PercentageComplete] AS [PercentageComplete], 
+    [vSafetyActions].[MexNumber] AS [MexNumber], 
+    [vSafetyActions].[Description] AS [Description], 
+    [vSafetyActions].[Priority] AS [Priority], 
+    [vSafetyActions].[Status] AS [Status]
+    FROM [dbo].[vSafetyActions] AS [vSafetyActions]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyActionsByMonthBySite" EntityType="Self.vSafetyActionsByMonthBySite" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyActionsByMonthBySite].[SafetyActionsByMonthBySiteId] AS [SafetyActionsByMonthBySiteId], 
+    [vSafetyActionsByMonthBySite].[Month] AS [Month], 
+    [vSafetyActionsByMonthBySite].[MonthName] AS [MonthName], 
+    [vSafetyActionsByMonthBySite].[Year] AS [Year], 
+    [vSafetyActionsByMonthBySite].[Site] AS [Site], 
+    [vSafetyActionsByMonthBySite].[Count] AS [Count]
+    FROM [dbo].[vSafetyActionsByMonthBySite] AS [vSafetyActionsByMonthBySite]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyActionsByMonthByUser" EntityType="Self.vSafetyActionsByMonthByUser" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyActionsByMonthByUser].[SafetyActionsByMonthByUserId] AS [SafetyActionsByMonthByUserId], 
+    [vSafetyActionsByMonthByUser].[Month] AS [Month], 
+    [vSafetyActionsByMonthByUser].[MonthName] AS [MonthName], 
+    [vSafetyActionsByMonthByUser].[Year] AS [Year], 
+    [vSafetyActionsByMonthByUser].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vSafetyActionsByMonthByUser].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vSafetyActionsByMonthByUser].[Count] AS [Count]
+    FROM [dbo].[vSafetyActionsByMonthByUser] AS [vSafetyActionsByMonthByUser]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyActionsThisMonthByUser" EntityType="Self.vSafetyActionsThisMonthByUser" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyActionsThisMonthByUser].[SafetyActionsThisMonthByUserId] AS [SafetyActionsThisMonthByUserId], 
+    [vSafetyActionsThisMonthByUser].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vSafetyActionsThisMonthByUser].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vSafetyActionsThisMonthByUser].[Count] AS [Count]
+    FROM [dbo].[vSafetyActionsThisMonthByUser] AS [vSafetyActionsThisMonthByUser]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyWalkTalks" EntityType="Self.vSafetyWalkTalks" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyWalkTalks].[SafetyWalkTalkId] AS [SafetyWalkTalkId], 
+    [vSafetyWalkTalks].[Site] AS [Site], 
+    [vSafetyWalkTalks].[Created] AS [Created], 
+    [vSafetyWalkTalks].[Modified] AS [Modified], 
+    [vSafetyWalkTalks].[CreatedByName] AS [CreatedByName], 
+    [vSafetyWalkTalks].[CreatedByEmpNo] AS [CreatedByEmpNo], 
+    [vSafetyWalkTalks].[ModifiedByName] AS [ModifiedByName], 
+    [vSafetyWalkTalks].[ModifiedByEmpNo] AS [ModifiedByEmpNo], 
+    [vSafetyWalkTalks].[CurrentOwnerName] AS [CurrentOwnerName], 
+    [vSafetyWalkTalks].[CurrentOwnerEmpNo] AS [CurrentOwnerEmpNo], 
+    [vSafetyWalkTalks].[FormType] AS [FormType], 
+    [vSafetyWalkTalks].[Title] AS [Title], 
+    [vSafetyWalkTalks].[FormStatus] AS [FormStatus], 
+    [vSafetyWalkTalks].[Task] AS [Task], 
+    [vSafetyWalkTalks].[Improvements] AS [Improvements], 
+    [vSafetyWalkTalks].[Observations] AS [Observations], 
+    [vSafetyWalkTalks].[SuggestedImprovements] AS [SuggestedImprovements], 
+    [vSafetyWalkTalks].[Notes] AS [Notes], 
+    [vSafetyWalkTalks].[MexNumber] AS [MexNumber], 
+    [vSafetyWalkTalks].[ObservationNumber] AS [ObservationNumber]
+    FROM [dbo].[vSafetyWalkTalks] AS [vSafetyWalkTalks]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyWalkTalksByDay" EntityType="Self.vSafetyWalkTalksByDay" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyWalkTalksByDay].[SafetyWalkTalksByDayId] AS [SafetyWalkTalksByDayId], 
+    [vSafetyWalkTalksByDay].[Day] AS [Day], 
+    [vSafetyWalkTalksByDay].[Month] AS [Month], 
+    [vSafetyWalkTalksByDay].[MonthName] AS [MonthName], 
+    [vSafetyWalkTalksByDay].[Year] AS [Year], 
+    [vSafetyWalkTalksByDay].[Site] AS [Site], 
+    [vSafetyWalkTalksByDay].[Count] AS [Count]
+    FROM [dbo].[vSafetyWalkTalksByDay] AS [vSafetyWalkTalksByDay]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyWalkTalksByMonth" EntityType="Self.vSafetyWalkTalksByMonth" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyWalkTalksByMonth].[SafetyWalkTalksByMonthId] AS [SafetyWalkTalksByMonthId], 
+    [vSafetyWalkTalksByMonth].[Month] AS [Month], 
+    [vSafetyWalkTalksByMonth].[MonthName] AS [MonthName], 
+    [vSafetyWalkTalksByMonth].[Year] AS [Year], 
+    [vSafetyWalkTalksByMonth].[Site] AS [Site], 
+    [vSafetyWalkTalksByMonth].[Count] AS [Count]
+    FROM [dbo].[vSafetyWalkTalksByMonth] AS [vSafetyWalkTalksByMonth]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vSafetyWalkTalksByWeek" EntityType="Self.vSafetyWalkTalksByWeek" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vSafetyWalkTalksByWeek].[SafetyWalkTalksByWeekId] AS [SafetyWalkTalksByWeekId], 
+    [vSafetyWalkTalksByWeek].[Week] AS [Week], 
+    [vSafetyWalkTalksByWeek].[Month] AS [Month], 
+    [vSafetyWalkTalksByWeek].[MonthName] AS [MonthName], 
+    [vSafetyWalkTalksByWeek].[Year] AS [Year], 
+    [vSafetyWalkTalksByWeek].[Site] AS [Site], 
+    [vSafetyWalkTalksByWeek].[Count] AS [Count]
+    FROM [dbo].[vSafetyWalkTalksByWeek] AS [vSafetyWalkTalksByWeek]</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

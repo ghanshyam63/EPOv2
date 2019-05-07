@@ -1,0 +1,12 @@
+﻿@model Dictionary<string,string>
+<div class="epo-details-body">
+    <table class="small table epo-details table-condensed">
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td class="text-left">@item.Key</td>
+                <td class="text-right">@item.Value</td>
+            </tr>
+        }
+    </table>
+</div>

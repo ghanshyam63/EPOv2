@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="5fa651a24f994e1393f09fc2148318ad" Name="Diagram1">
+        <EntityTypeShape EntityType="QADLiveModel.ac_mstr" Width="1.5" PointX="10.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.acd_det" Width="1.5" PointX="10.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ad_mstr" Width="1.5" PointX="10.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ad_mstr_extra" Width="1.5" PointX="12.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ad_mstr_manual" Width="1.5" PointX="12.75" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ap_mstr" Width="1.5" PointX="0.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ar_mstr" Width="1.5" PointX="5.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ard_det" Width="1.5" PointX="8" PointY="10.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.bgd_det" Width="1.5" PointX="2.75" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Cube2015_Fact_Yield" Width="1.5" PointX="14.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Fact_SalesECSL24" Width="1.5" PointX="14.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Fact_SalesECSL48" Width="1.5" PointX="16.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Fact_SalesRC" Width="1.5" PointX="16.75" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Fact_SalesRC_Comments" Width="1.5" PointX="12.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Fact_SalesRC_CommentsInfo" Width="1.5" PointX="18.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.FormtrapPrinter_" Width="1.5" PointX="18.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ps_mstr" Width="1.5" PointX="18.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pt_mstr" Width="1.5" PointX="0.75" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pt_mstr_extra" Width="1.5" PointX="3" PointY="9" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pt_mstr_manual" Width="1.5" PointX="7.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ptp_det" Width="1.5" PointX="9.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ro_det" Width="1.5" PointX="18.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.rsn_ref" Width="1.5" PointX="2.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.rsn_ref_manual" Width="1.5" PointX="4.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.si_mstr" Width="1.5" PointX="20.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.si_mstr_extra" Width="1.5" PointX="20.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_acl" Width="1.5" PointX="20.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_countries" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_distributionCentres" Width="1.5" PointX="9.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_marketing" Width="1.5" PointX="20.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_partnercodes" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_partnersubcodes" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_regions" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_states" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_subvaluestreams" Width="1.5" PointX="3" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_valuestreams" Width="1.5" PointX="0.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sys_zones" Width="1.5" PointX="7.5" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tblChepProduct" Width="1.5" PointX="11.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tblDIFFOTOutbound" Width="1.5" PointX="20.75" PointY="12.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tblLabelMessage" Width="1.5" PointX="13.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tblSmartBuy" Width="1.5" PointX="15.75" PointY="20.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tr_hist" Width="1.5" PointX="20.75" PointY="17.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.trgl_det" Width="1.5" PointX="17.75" PointY="21.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.vo_mstr" Width="1.5" PointX="22.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.vod_det" Width="1.5" PointX="0.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.vph_hist" Width="1.5" PointX="2.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.wc_mstr" Width="1.5" PointX="4.75" PointY="22.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Yield" Width="1.5" PointX="22.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.DetailedOld" Width="1.5" PointX="22.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.DetailedTemp" Width="1.5" PointX="22.75" PointY="18.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.SupplierTimeTolerance" Width="1.5" PointX="11.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ar_mstr_audit" Width="1.5" PointX="13.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.asc_mstr" Width="1.5" PointX="24.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.AutoPoSupplierGrouping" Width="1.5" PointX="24.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ba_mstr" Width="1.5" PointX="6.75" PointY="24.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.cm_mstr" Width="1.5" PointX="24.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.FinancialCalendar" Width="1.5" PointX="26.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.glc_cal" Width="1.5" PointX="26.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.gltr_hist_audit" Width="1.5" PointX="26.75" PointY="9.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.idh_hist" Width="1.5" PointX="26.75" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.idh_hist_audit" Width="1.5" PointX="26.75" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ih_hist" Width="1.5" PointX="2.75" PointY="27.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ih_hist_audit" Width="1.5" PointX="28.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.in_mstr" Width="1.5" PointX="15.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ld_det" Width="1.5" PointX="17.75" PointY="28.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ln_mstr" Width="1.5" PointX="4.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.mrp_det" Width="1.5" PointX="6.75" PointY="29.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pl_mstr" Width="1.5" PointX="30.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Printer" Width="1.5" PointX="28.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pvo_mstr" Width="1.5" PointX="30.75" PointY="31.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pvod_det" Width="1.5" PointX="32.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.ReceivalsLocationPo" Width="1.5" PointX="32.75" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.sod_det" Width="1.5" PointX="32.75" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tblState" Width="1.5" PointX="19.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.tblWetSalad" Width="1.5" PointX="21.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.usr_mstr" Width="1.5" PointX="23.75" PointY="32.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.usrg_mstr" Width="1.5" PointX="0.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.usrgd_det" Width="1.5" PointX="8.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.wc_mstr_manual" Width="1.5" PointX="10.75" PointY="33.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.wo_mstr" Width="1.5" PointX="34.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.wod_det" Width="1.5" PointX="34.75" PointY="23.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.Detailed" Width="1.5" PointX="19.75" PointY="35.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.po_mstr" Width="1.5" PointX="36.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pod_det1" Width="1.5" PointX="2.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.pt_mstr1" Width="1.5" PointX="4.75" PointY="36.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="QADLiveModel.vd_mstr1" Width="1.5" PointX="36.75" PointY="25.75" IsExpanded="true" />
+        <AssociationConnector Association="QADLiveModel.FK_ard_det_ard_det" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_pt_mstr_extra_pt_mstr" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_sys_regions_sys_countries" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_sys_distributionCentres_sys_zones" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_sys_partnersubcodes_sys_partnercodes" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_sys_states_sys_regions" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_sys_zones_sys_states" ManuallyRouted="false" />
+        <AssociationConnector Association="QADLiveModel.FK_sys_subvaluestreams_sys_valuestreams" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="QADLiveModel.Entity1" Width="1.5" PointX="12.25" PointY="1.25" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

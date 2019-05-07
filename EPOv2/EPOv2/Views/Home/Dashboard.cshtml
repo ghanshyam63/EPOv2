@@ -1,0 +1,256 @@
+﻿@model EPOv2.ViewModels.DashboardViewModel
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+@*<link rel="stylesheet" href="http://localhost/EPOv2/Content/MaterialDesign.css" />*@
+<script type="text/javascript">
+
+    var isActive = false;
+    var isOrderSwitched = false;
+    var currOrderId = 0;
+
+
+    function EditItem(object) {
+        var itemID = object.value;
+        $("#Dasboard #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#Dasboard').attr('target', '_blank').attr("Action", '@Url.Action("EditOrder","PurchaseOrder")').submit();
+        } else {
+            $('#Dasboard').attr('target', '_self').attr("Action", '@Url.Action("EditOrder","PurchaseOrder")').submit();
+        }
+
+    }
+
+    function ViewItem(object) {
+        var itemID = object.value;
+        $("#Dasboard #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#Dasboard').attr('target', '_blank').attr("Action", '@Url.Action("ViewOrder","PurchaseOrder")').submit();
+        } else {
+            $('#Dasboard').attr('target', '_self').attr("Action", '@Url.Action("ViewOrder","PurchaseOrder")').submit();
+        }
+
+    }
+
+    function ApproveItem(object) {
+        var itemID = object.value;
+        $("#DasboardApproval #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#DasboardApproval').attr('target', '_blank').attr("Action", '@Url.Action("AuthoriseOrder", "PurchaseOrder")').submit();
+        } else {
+            $('#DasboardApproval').attr('target', '_self').attr("Action", '@Url.Action("AuthoriseOrder", "PurchaseOrder")').submit();
+        }
+    }
+
+    function OpenPDFPO(object) {
+        var itemID = object.value;
+        $("#Dasboard #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#Dasboard').attr('target', '_blank').attr("Action", '@Url.Action("OpenPDFPO", "PurchaseOrder")').submit();
+        }
+        $('#Dasboard').attr('target', '_self').attr("Action", '@Url.Action("OpenPDFPO","PurchaseOrder")').submit();
+    }
+
+    function SendEmail(object) {
+        var itemID = object.value;
+        $("#Dasboard #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#Dasboard').attr('target', '_blank').attr("Action", '@Url.Action("SendPObyEmail", "PurchaseOrder")').submit();
+        } else {
+            $('#Dasboard').attr('target', '_self').attr("Action", '@Url.Action("SendPObyEmail", "PurchaseOrder")').submit();
+        }
+    }
+
+    function DeleteItem(object) {
+        bootbox.confirm("Are you sure you want to Delete order?", function (result) {
+            if (result === true) {
+                var itemID = object.value;
+                $("#Dasboard #SelectedItem").val(itemID);
+                $('#Dasboard').attr("Action", '@Url.Action("DeleteOrder","PurchaseOrder")').submit();
+            }
+        });
+    }
+
+    function CancelItem(object) {
+        bootbox.confirm("Are you sure you want to Cancel order?", function (result) {
+            if (result === true) {
+                var itemID = object.value;
+                $("#Dasboard #SelectedItem").val(itemID);
+                $('#Dasboard').attr("Action", '@Url.Action("CancelOrder","PurchaseOrder")').submit();
+            }
+        });
+    }
+
+    function ApproveInvoice(object) {
+        var voucherNumber = object.value; //VoucherNumber
+        $("#DasboardInvoice #SelectedInvoice").val(voucherNumber);
+        if (event.ctrlKey) {
+            $('#DasboardInvoice').attr('target', '_blank').submit();
+        } else {
+            $('#DasboardInvoice').attr('target', '_self').submit();
+        }
+    }
+
+    function MatchOrder(object) {
+        var itemID = object.value;
+        $("#DasboardMatching #SelectedItem").val(itemID);
+        if (event.ctrlKey) {
+            $('#DasboardMatching').attr('target', '_blank').attr("Action", '@Url.Action("MatchOrder", "PurchaseOrder")').submit();
+        } else {
+            $('#DasboardMatching').attr('target', '_self').attr("Action", '@Url.Action("MatchOrder", "PurchaseOrder")').submit();
+        }
+    }
+
+    function ShowTransactions(object) {
+        var orderID = object.value;
+        if (currOrderId !== orderID) {
+            isOrderSwitched = true;
+            currOrderId = orderID;
+        } else {
+            isOrderSwitched = false;
+        }
+        if (isOrderSwitched) {
+            if (isActive) {
+                $('.material').removeClass('active');
+                isActive = false;
+            }
+
+            //currOrderId = orderID;
+            var btnTop = $(object).offset().top - $(window).scrollTop();
+            var left = $(object).offset().left - 300;
+            var modTop = 0;
+            if (CalculateModalTop(0, btnTop)) modTop = btnTop - 207;
+            else {
+                modTop = btnTop + 23;
+            }
+
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("ShowTransactions", "Home")',
+                cache: false,
+                data: {
+                    orderId: orderID
+                },
+                error: function (xhr) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#my-dialog').html(result);
+                    $('.material').css({ top: modTop, bottom: '', left: left });
+                    $('.material').addClass('active');
+                    isActive = true;
+                }
+            });
+        } else {
+            isActive = false;
+            $('.material').toggleClass('active');
+        }
+    }
+
+    function CalculateModalTop(winTop, btnTop) {
+        var tT = winTop + btnTop;
+        if (tT >= 307) {
+            $('.material').css({ 'transform-origin': 'bottom left' });
+            return true;
+        }
+        else {
+            $('.material').css({ 'transform-origin': 'top left' });
+            return false;
+        }
+    }
+
+    function CloseItem(object) {
+        @*bootbox.confirm("Are you expecting another invoice for that Order?", function (result) {
+            if (result === false) {
+                var itemID = object.value;
+               // $("#Dasboard #SelectedItem").val(itemID);
+               // $('#Dasboard').attr("Action", '@Url.Action("CloseOrder","PurchaseOrder")').submit();
+            }
+        });*@
+        bootbox.dialog({
+            message: "Are you expecting another invoice for that Order?",
+            title: "Closing PO",
+            buttons: {
+                danger: {
+                    label: "Yes",
+                    className: "btn-danger",
+                    callback: function () {
+                    }
+                },
+                main: {
+                    label: "No!",
+                    className: "btn-success",
+                    callback: function () {
+                        var itemID = object.value;
+                        $("#Dasboard #SelectedItem").val(itemID);
+                        $('#Dasboard').attr("Action", '@Url.Action("CloseOrder","PurchaseOrder")').submit();
+                    }
+                }
+
+            }
+        });
+    }
+
+
+</script>
+
+<br />
+
+<div class="row">
+    <div class="col-md-5">
+        @using (@Html.BeginForm("Invoice", "Ettacher", FormMethod.Post, new { id = "DasboardInvoice" }))
+        {
+            @Html.HiddenFor(x => x.SelectedItem, new { id = "SelectedInvoice" })
+            ;
+            Html.RenderAction("DashboardInvoicesForApprove");
+        }
+    </div>
+    <div class="col-md-7">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <div class="panel-title">Purchase Orders Awaiting Approval</div>
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("AuthoriseOrder", "PurchaseOrder", FormMethod.Post, new { id = "DasboardApproval" }))
+                {
+                    @Html.HiddenFor(x => x.SelectedItem);
+                    Html.RenderAction("DashboardOrdersForApprove");
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-warning" role="tab" id="POHead">
+            <div class="panel-heading">
+                <div class="panel-title"><a data-toggle="collapse" data-parent="#accordion" href="#PObody" aria-expanded="true" aria-controls="PObody">Orders to be Matched (click to Hide) </a></div>
+            </div>
+            <div id="PObody" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="POHead">
+                @using (@Html.BeginForm("MatchOrder", "PurchaseOrder", FormMethod.Post, new { id = "DasboardMatching" }))
+                {
+                    @Html.HiddenFor(x => x.SelectedItem);
+                    Html.RenderAction("DashboardOrdersForMatching");
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <div class="panel-title">My Open Purchase Orders</div>
+            </div>
+            <div class="panel-body">
+                @using (@Html.BeginForm("EditOrder", "PurchaseOrder", FormMethod.Post, new { id = "Dasboard" }))
+                {
+                    @Html.HiddenFor(x => x.SelectedItem);
+                    Html.RenderAction("DashboardMyOrders");
+                }
+            </div>
+        </div>
+    </div>
+</div>
+<div id="my-dialog" class="material" data-position-to="origin"></div>

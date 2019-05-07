@@ -1,0 +1,50 @@
+﻿@model IEnumerable<EPOv2.ViewModels.QADOrderItemTableViewModel>
+
+                <div class="panel panel-primary">
+                    <div class="panel-heading">Purchase Order Info</div>
+                    <div class="panel-body">
+                        
+                        @*@Html.HiddenFor(x => x.Amount)
+                        @Html.HiddenFor(x => x.CostCentre)
+                        @Html.HiddenFor(x => x.Supplier)
+                        @Html.HiddenFor(x => x.InvoiceNumber)
+                        @Html.HiddenFor(x => x.VoucherNumber)
+                        @Html.HiddenFor(x => x.DueDate)
+                        @Html.HiddenFor(x => x.Terms)*@
+                        <table class="table table-responsive">
+                            <thead>
+                                <tr>
+                                    <th>PO #</th>
+                                    <th>Line #</th>
+                                    <th>Details</th>
+                                    <th class="text-right">Qty Rcd</th>
+                                    <th class="text-right">Qty Inv</th>
+                                    <th class="text-right">Qty Open</th>
+                                    <th class="text-right">PO Unit Cost</th>
+                                    <th class="text-right">PO Line Total</th>
+                                    <th class="text-right">Inv Unit Cost</th>
+                                    <th class="text-right">Unit Var</th>
+                                    <th class="text-right">Var Total $</th>
+                                </tr>
+                            </thead>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td>@item.OrderNumber</td>
+                                        <td>@item.Line</td>
+                                        <td>@item.Description</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.QtyRecieved)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.QtyInvoiced)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.QtyOpen)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.UnitPrice)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.POLineTotal)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.UnitPriceInvoiced)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.UnitPriceVariance)</td>
+                                        <td class="text-right">@Html.DisplayFor(m => item.VarianceLineTotal)</td>
+                                    </tr>
+                                }
+                        
+                        </table>
+                    </div>
+                </div>
+

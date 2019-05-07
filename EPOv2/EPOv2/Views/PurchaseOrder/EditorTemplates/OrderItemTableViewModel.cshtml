@@ -1,0 +1,48 @@
+﻿@model EPOv2.ViewModels.OrderItemTableViewModel
+<tr>
+    <td>
+        @Html.HiddenFor(x => x.Id)
+        @Html.HiddenFor(x => x.Qty, new { id="Qty-"+@Model.Id })
+        @Html.HiddenFor(x => x.QtyAlreadyReceived, new { id = "QtyARec-" + @Model.Id })
+        @Model.Line
+    </td>
+    <td>
+        @Model.RevisionQty
+    </td>
+    <td>
+        @Model.Qty
+    </td>
+    <td>
+        @Model.Description
+    </td>
+    <td>
+        @Model.AccountName
+    </td>
+    <td>
+        @Model.SubAccountName
+    </td>
+    <td>
+        @Model.DueDate
+    </td>
+    <td class="text-right">
+        @Model.CurrencyName.Substring(3, 1)@Html.DisplayFor(m => m.TotalExTax, new { @class = "text-right" })
+    </td>
+    <td class="text-right">
+        @Model.CurrencyName.Substring(3, 1)@Html.DisplayFor(m => m.TotalTax, new { @class = "text-right" })
+    </td>
+    <td class="text-right">
+        @Model.CurrencyName.Substring(3,1)@Html.DisplayFor(m => m.Total, new { @class = "text-right" })
+    </td>
+    <td class="col-short-input-number">
+        @Html.TextBoxFor(m => m.QtyReceived, null, new { @class = "form-control input-sm  text-right", @onkeypress = "return isNumberKey(event)", @onchange = "checkQty(this)", @id = Model.Id })
+    </td>
+    <td class="col-short-input-date">
+        @Html.TextBoxFor(m => m.ReceviedDate, null, new { @class = "form-control input-sm text-right", id = "datepicker"+@Model.Id, @placeholder = "Select Received date" })
+    </td>
+    <td class="col-short-number text-right">
+        @Html.DisplayFor(m => m.QtyAlreadyReceived, new { @class = "text-right" })
+    </td>
+    <td></td>
+</tr>
+    
+    

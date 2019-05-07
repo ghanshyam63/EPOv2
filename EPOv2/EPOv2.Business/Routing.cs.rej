@@ -1,0 +1,9 @@
+diff a/EPOv2.Business/Routing.cs b/EPOv2.Business/Routing.cs	(rejected hunks)
+@@ -516,6 +516,7 @@
+                 _orderCostCentre = IsCapex ? _data.GetCostCentreForCapex(order.Capex_Id) : order.CostCentre;
+ 
+                 var ownerEmpId = _orderCostCentre.Owner.UserInfo.EmployeeId;
++                var authorEmpId = 193;//order.Author.UserInfo.EmployeeId; 
+                 var authorData = GetRockieLevelData(authorEmpId.ToString());
+                 if (authorData == null)
+                 {

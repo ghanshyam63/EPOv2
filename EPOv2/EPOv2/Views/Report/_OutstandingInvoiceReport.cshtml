@@ -1,0 +1,52 @@
+﻿@model EPOv2.ViewModels.OutstandingInvoicesReport
+    @{
+        Layout = null;
+    }
+<html>
+<head>
+    <title></title>
+    <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1">
+    <meta name="description" content="csl system" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+
+
+    <style>
+
+  @Html.Raw(File.ReadAllText(Server.MapPath("~/Content/bootstrap-mail.css")))
+
+    </style>
+
+</head>
+<body>
+<div class="container body-content">
+    <table class="small table col-sm-12 table-condensed">
+        <tr>
+            <td class="col-sm-1">
+                Voucher #
+            </td>
+            <td class="col-sm-3">Supplier</td>
+            <td class="col-sm-1">Attached Date</td>
+            <td class="col-sm-1">Order #</td>
+            <td class="col-sm-2">PO Author</td>
+            <td class="col-sm-2">PO Status</td>
+            <td class="col-sm-3"></td>
+        </tr>
+        @foreach (var invoice in Model.Invoices)
+        {
+            <tr>
+                <td >@invoice.VoucherNumber</td>
+                <td >@invoice.SupplierName</td>
+                <td >@invoice.Date</td>
+                <td >@invoice.OrderNumber</td>
+                <td >@invoice.OrderAuthor</td>
+                <td >@invoice.OrderStatus</td>
+                @*<td >@Html.ActionLink("Authorise Invoice", "Invoice","Ettacher", new { SelectedItem=@invoice.VoucherId },null)</td>*@
+                <td><a href=@invoice.AuthrisationURL >Authorise Invoice</a></td>
+            </tr>
+        }
+    </table>
+</div>
+</body>
+</html>

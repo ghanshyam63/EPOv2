@@ -1,0 +1,1372 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OldPurchaseOrderModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="tblAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AccountCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="SystemID" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblEntityCCAccs" Relationship="Self.FK_tblEntityCCAcc_tblAccount" FromRole="tblAccount" ToRole="tblEntityCCAcc" />
+  </EntityType>
+  <EntityType Name="tblAmendment">
+    <Key>
+      <PropertyRef Name="AmendmentID" />
+    </Key>
+    <Property Name="AmendmentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POID" Type="Int32" />
+    <Property Name="AmendType" Type="Int32" />
+    <Property Name="Contact" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="AmendDateTime" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="RefNumber" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblAPSubstitutionLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="authoriser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="authoriserUsername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="substitution" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="substitutionUsername" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="documentID" Type="Int32" Nullable="false" />
+    <Property Name="substituteID" Type="Int32" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblBudgetDetail">
+    <Key>
+      <PropertyRef Name="BudgetLineID" />
+    </Key>
+    <Property Name="BudgetLineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BudgetID" Type="Int32" Nullable="false" />
+    <Property Name="EntityCCAccID" Type="Int32" Nullable="false" />
+    <Property Name="CalendarYear" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CalendarPeriod" Type="String" MaxLength="2" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Amount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblBudgetHeader" Relationship="Self.FK_tblBudgetDetail_tblBudgetHeader" FromRole="tblBudgetDetail" ToRole="tblBudgetHeader" />
+  </EntityType>
+  <EntityType Name="tblBudgetHeader">
+    <Key>
+      <PropertyRef Name="BudgetID" />
+    </Key>
+    <Property Name="BudgetID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="BudgetSet" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="TargetBudget" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="AllowEdit" Type="Boolean" />
+    <Property Name="AllowReport" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblBudgetDetails" Relationship="Self.FK_tblBudgetDetail_tblBudgetHeader" FromRole="tblBudgetHeader" ToRole="tblBudgetDetail" />
+  </EntityType>
+  <EntityType Name="tblCapex">
+    <Key>
+      <PropertyRef Name="CapexID" />
+    </Key>
+    <Property Name="CapexID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Revision" Type="Int32" />
+    <Property Name="CapexNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PrevCapexID" Type="Int32" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="TotalExGST" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="TotalGST" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="TotalIncGST" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Owner" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="FilePath" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="EntityID" Type="Int32" />
+    <Property Name="CostCentreID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblPODetails" Relationship="Self.FK_tblPODetail_tblCapex" FromRole="tblCapex" ToRole="tblPODetail" />
+  </EntityType>
+  <EntityType Name="tblCapexApprover">
+    <Key>
+      <PropertyRef Name="CapexApprovalID" />
+    </Key>
+    <Property Name="CapexApprovalID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CapexID" Type="Int32" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="Approver" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="StatusID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblCapexAuthoriser">
+    <Key>
+      <PropertyRef Name="AuthoriserID" />
+    </Key>
+    <Property Name="AuthoriserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblCapexAuthoriserLists" Relationship="Self.FK_tblCapexAuthoriserList_tblCapexAuthoriser" FromRole="tblCapexAuthoriser" ToRole="tblCapexAuthoriserList" />
+  </EntityType>
+  <EntityType Name="tblCapexAuthoriserList">
+    <Key>
+      <PropertyRef Name="ListAuthoriserID" />
+    </Key>
+    <Property Name="ListAuthoriserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuthoriserID" Type="Int32" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="EntityID" Type="Int32" />
+    <Property Name="CostCentreID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblCapexAuthoriser" Relationship="Self.FK_tblCapexAuthoriserList_tblCapexAuthoriser" FromRole="tblCapexAuthoriserList" ToRole="tblCapexAuthoriser" />
+  </EntityType>
+  <EntityType Name="tblCapexLimit">
+    <Key>
+      <PropertyRef Name="LimitID" />
+    </Key>
+    <Property Name="LimitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LowerLimit" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="UpperLimit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCapexRole">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Role" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleUserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EntityID" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblCapexRoleLimit">
+    <Key>
+      <PropertyRef Name="RoleLimitID" />
+    </Key>
+    <Property Name="RoleLimitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RoleID" Type="Int32" />
+    <Property Name="LimitID" Type="Int32" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+  </EntityType>
+  <EntityType Name="tblCapexRouting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="costCentre" Type="Int32" Nullable="false" />
+    <Property Name="limit" Type="Int32" Nullable="false" />
+    <Property Name="approver1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver3" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver4" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver5" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver6" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver7" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver8" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver9" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="approver10" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="updated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updatedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="createdBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblControl">
+    <Key>
+      <PropertyRef Name="ControlID" />
+    </Key>
+    <Property Name="ControlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ControlCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlValue" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ControlText" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblCostCentre">
+    <Key>
+      <PropertyRef Name="CostCentreID" />
+    </Key>
+    <Property Name="CostCentreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="CostCentreCode" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SortOrder" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblEntityCCAccs" Relationship="Self.FK_tblEntityCostCentre_tblCostCentre" FromRole="tblCostCentre" ToRole="tblEntityCCAcc" />
+  </EntityType>
+  <EntityType Name="tblCreditCardPurchas">
+    <Key>
+      <PropertyRef Name="POID" />
+    </Key>
+    <Property Name="POID" Type="Int32" Nullable="false" />
+    <Property Name="SupplierName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblCurrencyRate">
+    <Key>
+      <PropertyRef Name="CurrencyID" />
+    </Key>
+    <Property Name="CurrencyID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Rate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblEntity">
+    <Key>
+      <PropertyRef Name="EntityID" />
+    </Key>
+    <Property Name="EntityID" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Prefix" Type="String" MaxLength="6" FixedLength="false" Unicode="true" />
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ACN" Type="String" MaxLength="22" FixedLength="false" Unicode="true" />
+    <Property Name="ABN" Type="String" MaxLength="28" FixedLength="false" Unicode="true" />
+    <Property Name="Disclaimer" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="APPhone" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="APFax" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="APEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="SystemID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblEntityCCAccs" Relationship="Self.FK_tblEntityCostCentre_tblEntity" FromRole="tblEntity" ToRole="tblEntityCCAcc" />
+    <NavigationProperty Name="tblSites" Relationship="Self.FK_tblSite_tblEntity" FromRole="tblEntity" ToRole="tblSite" />
+    <NavigationProperty Name="tblStagingCostCentresDEVs" Relationship="Self.FK_tblStagingCostCentresDEV_tblEntity" FromRole="tblEntity" ToRole="tblStagingCostCentresDEV" />
+  </EntityType>
+  <EntityType Name="tblEntityCCAcc">
+    <Key>
+      <PropertyRef Name="EntityCCAccID" />
+    </Key>
+    <Property Name="EntityCCAccID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EntityID" Type="Int32" Nullable="false" />
+    <Property Name="CostCentreID" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="SubAccountID" Type="Int32" />
+    <Property Name="AllowToRaisePO" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblAccount" Relationship="Self.FK_tblEntityCCAcc_tblAccount" FromRole="tblEntityCCAcc" ToRole="tblAccount" />
+    <NavigationProperty Name="tblCostCentre" Relationship="Self.FK_tblEntityCostCentre_tblCostCentre" FromRole="tblEntityCCAcc" ToRole="tblCostCentre" />
+    <NavigationProperty Name="tblEntity" Relationship="Self.FK_tblEntityCostCentre_tblEntity" FromRole="tblEntityCCAcc" ToRole="tblEntity" />
+    <NavigationProperty Name="tblSubAccount" Relationship="Self.FK_tblEntityCCAcc_tblSubAccount" FromRole="tblEntityCCAcc" ToRole="tblSubAccount" />
+    <NavigationProperty Name="tblPODetails" Relationship="Self.FK_tblPODetail_tblEntityCCAcc" FromRole="tblEntityCCAcc" ToRole="tblPODetail" />
+    <NavigationProperty Name="tblRoutingAccountLimits" Relationship="Self.FK_tblRoutingAccountLimit_tblEntityCCAcc" FromRole="tblEntityCCAcc" ToRole="tblRoutingAccountLimit" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblGroupMember">
+    <Key>
+      <PropertyRef Name="GroupMemberID" />
+    </Key>
+    <Property Name="GroupMemberID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="MemberID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPerformanceLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="username" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="sessionid" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Precision="3" />
+    <Property Name="system" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblPODelivery">
+    <Key>
+      <PropertyRef Name="DeliveryID" />
+    </Key>
+    <Property Name="DeliveryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DeliveryName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPODetail">
+    <Key>
+      <PropertyRef Name="POLineID" />
+    </Key>
+    <Property Name="POLineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POID" Type="Int32" Nullable="false" />
+    <Property Name="LineNumber" Type="Int32" Nullable="false" />
+    <Property Name="Revision" Type="Int32" Nullable="false" />
+    <Property Name="SupplierPartNo" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+    <Property Name="Details" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="EntityCCAccID" Type="Int32" Nullable="false" />
+    <Property Name="CapexID" Type="Int32" />
+    <Property Name="QuantityOrdered" Type="Double" Nullable="false" />
+    <Property Name="UnitPrice" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="GSTAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Taxable" Type="Boolean" />
+    <Property Name="CurrencyID" Type="Int32" />
+    <Property Name="CurrencyRate" Type="Decimal" Precision="19" Scale="4" />
+    <Property Name="QuantityOpen" Type="Double" Nullable="false" />
+    <Property Name="EstimateOnly" Type="Boolean" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="BlockID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="AssetID" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Status" Type="Int32" Nullable="false" />
+    <Property Name="OverBudget" Type="Boolean" Nullable="false" />
+    <Property Name="BudgetItem" Type="Boolean" />
+    <Property Name="HDPlanItem" Type="Boolean" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblCapex" Relationship="Self.FK_tblPODetail_tblCapex" FromRole="tblPODetail" ToRole="tblCapex" />
+    <NavigationProperty Name="tblEntityCCAcc" Relationship="Self.FK_tblPODetail_tblEntityCCAcc" FromRole="tblPODetail" ToRole="tblEntityCCAcc" />
+    <NavigationProperty Name="tblPOHeader" Relationship="Self.FK_tblPODetail_tblPOHeader" FromRole="tblPODetail" ToRole="tblPOHeader" />
+    <NavigationProperty Name="tblPOPhasings" Relationship="Self.FK_tblPOPhasing_tblPODetail" FromRole="tblPODetail" ToRole="tblPOPhasing" />
+  </EntityType>
+  <EntityType Name="tblPODetailReceipt">
+    <Key>
+      <PropertyRef Name="ReceiptLineID" />
+    </Key>
+    <Property Name="ReceiptLineID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POLineID" Type="Int32" />
+    <Property Name="ReceiptDate" Type="DateTime" Precision="3" />
+    <Property Name="ReceiptQty" Type="Decimal" Precision="10" Scale="2" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblPOHeader">
+    <Key>
+      <PropertyRef Name="POID" />
+    </Key>
+    <Property Name="POID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="PONumber" Type="Int32" Nullable="false" />
+    <Property Name="RevisionNumber" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SupplierID" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="Int32" Nullable="false" />
+    <Property Name="EntityID" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryID" Type="Int32" Nullable="false" />
+    <Property Name="ContactName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="ContactPhone" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="ContactEmail" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="CostCentreID" Type="Int32" />
+    <Property Name="InternalComments" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="TransmissionMethod" Type="Int32" Nullable="false" />
+    <Property Name="StatusID" Type="Int32" Nullable="false" />
+    <Property Name="SupplierContact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierFax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Author" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="receiptor" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Authoriser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="DecliningComments" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblPODetails" Relationship="Self.FK_tblPODetail_tblPOHeader" FromRole="tblPOHeader" ToRole="tblPODetail" />
+  </EntityType>
+  <EntityType Name="tblPOPhasing">
+    <Key>
+      <PropertyRef Name="POPhasingID" />
+    </Key>
+    <Property Name="POPhasingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POLineID" Type="Int32" Nullable="false" />
+    <Property Name="PaymentDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PaymentPercentage" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PaymentAmount" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblPODetail" Relationship="Self.FK_tblPOPhasing_tblPODetail" FromRole="tblPOPhasing" ToRole="tblPODetail" />
+  </EntityType>
+  <EntityType Name="tblRoutingAccountLimit">
+    <Key>
+      <PropertyRef Name="LimitID" />
+    </Key>
+    <Property Name="LimitID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EntityCCAccID" Type="Int32" Nullable="false" />
+    <Property Name="UpperLimit" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblEntityCCAcc" Relationship="Self.FK_tblRoutingAccountLimit_tblEntityCCAcc" FromRole="tblRoutingAccountLimit" ToRole="tblEntityCCAcc" />
+    <NavigationProperty Name="tblRoutingLists" Relationship="Self.FK_tblRoutingList_tblRoutingAccountLimit" FromRole="tblRoutingAccountLimit" ToRole="tblRoutingList" />
+  </EntityType>
+  <EntityType Name="tblRoutingList">
+    <Key>
+      <PropertyRef Name="ListID" />
+    </Key>
+    <Property Name="ListID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="LimitID" Type="Int32" Nullable="false" />
+    <Property Name="AuthoriserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApprovalType" Type="Int32" Nullable="false" />
+    <Property Name="ApprovalNumber" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblRoutingAccountLimit" Relationship="Self.FK_tblRoutingList_tblRoutingAccountLimit" FromRole="tblRoutingList" ToRole="tblRoutingAccountLimit" />
+    <NavigationProperty Name="tblRoutingTables" Relationship="Self.FK_tblRoutingTable_tblRoutingList" FromRole="tblRoutingList" ToRole="tblRoutingTable" />
+  </EntityType>
+  <EntityType Name="tblRoutingSubstitute">
+    <Key>
+      <PropertyRef Name="subtituteID" />
+    </Key>
+    <Property Name="subtituteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AuthoriserName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SubstituteName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="FinishDate" Type="DateTime" Precision="3" />
+    <Property Name="active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblRoutingTable">
+    <Key>
+      <PropertyRef Name="RoutingID" />
+    </Key>
+    <Property Name="RoutingID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="POLineID" Type="Int32" Nullable="false" />
+    <Property Name="ListID" Type="Int32" Nullable="false" />
+    <Property Name="ApprovalStatus" Type="Int32" Nullable="false" />
+    <Property Name="ApprovalDate" Type="DateTime" Precision="3" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblRoutingList" Relationship="Self.FK_tblRoutingTable_tblRoutingList" FromRole="tblRoutingTable" ToRole="tblRoutingList" />
+  </EntityType>
+  <EntityType Name="tblSite">
+    <Key>
+      <PropertyRef Name="SiteID" />
+    </Key>
+    <Property Name="SiteID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SiteCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="EntityID" Type="Int32" />
+    <Property Name="SupplierPattern" Type="String" MaxLength="2" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblEntity" Relationship="Self.FK_tblSite_tblEntity" FromRole="tblSite" ToRole="tblEntity" />
+  </EntityType>
+  <EntityType Name="tblStagingAccCC">
+    <Key>
+      <PropertyRef Name="StagingAccCCID" />
+    </Key>
+    <Property Name="StagingAccCCID" Type="Guid" Nullable="false" />
+    <Property Name="AccountCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StagingCostCentreID" Type="Int32" Nullable="false" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="isDeleted" Type="Boolean" Nullable="false" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+    <NavigationProperty Name="tblStagingCostCentresDEV" Relationship="Self.FK_tblStagingAccCC_tblStagingCostCentresDEV" FromRole="tblStagingAccCC" ToRole="tblStagingCostCentresDEV" />
+  </EntityType>
+  <EntityType Name="tblStagingAccount">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C130" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C135" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C136" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C137" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C145" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C161" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C162" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C165" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C167" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C230" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C235" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C245" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C246" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C251" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C252" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C253" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C254" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C261" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C262" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C265" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C267" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C275" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C276" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C310" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C320" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C351" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C352" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C353" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C354" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C355" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C361" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C362" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C365" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C367" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C370" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C375" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C376" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C410" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C420" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C435" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C445" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C446" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C451" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C452" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C453" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C454" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C455" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C461" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C462" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C465" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C467" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C470" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C475" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C476" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C510" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C520" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C545" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C551" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C552" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C553" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C554" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C555" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C561" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C562" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C565" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C567" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C570" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C575" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C576" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7001" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7003" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7005" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7006" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7008" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7009" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7101" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7103" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7105" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7108" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7199" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7201" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7202" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7203" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7204" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7207" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7208" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7210" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7299" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7310" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7311" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7312" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7313" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7314" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7399" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7408" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7585" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7680" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7935" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7936" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7945" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7946" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7950" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7960" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7965" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7970" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7975" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7979" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7990" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C910" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1110" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1210" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1310" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C965" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1065" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1165" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1265" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1365" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C635" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C735" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C755" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C151" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C9999" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblStagingAccountsTMP">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C130" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C135" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C136" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C137" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C145" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C161" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C162" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C165" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C167" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C230" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C235" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C245" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C246" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C251" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C252" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C253" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C254" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C261" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C262" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C265" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C267" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C275" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C276" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C310" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C320" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C351" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C352" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C353" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C354" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C355" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C361" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C362" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C365" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C367" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C370" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C375" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C376" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C410" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C420" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C435" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C445" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C446" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C451" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C452" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C453" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C454" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C455" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C461" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C462" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C465" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C467" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C470" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C475" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C476" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C510" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C520" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C545" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C551" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C552" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C553" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C554" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C555" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C561" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C562" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C565" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C567" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C570" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C575" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C576" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7001" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7003" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7005" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7006" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7008" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7009" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7101" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7103" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7105" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7108" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7199" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7201" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7202" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7203" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7204" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7207" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7208" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7210" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7299" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7310" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7311" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7312" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7313" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7314" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7399" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7408" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7585" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7680" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7935" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7936" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7945" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7946" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7950" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7960" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7965" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7970" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7975" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7979" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C7990" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C910" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1110" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1210" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1310" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C965" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1065" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1165" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1265" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C1365" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C635" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C735" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C755" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C151" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="C9999" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblStagingCostCentre">
+    <Key>
+      <PropertyRef Name="CostCentre" />
+    </Key>
+    <Property Name="Entity" Type="Int32" Nullable="false" />
+    <Property Name="CostCentre" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="Owner" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="tblStagingCostCentresDEV">
+    <Key>
+      <PropertyRef Name="StagingCostCentreID" />
+    </Key>
+    <Property Name="StagingCostCentreID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="EntityID" Type="Int32" Nullable="false" />
+    <Property Name="CostCentreCode" Type="Int32" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="Owner" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="tblEntity" Relationship="Self.FK_tblStagingCostCentresDEV_tblEntity" FromRole="tblStagingCostCentresDEV" ToRole="tblEntity" />
+    <NavigationProperty Name="tblStagingAccCCs" Relationship="Self.FK_tblStagingAccCC_tblStagingCostCentresDEV" FromRole="tblStagingCostCentresDEV" ToRole="tblStagingAccCC" />
+  </EntityType>
+  <EntityType Name="tblStagingEmployee">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Manager" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Int32" />
+  </EntityType>
+  <EntityType Name="tblStagingEmployeesDEV">
+    <Key>
+      <PropertyRef Name="StagingEmpID" />
+    </Key>
+    <Property Name="StagingEmpID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Employee" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Manager" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Level" Type="Int32" Nullable="false" />
+    <Property Name="isDeleted" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblStagingLevel" Relationship="Self.FK_tblStagingEmployeesDEV_tblStagingLevels" FromRole="tblStagingEmployeesDEV" ToRole="tblStagingLevels" />
+  </EntityType>
+  <EntityType Name="tblStagingLevel">
+    <Key>
+      <PropertyRef Name="level" />
+    </Key>
+    <Property Name="level" Type="Int32" Nullable="false" />
+    <Property Name="limit" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="tblStagingEmployeesDEVs" Relationship="Self.FK_tblStagingEmployeesDEV_tblStagingLevels" FromRole="tblStagingLevels" ToRole="tblStagingEmployeesDEV" />
+  </EntityType>
+  <EntityType Name="tblSubAccount">
+    <Key>
+      <PropertyRef Name="SubAccountID" />
+    </Key>
+    <Property Name="SubAccountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SubAccountCode" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="48" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+    <NavigationProperty Name="tblEntityCCAccs" Relationship="Self.FK_tblEntityCCAcc_tblSubAccount" FromRole="tblSubAccount" ToRole="tblEntityCCAcc" />
+  </EntityType>
+  <EntityType Name="tblSubscription">
+    <Key>
+      <PropertyRef Name="SubscriptionID" />
+    </Key>
+    <Property Name="SubscriptionID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="GroupID" Type="Int32" />
+    <Property Name="SubscriptionUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblSupplierNew">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Entity" Type="Int32" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblTransaction">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="RefID" Type="Int32" />
+    <Property Name="RefType" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FromValue" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="ToValue" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="Comments" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblUserDefault">
+    <Key>
+      <PropertyRef Name="DefaultID" />
+    </Key>
+    <Property Name="DefaultID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="DefaultUserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="entityID" Type="Int32" Nullable="false" />
+    <Property Name="CostCentreID" Type="Int32" Nullable="false" />
+    <Property Name="DeliveryAddressID" Type="Int32" Nullable="false" />
+    <Property Name="GroupID" Type="Int32" Nullable="false" />
+    <Property Name="SiteID" Type="Int32" />
+    <Property Name="Active" Type="Boolean" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblSupplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+      <PropertyRef Name="Entity" />
+      <PropertyRef Name="Active" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Entity" Type="Int32" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="tblSupplierTemp1">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+      <PropertyRef Name="Entity" />
+      <PropertyRef Name="Active" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="SupplierID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="SupplierCode" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Entity" Type="Int32" Nullable="false" />
+    <Property Name="Contact" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SupplierName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="State" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Country" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="PostCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Phone" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Fax" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Active" Type="Boolean" Nullable="false" />
+    <Property Name="UserID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="vwEntityCCAcc">
+    <Key>
+      <PropertyRef Name="EntityCCAccID" />
+      <PropertyRef Name="EntityID" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="CostCentreID" />
+      <PropertyRef Name="CostCentreCode" />
+      <PropertyRef Name="AccountID" />
+      <PropertyRef Name="AccountCode" />
+    </Key>
+    <Property Name="EntityCCAccID" Type="Int32" Nullable="false" />
+    <Property Name="EntityID" Type="Int32" Nullable="false" />
+    <Property Name="Code" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CostCentreID" Type="Int32" Nullable="false" />
+    <Property Name="CostCentreCode" Type="Int32" Nullable="false" />
+    <Property Name="AccountID" Type="Int32" Nullable="false" />
+    <Property Name="AccountCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SubAccountID" Type="Int32" />
+    <Property Name="SubAccountCode" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <Association Name="FK_tblEntityCCAcc_tblAccount">
+    <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblBudgetDetail_tblBudgetHeader">
+    <End Role="tblBudgetHeader" Type="Self.tblBudgetHeader" Multiplicity="1" />
+    <End Role="tblBudgetDetail" Type="Self.tblBudgetDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBudgetHeader">
+        <PropertyRef Name="BudgetID" />
+      </Principal>
+      <Dependent Role="tblBudgetDetail">
+        <PropertyRef Name="BudgetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPODetail_tblCapex">
+    <End Role="tblCapex" Type="Self.tblCapex" Multiplicity="0..1" />
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCapex">
+        <PropertyRef Name="CapexID" />
+      </Principal>
+      <Dependent Role="tblPODetail">
+        <PropertyRef Name="CapexID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCapexAuthoriserList_tblCapexAuthoriser">
+    <End Role="tblCapexAuthoriser" Type="Self.tblCapexAuthoriser" Multiplicity="0..1" />
+    <End Role="tblCapexAuthoriserList" Type="Self.tblCapexAuthoriserList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCapexAuthoriser">
+        <PropertyRef Name="AuthoriserID" />
+      </Principal>
+      <Dependent Role="tblCapexAuthoriserList">
+        <PropertyRef Name="AuthoriserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCostCentre_tblCostCentre">
+    <End Role="tblCostCentre" Type="Self.tblCostCentre" Multiplicity="1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCostCentre">
+        <PropertyRef Name="CostCentreID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="CostCentreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCostCentre_tblEntity">
+    <End Role="tblEntity" Type="Self.tblEntity" Multiplicity="1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntity">
+        <PropertyRef Name="EntityID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="EntityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSite_tblEntity">
+    <End Role="tblEntity" Type="Self.tblEntity" Multiplicity="0..1" />
+    <End Role="tblSite" Type="Self.tblSite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntity">
+        <PropertyRef Name="EntityID" />
+      </Principal>
+      <Dependent Role="tblSite">
+        <PropertyRef Name="EntityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStagingCostCentresDEV_tblEntity">
+    <End Role="tblEntity" Type="Self.tblEntity" Multiplicity="1" />
+    <End Role="tblStagingCostCentresDEV" Type="Self.tblStagingCostCentresDEV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntity">
+        <PropertyRef Name="EntityID" />
+      </Principal>
+      <Dependent Role="tblStagingCostCentresDEV">
+        <PropertyRef Name="EntityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCCAcc_tblSubAccount">
+    <End Role="tblSubAccount" Type="Self.tblSubAccount" Multiplicity="0..1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSubAccount">
+        <PropertyRef Name="SubAccountID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="SubAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPODetail_tblEntityCCAcc">
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="1" />
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntityCCAcc">
+        <PropertyRef Name="EntityCCAccID" />
+      </Principal>
+      <Dependent Role="tblPODetail">
+        <PropertyRef Name="EntityCCAccID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRoutingAccountLimit_tblEntityCCAcc">
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="1" />
+    <End Role="tblRoutingAccountLimit" Type="Self.tblRoutingAccountLimit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntityCCAcc">
+        <PropertyRef Name="EntityCCAccID" />
+      </Principal>
+      <Dependent Role="tblRoutingAccountLimit">
+        <PropertyRef Name="EntityCCAccID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPODetail_tblPOHeader">
+    <End Role="tblPOHeader" Type="Self.tblPOHeader" Multiplicity="1" />
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPOHeader">
+        <PropertyRef Name="POID" />
+      </Principal>
+      <Dependent Role="tblPODetail">
+        <PropertyRef Name="POID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPOPhasing_tblPODetail">
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="1" />
+    <End Role="tblPOPhasing" Type="Self.tblPOPhasing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPODetail">
+        <PropertyRef Name="POLineID" />
+      </Principal>
+      <Dependent Role="tblPOPhasing">
+        <PropertyRef Name="POLineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRoutingList_tblRoutingAccountLimit">
+    <End Role="tblRoutingAccountLimit" Type="Self.tblRoutingAccountLimit" Multiplicity="1" />
+    <End Role="tblRoutingList" Type="Self.tblRoutingList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoutingAccountLimit">
+        <PropertyRef Name="LimitID" />
+      </Principal>
+      <Dependent Role="tblRoutingList">
+        <PropertyRef Name="LimitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRoutingTable_tblRoutingList">
+    <End Role="tblRoutingList" Type="Self.tblRoutingList" Multiplicity="1" />
+    <End Role="tblRoutingTable" Type="Self.tblRoutingTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoutingList">
+        <PropertyRef Name="ListID" />
+      </Principal>
+      <Dependent Role="tblRoutingTable">
+        <PropertyRef Name="ListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStagingAccCC_tblStagingCostCentresDEV">
+    <End Role="tblStagingCostCentresDEV" Type="Self.tblStagingCostCentresDEV" Multiplicity="1" />
+    <End Role="tblStagingAccCC" Type="Self.tblStagingAccCC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStagingCostCentresDEV">
+        <PropertyRef Name="StagingCostCentreID" />
+      </Principal>
+      <Dependent Role="tblStagingAccCC">
+        <PropertyRef Name="StagingCostCentreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStagingEmployeesDEV_tblStagingLevels">
+    <End Role="tblStagingLevels" Type="Self.tblStagingLevel" Multiplicity="1" />
+    <End Role="tblStagingEmployeesDEV" Type="Self.tblStagingEmployeesDEV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStagingLevels">
+        <PropertyRef Name="level" />
+      </Principal>
+      <Dependent Role="tblStagingEmployeesDEV">
+        <PropertyRef Name="Level" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OldPurchaseOrderContext" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="tblAccounts" EntityType="Self.tblAccount" />
+    <EntitySet Name="tblAmendments" EntityType="Self.tblAmendment" />
+    <EntitySet Name="tblAPSubstitutionLogs" EntityType="Self.tblAPSubstitutionLog" />
+    <EntitySet Name="tblBudgetDetails" EntityType="Self.tblBudgetDetail" />
+    <EntitySet Name="tblBudgetHeaders" EntityType="Self.tblBudgetHeader" />
+    <EntitySet Name="tblCapexes" EntityType="Self.tblCapex" />
+    <EntitySet Name="tblCapexApprovers" EntityType="Self.tblCapexApprover" />
+    <EntitySet Name="tblCapexAuthorisers" EntityType="Self.tblCapexAuthoriser" />
+    <EntitySet Name="tblCapexAuthoriserLists" EntityType="Self.tblCapexAuthoriserList" />
+    <EntitySet Name="tblCapexLimits" EntityType="Self.tblCapexLimit" />
+    <EntitySet Name="tblCapexRoles" EntityType="Self.tblCapexRole" />
+    <EntitySet Name="tblCapexRoleLimits" EntityType="Self.tblCapexRoleLimit" />
+    <EntitySet Name="tblCapexRoutings" EntityType="Self.tblCapexRouting" />
+    <EntitySet Name="tblControls" EntityType="Self.tblControl" />
+    <EntitySet Name="tblCostCentres" EntityType="Self.tblCostCentre" />
+    <EntitySet Name="tblCreditCardPurchases" EntityType="Self.tblCreditCardPurchas" />
+    <EntitySet Name="tblCurrencyRates" EntityType="Self.tblCurrencyRate" />
+    <EntitySet Name="tblEntities" EntityType="Self.tblEntity" />
+    <EntitySet Name="tblEntityCCAccs" EntityType="Self.tblEntityCCAcc" />
+    <EntitySet Name="tblGroups" EntityType="Self.tblGroup" />
+    <EntitySet Name="tblGroupMembers" EntityType="Self.tblGroupMember" />
+    <EntitySet Name="tblPerformanceLogs" EntityType="Self.tblPerformanceLog" />
+    <EntitySet Name="tblPODeliveries" EntityType="Self.tblPODelivery" />
+    <EntitySet Name="tblPODetails" EntityType="Self.tblPODetail" />
+    <EntitySet Name="tblPODetailReceipts" EntityType="Self.tblPODetailReceipt" />
+    <EntitySet Name="tblPOHeaders" EntityType="Self.tblPOHeader" />
+    <EntitySet Name="tblPOPhasings" EntityType="Self.tblPOPhasing" />
+    <EntitySet Name="tblRoutingAccountLimits" EntityType="Self.tblRoutingAccountLimit" />
+    <EntitySet Name="tblRoutingLists" EntityType="Self.tblRoutingList" />
+    <EntitySet Name="tblRoutingSubstitutes" EntityType="Self.tblRoutingSubstitute" />
+    <EntitySet Name="tblRoutingTables" EntityType="Self.tblRoutingTable" />
+    <EntitySet Name="tblSites" EntityType="Self.tblSite" />
+    <EntitySet Name="tblStagingAccCCs" EntityType="Self.tblStagingAccCC" />
+    <EntitySet Name="tblStagingAccounts" EntityType="Self.tblStagingAccount" />
+    <EntitySet Name="tblStagingAccountsTMPs" EntityType="Self.tblStagingAccountsTMP" />
+    <EntitySet Name="tblStagingCostCentres" EntityType="Self.tblStagingCostCentre" />
+    <EntitySet Name="tblStagingCostCentresDEVs" EntityType="Self.tblStagingCostCentresDEV" />
+    <EntitySet Name="tblStagingEmployees" EntityType="Self.tblStagingEmployee" />
+    <EntitySet Name="tblStagingEmployeesDEVs" EntityType="Self.tblStagingEmployeesDEV" />
+    <EntitySet Name="tblStagingLevels" EntityType="Self.tblStagingLevel" />
+    <EntitySet Name="tblSubAccounts" EntityType="Self.tblSubAccount" />
+    <EntitySet Name="tblSubscriptions" EntityType="Self.tblSubscription" />
+    <EntitySet Name="tblSupplierNews" EntityType="Self.tblSupplierNew" />
+    <EntitySet Name="tblTransactions" EntityType="Self.tblTransaction" />
+    <EntitySet Name="tblUserDefaults" EntityType="Self.tblUserDefault" />
+    <EntitySet Name="tblSuppliers" EntityType="Self.tblSupplier" />
+    <EntitySet Name="tblSupplierTemp1" EntityType="Self.tblSupplierTemp1" />
+    <EntitySet Name="vwEntityCCAccs" EntityType="Self.vwEntityCCAcc" />
+    <AssociationSet Name="FK_tblEntityCCAcc_tblAccount" Association="Self.FK_tblEntityCCAcc_tblAccount">
+      <End Role="tblAccount" EntitySet="tblAccounts" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAccs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblBudgetDetail_tblBudgetHeader" Association="Self.FK_tblBudgetDetail_tblBudgetHeader">
+      <End Role="tblBudgetHeader" EntitySet="tblBudgetHeaders" />
+      <End Role="tblBudgetDetail" EntitySet="tblBudgetDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPODetail_tblCapex" Association="Self.FK_tblPODetail_tblCapex">
+      <End Role="tblCapex" EntitySet="tblCapexes" />
+      <End Role="tblPODetail" EntitySet="tblPODetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCapexAuthoriserList_tblCapexAuthoriser" Association="Self.FK_tblCapexAuthoriserList_tblCapexAuthoriser">
+      <End Role="tblCapexAuthoriser" EntitySet="tblCapexAuthorisers" />
+      <End Role="tblCapexAuthoriserList" EntitySet="tblCapexAuthoriserLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCostCentre_tblCostCentre" Association="Self.FK_tblEntityCostCentre_tblCostCentre">
+      <End Role="tblCostCentre" EntitySet="tblCostCentres" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAccs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCostCentre_tblEntity" Association="Self.FK_tblEntityCostCentre_tblEntity">
+      <End Role="tblEntity" EntitySet="tblEntities" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAccs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSite_tblEntity" Association="Self.FK_tblSite_tblEntity">
+      <End Role="tblEntity" EntitySet="tblEntities" />
+      <End Role="tblSite" EntitySet="tblSites" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStagingCostCentresDEV_tblEntity" Association="Self.FK_tblStagingCostCentresDEV_tblEntity">
+      <End Role="tblEntity" EntitySet="tblEntities" />
+      <End Role="tblStagingCostCentresDEV" EntitySet="tblStagingCostCentresDEVs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCCAcc_tblSubAccount" Association="Self.FK_tblEntityCCAcc_tblSubAccount">
+      <End Role="tblSubAccount" EntitySet="tblSubAccounts" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAccs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPODetail_tblEntityCCAcc" Association="Self.FK_tblPODetail_tblEntityCCAcc">
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAccs" />
+      <End Role="tblPODetail" EntitySet="tblPODetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRoutingAccountLimit_tblEntityCCAcc" Association="Self.FK_tblRoutingAccountLimit_tblEntityCCAcc">
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAccs" />
+      <End Role="tblRoutingAccountLimit" EntitySet="tblRoutingAccountLimits" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPODetail_tblPOHeader" Association="Self.FK_tblPODetail_tblPOHeader">
+      <End Role="tblPOHeader" EntitySet="tblPOHeaders" />
+      <End Role="tblPODetail" EntitySet="tblPODetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPOPhasing_tblPODetail" Association="Self.FK_tblPOPhasing_tblPODetail">
+      <End Role="tblPODetail" EntitySet="tblPODetails" />
+      <End Role="tblPOPhasing" EntitySet="tblPOPhasings" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRoutingList_tblRoutingAccountLimit" Association="Self.FK_tblRoutingList_tblRoutingAccountLimit">
+      <End Role="tblRoutingAccountLimit" EntitySet="tblRoutingAccountLimits" />
+      <End Role="tblRoutingList" EntitySet="tblRoutingLists" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRoutingTable_tblRoutingList" Association="Self.FK_tblRoutingTable_tblRoutingList">
+      <End Role="tblRoutingList" EntitySet="tblRoutingLists" />
+      <End Role="tblRoutingTable" EntitySet="tblRoutingTables" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStagingAccCC_tblStagingCostCentresDEV" Association="Self.FK_tblStagingAccCC_tblStagingCostCentresDEV">
+      <End Role="tblStagingCostCentresDEV" EntitySet="tblStagingCostCentresDEVs" />
+      <End Role="tblStagingAccCC" EntitySet="tblStagingAccCCs" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStagingEmployeesDEV_tblStagingLevels" Association="Self.FK_tblStagingEmployeesDEV_tblStagingLevels">
+      <End Role="tblStagingLevels" EntitySet="tblStagingLevels" />
+      <End Role="tblStagingEmployeesDEV" EntitySet="tblStagingEmployeesDEVs" />
+    </AssociationSet>
+    <EntitySet Name="vwAp_det_oldpo" EntityType="OldPurchaseOrderModel.vwAp_det_oldpo" />
+    <EntitySet Name="vwAp_grni_rf_oldpo" EntityType="OldPurchaseOrderModel.vwAp_grni_rf_oldpo" />
+    <EntitySet Name="vwAp_mstr_oldpo" EntityType="OldPurchaseOrderModel.vwAp_mstr_oldpo" />
+  </EntityContainer>
+  <EntityType Name="vwAp_det_oldpo">
+    <Key>
+      <PropertyRef Name="documentID" />
+      <PropertyRef Name="voucherID" />
+      <PropertyRef Name="documentType" />
+      <PropertyRef Name="authorised" />
+      <PropertyRef Name="Checked" />
+      <PropertyRef Name="created" />
+      <PropertyRef Name="updated" />
+    </Key>
+    <Property Name="documentID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="voucherID" Type="Int32" Nullable="false" />
+    <Property Name="documentType" Type="Int32" Nullable="false" />
+    <Property Name="fileName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="comments" Type="String" MaxLength="510" FixedLength="false" Unicode="true" />
+    <Property Name="authorised" Type="Boolean" Nullable="false" />
+    <Property Name="Checked" Type="Boolean" Nullable="false" />
+    <Property Name="CheckedBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="authoriser" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="authoriserEmail" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="authorisedDate" Type="DateTime" Precision="3" />
+    <Property Name="userID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+  <EntityType Name="vwAp_grni_rf_oldpo">
+    <Key>
+      <PropertyRef Name="GRNIRefID" />
+      <PropertyRef Name="VoucherID" />
+    </Key>
+    <Property Name="GRNIRefID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="VoucherID" Type="Int32" Nullable="false" />
+    <Property Name="prh_nbr" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="prh_receiver" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="UserID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Updated" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="vwAp_mstr_oldpo">
+    <Key>
+      <PropertyRef Name="voucherID" />
+      <PropertyRef Name="voucherNumber" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="PORequired" />
+      <PropertyRef Name="created" />
+      <PropertyRef Name="updated" />
+    </Key>
+    <Property Name="voucherID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="voucherNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="supplierID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="invoiceNumber" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+    <Property Name="userComments" Type="String" MaxLength="1024" FixedLength="false" Unicode="true" />
+    <Property Name="status" Type="Int32" Nullable="false" />
+    <Property Name="PORequired" Type="Boolean" Nullable="false" />
+    <Property Name="userID" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="updated" Type="DateTime" Nullable="false" Precision="3" />
+  </EntityType>
+</Schema>

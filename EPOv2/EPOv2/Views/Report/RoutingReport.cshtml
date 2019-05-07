@@ -1,0 +1,62 @@
+﻿@model EPOv2.ViewModels.CostCentreDDLViewModel
+@{
+    ViewBag.Title = "Routing Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<script type="text/javascript">
+
+    function selectCostCentre(object) {
+        $('#routingStructure').empty();
+        $('#ErrorAlert').addClass('hidden');
+        var ccID = object.value;
+        $("#loading1").removeClass("hidden");
+        if (ccID != null && ccID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchRoutingStructureForCC")',
+                cache: false,
+                data: {
+                    ccId: ccID
+                },
+                error: function (xhr, status, error) {
+                    //$("#ErrorAlert").html(xhr.responseText);
+                    $('#ErrorAlert').removeClass('hidden');
+                    $("#loading1").addClass("hidden");
+                },
+                success: function (result) {
+                    $('#ErrorAlert').addClass('hidden');
+                    $("#loading1").addClass("hidden");
+                    $('#routingStructure').empty();
+                    $('#routingStructure').html(result);
+                }
+            });
+        }
+    }
+
+
+</script>
+
+<h3>Payroll routing Data</h3>
+
+<div>
+    <div class="col-md-12">
+        @Html.DropDownListFor(m => m.SelectedCostCentre, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm input", onchange = "selectCostCentre(this)" })
+        @Html.ValidationMessageFor(model => model.SelectedCostCentre, "Please select Account", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="col-md-12">
+    <div id="ErrorAlert" class="alert alert-danger hidden" >Error! No Cost Centre Owner</div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="loading1">
+        <div class="spinner spinner-info"></div>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div id="routingStructure" class="col-md-12"></div>
+</div>
+

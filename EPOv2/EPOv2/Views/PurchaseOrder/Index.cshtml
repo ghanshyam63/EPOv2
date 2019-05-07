@@ -1,0 +1,129 @@
+﻿@model IEnumerable<DomainModel.Entities.Order>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "RaiseNew")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.OrderNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TempOrderNumber)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.RevisionQty)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.OrderDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SupplierId)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TransmissionMethod)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.Comment)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.InternalComment)
+        </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.TotalExGST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.TotalGST)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DateCreated)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CreatedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastModifiedBy)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsDeleted)
+        </th>
+        @*<th>
+            @Html.DisplayNameFor(model => model.TimeStamp)
+        </th>*@
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderNumber)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TempOrderNumber)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.RevisionQty)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.OrderDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SupplierId)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TransmissionMethod)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.Comment)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.InternalComment)
+        </td>*@
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalExGST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TotalGST)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Total)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DateCreated)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModifiedDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CreatedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.LastModifiedBy)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.IsDeleted)
+        </td>
+        @*<td>
+            @Html.DisplayFor(modelItem => item.TimeStamp)
+        </td>*@
+        <td>
+            @Html.ActionLink("Edit", "EditOrder", new { id = item.Id }) |
+            @*@Html.ActionLink("Details", "Details", new { id=item.Id }) |*@
+           
+        </td>
+    </tr>
+}
+
+</table>

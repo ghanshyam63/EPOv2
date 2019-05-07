@@ -1,0 +1,4 @@
+﻿@model EPOv2.ViewModels.CostCentreToEntityAdding
+
+
+@Html.ListBoxFor(x => Model.SelectedCostCentres, new MultiSelectList(Model.CostCentres, "Id", "FullName"), new { @class = "form-control input-sm", size=30 })

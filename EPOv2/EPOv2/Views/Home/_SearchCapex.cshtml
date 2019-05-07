@@ -1,0 +1,105 @@
+﻿@model EPOv2.ViewModels.SearchViewModel
+<script type="text/javascript">
+    
+    $(document).on("focusin", "#dateCapexFrom", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateCapexFrom", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(document).on("focusin", "#dateCapexTo", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateCapexTo", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(function () {
+        $("#dateCapexFrom").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateCapexTo").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+
+</script>
+<br />
+<div class="panel panel-info">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+
+        @using (@Html.BeginForm("SearchCapex", "Capex", FormMethod.Post, new { id = "SearchCapexForm" }))
+        {
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Capex #</label>
+                <div class="col-md-2">@Html.TextBoxFor(m => m.CapexNumber, null, new { @class = "form-control input-sm", @onkeypress = "return isNumberKey(event)" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Title</label>
+                <div class="col-md-5">@Html.TextBoxFor(m => m.Title, null, new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-md-2 control-label ">Date From</label>
+                <div class="col-md-2">@Html.TextBoxFor(m => m.DateFrom, null, new { @id = "dateCapexFrom", @placeholder = "Select Date From", @class = "form-control input-sm" })</div>
+                <label class="col-md-1 control-label ">Date To</label>
+                <div class="col-md-2">@Html.TextBoxFor(m => m.DateTo, null, new { @id = "dateCapexTo", @placeholder = "Select Date To", @class = "form-control input-sm" })</div>
+                <div class="col-md-4"></div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Entity</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Cost Centre</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedCostCenter, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm" })</div>
+            </div>
+            //Advance search
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Owner</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedOwner, new SelectList(Model.Owners, "Id", "FullName"), "Select Owner", new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Author</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedAuthor, new SelectList(Model.Authors, "Id", "FullName"), "Select Author", new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Status</label>
+                <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedStatus, new SelectList(Model.Statuses, "Id", "Name"), "Select Status", new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <label class="col-sm-2 control-label ">Description</label>
+                <div class="col-md-5">@Html.TextAreaFor(m => m.Description, 4, 90, new { @class = "form-control input-sm" })</div>
+            </div>
+            <div class="row form-group">
+                <div class="col-md-2">
+                    <button type="button" name="button" value="cancel" class="cancel btn btn-warning btn-block " onclick="ClearSearchCapex()">Clear</button>
+                </div>
+                <div class="col-md-2">
+                    <button type="button" name="button" value="Search" class="btn btn-success btn-block " onclick="SearchCapex()">Search</button>
+                </div>
+            </div>
+            
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="Capexloading1">
+        <div class="spinner spinner-success"></div>
+    </div>
+</div>
+<div class="panel panel-info hidden" id="capexResultPanel">
+    <div class="panel-heading"> Result</div>
+    <div class="panel-body" id="searchCapexResult"></div>
+</div>

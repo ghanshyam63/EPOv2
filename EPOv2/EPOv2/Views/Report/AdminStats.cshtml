@@ -1,0 +1,56 @@
+﻿@model EPOv2.ViewModels.AdminStatsViewModel
+@{
+    ViewBag.Title = "AdminStats";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Admin Stats</h2>
+<div class="row">
+    <div class="col-md-6">
+        <label>Raised Orders</label>
+        <p>@Model.RaisedOrders</p>
+        <label>Approved Orders</label>
+        <p>@Model.ApptovedOrders</p>
+        <label>Matched Orders</label>
+        <p>@Model.MatchedOrders</p>
+        <label>Closed Orders</label>
+        <p>@Model.ClosedOrders</p>
+        <label>Order per Day</label>
+        <p>@Html.DisplayFor(x => x.OrdersPerDay)</p>
+        <label>Order per Week</label>
+        <p>@Model.OrdersPerWeek</p>
+        <label>Average Orders Amount</label>
+        <p>@Html.DisplayFor(x => x.AveOrdersAmount)</p>
+        <label>Total Orders Amount</label>
+        <p>@Html.DisplayFor(x => x.TotalOrdersAmount)</p>
+    </div>
+    <div class="col-md-6">
+        <label>Attached vouchers</label>
+        <p>@Model.ScannedVouchers</p>
+        <label>Authorised vouchers</label>
+        <p>@Model.AuthorisedVouchers</p>
+    </div>
+</div>
+<hr/>
+<div class="row">
+    <div class="col-md-6">
+        <label>Top Spender</label>
+        <p>@Html.DisplayFor(x => x.TopSpender)</p>
+        <label>Top Spender Order Qty</label>
+        <p>@Html.DisplayFor(x => x.TopSpenderQty)</p>
+        <label>Top Spender Amount</label>
+        <p>@Html.DisplayFor(x => x.TopSpenderAmount)</p>
+    </div>
+    <div class="col-md-6">
+        <label>Top Raiser</label>
+        <p>@Html.DisplayFor(x => x.TopRaiser)</p>
+        <label>Top Raiser Order Qty</label>
+        <p>@Html.DisplayFor(x => x.TopRaiserQty)</p>
+        <label>Top Raiser Amount</label>
+        <p>@Html.DisplayFor(x => x.TopRaiserAmount)</p>
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,33 @@
+﻿@model List<EPOv2.ViewModels.ReceiptGroupMemberViewModel>
+<tbody>
+@foreach (var item in Model)
+{
+    <tr>
+        <td>
+            @Html.HiddenFor(x => item.MemberId)
+            @Html.DisplayFor(x => item.UserName)
+        </td>
+        <td>@Html.DisplayFor(x => item.isDeleted)</td>
+        <td>
+            @if (item.isDeleted)
+            {
+                <button type="button" title="Delete mapping" class="btn btn-danger control-btn-crud" value="@item.MemberId" onclick="DeleteReceiptGroupMember(@item.MemberId)" disabled="disabled">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <button type="button" title="Activate mapping" class="btn btn-info control-btn-crud" value="@item.MemberId" onclick="ActivateReceiptGroupMember(@item.MemberId)">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                </button>
+            }
+            else
+            {
+                <button type="button" title="Delete mapping" class="btn btn-danger control-btn-crud" value="@item.MemberId" onclick="DeleteReceiptGroupMember(@item.MemberId) ">
+                    <span class="glyphicon glyphicon-trash"></span>
+                </button>
+                <button type="button" title="Activate mapping" class="btn btn-info control-btn-crud" value="@item.MemberId" onclick="ActivateReceiptGroupMember(@item.MemberId)" disabled="disabled">
+                    <span class="glyphicon glyphicon-repeat"></span>
+                </button>
+            }
+        </td>
+    </tr>
+}
+</tbody>

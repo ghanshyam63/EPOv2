@@ -1,0 +1,713 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="SafetyManagementSystemModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="vFormStatu">
+    <Key>
+      <PropertyRef Name="FormHeaderId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="FormHeaderId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vFormStatusWithSafetyAction">
+    <Key>
+      <PropertyRef Name="FormHeaderId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+    </Key>
+    <Property Name="FormHeaderId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SafetyActionId" Type="Int32" />
+    <Property Name="SATitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SACreated" Type="DateTime" Precision="3" />
+    <Property Name="SAModified" Type="DateTime" Precision="3" />
+    <Property Name="SASite" Type="Int32" />
+    <Property Name="SAModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="SAModifiedByEmpNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="StartDate" Type="DateTime" Precision="3" />
+    <Property Name="DueDate" Type="DateTime" Precision="3" />
+    <Property Name="AssignedToName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AssignedToEmpNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PercentageComplete" Type="Int32" />
+    <Property Name="MexNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+    <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vHazardReport">
+    <Key>
+      <PropertyRef Name="HazardReportId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Department" />
+      <PropertyRef Name="WhatIsHazard" />
+      <PropertyRef Name="WhereIsHazard" />
+      <PropertyRef Name="SafetyHazAndEnviroImpacts" />
+      <PropertyRef Name="HowFixed" />
+    </Key>
+    <Property Name="HazardReportId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PersonReporting" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Department" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WhatIsHazard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WhereIsHazard" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SafetyHazAndEnviroImpacts" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HazardSeriousLevel" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HowFixed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vIncidentAccident">
+    <Key>
+      <PropertyRef Name="IncidentAccidentId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Employee" />
+      <PropertyRef Name="Position" />
+      <PropertyRef Name="BusinessName" />
+      <PropertyRef Name="ContactTelephoneNumber" />
+      <PropertyRef Name="DateOfIncidentAccident" />
+      <PropertyRef Name="TimeOfIncidentAccident" />
+      <PropertyRef Name="ShiftStartTime" />
+      <PropertyRef Name="LocationOfIncidentAccident" />
+      <PropertyRef Name="DateReported" />
+      <PropertyRef Name="ToWhom" />
+      <PropertyRef Name="NameOfWitnessWitnesses" />
+      <PropertyRef Name="WhatHappened" />
+      <PropertyRef Name="Causes" />
+      <PropertyRef Name="FirstAidAdministered" />
+      <PropertyRef Name="FirstAider" />
+      <PropertyRef Name="CauseOfIncident" />
+    </Key>
+    <Property Name="IncidentAccidentId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="IncidentAccidentFormType" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Employee" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Position" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EmploymentRelationship" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="BusinessName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ContactTelephoneNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfIncidentAccident" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TimeOfIncidentAccident" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ShiftStartTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="LocationOfIncidentAccident" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateReported" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="ToWhom" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NameOfWitnessWitnesses" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="WhatHappened" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Causes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TreatmentDetails" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="OtherTreatmentDetails" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstAidAdministered" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FollowUp" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HeathSafetyRepName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="InjurySeverity" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="InjurySeverityOther" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FirstAider" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CauseOfIncident" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vIncidentsByDay">
+    <Key>
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="IncidentsByDayId" />
+    </Key>
+    <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="IncidentsByDayId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityType Name="vInspectionAudit">
+    <Key>
+      <PropertyRef Name="InspectionAuditId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="PersonCompetingForm" />
+    </Key>
+    <Property Name="InspectionAuditId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="PersonCompetingForm" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Q1_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q1_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q1_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q1_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q1_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q1_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q1_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q1_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q2_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q2_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q2_2_ItemsRequired" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q2_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q2_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q3_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q3_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q3_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q3_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q3_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q3_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q3_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q3_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_7_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_8_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_9" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_9_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q4_10" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q4_10_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q5_7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q5_7_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q6_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q6_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q6_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q6_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q6_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q6_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q6_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q6_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q7_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q7_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q7_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q7_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q7_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q7_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_7_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_8_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q8_9" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q8_9_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q9_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q9_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q9_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q9_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q9_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q9_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q9_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q9_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q9_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q9_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_7_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_8_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_9" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_9_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_10" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_10_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_11" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_11_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_12" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_12_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_13" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_13_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_14" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_14_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q10_15" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q10_15_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_7_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q11_8" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q11_8_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q12_7" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q12_7_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q13_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q13_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q13_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q13_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q13_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q13_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q13_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q13_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q13_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q13_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q13_6" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q13_6_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q14_1" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q14_1_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q14_2" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q14_2_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q14_3" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q14_3_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q14_4" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q14_4_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Q14_5" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Q14_5_Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="OtherHealthSafetyIssues" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ObservationNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vJseaRiskAssessments_">
+    <Key>
+      <PropertyRef Name="JseaRiskAssessmentId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="TaskDate" />
+      <PropertyRef Name="TaskLocation" />
+      <PropertyRef Name="TaskValidTill" />
+      <PropertyRef Name="PersonResponsible" />
+      <PropertyRef Name="PlantEquipmentUsed" />
+      <PropertyRef Name="MaterialUsed" />
+      <PropertyRef Name="Permit" />
+      <PropertyRef Name="PermitNumber" />
+      <PropertyRef Name="DetailsOfEquipment" />
+      <PropertyRef Name="PrepByName" />
+      <PropertyRef Name="EnviroRevPrepByName" />
+      <PropertyRef Name="SafetyRevPrepByName" />
+      <PropertyRef Name="ApprovedPrepByName" />
+      <PropertyRef Name="JobStep" />
+      <PropertyRef Name="ControlMeasures" />
+      <PropertyRef Name="PersonResponsibleEnsureImp" />
+      <PropertyRef Name="SignOffName" />
+      <PropertyRef Name="SignOffDate" />
+      <PropertyRef Name="SignOffTime" />
+      <PropertyRef Name="SignOffEmployer" />
+      <PropertyRef Name="SignOffComments" />
+    </Key>
+    <Property Name="JseaRiskAssessmentId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="TaskDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TaskLocation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="TaskValidTill" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="PersonResponsible" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PlantEquipmentUsed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="MaterialUsed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Permit" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PermitNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DetailsOfEquipment" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PrepByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PrepByPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="PrepByDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EnviroRevPrepByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="EnviroRevPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="EnviroRevDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SafetyRevPrepByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SafetyRevPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="SafetyRevDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedPrepByName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ApprovedByPosition" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ApprovedByDate" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="JobStep" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PotentialRisksImpacts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentRiskRating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ControlMeasures" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NewRiskRating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="PersonResponsibleEnsureImp" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SignOffName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SignOffDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SignOffTime" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SignOffEmployer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SignOffComments" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Activity" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewPersonResponsible" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewDatePerformed" Type="DateTime" Precision="3" />
+    <Property Name="ReviewFindings" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewActionIfRequired" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ReviewDateClosed" Type="DateTime" Precision="3" />
+    <Property Name="ReviewClosedBy" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vRiskAssessment">
+    <Key>
+      <PropertyRef Name="RiskAssessmentId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="HazardManagementTeam" />
+      <PropertyRef Name="Location" />
+      <PropertyRef Name="HazardBeingAssessed" />
+      <PropertyRef Name="DateOfAssessment" />
+      <PropertyRef Name="TimeOfAssessment" />
+      <PropertyRef Name="AreaSection" />
+      <PropertyRef Name="PartHistory" />
+      <PropertyRef Name="SafetyHazardsEnvironmentalImpacts" />
+      <PropertyRef Name="CurrentControls" />
+      <PropertyRef Name="ProposedNewControls" />
+    </Key>
+    <Property Name="RiskAssessmentId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="HowHazardProblemIdentified" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="HowHazardProblemIdentifiedOther" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="HazardManagementTeam" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="IncidentReportNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Location" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="HazardBeingAssessed" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="DateOfAssessment" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="TimeOfAssessment" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AreaSection" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PartHistory" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SafetyHazardsEnvironmentalImpacts" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="PotentialRisksImpacts" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="CurrentControls" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentRiskRating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ControlsAdequate" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ProposedNewControls" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="NewRiskRating" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ObservationNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vSafetyAction">
+    <Key>
+      <PropertyRef Name="SafetyActionId" />
+      <PropertyRef Name="FormHeaderId" />
+      <PropertyRef Name="SATitle" />
+      <PropertyRef Name="SACreated" />
+      <PropertyRef Name="SAModified" />
+      <PropertyRef Name="SAModifiedByName" />
+      <PropertyRef Name="SAModifiedByEmpNo" />
+      <PropertyRef Name="StartDate" />
+      <PropertyRef Name="DueDate" />
+      <PropertyRef Name="PercentageComplete" />
+      <PropertyRef Name="MexNumber" />
+      <PropertyRef Name="Description" />
+    </Key>
+    <Property Name="SafetyActionId" Type="Int32" Nullable="false" />
+    <Property Name="FormHeaderId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="SATitle" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SACreated" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SAModified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="SASite" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="SAModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SAModifiedByEmpNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="DueDate" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="AssignedToName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="AssignedToEmpNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="PercentageComplete" Type="Int32" Nullable="false" />
+    <Property Name="MexNumber" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Priority" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="vSafetyActionsByMonthBySite">
+    <Key>
+      <PropertyRef Name="SafetyActionsByMonthBySiteId" />
+    </Key>
+    <Property Name="SafetyActionsByMonthBySiteId" Type="Int64" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vSafetyActionsByMonthByUser">
+    <Key>
+      <PropertyRef Name="SafetyActionsByMonthByUserId" />
+    </Key>
+    <Property Name="SafetyActionsByMonthByUserId" Type="Int64" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vSafetyActionsThisMonthByUser">
+    <Key>
+      <PropertyRef Name="SafetyActionsThisMonthByUserId" />
+    </Key>
+    <Property Name="SafetyActionsThisMonthByUserId" Type="Int64" Nullable="false" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vSafetyWalkTalk">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalkId" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Modified" />
+      <PropertyRef Name="CreatedByName" />
+      <PropertyRef Name="ModifiedByName" />
+      <PropertyRef Name="CurrentOwnerName" />
+      <PropertyRef Name="Title" />
+      <PropertyRef Name="Task" />
+      <PropertyRef Name="Improvements" />
+      <PropertyRef Name="Observations" />
+      <PropertyRef Name="SuggestedImprovements" />
+    </Key>
+    <Property Name="SafetyWalkTalkId" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="Modified" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="CreatedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CreatedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ModifiedByName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="ModifiedByEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="CurrentOwnerName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CurrentOwnerEmpNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="FormType" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Title" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="FormStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+    <Property Name="Task" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Improvements" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Observations" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="SuggestedImprovements" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Notes" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="MexNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="ObservationNumber" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+  </EntityType>
+  <EntityType Name="vSafetyWalkTalksByDay">
+    <Key>
+      <PropertyRef Name="Day" />
+      <PropertyRef Name="SafetyWalkTalksByDayId" />
+    </Key>
+    <Property Name="Day" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="SafetyWalkTalksByDayId" Type="Int64" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="SafetyManagementSystemEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="vFormStatus" EntityType="Self.vFormStatu" />
+    <EntitySet Name="vFormStatusWithSafetyActions" EntityType="Self.vFormStatusWithSafetyAction" />
+    <EntitySet Name="vHazardReports" EntityType="Self.vHazardReport" />
+    <EntitySet Name="vIncidentAccidents" EntityType="Self.vIncidentAccident" />
+    <EntitySet Name="vIncidentsByDays" EntityType="Self.vIncidentsByDay" />
+    <EntitySet Name="vInspectionAudits" EntityType="Self.vInspectionAudit" />
+    <EntitySet Name="vJseaRiskAssessments_" EntityType="Self.vJseaRiskAssessments_" />
+    <EntitySet Name="vRiskAssessments" EntityType="Self.vRiskAssessment" />
+    <EntitySet Name="vSafetyActions" EntityType="Self.vSafetyAction" />
+    <EntitySet Name="vSafetyActionsByMonthBySites" EntityType="Self.vSafetyActionsByMonthBySite" />
+    <EntitySet Name="vSafetyActionsByMonthByUsers" EntityType="Self.vSafetyActionsByMonthByUser" />
+    <EntitySet Name="vSafetyActionsThisMonthByUsers" EntityType="Self.vSafetyActionsThisMonthByUser" />
+    <EntitySet Name="vSafetyWalkTalks" EntityType="Self.vSafetyWalkTalk" />
+    <EntitySet Name="vSafetyWalkTalksByDays" EntityType="Self.vSafetyWalkTalksByDay" />
+    <EntitySet Name="vIncidentsByMonths" EntityType="SafetyManagementSystemModel.vIncidentsByMonth" />
+    <EntitySet Name="vIncidentsByWeeks" EntityType="SafetyManagementSystemModel.vIncidentsByWeek" />
+    <EntitySet Name="vSafetyWalkTalksByMonths" EntityType="SafetyManagementSystemModel.vSafetyWalkTalksByMonth" />
+    <EntitySet Name="vSafetyWalkTalksByWeeks" EntityType="SafetyManagementSystemModel.vSafetyWalkTalksByWeek" />
+  </EntityContainer>
+  <EntityType Name="vIncidentsByMonth">
+    <Key>
+      <PropertyRef Name="IncidentsByMonthId" />
+    </Key>
+    <Property Name="IncidentsByMonthId" Type="Int64" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vIncidentsByWeek">
+    <Key>
+      <PropertyRef Name="IncidentsByWeekId" />
+    </Key>
+    <Property Name="IncidentsByWeekId" Type="Int64" Nullable="false" />
+    <Property Name="Week" Type="Int32" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vSafetyWalkTalksByMonth">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalksByMonthId" />
+    </Key>
+    <Property Name="SafetyWalkTalksByMonthId" Type="Int64" Nullable="false" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+  <EntityType Name="vSafetyWalkTalksByWeek">
+    <Key>
+      <PropertyRef Name="SafetyWalkTalksByWeekId" />
+    </Key>
+    <Property Name="SafetyWalkTalksByWeekId" Type="Int64" Nullable="false" />
+    <Property Name="Week" Type="Int32" />
+    <Property Name="Month" Type="Int32" />
+    <Property Name="MonthName" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+    <Property Name="Year" Type="Int32" />
+    <Property Name="Site" Type="String" MaxLength="3" FixedLength="false" Unicode="false" />
+    <Property Name="Count" Type="Int32" />
+  </EntityType>
+</Schema>

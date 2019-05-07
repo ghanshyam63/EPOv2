@@ -1,0 +1,1444 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="OldPurchaseOrderModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="tblAccount">
+    <Key>
+      <PropertyRef Name="AccountID" />
+    </Key>
+    <Property Name="AccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="60" />
+    <Property Name="SystemID" Type="nvarchar" MaxLength="10" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblAmendment">
+    <Key>
+      <PropertyRef Name="AmendmentID" />
+    </Key>
+    <Property Name="AmendmentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POID" Type="int" />
+    <Property Name="AmendType" Type="int" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="200" />
+    <Property Name="AmendDateTime" Type="nvarchar" MaxLength="200" />
+    <Property Name="RefNumber" Type="nvarchar" MaxLength="200" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="2000" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblAPSubstitutionLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="authoriser" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="authoriserUsername" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="substitution" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="substitutionUsername" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="documentID" Type="int" Nullable="false" />
+    <Property Name="substituteID" Type="int" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBudgetDetail">
+    <Key>
+      <PropertyRef Name="BudgetLineID" />
+    </Key>
+    <Property Name="BudgetLineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BudgetID" Type="int" Nullable="false" />
+    <Property Name="EntityCCAccID" Type="int" Nullable="false" />
+    <Property Name="CalendarYear" Type="nvarchar" MaxLength="4" Nullable="false" />
+    <Property Name="CalendarPeriod" Type="nvarchar" MaxLength="2" Nullable="false" />
+    <Property Name="Amount" Type="money" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblBudgetHeader">
+    <Key>
+      <PropertyRef Name="BudgetID" />
+    </Key>
+    <Property Name="BudgetID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="BudgetSet" Type="nvarchar" MaxLength="20" />
+    <Property Name="TargetBudget" Type="money" Nullable="false" />
+    <Property Name="AllowEdit" Type="bit" />
+    <Property Name="AllowReport" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCapex">
+    <Key>
+      <PropertyRef Name="CapexID" />
+    </Key>
+    <Property Name="CapexID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Revision" Type="int" />
+    <Property Name="CapexNumber" Type="nvarchar" MaxLength="20" />
+    <Property Name="PrevCapexID" Type="int" />
+    <Property Name="Title" Type="nvarchar" MaxLength="200" />
+    <Property Name="Description" Type="nvarchar" MaxLength="2000" />
+    <Property Name="TotalExGST" Type="money" Nullable="false" />
+    <Property Name="TotalGST" Type="money" />
+    <Property Name="TotalIncGST" Type="money" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="Author" Type="nvarchar" MaxLength="100" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="100" />
+    <Property Name="FilePath" Type="nvarchar" MaxLength="200" />
+    <Property Name="EntityID" Type="int" />
+    <Property Name="CostCentreID" Type="int" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCapexApprover">
+    <Key>
+      <PropertyRef Name="CapexApprovalID" />
+    </Key>
+    <Property Name="CapexApprovalID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CapexID" Type="int" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="Approver" Type="nvarchar" MaxLength="200" />
+    <Property Name="StatusID" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblCapexAuthoriser">
+    <Key>
+      <PropertyRef Name="AuthoriserID" />
+    </Key>
+    <Property Name="AuthoriserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblCapexAuthoriserList">
+    <Key>
+      <PropertyRef Name="ListAuthoriserID" />
+    </Key>
+    <Property Name="ListAuthoriserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AuthoriserID" Type="int" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="EntityID" Type="int" />
+    <Property Name="CostCentreID" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblCapexLimit">
+    <Key>
+      <PropertyRef Name="LimitID" />
+    </Key>
+    <Property Name="LimitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LowerLimit" Type="money" />
+    <Property Name="UpperLimit" Type="money" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCapexRole">
+    <Key>
+      <PropertyRef Name="RoleID" />
+    </Key>
+    <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Role" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="RoleUserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EntityID" Type="int" />
+  </EntityType>
+  <EntityType Name="tblCapexRoleLimit">
+    <Key>
+      <PropertyRef Name="RoleLimitID" />
+    </Key>
+    <Property Name="RoleLimitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" />
+    <Property Name="LimitID" Type="int" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="Active" Type="bit" />
+  </EntityType>
+  <EntityType Name="tblCapexRouting">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="costCentre" Type="int" Nullable="false" />
+    <Property Name="limit" Type="int" Nullable="false" />
+    <Property Name="approver1" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver2" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver3" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver4" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver5" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver6" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver7" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver8" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver9" Type="nvarchar" MaxLength="100" />
+    <Property Name="approver10" Type="nvarchar" MaxLength="100" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="updated" Type="datetime" Nullable="false" />
+    <Property Name="updatedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+    <Property Name="createdBy" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblControl">
+    <Key>
+      <PropertyRef Name="ControlID" />
+    </Key>
+    <Property Name="ControlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="ControlCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ControlValue" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="ControlText" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCostCentre">
+    <Key>
+      <PropertyRef Name="CostCentreID" />
+    </Key>
+    <Property Name="CostCentreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="CostCentreCode" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="100" />
+    <Property Name="SortOrder" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblCreditCardPurchases">
+    <Key>
+      <PropertyRef Name="POID" />
+    </Key>
+    <Property Name="POID" Type="int" Nullable="false" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="40" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblCurrencyRate">
+    <Key>
+      <PropertyRef Name="CurrencyID" />
+    </Key>
+    <Property Name="CurrencyID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Rate" Type="money" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblEntity">
+    <Key>
+      <PropertyRef Name="EntityID" />
+    </Key>
+    <Property Name="EntityID" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="20" />
+    <Property Name="Prefix" Type="nvarchar" MaxLength="6" />
+    <Property Name="Name" Type="nvarchar" MaxLength="100" />
+    <Property Name="ACN" Type="nvarchar" MaxLength="22" />
+    <Property Name="ABN" Type="nvarchar" MaxLength="28" />
+    <Property Name="Disclaimer" Type="nvarchar" MaxLength="510" />
+    <Property Name="APPhone" Type="nvarchar" MaxLength="30" />
+    <Property Name="APFax" Type="nvarchar" MaxLength="30" />
+    <Property Name="APEmail" Type="nvarchar" MaxLength="200" />
+    <Property Name="SystemID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblEntityCCAcc">
+    <Key>
+      <PropertyRef Name="EntityCCAccID" />
+    </Key>
+    <Property Name="EntityCCAccID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntityID" Type="int" Nullable="false" />
+    <Property Name="CostCentreID" Type="int" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="SubAccountID" Type="int" />
+    <Property Name="AllowToRaisePO" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblGroup">
+    <Key>
+      <PropertyRef Name="GroupID" />
+    </Key>
+    <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupName" Type="nvarchar" MaxLength="400" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblGroupMember">
+    <Key>
+      <PropertyRef Name="GroupMemberID" />
+    </Key>
+    <Property Name="GroupMemberID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="int" />
+    <Property Name="MemberID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblPerformanceLog">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="username" Type="nvarchar" MaxLength="100" />
+    <Property Name="sessionid" Type="nvarchar" MaxLength="100" />
+    <Property Name="ip" Type="nvarchar" MaxLength="100" />
+    <Property Name="description" Type="nvarchar(max)" />
+    <Property Name="created" Type="datetime" />
+    <Property Name="system" Type="nvarchar" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="tblPODelivery">
+    <Key>
+      <PropertyRef Name="DeliveryID" />
+    </Key>
+    <Property Name="DeliveryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DeliveryName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" MaxLength="40" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="8" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPODetail">
+    <Key>
+      <PropertyRef Name="POLineID" />
+    </Key>
+    <Property Name="POLineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POID" Type="int" Nullable="false" />
+    <Property Name="LineNumber" Type="int" Nullable="false" />
+    <Property Name="Revision" Type="int" Nullable="false" />
+    <Property Name="SupplierPartNo" Type="nvarchar" MaxLength="60" />
+    <Property Name="Details" Type="nvarchar" MaxLength="510" />
+    <Property Name="EntityCCAccID" Type="int" Nullable="false" />
+    <Property Name="CapexID" Type="int" />
+    <Property Name="QuantityOrdered" Type="float" Nullable="false" />
+    <Property Name="UnitPrice" Type="money" Nullable="false" />
+    <Property Name="GSTAmount" Type="money" Nullable="false" />
+    <Property Name="Taxable" Type="bit" />
+    <Property Name="CurrencyID" Type="int" />
+    <Property Name="CurrencyRate" Type="money" />
+    <Property Name="QuantityOpen" Type="float" Nullable="false" />
+    <Property Name="EstimateOnly" Type="bit" />
+    <Property Name="DueDate" Type="datetime" />
+    <Property Name="BlockID" Type="nvarchar" MaxLength="40" />
+    <Property Name="AssetID" Type="nvarchar" MaxLength="40" />
+    <Property Name="Status" Type="int" Nullable="false" />
+    <Property Name="OverBudget" Type="bit" Nullable="false" />
+    <Property Name="BudgetItem" Type="bit" />
+    <Property Name="HDPlanItem" Type="bit" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPODetailReceipt">
+    <Key>
+      <PropertyRef Name="ReceiptLineID" />
+    </Key>
+    <Property Name="ReceiptLineID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POLineID" Type="int" />
+    <Property Name="ReceiptDate" Type="datetime" />
+    <Property Name="ReceiptQty" Type="numeric" Precision="10" Scale="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblPOHeader">
+    <Key>
+      <PropertyRef Name="POID" />
+    </Key>
+    <Property Name="POID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="PONumber" Type="int" Nullable="false" />
+    <Property Name="RevisionNumber" Type="int" Nullable="false" />
+    <Property Name="OrderDate" Type="datetime" Nullable="false" />
+    <Property Name="SupplierID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="EntityID" Type="int" Nullable="false" />
+    <Property Name="DeliveryID" Type="int" Nullable="false" />
+    <Property Name="ContactName" Type="nvarchar" MaxLength="200" />
+    <Property Name="ContactPhone" Type="nvarchar" MaxLength="40" />
+    <Property Name="ContactEmail" Type="nvarchar" MaxLength="200" />
+    <Property Name="CostCentreID" Type="int" />
+    <Property Name="InternalComments" Type="nvarchar" MaxLength="1024" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="1024" />
+    <Property Name="TransmissionMethod" Type="int" Nullable="false" />
+    <Property Name="StatusID" Type="int" Nullable="false" />
+    <Property Name="SupplierContact" Type="nvarchar" MaxLength="100" />
+    <Property Name="SupplierFax" Type="nvarchar" MaxLength="40" />
+    <Property Name="SupplierEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="Author" Type="nvarchar" MaxLength="100" />
+    <Property Name="receiptor" Type="nvarchar" MaxLength="100" />
+    <Property Name="Authoriser" Type="nvarchar" MaxLength="100" />
+    <Property Name="DecliningComments" Type="nvarchar" MaxLength="510" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblPOPhasing">
+    <Key>
+      <PropertyRef Name="POPhasingID" />
+    </Key>
+    <Property Name="POPhasingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POLineID" Type="int" Nullable="false" />
+    <Property Name="PaymentDate" Type="datetime" Nullable="false" />
+    <Property Name="PaymentPercentage" Type="decimal" Precision="18" Scale="0" Nullable="false" />
+    <Property Name="PaymentAmount" Type="money" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRoutingAccountLimit">
+    <Key>
+      <PropertyRef Name="LimitID" />
+    </Key>
+    <Property Name="LimitID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntityCCAccID" Type="int" Nullable="false" />
+    <Property Name="UpperLimit" Type="money" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRoutingList">
+    <Key>
+      <PropertyRef Name="ListID" />
+    </Key>
+    <Property Name="ListID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="LimitID" Type="int" Nullable="false" />
+    <Property Name="AuthoriserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="ApprovalType" Type="int" Nullable="false" />
+    <Property Name="ApprovalNumber" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRoutingSubstitutes">
+    <Key>
+      <PropertyRef Name="subtituteID" />
+    </Key>
+    <Property Name="subtituteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AuthoriserName" Type="nvarchar" MaxLength="100" />
+    <Property Name="SubstituteName" Type="nvarchar" MaxLength="100" />
+    <Property Name="StartDate" Type="datetime" />
+    <Property Name="FinishDate" Type="datetime" />
+    <Property Name="active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblRoutingTable">
+    <Key>
+      <PropertyRef Name="RoutingID" />
+    </Key>
+    <Property Name="RoutingID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="POLineID" Type="int" Nullable="false" />
+    <Property Name="ListID" Type="int" Nullable="false" />
+    <Property Name="ApprovalStatus" Type="int" Nullable="false" />
+    <Property Name="ApprovalDate" Type="datetime" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSite">
+    <Key>
+      <PropertyRef Name="SiteID" />
+    </Key>
+    <Property Name="SiteID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SiteCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="EntityID" Type="int" />
+    <Property Name="SupplierPattern" Type="nvarchar" MaxLength="2" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblStagingAccCC">
+    <Key>
+      <PropertyRef Name="StagingAccCCID" />
+    </Key>
+    <Property Name="StagingAccCCID" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="StagingCostCentreID" Type="int" Nullable="false" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="isDeleted" Type="bit" Nullable="false" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblStagingAccounts">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="510" />
+    <Property Name="130" Type="nvarchar" MaxLength="510" />
+    <Property Name="135" Type="nvarchar" MaxLength="510" />
+    <Property Name="136" Type="nvarchar" MaxLength="510" />
+    <Property Name="137" Type="nvarchar" MaxLength="510" />
+    <Property Name="145" Type="nvarchar" MaxLength="510" />
+    <Property Name="161" Type="nvarchar" MaxLength="510" />
+    <Property Name="162" Type="nvarchar" MaxLength="510" />
+    <Property Name="165" Type="nvarchar" MaxLength="510" />
+    <Property Name="167" Type="nvarchar" MaxLength="510" />
+    <Property Name="230" Type="nvarchar" MaxLength="510" />
+    <Property Name="235" Type="nvarchar" MaxLength="510" />
+    <Property Name="245" Type="nvarchar" MaxLength="510" />
+    <Property Name="246" Type="nvarchar" MaxLength="510" />
+    <Property Name="251" Type="nvarchar" MaxLength="510" />
+    <Property Name="252" Type="nvarchar" MaxLength="510" />
+    <Property Name="253" Type="nvarchar" MaxLength="510" />
+    <Property Name="254" Type="nvarchar" MaxLength="510" />
+    <Property Name="261" Type="nvarchar" MaxLength="510" />
+    <Property Name="262" Type="nvarchar" MaxLength="510" />
+    <Property Name="265" Type="nvarchar" MaxLength="510" />
+    <Property Name="267" Type="nvarchar" MaxLength="510" />
+    <Property Name="275" Type="nvarchar" MaxLength="510" />
+    <Property Name="276" Type="nvarchar" MaxLength="510" />
+    <Property Name="310" Type="nvarchar" MaxLength="510" />
+    <Property Name="320" Type="nvarchar" MaxLength="510" />
+    <Property Name="351" Type="nvarchar" MaxLength="510" />
+    <Property Name="352" Type="nvarchar" MaxLength="510" />
+    <Property Name="353" Type="nvarchar" MaxLength="510" />
+    <Property Name="354" Type="nvarchar" MaxLength="510" />
+    <Property Name="355" Type="nvarchar" MaxLength="510" />
+    <Property Name="361" Type="nvarchar" MaxLength="510" />
+    <Property Name="362" Type="nvarchar" MaxLength="510" />
+    <Property Name="365" Type="nvarchar" MaxLength="510" />
+    <Property Name="367" Type="nvarchar" MaxLength="510" />
+    <Property Name="370" Type="nvarchar" MaxLength="510" />
+    <Property Name="375" Type="nvarchar" MaxLength="510" />
+    <Property Name="376" Type="nvarchar" MaxLength="510" />
+    <Property Name="410" Type="nvarchar" MaxLength="510" />
+    <Property Name="420" Type="nvarchar" MaxLength="510" />
+    <Property Name="435" Type="nvarchar" MaxLength="510" />
+    <Property Name="445" Type="nvarchar" MaxLength="510" />
+    <Property Name="446" Type="nvarchar" MaxLength="510" />
+    <Property Name="451" Type="nvarchar" MaxLength="510" />
+    <Property Name="452" Type="nvarchar" MaxLength="510" />
+    <Property Name="453" Type="nvarchar" MaxLength="510" />
+    <Property Name="454" Type="nvarchar" MaxLength="510" />
+    <Property Name="455" Type="nvarchar" MaxLength="510" />
+    <Property Name="461" Type="nvarchar" MaxLength="510" />
+    <Property Name="462" Type="nvarchar" MaxLength="510" />
+    <Property Name="465" Type="nvarchar" MaxLength="510" />
+    <Property Name="467" Type="nvarchar" MaxLength="510" />
+    <Property Name="470" Type="nvarchar" MaxLength="510" />
+    <Property Name="475" Type="nvarchar" MaxLength="510" />
+    <Property Name="476" Type="nvarchar" MaxLength="510" />
+    <Property Name="510" Type="nvarchar" MaxLength="510" />
+    <Property Name="520" Type="nvarchar" MaxLength="510" />
+    <Property Name="545" Type="nvarchar" MaxLength="510" />
+    <Property Name="551" Type="nvarchar" MaxLength="510" />
+    <Property Name="552" Type="nvarchar" MaxLength="510" />
+    <Property Name="553" Type="nvarchar" MaxLength="510" />
+    <Property Name="554" Type="nvarchar" MaxLength="510" />
+    <Property Name="555" Type="nvarchar" MaxLength="510" />
+    <Property Name="561" Type="nvarchar" MaxLength="510" />
+    <Property Name="562" Type="nvarchar" MaxLength="510" />
+    <Property Name="565" Type="nvarchar" MaxLength="510" />
+    <Property Name="567" Type="nvarchar" MaxLength="510" />
+    <Property Name="570" Type="nvarchar" MaxLength="510" />
+    <Property Name="575" Type="nvarchar" MaxLength="510" />
+    <Property Name="576" Type="nvarchar" MaxLength="510" />
+    <Property Name="7001" Type="nvarchar" MaxLength="510" />
+    <Property Name="7003" Type="nvarchar" MaxLength="510" />
+    <Property Name="7005" Type="nvarchar" MaxLength="510" />
+    <Property Name="7006" Type="nvarchar" MaxLength="510" />
+    <Property Name="7008" Type="nvarchar" MaxLength="510" />
+    <Property Name="7009" Type="nvarchar" MaxLength="510" />
+    <Property Name="7101" Type="nvarchar" MaxLength="510" />
+    <Property Name="7103" Type="nvarchar" MaxLength="510" />
+    <Property Name="7105" Type="nvarchar" MaxLength="510" />
+    <Property Name="7108" Type="nvarchar" MaxLength="510" />
+    <Property Name="7199" Type="nvarchar" MaxLength="510" />
+    <Property Name="7201" Type="nvarchar" MaxLength="510" />
+    <Property Name="7202" Type="nvarchar" MaxLength="510" />
+    <Property Name="7203" Type="nvarchar" MaxLength="510" />
+    <Property Name="7204" Type="nvarchar" MaxLength="510" />
+    <Property Name="7207" Type="nvarchar" MaxLength="510" />
+    <Property Name="7208" Type="nvarchar" MaxLength="510" />
+    <Property Name="7210" Type="nvarchar" MaxLength="510" />
+    <Property Name="7299" Type="nvarchar" MaxLength="510" />
+    <Property Name="7310" Type="nvarchar" MaxLength="510" />
+    <Property Name="7311" Type="nvarchar" MaxLength="510" />
+    <Property Name="7312" Type="nvarchar" MaxLength="510" />
+    <Property Name="7313" Type="nvarchar" MaxLength="510" />
+    <Property Name="7314" Type="nvarchar" MaxLength="510" />
+    <Property Name="7399" Type="nvarchar" MaxLength="510" />
+    <Property Name="7408" Type="nvarchar" MaxLength="510" />
+    <Property Name="7585" Type="nvarchar" MaxLength="510" />
+    <Property Name="7680" Type="nvarchar" MaxLength="510" />
+    <Property Name="7935" Type="nvarchar" MaxLength="510" />
+    <Property Name="7936" Type="nvarchar" MaxLength="510" />
+    <Property Name="7945" Type="nvarchar" MaxLength="510" />
+    <Property Name="7946" Type="nvarchar" MaxLength="510" />
+    <Property Name="7950" Type="nvarchar" MaxLength="510" />
+    <Property Name="7960" Type="nvarchar" MaxLength="510" />
+    <Property Name="7965" Type="nvarchar" MaxLength="510" />
+    <Property Name="7970" Type="nvarchar" MaxLength="510" />
+    <Property Name="7975" Type="nvarchar" MaxLength="510" />
+    <Property Name="7979" Type="nvarchar" MaxLength="510" />
+    <Property Name="7990" Type="nvarchar" MaxLength="510" />
+    <Property Name="910" Type="nvarchar" MaxLength="510" />
+    <Property Name="1110" Type="nvarchar" MaxLength="510" />
+    <Property Name="1210" Type="nvarchar" MaxLength="510" />
+    <Property Name="1310" Type="nvarchar" MaxLength="510" />
+    <Property Name="965" Type="nvarchar" MaxLength="510" />
+    <Property Name="1065" Type="nvarchar" MaxLength="510" />
+    <Property Name="1165" Type="nvarchar" MaxLength="510" />
+    <Property Name="1265" Type="nvarchar" MaxLength="510" />
+    <Property Name="1365" Type="nvarchar" MaxLength="510" />
+    <Property Name="635" Type="nvarchar" MaxLength="510" />
+    <Property Name="735" Type="nvarchar" MaxLength="510" />
+    <Property Name="755" Type="nvarchar" MaxLength="510" />
+    <Property Name="151" Type="nvarchar" MaxLength="510" />
+    <Property Name="9999" Type="nvarchar" MaxLength="510" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblStagingAccountsTMP">
+    <Key>
+      <PropertyRef Name="Account" />
+    </Key>
+    <Property Name="Account" Type="nvarchar" MaxLength="255" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="510" />
+    <Property Name="130" Type="nvarchar" MaxLength="510" />
+    <Property Name="135" Type="nvarchar" MaxLength="510" />
+    <Property Name="136" Type="nvarchar" MaxLength="510" />
+    <Property Name="137" Type="nvarchar" MaxLength="510" />
+    <Property Name="145" Type="nvarchar" MaxLength="510" />
+    <Property Name="161" Type="nvarchar" MaxLength="510" />
+    <Property Name="162" Type="nvarchar" MaxLength="510" />
+    <Property Name="165" Type="nvarchar" MaxLength="510" />
+    <Property Name="167" Type="nvarchar" MaxLength="510" />
+    <Property Name="230" Type="nvarchar" MaxLength="510" />
+    <Property Name="235" Type="nvarchar" MaxLength="510" />
+    <Property Name="245" Type="nvarchar" MaxLength="510" />
+    <Property Name="246" Type="nvarchar" MaxLength="510" />
+    <Property Name="251" Type="nvarchar" MaxLength="510" />
+    <Property Name="252" Type="nvarchar" MaxLength="510" />
+    <Property Name="253" Type="nvarchar" MaxLength="510" />
+    <Property Name="254" Type="nvarchar" MaxLength="510" />
+    <Property Name="261" Type="nvarchar" MaxLength="510" />
+    <Property Name="262" Type="nvarchar" MaxLength="510" />
+    <Property Name="265" Type="nvarchar" MaxLength="510" />
+    <Property Name="267" Type="nvarchar" MaxLength="510" />
+    <Property Name="275" Type="nvarchar" MaxLength="510" />
+    <Property Name="276" Type="nvarchar" MaxLength="510" />
+    <Property Name="310" Type="nvarchar" MaxLength="510" />
+    <Property Name="320" Type="nvarchar" MaxLength="510" />
+    <Property Name="351" Type="nvarchar" MaxLength="510" />
+    <Property Name="352" Type="nvarchar" MaxLength="510" />
+    <Property Name="353" Type="nvarchar" MaxLength="510" />
+    <Property Name="354" Type="nvarchar" MaxLength="510" />
+    <Property Name="355" Type="nvarchar" MaxLength="510" />
+    <Property Name="361" Type="nvarchar" MaxLength="510" />
+    <Property Name="362" Type="nvarchar" MaxLength="510" />
+    <Property Name="365" Type="nvarchar" MaxLength="510" />
+    <Property Name="367" Type="nvarchar" MaxLength="510" />
+    <Property Name="370" Type="nvarchar" MaxLength="510" />
+    <Property Name="375" Type="nvarchar" MaxLength="510" />
+    <Property Name="376" Type="nvarchar" MaxLength="510" />
+    <Property Name="410" Type="nvarchar" MaxLength="510" />
+    <Property Name="420" Type="nvarchar" MaxLength="510" />
+    <Property Name="435" Type="nvarchar" MaxLength="510" />
+    <Property Name="445" Type="nvarchar" MaxLength="510" />
+    <Property Name="446" Type="nvarchar" MaxLength="510" />
+    <Property Name="451" Type="nvarchar" MaxLength="510" />
+    <Property Name="452" Type="nvarchar" MaxLength="510" />
+    <Property Name="453" Type="nvarchar" MaxLength="510" />
+    <Property Name="454" Type="nvarchar" MaxLength="510" />
+    <Property Name="455" Type="nvarchar" MaxLength="510" />
+    <Property Name="461" Type="nvarchar" MaxLength="510" />
+    <Property Name="462" Type="nvarchar" MaxLength="510" />
+    <Property Name="465" Type="nvarchar" MaxLength="510" />
+    <Property Name="467" Type="nvarchar" MaxLength="510" />
+    <Property Name="470" Type="nvarchar" MaxLength="510" />
+    <Property Name="475" Type="nvarchar" MaxLength="510" />
+    <Property Name="476" Type="nvarchar" MaxLength="510" />
+    <Property Name="510" Type="nvarchar" MaxLength="510" />
+    <Property Name="520" Type="nvarchar" MaxLength="510" />
+    <Property Name="545" Type="nvarchar" MaxLength="510" />
+    <Property Name="551" Type="nvarchar" MaxLength="510" />
+    <Property Name="552" Type="nvarchar" MaxLength="510" />
+    <Property Name="553" Type="nvarchar" MaxLength="510" />
+    <Property Name="554" Type="nvarchar" MaxLength="510" />
+    <Property Name="555" Type="nvarchar" MaxLength="510" />
+    <Property Name="561" Type="nvarchar" MaxLength="510" />
+    <Property Name="562" Type="nvarchar" MaxLength="510" />
+    <Property Name="565" Type="nvarchar" MaxLength="510" />
+    <Property Name="567" Type="nvarchar" MaxLength="510" />
+    <Property Name="570" Type="nvarchar" MaxLength="510" />
+    <Property Name="575" Type="nvarchar" MaxLength="510" />
+    <Property Name="576" Type="nvarchar" MaxLength="510" />
+    <Property Name="7001" Type="nvarchar" MaxLength="510" />
+    <Property Name="7003" Type="nvarchar" MaxLength="510" />
+    <Property Name="7005" Type="nvarchar" MaxLength="510" />
+    <Property Name="7006" Type="nvarchar" MaxLength="510" />
+    <Property Name="7008" Type="nvarchar" MaxLength="510" />
+    <Property Name="7009" Type="nvarchar" MaxLength="510" />
+    <Property Name="7101" Type="nvarchar" MaxLength="510" />
+    <Property Name="7103" Type="nvarchar" MaxLength="510" />
+    <Property Name="7105" Type="nvarchar" MaxLength="510" />
+    <Property Name="7108" Type="nvarchar" MaxLength="510" />
+    <Property Name="7199" Type="nvarchar" MaxLength="510" />
+    <Property Name="7201" Type="nvarchar" MaxLength="510" />
+    <Property Name="7202" Type="nvarchar" MaxLength="510" />
+    <Property Name="7203" Type="nvarchar" MaxLength="510" />
+    <Property Name="7204" Type="nvarchar" MaxLength="510" />
+    <Property Name="7207" Type="nvarchar" MaxLength="510" />
+    <Property Name="7208" Type="nvarchar" MaxLength="510" />
+    <Property Name="7210" Type="nvarchar" MaxLength="510" />
+    <Property Name="7299" Type="nvarchar" MaxLength="510" />
+    <Property Name="7310" Type="nvarchar" MaxLength="510" />
+    <Property Name="7311" Type="nvarchar" MaxLength="510" />
+    <Property Name="7312" Type="nvarchar" MaxLength="510" />
+    <Property Name="7313" Type="nvarchar" MaxLength="510" />
+    <Property Name="7314" Type="nvarchar" MaxLength="510" />
+    <Property Name="7399" Type="nvarchar" MaxLength="510" />
+    <Property Name="7408" Type="nvarchar" MaxLength="510" />
+    <Property Name="7585" Type="nvarchar" MaxLength="510" />
+    <Property Name="7680" Type="nvarchar" MaxLength="510" />
+    <Property Name="7935" Type="nvarchar" MaxLength="510" />
+    <Property Name="7936" Type="nvarchar" MaxLength="510" />
+    <Property Name="7945" Type="nvarchar" MaxLength="510" />
+    <Property Name="7946" Type="nvarchar" MaxLength="510" />
+    <Property Name="7950" Type="nvarchar" MaxLength="510" />
+    <Property Name="7960" Type="nvarchar" MaxLength="510" />
+    <Property Name="7965" Type="nvarchar" MaxLength="510" />
+    <Property Name="7970" Type="nvarchar" MaxLength="510" />
+    <Property Name="7975" Type="nvarchar" MaxLength="510" />
+    <Property Name="7979" Type="nvarchar" MaxLength="510" />
+    <Property Name="7990" Type="nvarchar" MaxLength="510" />
+    <Property Name="910" Type="nvarchar" MaxLength="510" />
+    <Property Name="1110" Type="nvarchar" MaxLength="510" />
+    <Property Name="1210" Type="nvarchar" MaxLength="510" />
+    <Property Name="1310" Type="nvarchar" MaxLength="510" />
+    <Property Name="965" Type="nvarchar" MaxLength="510" />
+    <Property Name="1065" Type="nvarchar" MaxLength="510" />
+    <Property Name="1165" Type="nvarchar" MaxLength="510" />
+    <Property Name="1265" Type="nvarchar" MaxLength="510" />
+    <Property Name="1365" Type="nvarchar" MaxLength="510" />
+    <Property Name="635" Type="nvarchar" MaxLength="510" />
+    <Property Name="735" Type="nvarchar" MaxLength="510" />
+    <Property Name="755" Type="nvarchar" MaxLength="510" />
+    <Property Name="151" Type="nvarchar" MaxLength="510" />
+    <Property Name="9999" Type="nvarchar" MaxLength="510" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblStagingCostCentres">
+    <Key>
+      <PropertyRef Name="CostCentre" />
+    </Key>
+    <Property Name="Entity" Type="int" Nullable="false" />
+    <Property Name="CostCentre" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="510" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="510" />
+  </EntityType>
+  <EntityType Name="tblStagingCostCentresDEV">
+    <Key>
+      <PropertyRef Name="StagingCostCentreID" />
+    </Key>
+    <Property Name="StagingCostCentreID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="EntityID" Type="int" Nullable="false" />
+    <Property Name="CostCentreCode" Type="int" Nullable="false" />
+    <Property Name="Description" Type="nvarchar" MaxLength="510" />
+    <Property Name="Owner" Type="nvarchar" MaxLength="510" />
+  </EntityType>
+  <EntityType Name="tblStagingEmployees">
+    <Key>
+      <PropertyRef Name="Name" />
+    </Key>
+    <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Manager" Type="nvarchar" MaxLength="200" />
+    <Property Name="Level" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="int" />
+  </EntityType>
+  <EntityType Name="tblStagingEmployeesDEV">
+    <Key>
+      <PropertyRef Name="StagingEmpID" />
+    </Key>
+    <Property Name="StagingEmpID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Employee" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Manager" Type="nvarchar" MaxLength="200" />
+    <Property Name="Level" Type="int" Nullable="false" />
+    <Property Name="isDeleted" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblStagingLevels">
+    <Key>
+      <PropertyRef Name="level" />
+    </Key>
+    <Property Name="level" Type="int" Nullable="false" />
+    <Property Name="limit" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSubAccount">
+    <Key>
+      <PropertyRef Name="SubAccountID" />
+    </Key>
+    <Property Name="SubAccountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SubAccountCode" Type="nvarchar" MaxLength="16" />
+    <Property Name="Description" Type="nvarchar" MaxLength="48" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSubscription">
+    <Key>
+      <PropertyRef Name="SubscriptionID" />
+    </Key>
+    <Property Name="SubscriptionID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="GroupID" Type="int" />
+    <Property Name="SubscriptionUserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PurchaseOrder.dbo.tblSupplier' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblSupplier">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+      <PropertyRef Name="Entity" />
+      <PropertyRef Name="Active" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Entity" Type="int" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="40" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblSupplierNew">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+    </Key>
+    <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Entity" Type="int" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="40" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PurchaseOrder.dbo.tblSupplierTemp1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="tblSupplierTemp1">
+    <Key>
+      <PropertyRef Name="SupplierID" />
+      <PropertyRef Name="Entity" />
+      <PropertyRef Name="Active" />
+      <PropertyRef Name="Created" />
+      <PropertyRef Name="Updated" />
+    </Key>
+    <Property Name="SupplierID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="SupplierCode" Type="nvarchar" MaxLength="100" />
+    <Property Name="Entity" Type="int" Nullable="false" />
+    <Property Name="Contact" Type="nvarchar" MaxLength="100" />
+    <Property Name="SupplierName" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address1" Type="nvarchar" MaxLength="200" />
+    <Property Name="Address2" Type="nvarchar" MaxLength="200" />
+    <Property Name="City" Type="nvarchar" MaxLength="40" />
+    <Property Name="State" Type="nvarchar" MaxLength="20" />
+    <Property Name="Country" Type="nvarchar" MaxLength="100" />
+    <Property Name="PostCode" Type="nvarchar" MaxLength="20" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="40" />
+    <Property Name="Fax" Type="nvarchar" MaxLength="40" />
+    <Property Name="Email" Type="nvarchar" MaxLength="100" />
+    <Property Name="Active" Type="bit" Nullable="false" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="tblTransaction">
+    <Key>
+      <PropertyRef Name="TransID" />
+    </Key>
+    <Property Name="TransID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RefID" Type="int" />
+    <Property Name="RefType" Type="nvarchar" MaxLength="200" />
+    <Property Name="Code" Type="nvarchar" MaxLength="200" />
+    <Property Name="FromValue" Type="nvarchar" MaxLength="2000" />
+    <Property Name="ToValue" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Comments" Type="nvarchar" MaxLength="2000" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <EntityType Name="tblUserDefaults">
+    <Key>
+      <PropertyRef Name="DefaultID" />
+    </Key>
+    <Property Name="DefaultID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="DefaultUserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="entityID" Type="int" Nullable="false" />
+    <Property Name="CostCentreID" Type="int" Nullable="false" />
+    <Property Name="DeliveryAddressID" Type="int" Nullable="false" />
+    <Property Name="GroupID" Type="int" Nullable="false" />
+    <Property Name="SiteID" Type="int" />
+    <Property Name="Active" Type="bit" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="100" />
+    <Property Name="Created" Type="datetime" Nullable="false" />
+    <Property Name="Updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PurchaseOrder.dbo.vwAp_det_oldpo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwAp_det_oldpo">
+    <Key>
+      <PropertyRef Name="documentID" />
+      <PropertyRef Name="voucherID" />
+      <PropertyRef Name="documentType" />
+      <PropertyRef Name="authorised" />
+      <PropertyRef Name="Checked" />
+      <PropertyRef Name="created" />
+      <PropertyRef Name="updated" />
+    </Key>
+    <Property Name="documentID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="voucherID" Type="int" Nullable="false" />
+    <Property Name="documentType" Type="int" Nullable="false" />
+    <Property Name="fileName" Type="nvarchar" MaxLength="200" />
+    <Property Name="comments" Type="nvarchar" MaxLength="510" />
+    <Property Name="authorised" Type="bit" Nullable="false" />
+    <Property Name="Checked" Type="bit" Nullable="false" />
+    <Property Name="CheckedBy" Type="nvarchar" MaxLength="100" />
+    <Property Name="authoriser" Type="nvarchar" MaxLength="100" />
+    <Property Name="authoriserEmail" Type="nvarchar" MaxLength="100" />
+    <Property Name="authorisedDate" Type="datetime" />
+    <Property Name="userID" Type="nvarchar" MaxLength="100" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+    <Property Name="updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PurchaseOrder.dbo.vwAp_grni_rf_oldpo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwAp_grni_rf_oldpo">
+    <Key>
+      <PropertyRef Name="GRNIRefID" />
+      <PropertyRef Name="VoucherID" />
+    </Key>
+    <Property Name="GRNIRefID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="VoucherID" Type="int" Nullable="false" />
+    <Property Name="prh_nbr" Type="nvarchar" MaxLength="20" />
+    <Property Name="prh_receiver" Type="nvarchar" MaxLength="40" />
+    <Property Name="UserID" Type="nvarchar" MaxLength="200" />
+    <Property Name="Created" Type="datetime" />
+    <Property Name="Updated" Type="datetime" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PurchaseOrder.dbo.vwAp_mstr_oldpo' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwAp_mstr_oldpo">
+    <Key>
+      <PropertyRef Name="voucherID" />
+      <PropertyRef Name="voucherNumber" />
+      <PropertyRef Name="status" />
+      <PropertyRef Name="PORequired" />
+      <PropertyRef Name="created" />
+      <PropertyRef Name="updated" />
+    </Key>
+    <Property Name="voucherID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="voucherNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="supplierID" Type="nvarchar" MaxLength="100" />
+    <Property Name="invoiceNumber" Type="nvarchar" MaxLength="40" />
+    <Property Name="userComments" Type="nvarchar" MaxLength="1024" />
+    <Property Name="status" Type="int" Nullable="false" />
+    <Property Name="PORequired" Type="bit" Nullable="false" />
+    <Property Name="userID" Type="nvarchar" MaxLength="100" />
+    <Property Name="created" Type="datetime" Nullable="false" />
+    <Property Name="updated" Type="datetime" Nullable="false" />
+  </EntityType>
+  <!--Errors Found During Generation:
+warning 6002: The table/view 'PurchaseOrder.dbo.vwEntityCCAcc' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+  <EntityType Name="vwEntityCCAcc">
+    <Key>
+      <PropertyRef Name="EntityCCAccID" />
+      <PropertyRef Name="EntityID" />
+      <PropertyRef Name="Code" />
+      <PropertyRef Name="CostCentreID" />
+      <PropertyRef Name="CostCentreCode" />
+      <PropertyRef Name="AccountID" />
+      <PropertyRef Name="AccountCode" />
+    </Key>
+    <Property Name="EntityCCAccID" Type="int" Nullable="false" />
+    <Property Name="EntityID" Type="int" Nullable="false" />
+    <Property Name="Code" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="CostCentreID" Type="int" Nullable="false" />
+    <Property Name="CostCentreCode" Type="int" Nullable="false" />
+    <Property Name="AccountID" Type="int" Nullable="false" />
+    <Property Name="AccountCode" Type="nvarchar" MaxLength="8" Nullable="false" />
+    <Property Name="SubAccountID" Type="int" />
+    <Property Name="SubAccountCode" Type="nvarchar" MaxLength="8" />
+  </EntityType>
+  <Association Name="FK_tblBudgetDetail_tblBudgetHeader">
+    <End Role="tblBudgetHeader" Type="Self.tblBudgetHeader" Multiplicity="1" />
+    <End Role="tblBudgetDetail" Type="Self.tblBudgetDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblBudgetHeader">
+        <PropertyRef Name="BudgetID" />
+      </Principal>
+      <Dependent Role="tblBudgetDetail">
+        <PropertyRef Name="BudgetID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblCapexAuthoriserList_tblCapexAuthoriser">
+    <End Role="tblCapexAuthoriser" Type="Self.tblCapexAuthoriser" Multiplicity="0..1" />
+    <End Role="tblCapexAuthoriserList" Type="Self.tblCapexAuthoriserList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCapexAuthoriser">
+        <PropertyRef Name="AuthoriserID" />
+      </Principal>
+      <Dependent Role="tblCapexAuthoriserList">
+        <PropertyRef Name="AuthoriserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCCAcc_tblAccount">
+    <End Role="tblAccount" Type="Self.tblAccount" Multiplicity="1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblAccount">
+        <PropertyRef Name="AccountID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="AccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCCAcc_tblSubAccount">
+    <End Role="tblSubAccount" Type="Self.tblSubAccount" Multiplicity="0..1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblSubAccount">
+        <PropertyRef Name="SubAccountID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="SubAccountID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCostCentre_tblCostCentre">
+    <End Role="tblCostCentre" Type="Self.tblCostCentre" Multiplicity="1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCostCentre">
+        <PropertyRef Name="CostCentreID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="CostCentreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblEntityCostCentre_tblEntity">
+    <End Role="tblEntity" Type="Self.tblEntity" Multiplicity="1" />
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntity">
+        <PropertyRef Name="EntityID" />
+      </Principal>
+      <Dependent Role="tblEntityCCAcc">
+        <PropertyRef Name="EntityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPODetail_tblCapex">
+    <End Role="tblCapex" Type="Self.tblCapex" Multiplicity="0..1" />
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblCapex">
+        <PropertyRef Name="CapexID" />
+      </Principal>
+      <Dependent Role="tblPODetail">
+        <PropertyRef Name="CapexID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPODetail_tblEntityCCAcc">
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="1" />
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntityCCAcc">
+        <PropertyRef Name="EntityCCAccID" />
+      </Principal>
+      <Dependent Role="tblPODetail">
+        <PropertyRef Name="EntityCCAccID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPODetail_tblPOHeader">
+    <End Role="tblPOHeader" Type="Self.tblPOHeader" Multiplicity="1" />
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPOHeader">
+        <PropertyRef Name="POID" />
+      </Principal>
+      <Dependent Role="tblPODetail">
+        <PropertyRef Name="POID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblPOPhasing_tblPODetail">
+    <End Role="tblPODetail" Type="Self.tblPODetail" Multiplicity="1" />
+    <End Role="tblPOPhasing" Type="Self.tblPOPhasing" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblPODetail">
+        <PropertyRef Name="POLineID" />
+      </Principal>
+      <Dependent Role="tblPOPhasing">
+        <PropertyRef Name="POLineID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRoutingAccountLimit_tblEntityCCAcc">
+    <End Role="tblEntityCCAcc" Type="Self.tblEntityCCAcc" Multiplicity="1" />
+    <End Role="tblRoutingAccountLimit" Type="Self.tblRoutingAccountLimit" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntityCCAcc">
+        <PropertyRef Name="EntityCCAccID" />
+      </Principal>
+      <Dependent Role="tblRoutingAccountLimit">
+        <PropertyRef Name="EntityCCAccID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRoutingList_tblRoutingAccountLimit">
+    <End Role="tblRoutingAccountLimit" Type="Self.tblRoutingAccountLimit" Multiplicity="1" />
+    <End Role="tblRoutingList" Type="Self.tblRoutingList" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoutingAccountLimit">
+        <PropertyRef Name="LimitID" />
+      </Principal>
+      <Dependent Role="tblRoutingList">
+        <PropertyRef Name="LimitID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblRoutingTable_tblRoutingList">
+    <End Role="tblRoutingList" Type="Self.tblRoutingList" Multiplicity="1" />
+    <End Role="tblRoutingTable" Type="Self.tblRoutingTable" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblRoutingList">
+        <PropertyRef Name="ListID" />
+      </Principal>
+      <Dependent Role="tblRoutingTable">
+        <PropertyRef Name="ListID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblSite_tblEntity">
+    <End Role="tblEntity" Type="Self.tblEntity" Multiplicity="0..1" />
+    <End Role="tblSite" Type="Self.tblSite" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntity">
+        <PropertyRef Name="EntityID" />
+      </Principal>
+      <Dependent Role="tblSite">
+        <PropertyRef Name="EntityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStagingAccCC_tblStagingCostCentresDEV">
+    <End Role="tblStagingCostCentresDEV" Type="Self.tblStagingCostCentresDEV" Multiplicity="1" />
+    <End Role="tblStagingAccCC" Type="Self.tblStagingAccCC" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStagingCostCentresDEV">
+        <PropertyRef Name="StagingCostCentreID" />
+      </Principal>
+      <Dependent Role="tblStagingAccCC">
+        <PropertyRef Name="StagingCostCentreID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStagingCostCentresDEV_tblEntity">
+    <End Role="tblEntity" Type="Self.tblEntity" Multiplicity="1" />
+    <End Role="tblStagingCostCentresDEV" Type="Self.tblStagingCostCentresDEV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblEntity">
+        <PropertyRef Name="EntityID" />
+      </Principal>
+      <Dependent Role="tblStagingCostCentresDEV">
+        <PropertyRef Name="EntityID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_tblStagingEmployeesDEV_tblStagingLevels">
+    <End Role="tblStagingLevels" Type="Self.tblStagingLevels" Multiplicity="1" />
+    <End Role="tblStagingEmployeesDEV" Type="Self.tblStagingEmployeesDEV" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="tblStagingLevels">
+        <PropertyRef Name="level" />
+      </Principal>
+      <Dependent Role="tblStagingEmployeesDEV">
+        <PropertyRef Name="Level" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="OldPurchaseOrderModelStoreContainer">
+    <EntitySet Name="tblAccount" EntityType="Self.tblAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAmendment" EntityType="Self.tblAmendment" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblAPSubstitutionLog" EntityType="Self.tblAPSubstitutionLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBudgetDetail" EntityType="Self.tblBudgetDetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblBudgetHeader" EntityType="Self.tblBudgetHeader" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapex" EntityType="Self.tblCapex" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexApprover" EntityType="Self.tblCapexApprover" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexAuthoriser" EntityType="Self.tblCapexAuthoriser" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexAuthoriserList" EntityType="Self.tblCapexAuthoriserList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexLimit" EntityType="Self.tblCapexLimit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexRole" EntityType="Self.tblCapexRole" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexRoleLimit" EntityType="Self.tblCapexRoleLimit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCapexRouting" EntityType="Self.tblCapexRouting" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblControl" EntityType="Self.tblControl" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCostCentre" EntityType="Self.tblCostCentre" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCreditCardPurchases" EntityType="Self.tblCreditCardPurchases" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblCurrencyRate" EntityType="Self.tblCurrencyRate" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEntity" EntityType="Self.tblEntity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblEntityCCAcc" EntityType="Self.tblEntityCCAcc" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblGroupMember" EntityType="Self.tblGroupMember" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPerformanceLog" EntityType="Self.tblPerformanceLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPODelivery" EntityType="Self.tblPODelivery" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPODetail" EntityType="Self.tblPODetail" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPODetailReceipt" EntityType="Self.tblPODetailReceipt" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPOHeader" EntityType="Self.tblPOHeader" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblPOPhasing" EntityType="Self.tblPOPhasing" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoutingAccountLimit" EntityType="Self.tblRoutingAccountLimit" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoutingList" EntityType="Self.tblRoutingList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoutingSubstitutes" EntityType="Self.tblRoutingSubstitutes" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblRoutingTable" EntityType="Self.tblRoutingTable" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSite" EntityType="Self.tblSite" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingAccCC" EntityType="Self.tblStagingAccCC" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingAccounts" EntityType="Self.tblStagingAccounts" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingAccountsTMP" EntityType="Self.tblStagingAccountsTMP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingCostCentres" EntityType="Self.tblStagingCostCentres" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingCostCentresDEV" EntityType="Self.tblStagingCostCentresDEV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingEmployees" EntityType="Self.tblStagingEmployees" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingEmployeesDEV" EntityType="Self.tblStagingEmployeesDEV" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblStagingLevels" EntityType="Self.tblStagingLevels" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubAccount" EntityType="Self.tblSubAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSubscription" EntityType="Self.tblSubscription" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSupplierNew" EntityType="Self.tblSupplierNew" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblTransaction" EntityType="Self.tblTransaction" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblUserDefaults" EntityType="Self.tblUserDefaults" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tblSupplier" EntityType="Self.tblSupplier" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblSupplier].[SupplierID] AS [SupplierID], 
+    [tblSupplier].[SupplierCode] AS [SupplierCode], 
+    [tblSupplier].[Entity] AS [Entity], 
+    [tblSupplier].[Contact] AS [Contact], 
+    [tblSupplier].[SupplierName] AS [SupplierName], 
+    [tblSupplier].[Address1] AS [Address1], 
+    [tblSupplier].[Address2] AS [Address2], 
+    [tblSupplier].[City] AS [City], 
+    [tblSupplier].[State] AS [State], 
+    [tblSupplier].[Country] AS [Country], 
+    [tblSupplier].[PostCode] AS [PostCode], 
+    [tblSupplier].[Phone] AS [Phone], 
+    [tblSupplier].[Fax] AS [Fax], 
+    [tblSupplier].[Email] AS [Email], 
+    [tblSupplier].[Active] AS [Active], 
+    [tblSupplier].[UserID] AS [UserID], 
+    [tblSupplier].[Created] AS [Created], 
+    [tblSupplier].[Updated] AS [Updated]
+    FROM [dbo].[tblSupplier] AS [tblSupplier]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="tblSupplierTemp1" EntityType="Self.tblSupplierTemp1" store:Type="Tables" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [tblSupplierTemp1].[SupplierID] AS [SupplierID], 
+    [tblSupplierTemp1].[SupplierCode] AS [SupplierCode], 
+    [tblSupplierTemp1].[Entity] AS [Entity], 
+    [tblSupplierTemp1].[Contact] AS [Contact], 
+    [tblSupplierTemp1].[SupplierName] AS [SupplierName], 
+    [tblSupplierTemp1].[Address1] AS [Address1], 
+    [tblSupplierTemp1].[Address2] AS [Address2], 
+    [tblSupplierTemp1].[City] AS [City], 
+    [tblSupplierTemp1].[State] AS [State], 
+    [tblSupplierTemp1].[Country] AS [Country], 
+    [tblSupplierTemp1].[PostCode] AS [PostCode], 
+    [tblSupplierTemp1].[Phone] AS [Phone], 
+    [tblSupplierTemp1].[Fax] AS [Fax], 
+    [tblSupplierTemp1].[Email] AS [Email], 
+    [tblSupplierTemp1].[Active] AS [Active], 
+    [tblSupplierTemp1].[UserID] AS [UserID], 
+    [tblSupplierTemp1].[Created] AS [Created], 
+    [tblSupplierTemp1].[Updated] AS [Updated]
+    FROM [dbo].[tblSupplierTemp1] AS [tblSupplierTemp1]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwAp_det_oldpo" EntityType="Self.vwAp_det_oldpo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwAp_det_oldpo].[documentID] AS [documentID], 
+    [vwAp_det_oldpo].[voucherID] AS [voucherID], 
+    [vwAp_det_oldpo].[documentType] AS [documentType], 
+    [vwAp_det_oldpo].[fileName] AS [fileName], 
+    [vwAp_det_oldpo].[comments] AS [comments], 
+    [vwAp_det_oldpo].[authorised] AS [authorised], 
+    [vwAp_det_oldpo].[Checked] AS [Checked], 
+    [vwAp_det_oldpo].[CheckedBy] AS [CheckedBy], 
+    [vwAp_det_oldpo].[authoriser] AS [authoriser], 
+    [vwAp_det_oldpo].[authoriserEmail] AS [authoriserEmail], 
+    [vwAp_det_oldpo].[authorisedDate] AS [authorisedDate], 
+    [vwAp_det_oldpo].[userID] AS [userID], 
+    [vwAp_det_oldpo].[created] AS [created], 
+    [vwAp_det_oldpo].[updated] AS [updated]
+    FROM [dbo].[vwAp_det_oldpo] AS [vwAp_det_oldpo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwAp_grni_rf_oldpo" EntityType="Self.vwAp_grni_rf_oldpo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwAp_grni_rf_oldpo].[GRNIRefID] AS [GRNIRefID], 
+    [vwAp_grni_rf_oldpo].[VoucherID] AS [VoucherID], 
+    [vwAp_grni_rf_oldpo].[prh_nbr] AS [prh_nbr], 
+    [vwAp_grni_rf_oldpo].[prh_receiver] AS [prh_receiver], 
+    [vwAp_grni_rf_oldpo].[UserID] AS [UserID], 
+    [vwAp_grni_rf_oldpo].[Created] AS [Created], 
+    [vwAp_grni_rf_oldpo].[Updated] AS [Updated]
+    FROM [dbo].[vwAp_grni_rf_oldpo] AS [vwAp_grni_rf_oldpo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwAp_mstr_oldpo" EntityType="Self.vwAp_mstr_oldpo" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwAp_mstr_oldpo].[voucherID] AS [voucherID], 
+    [vwAp_mstr_oldpo].[voucherNumber] AS [voucherNumber], 
+    [vwAp_mstr_oldpo].[supplierID] AS [supplierID], 
+    [vwAp_mstr_oldpo].[invoiceNumber] AS [invoiceNumber], 
+    [vwAp_mstr_oldpo].[userComments] AS [userComments], 
+    [vwAp_mstr_oldpo].[status] AS [status], 
+    [vwAp_mstr_oldpo].[PORequired] AS [PORequired], 
+    [vwAp_mstr_oldpo].[userID] AS [userID], 
+    [vwAp_mstr_oldpo].[created] AS [created], 
+    [vwAp_mstr_oldpo].[updated] AS [updated]
+    FROM [dbo].[vwAp_mstr_oldpo] AS [vwAp_mstr_oldpo]</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="vwEntityCCAcc" EntityType="Self.vwEntityCCAcc" store:Type="Views" store:Schema="dbo">
+      <DefiningQuery>SELECT 
+    [vwEntityCCAcc].[EntityCCAccID] AS [EntityCCAccID], 
+    [vwEntityCCAcc].[EntityID] AS [EntityID], 
+    [vwEntityCCAcc].[Code] AS [Code], 
+    [vwEntityCCAcc].[CostCentreID] AS [CostCentreID], 
+    [vwEntityCCAcc].[CostCentreCode] AS [CostCentreCode], 
+    [vwEntityCCAcc].[AccountID] AS [AccountID], 
+    [vwEntityCCAcc].[AccountCode] AS [AccountCode], 
+    [vwEntityCCAcc].[SubAccountID] AS [SubAccountID], 
+    [vwEntityCCAcc].[SubAccountCode] AS [SubAccountCode]
+    FROM [dbo].[vwEntityCCAcc] AS [vwEntityCCAcc]</DefiningQuery>
+    </EntitySet>
+    <AssociationSet Name="FK_tblBudgetDetail_tblBudgetHeader" Association="Self.FK_tblBudgetDetail_tblBudgetHeader">
+      <End Role="tblBudgetHeader" EntitySet="tblBudgetHeader" />
+      <End Role="tblBudgetDetail" EntitySet="tblBudgetDetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblCapexAuthoriserList_tblCapexAuthoriser" Association="Self.FK_tblCapexAuthoriserList_tblCapexAuthoriser">
+      <End Role="tblCapexAuthoriser" EntitySet="tblCapexAuthoriser" />
+      <End Role="tblCapexAuthoriserList" EntitySet="tblCapexAuthoriserList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCCAcc_tblAccount" Association="Self.FK_tblEntityCCAcc_tblAccount">
+      <End Role="tblAccount" EntitySet="tblAccount" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAcc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCCAcc_tblSubAccount" Association="Self.FK_tblEntityCCAcc_tblSubAccount">
+      <End Role="tblSubAccount" EntitySet="tblSubAccount" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAcc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCostCentre_tblCostCentre" Association="Self.FK_tblEntityCostCentre_tblCostCentre">
+      <End Role="tblCostCentre" EntitySet="tblCostCentre" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAcc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblEntityCostCentre_tblEntity" Association="Self.FK_tblEntityCostCentre_tblEntity">
+      <End Role="tblEntity" EntitySet="tblEntity" />
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAcc" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPODetail_tblCapex" Association="Self.FK_tblPODetail_tblCapex">
+      <End Role="tblCapex" EntitySet="tblCapex" />
+      <End Role="tblPODetail" EntitySet="tblPODetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPODetail_tblEntityCCAcc" Association="Self.FK_tblPODetail_tblEntityCCAcc">
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAcc" />
+      <End Role="tblPODetail" EntitySet="tblPODetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPODetail_tblPOHeader" Association="Self.FK_tblPODetail_tblPOHeader">
+      <End Role="tblPOHeader" EntitySet="tblPOHeader" />
+      <End Role="tblPODetail" EntitySet="tblPODetail" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblPOPhasing_tblPODetail" Association="Self.FK_tblPOPhasing_tblPODetail">
+      <End Role="tblPODetail" EntitySet="tblPODetail" />
+      <End Role="tblPOPhasing" EntitySet="tblPOPhasing" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRoutingAccountLimit_tblEntityCCAcc" Association="Self.FK_tblRoutingAccountLimit_tblEntityCCAcc">
+      <End Role="tblEntityCCAcc" EntitySet="tblEntityCCAcc" />
+      <End Role="tblRoutingAccountLimit" EntitySet="tblRoutingAccountLimit" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRoutingList_tblRoutingAccountLimit" Association="Self.FK_tblRoutingList_tblRoutingAccountLimit">
+      <End Role="tblRoutingAccountLimit" EntitySet="tblRoutingAccountLimit" />
+      <End Role="tblRoutingList" EntitySet="tblRoutingList" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblRoutingTable_tblRoutingList" Association="Self.FK_tblRoutingTable_tblRoutingList">
+      <End Role="tblRoutingList" EntitySet="tblRoutingList" />
+      <End Role="tblRoutingTable" EntitySet="tblRoutingTable" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblSite_tblEntity" Association="Self.FK_tblSite_tblEntity">
+      <End Role="tblEntity" EntitySet="tblEntity" />
+      <End Role="tblSite" EntitySet="tblSite" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStagingAccCC_tblStagingCostCentresDEV" Association="Self.FK_tblStagingAccCC_tblStagingCostCentresDEV">
+      <End Role="tblStagingCostCentresDEV" EntitySet="tblStagingCostCentresDEV" />
+      <End Role="tblStagingAccCC" EntitySet="tblStagingAccCC" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStagingCostCentresDEV_tblEntity" Association="Self.FK_tblStagingCostCentresDEV_tblEntity">
+      <End Role="tblEntity" EntitySet="tblEntity" />
+      <End Role="tblStagingCostCentresDEV" EntitySet="tblStagingCostCentresDEV" />
+    </AssociationSet>
+    <AssociationSet Name="FK_tblStagingEmployeesDEV_tblStagingLevels" Association="Self.FK_tblStagingEmployeesDEV_tblStagingLevels">
+      <End Role="tblStagingLevels" EntitySet="tblStagingLevels" />
+      <End Role="tblStagingEmployeesDEV" EntitySet="tblStagingEmployeesDEV" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

@@ -1,0 +1,210 @@
+﻿@model EPOv2.ViewModels.SearchViewModel
+<script type="text/javascript">
+    
+    $(document).on("focusin", "#dateEPOFrom", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateEPOFrom", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(document).on("focusin", "#dateEPOTo", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateEPOTo", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    //Date Receipt
+
+    $(document).on("focusin", "#dateEPORecFrom", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateEPORecFrom", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(document).on("focusin", "#dateEPORecTo", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateEPORecTo", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    //Due Date
+
+    $(document).on("focusin", "#dateEPODueFrom", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateEPODueFrom", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(document).on("focusin", "#dateEPODueTo", function (event) {
+        $(this).prop('readonly', true);
+    });
+
+    $(document).on("focusout", "#dateEPODueTo", function (event) {
+        $(this).prop('readonly', false);
+    });
+
+    $(function () {
+        $("#dateEPOFrom").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateEPOTo").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateEPORecFrom").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateEPORecTo").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateEPODueTo").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+
+        $("#dateEPODueFrom").datepicker({
+            numberOfMonths: 1,
+            showButtonPanel: false,
+            maxDate: '0',
+            dateFormat: 'dd/mm/yy'
+        });
+    });
+
+
+</script>
+<br />
+<div class="panel panel-primary">
+    <div class="panel-heading"></div>
+    <div class="panel-body">
+
+        @using (@Html.BeginForm("SearchEPO", "PurchaseOrder", FormMethod.Post, new { id = "SearchEPOForm" }))
+        {
+            <div class="col-md-12">
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Order #</label>
+                    <div class="col-md-2">@Html.TextBoxFor(m => m.OrderNumber, null, new { @class = "form-control input-sm", @onkeypress = "return isNumberKey(event)" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Date Created</label>
+                    <div class="col-md-2">@Html.TextBoxFor(m => m.DateFrom, null, new { @id = "dateEPOFrom", @placeholder = "Select Date Created From", @class = "form-control input-sm" })</div>
+                    <label class="col-sm-1 control-label ">Date To</label>
+                    <div class="col-md-2">@Html.TextBoxFor(m => m.DateTo, null, new { @id = "dateEPOTo", @placeholder = "Select Date Created To", @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Entity</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Cost Centre</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedCostCenter, new SelectList(Model.CostCentres, "Id", "FullName"), "Select Cost Centre", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Account</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedAccount, new SelectList(Model.Accounts, "Id", "FullName"), "Select Account", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Capex</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedCapexId, new SelectList(Model.Capexes, "Id", "FullName"), "Select Capex", new { @class = "form-control input-sm" })</div>
+                </div>
+                <div class="row form-group">
+                    <label class="col-sm-2 control-label ">Supplier</label>
+                    <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedSupplier, new SelectList(Model.Suppliers, "Id", "FullName"), "Select Supplier", new { @class = "form-control input-sm" })</div>
+                </div>
+                <hr/>
+                <h4 >
+                    <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Advanced Search
+                    </a>
+                </h4>
+                <div id="collapseOne" class="collapse out" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="row form-group">
+                        <label class="col-sm-2 control-label ">Author</label>
+                        <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedAuthor, new SelectList(Model.Authors, "Id", "FullName"), "Select Author", new { @class = "form-control input-sm" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 control-label ">Authoriser</label>
+                        <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedAuthoriser, new SelectList(Model.Authorisers, "Id", "FullName"), "Select Authoriser", new { @class = "form-control input-sm" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 control-label ">Status</label>
+                        <div class="col-md-5">@Html.DropDownListFor(m => m.SelectedStatus, new SelectList(Model.Statuses, "Id", "Name"), "Select Status", new { @class = "form-control input-sm" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 control-label ">Date of Receipt</label>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.DateRecFrom, null, new { @id = "dateEPORecFrom", @placeholder = "Select Receipt Date From", @class = "form-control input-sm" })</div>
+                        <label class="col-sm-1 control-label ">Date To</label>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.DateRecTo, null, new { @id = "dateEPORecTo", @placeholder = "Select Receipt Date To", @class = "form-control input-sm" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 control-label ">Due Date</label>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.DateDueFrom, null, new { @id = "dateEPODueFrom", @placeholder = "Select Due Date From", @class = "form-control input-sm" })</div>
+                        <label class="col-sm-1 control-label ">Date To</label>
+                        <div class="col-md-2">@Html.TextBoxFor(m => m.DateDueTo, null, new { @id = "dateEPODueTo", @placeholder = "Select Due Date To", @class = "form-control input-sm" })</div>
+                    </div>
+                    <div class="row form-group">
+                        <label class="col-sm-2 control-label ">Details</label>
+                        <div class="col-md-5">@Html.TextAreaFor(m => m.Details, 2, 150, new { @class = "form-control input-sm" })</div>
+                    </div>
+                </div>
+                <hr/>
+            </div>
+                    
+            <div class="col-md-12">
+                <div class="row form-group">
+                    <div class="col-md-2">
+                        <button type="button" name="button" value="cancel" class="cancel btn btn-warning btn-block " onclick="ClearSearchEPO()">Clear</button>
+                    </div>
+                    <div class="col-md-2">
+                        <button type="button" name="button" value="Search" class="btn btn-success btn-block " onclick="SearchEPO()">Search</button>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+        }
+
+
+
+
+    </div>
+</div>
+<div class="row">
+    <div class="col-sm-12 text-center hidden" id="EPOloading1">
+        <div class="spinner spinner-info"></div>
+    </div>
+</div>
+<div class="panel panel-primary hidden" id="epoResultPanel">
+    <div class="panel-heading " id="result-panel-head"> Result</div>
+    <div class="panel-body" id="searchEPOResult">
+
+    </div>
+</div>

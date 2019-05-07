@@ -1,0 +1,611 @@
+﻿@model EPOv2.ViewModels.NewPOViewModel
+
+@{
+    ViewBag.Title = "Raise New Order";
+}
+<script>
+    $(document).ready(function () {
+        var isLocked = $("#IsLocked").val() === "True";
+        var isCCDisabled = document.getElementById("SelectedEntity").disabled;
+        if (!isLocked && !isCCDisabled) {
+            var selectedEntity = $("#SelectedEntity").val();
+            if (selectedEntity !== 0 && selectedEntity !=="") ActionAfterSelectingEntity(selectedEntity);
+            $('input[id=CostCenterId]').val($("#SelectedCostCenter").val());
+            $('input[id=GroupId]').val($("#SelectedReceiptGroup").val());
+            $('input[id=DeliveryAddressId]').val($("#SelectedDeliveryAddress").val());
+        }
+    });
+    function ShowModal(parameters) {
+        $('#myModal').modal("show");
+    }
+
+    function SelectApprover() {
+        var id = $('#Id').val();
+        $('#ApproverChoiceOrderId').val(id);
+        $('#ApproverChoiceForm').submit();
+    }
+    function selectApproverFull(object) {
+        $('#SelectedApprover').val(object.value);
+    }
+
+    function ShowFullApprovalList() {
+        $('#shortList').addClass("hidden");
+        $('#fullList').removeClass("hidden");
+        $('#btn-fullList').attr('disabled', 'disabled');
+    }
+
+    function selectEntity(object)
+    {
+        var entityID = object.value;
+        if (entityID != null && entityID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCompanyBox")',
+                cache: false,
+                data: {
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText).removeClass("hidden");
+                },
+                success: function(result) {
+                    $('#div-companybox').html(result);
+                    ActionAfterSelectingEntity(entityID);
+                }
+            });
+        }
+    }
+
+    function ActionAfterSelectingEntity(entityID) {
+        $('select[id=SelectedCostCenter]').removeAttr("disabled");
+        $('input[id=EntityId]').val(entityID);
+        filterSuppliers(entityID);
+    }
+
+    function selectCostCenter(object) {
+        var ccID = object.value;
+        var entityID = $('input[id=EntityId]').val();
+        if (ccID != null && ccID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCompanyBoxByCC")',
+                cache: false,
+                data: {
+                    entityId: entityID,
+                    ccId: ccID
+                },
+                error: function(xhr, status, error) {
+                    $(".alert").html(xhr.responseText).removeClass("hidden");
+                },
+                success: function (result) {
+                    $('#div-companybox').html(result);
+                    $('select[id=SelectedCostCenter]').removeAttr("disabled");
+                    $('input[id=CostCenterId]').val(ccID);
+                    filterSuppliers(entityID);
+                }
+            });
+        }
+    }
+    function selectReceiptGroup(object) {
+        var rgID = object.value;
+        $('input[id=GroupId]').val(rgID);
+    }
+
+    function selectMethod(object) {
+        var methodID = object.value;
+        $('input[id=Transmission]').val(methodID);
+    }
+
+    function selectDeliveryAddress(object) {
+        var daID = object.value;
+        var userID = $('select[id=SelectedUser]').val();
+        // alert(daID);
+        if (daID != null && daID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchDeliveryBox")',
+                cache: false,
+                data: {
+                    daId: daID,
+                    userId: userID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText).removeClass("hidden");
+                },
+                success: function (result) {
+                    $('#div-deliverybox').html(result);
+                    $('select[id=SelectedUser]').removeAttr("disabled");
+                    $('input[id=DeliveryAddressId]').val(daID);
+                }
+            });
+        }
+    }
+
+    function selectAttention(object) {
+        var userID = object.value;
+        var daID = $('select[id=SelectedDeliveryAddress]').val();
+        //alert(userID);
+        //alert(daID);
+        if (userID != null && userID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchDeliveryBox")',
+                cache: false,
+                data: {
+                    daId: daID,
+                    userId: userID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText).removeClass("hidden");
+                },
+                success: function (result) {
+                    $('#div-deliverybox').html(result);
+                    $('input[id=UserId]').val(userID);
+
+                }
+            });
+        }
+    }
+
+    function selectSupplier(object) {
+        var supplierID = object.value;
+        var entityID = $("#SelectedEntity").val();
+        if (supplierID != null && supplierID !== '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchSupplierBox")',
+                cache: false,
+                data: {
+                    supplierId: supplierID,
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#div-supplierbox').html(result);
+                    $('input[id=SupplierId]').val(supplierID);
+                    $('#SupplierEmail').val($('#EmailForSupplier').val());
+                }
+            });
+        }
+    }
+
+    function selectCapex(object) {
+        var capexID = object.value;
+        $('input[id=CapexId]').val(capexID);
+    }
+
+    function filterSuppliers(entityID) {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("FilterSuppliers")',
+            cache: false,
+            data: {
+                entityId: entityID
+            },
+            error: function(xhr, status, error) {
+                $(".alert").html(xhr.responseText).removeClass("hidden");
+            },
+            success: function(result) {
+                $('#div-supplierbox').html(result);
+                // $('input[id=SupplierId]').val(supplierID);
+            }
+        });
+    }
+
+    function addNewItem() {
+        var isCapex = !$("#capexId").hasClass("hidden");
+        if (isCapex) {
+            if ($('input[id=CapexId]').val() !== "" && $('input[id=CapexId]').val() !== null && $('input[id=CapexId]').val() !== "0") {
+                $('#POForm').attr('action', 'NewOrderItem').submit();
+            } else {
+                alert("Please Select Capex");
+            }
+        } else {
+            $('#POForm').attr('action', 'NewOrderItem').submit();
+        }
+    }
+
+    function EditItem(object) {
+        var itemID = object.value;
+        $("#EditingItemId").val(itemID);
+        $('#POForm').attr('action', 'EditOrderItem').submit();
+    }
+
+    function DeleteItem(object) {
+        var itemID = object.value;
+        $("#DeletingItemId").val(itemID);
+        $('#POForm').attr('action', 'DeleteOrderItem').submit();
+    }
+
+    function changeSupplierEmail(object) {
+        var value = object.value;
+        $("#SupplierEmail").val(value);
+    }
+
+    function submitOrder(object) {
+        bootbox.confirm("Are you sure?", function(result) {
+            if (result === true) {
+                $("#loadingModal").modal('show');
+                var $form = $('form[id="POForm"]');
+                
+                $.ajax({
+                    type: 'GET',
+                    url: '@Url.Action("SaveOrder")',
+                    cache: false,
+                    data: $form.serialize(),
+                    error: function (xhr, status, error) {
+                        $(".alert").html(xhr.responseText).removeClass("hidden");
+                    },
+                    success: function (result) {
+                        $("#loadingModal").modal('hide');
+                        if (result.isMulti) {
+                            $('#approverChoice-Body').html(result.data);
+                            ShowModal();
+                        } else {
+                            window.location = result.url;
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    function PinCompanyInfo() {
+        $("#DefaultOrderSettingsViewModel_DefaultCostCentreId").val($("#SelectedCostCenter").val());
+        $("#DefaultOrderSettingsViewModel_DefaultEntityId").val($("#SelectedEntity").val());
+        $("#DefaultOrderSettingsViewModel_DefaultGroupId").val($("#SelectedReceiptGroup").val());
+
+        var $form = $('form[id="defaultSettingsForm"]');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("SetDefaultOrderSettings")',
+            cache: false,
+            data: $form.serialize(),
+            error: function (xhr, status, error) {
+                $("#pin-company-notification").html("Error").show(1000).delay(500).hide(400);
+            },
+            success: function (result) {
+                $('#div-pinbtn-company').animate(
+                    { left: "-=0px" },
+                    0,
+                    function () {
+                        $('#pin-company-notification').show(600).delay(300);
+                        $('#pin-company-notification').hide(300);
+                    }
+                );
+            }
+        });
+    }
+
+    function PinDeliveryInfo() {
+        $("#DefaultOrderSettingsViewModel_DefaultDeliveryAddressId").val($("#DeliveryAddressId").val());
+      
+        var $form = $('form[id="defaultSettingsForm"]');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("SetDefaultOrderSettings")',
+            cache: false,
+            data: $form.serialize(),
+            error: function (xhr, status, error) {
+                $("#pin-delivery-notification").html("Error").show(1000).delay(500).hide(400);
+            },
+            success: function (result) {
+                $('#div-pinbtn-company').animate(
+                    { left: "-=0px" },
+                    0,
+                    function () {
+                        $('#pin-delivery-notification').show(600).delay(300);
+                        $('#pin-delivery-notification').hide(300);
+                    }
+                );
+            }
+        });
+    }
+
+    function PinSupplierInfo() {
+        $("#DefaultOrderSettingsViewModel_DefaultSupplierId").val($("#SelectedSupplier").val());
+
+        var $form = $('form[id="defaultSettingsForm"]');
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("SetDefaultOrderSettings")',
+            cache: false,
+            data: $form.serialize(),
+            error: function (xhr, status, error) {
+                $("#pin-supplier-notification").html("Error").show(1000).delay(500).hide(400);
+            },
+            success: function (result) {
+                $('#div-pinbtn-company').animate(
+                    { left: "-=0px" },
+                    0,
+                    function () {
+                        $('#pin-supplier-notification').show(600).delay(300);
+                        $('#pin-supplier-notification').hide(300);
+                    }
+                );
+            }
+        });
+    }
+</script>
+
+<p class="well-sm alert hidden"></p>
+@using (@Html.BeginForm("SetDefaultOrderSettings", "PurchaseOrder", FormMethod.Post, new { id = "defaultSettingsForm" }))
+{
+    @Html.HiddenFor(m => m.DefaultOrderSettingsViewModel.DefaultCostCentreId)
+    @Html.HiddenFor(m => m.DefaultOrderSettingsViewModel.DefaultDeliveryAddressId)
+    @Html.HiddenFor(m => m.DefaultOrderSettingsViewModel.DefaultEntityId)
+    @Html.HiddenFor(m => m.DefaultOrderSettingsViewModel.DefaultGroupId)
+    @Html.HiddenFor(m => m.DefaultOrderSettingsViewModel.DefaultSupplierId)
+}
+
+@using (@Html.BeginForm("SaveOrder", "PurchaseOrder", FormMethod.Post, new { id = "POForm" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @Html.HiddenFor(m => m.Id)
+    @Html.HiddenFor(m => m.TempOrderNumber)
+    @Html.HiddenFor(m => m.EntityId)
+    @Html.HiddenFor(m => m.CostCenterId)
+    @Html.HiddenFor(m => m.GroupId)
+    @Html.HiddenFor(m => m.DeliveryAddressId)
+    @Html.HiddenFor(m => m.RevisionQty)
+    @Html.HiddenFor(m => m.isRevision)
+    @Html.HiddenFor(m => m.UserId)
+    @Html.HiddenFor(m => m.SupplierId)
+    @Html.HiddenFor(m => m.CapexId)
+    @Html.HiddenFor(m => m.Transmission)
+    @Html.HiddenFor(m => m.StatusName)
+    @Html.HiddenFor(m => m.EditingItemId)
+    @Html.HiddenFor(m => m.IsRestrictedEdit)
+    @Html.HiddenFor(m => m.DeletingItemId)
+    @Html.HiddenFor(m => m.TotalOrder)
+    @Html.HiddenFor(m => m.TotalExGST)
+    @Html.HiddenFor(m => m.TotalGST)
+    @Html.HiddenFor(m => m.SupplierEmail)
+    @Html.HiddenFor(m=>m.IsLocked)
+   
+     <div class="col-md-12">
+        <div class="well well-sm col-md-2">
+            <h3 class="page-title">Raise new PO</h3>
+        </div>
+        <div class="col-md-5"></div>
+        <div class="col-md-5 top-buttons">
+            @if (Model.IsLocked)
+            {
+                <div class="col-md-2 pull-right">
+                    <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block ">Close</button>
+                </div>
+            }
+            else
+            {
+                if (!Model.IsRestrictedEdit)
+                {
+                    <div class="col-md-2 pull-right">
+                        <button type="button" name="button" value="Submit" class="btn btn-primary btn-block" onclick="submitOrder()">Submit</button>
+                    </div>
+                }
+                if (!Model.isRevision)
+                    {
+                    <div class="col-md-2 pull-right">
+                        <button type="submit" name="button" value="Save" class="btn btn-success btn-block ">Save</button>
+                    </div>
+                }
+                if (Model.IsChangedByRevision)
+                {
+                    <div class="col-md-2 pull-right">
+                        <button type="button" name="button" value="Cancel" class="cancel btn btn-warning btn-block" disabled="disabled">Cancel</button>
+                    </div>
+                }
+                else
+                {
+                    <div class="col-md-2 pull-right">
+                        <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block">Cancel</button>
+                    </div>
+                }
+            }
+        </div>
+    </div>
+    <div class="row form-group buttons-wrap">
+       
+    </div>
+   
+    <div class="page-wrap">
+        <div id="order-head">
+            <div class="row">
+                <div class="col-md-2">
+                    Author
+                    @Html.TextBoxFor(m => m.Author, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Order #
+                    @Html.TextBoxFor(m => m.OrderNumber, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Revision
+                    @Html.TextBoxFor(m => m.RevisionQty, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Order Date
+                    @Html.TextBoxFor(m => m.OrderDate, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    Status
+                    @Html.TextBoxFor(m => m.StatusName, null, new { @class = "form-control input-sm", @readonly = "readonly" })
+                </div>
+                <div class="col-md-2">
+                    <br />
+                </div>
+            </div>
+        </div>
+        <hr class="hr-sm" />
+        <div id="order-body" class="color-blue">
+            <div class="row">
+                <div class="col-md-3 " id="div-companybox">
+                    @if (Model.IsLocked)
+                    {
+                            Html.RenderPartial("_CompanyBoxAuthorise", Model.CompanyBox);
+                    }
+                    else
+                    {
+                        Html.RenderAction("CompanyBox", "PurchaseOrder", Model.CompanyBox);
+                    }
+
+
+                </div>
+                @*<div class="col-md-1"></div>*@
+                <div class="col-md-4 " id="div-deliverybox">
+                    @if (Model.IsLocked)
+                    {
+                        Html.RenderPartial("_DeliveryBoxAuthorise", Model.DeliveryBox);
+                    }
+                    else
+                    {
+
+                        Html.RenderAction("DeliveryBox", "PurchaseOrder", Model.DeliveryBox);
+                    }
+                </div>
+                @*<div class="col-sm-1"></div>*@
+                <div class="col-md-4 " id="div-supplierbox">
+                    @if (Model.IsLocked)
+                    {
+                        Html.RenderPartial("_SupplierBoxAuthorise", Model.SupplierBox);
+                    }
+                    else
+                    {
+                        Html.RenderAction("SupplierBox", Model.SupplierBox);
+                    }
+                </div>
+            </div>
+        </div>
+        <div id="order-items" class="">
+            <div class="row">
+                <div class="btnnewitem">
+                    @if (!Model.IsLocked && !Model.IsRestrictedEdit)
+                    {
+                        <button type="button" value="+" id="addNewItem1" onclick="addNewItem()" title="Add new item" class="btn btn-warning control-btn-plus ">
+                            <span class="glyphicon glyphicon-plus"></span>
+                        </button>
+                    }
+                </div>
+                <div class="col-md-12" id="div-orderItems">
+                    @if (Model.IsLocked)
+                    {
+                        Html.RenderPartial("_OrderItemsAuthorise", Model.Items);
+                    }
+                    else if (Model.IsRestrictedEdit)
+                    {
+                        Html.RenderPartial("_OrderItems", Model.Items, new ViewDataDictionary { { "IsRestrictedEdit", "true" } });
+                    }
+                    else
+                    {
+                        Html.RenderPartial("_OrderItems", Model.Items, new ViewDataDictionary { { "IsRestrictedEdit", "false" } });
+                    }
+                </div>
+            </div>
+        </div>
+        @*<hr />*@
+        <div id="order-bottom" class="color-lightGreen">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-5" id="div-bottom-comment">
+                        <label>Comments: (Appears on purchase order)</label>
+                        @(Model.IsLocked ? Html.TextAreaFor(m => m.Comment, 4, 90, new { @class = "form-control ", @disabled = "disabled" }) : Html.TextAreaFor(m => m.Comment, 4, 90, new { @class = "form-control " }))
+                    </div>
+                    <div class="col-md-5" id="div-bottom-intcommnet">
+                        <label>Internal Comments (does not appear on Purchase Order)</label>
+                        @(Model.IsLocked ? Html.TextAreaFor(m => m.InternalComment, 4,90, new { @class = "form-control ", @disabled = "disabled" }) : Html.TextAreaFor(m => m.InternalComment, 4, 90, new { @class = "form-control " }))
+                    </div>
+                    <div class="col-md-2" id="div-bottom-EpoTotal">
+                        <div class="row">
+                            <div class="col-md-12">
+                                Total Ex GST
+                                @Html.TextBoxFor(m => m.TotalExGST, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Total GST
+                                @Html.TextBoxFor(m => m.TotalGST, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                Total (@Model.CurrencyName)
+                                @Html.TextBoxFor(m => m.TotalOrder, "{0:N2}", new { @class = "form-control input-sm text-right", @readonly = "readonly" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr />
+    </div>
+    <div class="row form-group buttons-wrap">
+        @if (Model.IsLocked)
+        {
+            <div class="col-md-2 pull-right">
+                <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block ">Close</button>
+            </div>
+        }
+        else
+        {
+            if (!Model.IsRestrictedEdit)
+            {
+                <div class="col-md-2 pull-right">
+                    <button type="button" name="button" value="Submit" class="btn btn-primary btn-block" onclick="submitOrder()">Submit</button>
+                </div>
+            }
+            if (!Model.isRevision)
+            {
+                <div class="col-md-2 pull-right">
+                    <button type="submit" name="button" value="Save" class="btn btn-success btn-block  ">Save</button>
+                </div>
+            }
+            if (Model.IsChangedByRevision)
+            {
+                <div class="col-md-2 pull-right">
+                    <button type="button" name="button" value="Cancel" class="cancel btn btn-warning btn-block " disabled="disabled">Cancel</button>
+                </div>
+            }
+            else
+            {
+                <div class="col-md-2 pull-right">
+                    <button type="submit" name="button" value="Cancel" class="cancel btn btn-warning btn-block ">Cancel</button>
+                </div>
+            }
+        }
+    </div>
+
+}
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                @*<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>*@
+                <h4 class="modal-title">Please select authoriser</h4>
+            </div>
+            @using (@Html.BeginForm("ChooseAuthoriser", "PurchaseOrder", FormMethod.Post, new { id = "ApproverChoiceForm" }))
+            {
+              
+            <div class="modal-body" id="approverChoice-Body"></div>
+                <div class="modal-footer">
+                    @*<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>*@
+                    <button type="button" class="btn btn-primary" onclick="SelectApprover()">Submit</button>
+                </div>
+            }
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+<div id="loadingModal" class="modal fade" tabindex="-1" role="dialog" data-keyboard="false" data-backdrop="static">
+    <div class="modal-body">
+        <div style="height: 800px">
+            <div class="spinner spinner-bright" style="position: absolute; display: block; top: 50%; left: 50%;"></div>
+        </div>
+    </div>
+</div>

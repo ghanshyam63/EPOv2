@@ -1,0 +1,78 @@
+﻿@model EPOv2.ViewModels.EntityDDLViewModel
+
+@{
+    ViewBag.Title = "Map CC to Entity";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<script type="text/javascript">
+    
+    function selectEntity(object) {
+        var entityID = object.value;
+        if (entityID != null && entityID != '') {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("FetchCCEntityMap")',
+                cache: false,
+                data: {
+                    entityId: entityID
+                },
+                error: function (xhr, status, error) {
+                    $(".alert").html(xhr.responseText);
+                },
+                success: function (result) {
+                    $('#ccMapping').html(result);
+                }
+            });
+        }
+    }
+
+    function DeleteEntityToCCMapping(ID) {
+        var entityID = $('#SelectedEntity').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("DeleteCCEntityMap")',
+            cache: false,
+            data: {
+                entityId: entityID,
+                id:ID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#ccMapping').html(result);
+            }
+        });
+    }
+
+    function ActivateEntityToCCMapping(ID) {
+        var entityID = $('#SelectedEntity').val();
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("ActivateCCEntityMap")',
+            cache: false,
+            data: {
+                entityId: entityID,
+                id: ID
+            },
+            error: function (xhr, status, error) {
+                $(".alert").html(xhr.responseText);
+            },
+            success: function (result) {
+                $('#ccMapping').html(result);
+            }
+        });
+    }
+</script>
+
+<h2>Mapping Cost Centre to Entity</h2>
+
+<p>
+    @Html.ActionLink("Add New", "AddCostCentreEntityMapping")
+</p>
+
+@Html.DropDownListFor(m => m.SelectedEntity, new SelectList(Model.Entities, "Id", "Name"), "Select Entity", new { @class = "form-control input-sm input", onchange = "selectEntity(this)" })
+
+
+<div id="ccMapping"></div>
+
